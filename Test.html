@@ -186,10 +186,10 @@
 </head>
 <body>
   <div id="header">
-    <select name="forma" onchange="location = this.value;">
-     <option value="Home.php">Home</option>
-     <option value="Contact.php">Contact</option>
-     <option value="Sitemap.php">Sitemap</option>
+    <select id="location" placeholder="Location (default Minneapolis)">
+     <option value="Minneapolis">Home</option>
+     <option value="St.Cloud">Contact</option>
+     <option value="Omaha">Sitemap</option>
   </select>
     <div class ="buttons-container">
         <button id="goBackButton">&#9664;</button>
@@ -217,6 +217,13 @@
   <button id="downloadJSONButton">Download JSON</button>
   
   <script>
+    var location;
+    Var dropdown = document.getElementbyId("location");
+    dropdown.addEventListener("change", function(){
+    location = dropdown.value;
+    });
+
+    
 // Fetch OMJSON Data
     async function fetchOMData() {
       const response = await fetch('MinneapolisOMJSON.json');
