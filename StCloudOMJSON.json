@@ -21,7 +21,7 @@
 {"Row" : 9, "Column" : 1, "Text" : "Routine influenza vaccination is recommended for all persons aged 6 months"}, 
 {"Row" : 10, "Column" : 1, "Text" : "and older. It prevents against novel H1N1, H3N2, and influenza B."}, 
 {"Row" : 12, "Column" : 1, "Text" : "Standard Dose Influenza Vaccine", "Header" : 1}, 
-{"Row" : 13, "Column" : 1, "Item" : "PSJZID 2014-2015 STANDARD INFLUENZA VACCINE", "DisplayText" : "Influenza Vaccine", "Mnemonic" : "10"},
+{"Row" : 13, "Column" : 1, "Item" : "PSJZID 2014-2015 STANDARD INFLUENZA VACCINE", "DisplayText" : "Influenza Vaccine", "Text" : "Pyomyositis", "Mnemonic" : "10"},
 {"Row" : 6, "Column" : 1, "Item" : "GMRCTZ MPLS INFECTIOUS DISEASE", "DisplayText" : "Mpls Infectious Disease", "Text" : "Consult Infectious Disease", "Mnemonic" : "08"}
 ]}
 ]
