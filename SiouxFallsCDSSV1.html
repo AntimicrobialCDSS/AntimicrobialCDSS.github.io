@@ -380,10 +380,18 @@ function searchData() {
 
   // Scroll to the top of the dropdown
   dropdown.scrollTop = 0;
+
+  // Remove terms that do not match the search
+  const options = dropdown.querySelectorAll('option');
+  options.forEach(option => {
+    const term = option.textContent.toLowerCase();
+    if (!searchText || term.includes(searchText)) {
+      option.classList.remove('no-term');
+    } else {
+      option.classList.add('no-term');
+    }
+  });
 }
-
-
-
 
 function searchAndOpenDropdown() {
   var searchInput = document.getElementById('searchInput');
