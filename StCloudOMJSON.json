@@ -1,5 +1,5 @@
 [
-{"Name" : "ORZID2 GMENU ABX ENTAMOEBA HISTOLYTICA", "DisplayText" : "Entoemeba histolytica ", "Version" : "StCloud", "Contents" : [
+{"Name" : "ORZID2 GMENU ABX ENTAMOEBA HISTOLYTICA", "Version" : "StCloud", "Contents" : [
 ]},
 {"Name" : "ORZID2 GMENU ABX ENTERIC FEVER", "Term1" : "Enteric fever ", "Term2" : "Paratyphoid fever ", "Term3" : "Typhoid fever", "DisplayText" : "Enteric Fever", "Version" : "StCloud", "Contents" : [
 {"Row" : 1, "Column" : 1, "Item" : "ORZID2 GMENU ABX GENERAL INFORMATION INPATIENT", "DisplayText" : "Help, legend, allergy info, consults, alternative antimicrobials and more (Inpt)", "Text" : "Select here for help, legend, consults, alternative antimicrobials and more (Ip)", "Mnemonic" : "2"},
