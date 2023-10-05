@@ -296,12 +296,12 @@ function getMatchCount(item, searchText) {
   let matchCount = 0;
   const contents = item.Contents || [];
 
-  contents.forEach(content => {
-    const text = content.Text || '';
-    if (text.toLowerCase().includes(searchText)) {
-      matchCount++;
-    }
-  });
+ contentTexts.forEach(text => {
+  if (text && text.includes(term)) {
+    relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
+  }
+});
+
 
   return matchCount;
 }
