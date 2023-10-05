@@ -297,10 +297,11 @@ function getMatchCount(item, searchText) {
   const contents = item.Contents || [];
 
   contents.forEach(content => {
-    const text = content.Text || '';
-    if (text.toLowerCase().includes(searchText)) {
-      matchCount++;
-    }
+const text = content.Text || '';
+if (text && text.toLowerCase().includes(searchText)) {
+  matchCount++;
+}
+
   });
 
   return matchCount;
@@ -381,9 +382,6 @@ function searchData() {
   // Scroll to the top of the dropdown
   dropdown.scrollTop = 0;
 }
-
-
-
 
 function searchAndOpenDropdown() {
   var searchInput = document.getElementById('searchInput');
