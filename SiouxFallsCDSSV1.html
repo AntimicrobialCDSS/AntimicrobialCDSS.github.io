@@ -324,7 +324,7 @@ function searchData() {
     // Filter data based on search text and prioritize items with matches in terms
     let filteredData = omData.map(item => {
       const displayText = item.DisplayText || item.Name;
-      const contentTexts = (item.Contents?.map(content => content.Text.toLowerCase()) || []);
+      const contentTexts = (item.Contents?.map(content => content.Text?.toLowerCase()) || []);
       const terms = [];
 
       // Check for "Term1" through "Term99" in the item and calculate relevance score
