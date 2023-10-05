@@ -1,18 +1,5 @@
 [
 {"Name" : "ORZID2 GMENU ABX ENTAMOEBA HISTOLYTICA", "DisplayText" : "Entoemeba histolytica ", "Version" : "StCloud", "Contents" : [
-{"Row" : 1, "Column" : 1, "Item" : "ORZID2 GMENU ABX GENERAL INFORMATION INPATIENT", "DisplayText" : "Help, legend, allergy info, consults, alternative antimicrobials and more (Inpt)", "Text" : "Select here for help, legend, consults, alternative antimicrobials and more (Ip)", "Mnemonic" : "2"},
-{"Row" : 11, "Column" : 1, "Item" : "ORZ SET ABX METRO 750MG PO Q8H PAROMOMYC 25-35MG/KG/DAY PO Q8H", "DisplayText" : "Metronidazole 750 mg PO q8h for 10 days ($) [DI] <FOLLOWED BY> paromomycin", "Text" : "Metronidazole 750 mg PO q8h for 10 days ($) [DI] <FOLLOWED BY> paromomycin", "Mnemonic" : "4"},
-{"Row" : 3, "Column" : 1, "Text" : "ENTAMOEBA HISTOLYTICA", "Header" : 1}, 
-{"Row" : 5, "Column" : 1, "Text" : "Primary treatment for gastroenteritis", "Header" : 1}, 
-{"Row" : 6, "Column" : 1, "Text" : "Hydration and electrolyte replacement"}, 
-{"Row" : 8, "Column" : 1, "Text" : "Antimicrobial treatment for gastroenteritis or extraintestinal disease", "Header" : 1}, 
-{"Row" : 9, "Column" : 1, "Text" : "Consult Infectious Diseases in all cases. Paromomycin is nonformulary and must"}, 
-{"Row" : 10, "Column" : 1, "Text" : "be ordered by Infectious Diseases."}, 
-{"Row" : 12, "Column" : 1, "Text" : "25-35 mg/kg/day PO q8h for 7 days ($) [M]"}, 
-{"Row" : 15, "Column" : 1, "Text" : "References:"}, 
-{"Row" : 17, "Column" : 1, "Text" : "Sanford keyword: Amoebiasis, Entamoeba histolytica"}, 
-{"Row" : 18, "Column" : 1, "Text" : "Shane et al, Clinical Infectious Diseases 2017, 65(12):45-80"}, 
-{"Row" : 19, "Column" : 1, "Text" : "Up-to-Date article: Intestinal Entamoeba histolytica amoebiasis"}
 ]},
 {"Name" : "ORZID2 GMENU ABX ENTERIC FEVER", "Term1" : "Enteric fever ", "Term2" : "Paratyphoid fever ", "Term3" : "Typhoid fever", "DisplayText" : "Enteric Fever", "Version" : "StCloud", "Contents" : [
 {"Row" : 1, "Column" : 1, "Item" : "ORZID2 GMENU ABX GENERAL INFORMATION INPATIENT", "DisplayText" : "Help, legend, allergy info, consults, alternative antimicrobials and more (Inpt)", "Text" : "Select here for help, legend, consults, alternative antimicrobials and more (Ip)", "Mnemonic" : "2"},
