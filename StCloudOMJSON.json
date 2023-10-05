@@ -1,5 +1,5 @@
 [
-{"Name" : "ORZID2 GMENU ABX ENTAMOEBA HISTOLYTICA", "Term1" : "Entamoeba histolytica diarrhea/gastroenteritis", "DisplayText" : "Entoemeba histolytica ", "Version" : "StCloud", "Contents" : [
+{"Name" : "ORZID2 GMENU ABX ENTAMOEBA HISTOLYTICA", "DisplayText" : "Entoemeba histolytica ", "Version" : "StCloud", "Contents" : [
 {"Row" : 1, "Column" : 1, "Item" : "ORZID2 GMENU ABX GENERAL INFORMATION INPATIENT", "DisplayText" : "Help, legend, allergy info, consults, alternative antimicrobials and more (Inpt)", "Text" : "Select here for help, legend, consults, alternative antimicrobials and more (Ip)", "Mnemonic" : "2"},
 {"Row" : 11, "Column" : 1, "Item" : "ORZ SET ABX METRO 750MG PO Q8H PAROMOMYC 25-35MG/KG/DAY PO Q8H", "DisplayText" : "Metronidazole 750 mg PO q8h for 10 days ($) [DI] <FOLLOWED BY> paromomycin", "Text" : "Metronidazole 750 mg PO q8h for 10 days ($) [DI] <FOLLOWED BY> paromomycin", "Mnemonic" : "4"},
 {"Row" : 3, "Column" : 1, "Text" : "ENTAMOEBA HISTOLYTICA", "Header" : 1}, 
