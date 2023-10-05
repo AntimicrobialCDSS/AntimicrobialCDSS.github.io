@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap">
-  <title>Saint Cloud Antimicrobial CDSS</title>
+  <title>Minneapolis Antimicrobial CDSS</title>
   <style>
     /* Common styles */
     .no-term {
@@ -176,7 +176,7 @@
   <div id="header">
     <div class ="buttons-container">
         <button id="goBackButton">&#9664;</button>
-        <button id="mainMenuButton">Saint Cloud Home</button>
+        <button id="mainMenuButton">Minneapolis Home</button>
         <button id="indexButton">Index</button>
         <button id="goForwardButton">&#9654;</button>
     </div>
@@ -202,21 +202,21 @@
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
-      const response = await fetch('StCloudOMJSON.json');
+      const response = await fetch('MinneapolisOMJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ODJSON Data
     async function fetchODData() {
-      const response = await fetch('StCloudODJSON.json');
+      const response = await fetch('MinneapolisODJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ItemLink Data
     async function fetchItemLink() {
-      const response = await fetch('StCloudItemLinks.json');
+      const response = await fetch('MinneapolisItemLinks.json');
       const data = await response.json();
       return data;
     }
@@ -552,7 +552,7 @@ function handleRowClick(item) {
         console.log('Invalid URL:', URL);
       }
     } else {
-      console.log('No matching item found in OMJSON.json or StCloudItemLink.json');
+      console.log('No matching item found in OMJSON.json or MinneapolisItemLink.json');
     }
   }
 }
