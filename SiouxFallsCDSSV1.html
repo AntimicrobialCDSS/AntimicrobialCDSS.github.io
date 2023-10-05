@@ -347,12 +347,20 @@ function searchData() {
         if (displayText.toLowerCase().includes(term)) {
           relevanceScore += 50; // Increase relevance score if search term is found in displayText
         }
-        contentTexts.forEach(text => {
-          if (text.includes(term)) {
-            relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
-          }
-        });
-      });
+contentTexts.forEach(text => {
+  try {
+    if (text && typeof text === 'string') {
+      if (text.includes(term)) {
+        relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
+      }
+    } else {
+      console.log('Invalid text:', text);
+    }
+  } catch (error) {
+    console.error('Error in searchData:', error);
+  }
+});
+
 
       return {
         ...item,
