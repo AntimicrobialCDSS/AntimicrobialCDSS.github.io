@@ -296,8 +296,8 @@ function getMatchCount(item, searchText) {
   let matchCount = 0;
   const contents = item.Contents || [];
 
- contentTexts.forEach(text => {
-  if (text && text.includes(term)) {
+contentTexts.forEach(text => {
+  if (text && typeof text === 'string' && text.includes(term)) {
     relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
   }
 });
