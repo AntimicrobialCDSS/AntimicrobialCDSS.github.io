@@ -12,7 +12,7 @@
 {"Row" : 18, "Column" : 1, "Text" : "References:"}, 
 {"Row" : 19, "Column" : 1, "Text" : "Sanford keyword:  Skin infections"}
 ]},
-{"Name" : "ORZID2 GMENU ABX 2014-2015 FLU RECOMENDATIONS", "DisplayText" : "Influenza Vaccine Recommendations ", "Version" : "StCloud", "Contents" : [
+{"Name" : "ORZID2 GMENU ABX 2014-2015 FLU RECOMENDATIONS", "Term1" : "testing", "DisplayText" : "Influenza Vaccine Recommendations ", "Version" : "StCloud", "Contents" : [
 {"Row" : 1, "Column" : 1, "Text" : "HELP, additional information:", "Header" : 1}, 
 {"Row" : 2, "Column" : 1, "Item" : "ORZID2 GMENU ABX HELP PAGE", "DisplayText" : "Help page...", "Text" : "Help page (instructions, restrictions, microbiology, etc.)", "Mnemonic" : "02"},
 {"Row" : 3, "Column" : 1, "Item" : "ORZID2 GMENU ABX DRUG INFO PAGE", "DisplayText" : "Important Drug Properties Page", "Text" : "Click for drug information. ([R]=renal excretion, [H]=hepatic excretion,", "Mnemonic" : "04"}, 
