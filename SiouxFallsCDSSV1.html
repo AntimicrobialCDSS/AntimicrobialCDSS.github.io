@@ -297,7 +297,8 @@ function getMatchCount(item, searchText) {
   const contents = item.Contents || [];
 
   contents.forEach(content => {
-const text = (content.Text || '').toLowerCase();
+const text = content.Text ? content.Text.toLowerCase() : '';
+
 if (text && text.toLowerCase().includes(searchText)) {
   matchCount++;
 }
