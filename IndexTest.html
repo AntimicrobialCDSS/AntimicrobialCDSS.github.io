@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antimicrobial CDSS Online</title>
+    <style>
+        @font-face {
+            font-family: 'PT Serif Regular';
+            /* ... (Your font-face definitions here) */
+        }
+
+        body {
+            font-family: 'PT Serif Regular', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0; /* Set background color */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px; /* Add padding to the container */
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Add space between buttons */
+        }
+
+        .button {
+            background-color: #0096d6; /* Light blue background color */
+            color: white;
+            padding: 10px 20px; /* Adjust padding as needed */
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            flex: 1; /* Make buttons grow to fill the container width */
+        }
+
+        /* Style the "Minneapolis," "Des Moines," and "Omaha" buttons differently */
+        .special-button {
+            background-color: #ff9900; /* Orange background color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p>DISCLAIMER:</p>
+        <!-- Your disclaimer content here -->
+
+        <p>Click version below to open Antimicrobial CDSS.</p>
+        <div class="button-container">
+            <button class="button special-button">Minneapolis</button>
+            <button class="button special-button">Des Moines</button>
+            <button class="button special-button">Omaha</button>
+            <button class="button">Sioux Falls</button>
+            <button class="button">Saint Cloud</button>
+        </div>
+    </div>
+    <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVALogo">
+</body>
+</html>
