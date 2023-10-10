@@ -3,15 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  @font-face { font-family: PTSerif; 
-			 src: url('../fonts/PTSerif.ttf'); } 
-  h2{
-	font-family: PtSerif;
-  }
-
   <title>Minneapolis Antimicrobial CDSS</title>
   <style>
     /* Common styles */
+    @font-face {
+  font-family: 'PT Serif';
+  src: url('Fonts/ptserif-bolditalic.eot');
+  src: url('Fonts/ptserif-bolditalic.eot?#iefix') format('embedded-opentype'),
+       url('Fonts/ptserif-bolditalic.woff2') format('woff2'),
+       url('Fonts/ptserif-bolditalic.woff') format('woff'),
+       url('Fonts/ptserif-bolditalic.ttf') format('truetype'),
+       url('Fonts/ptserif-bolditalic.svg#ptserifbolditalic') format('svg');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  src: url('Fonts/ptserif-italic.eot');
+  src: url('Fonts/ptserif-italic.eot?#iefix') format('embedded-opentype'),
+       url('Fonts/ptserif-italic.woff2') format('woff2'),
+       url('Fonts/ptserif-italic.woff') format('woff'),
+       url('Fonts/ptserif-italic.ttf') format('truetype'),
+       url('Fonts/ptserif-italic.svg#ptserifitalic') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  src: url('Fonts/ptserif-regular.eot');
+  src: url('Fonts/ptserif-regular.eot?#iefix') format('embedded-opentype'),
+       url('Fonts/ptserif-regular.woff2') format('woff2'),
+       url('Fonts/ptserif-regular.woff') format('woff'),
+       url('Fonts/ptserif-regular.ttf') format('truetype'),
+       url('Fonts/ptserif-regular.svg#ptserifregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Add more @font-face rules for different styles or weights if needed */
+	  
     .no-term {
       display: none;
     }
