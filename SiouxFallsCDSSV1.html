@@ -1015,17 +1015,6 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
       const urlParams = new URLSearchParams(window.location.search);
   const dropdown = document.getElementById('filterDropdown');
   const dropdownValue = urlParams.get('dropdown');
-
-    function handleMainMenu() {
-      const dropdown = document.getElementById('filterDropdown');
-      document.getElementById('searchInput').value = null;
-      document.getElementById('searchInput').placeholder = "Search...";
-      populateDropdown(omData);
-      dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
-      filterData({ target: dropdown });
-      scrollToTop()    
-      adjustFontSize();
-    }
     
   if (dropdownValue) {
     dropdown.value = decodeURIComponent(dropdownValue);
