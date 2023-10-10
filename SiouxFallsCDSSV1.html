@@ -1011,9 +1011,9 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     itemLinkData = itemlinkjsonData;
     abxLinkData = abxlinkjsonData;
     populateDropdown(omData); 
-      const urlParams = new URLSearchParams(window.location.search);
-  const dropdown = document.getElementById('selecteddata');
-  const dropdownValue = urlParams.get('selectedata');
+    const urlParams = new URLSearchParams(window.location.search);
+    const selecteddatavalue = document.getElementById('selecteddata');
+    const selecteddata = urlParams.get('selectedatavalue');
 
   if (dropdownValue) {
     dropdown.value = decodeURIComponent(dropdownValue);
