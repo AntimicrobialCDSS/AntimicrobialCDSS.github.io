@@ -952,39 +952,41 @@ document.getElementById('searchInput').addEventListener('input', searchData);
 document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
 
-    // Call the adjustFontSize function and read the search parameter from the URL and populate the search boxwhen the DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-  adjustFontSize();
-   const urlParams = new URLSearchParams(window.location.search);
+// JavaScript code to read the search parameter from the URL and populate the search box
+window.addEventListener('DOMContentLoaded', function () {
+  const urlParams = new URLSearchParams(window.location.search);
   const searchInput = document.getElementById('searchInput');
   const searchValue = urlParams.get('search');
 
   if (searchValue) {
     searchInput.value = decodeURIComponent(searchValue);
+  }
+  adjustFontSize();
 });
+
 
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
 
 // JavaScript code to handle button clicks
 document.getElementById('desMoinesButton').addEventListener('click', function () {
-  navigateToPage("DesMoinesCDSSV1.html");
+  openPageInNewWindow("DesMoinesCDSSV1.html");
 });
 
 document.getElementById('minneapolisButton').addEventListener('click', function () {
-  navigateToPage("MinneapolisCDSSV1.html");
+  openPageInNewWindow("MinneapolisCDSSV1.html");
 });
 
 document.getElementById('omahaButton').addEventListener('click', function () {
-  navigateToPage('OmahaCDSSV1.html');
+  openPageInNewWindow('OmahaCDSSV1.html');
 });
 
 document.getElementById('stCloudButton').addEventListener('click', function () {
-  navigateToPage('StCloudCDSSV1.html');
+  openPageInNewWindow('StCloudCDSSV1.html');
 });
 
 document.getElementById('siouxFallsButton').addEventListener('click', function () {
-  navigateToPage('SiouxFallsCDSSV1.html');
+  openPageInNewWindow('SiouxFallsCDSSV1.html');
 });
 // Function to open a page in a new window with the search box value
 function openPageInNewWindow(pageURL) {
