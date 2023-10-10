@@ -992,10 +992,7 @@ document.getElementById('siouxFallsButton').addEventListener('click', function (
 });
 // Function to open a page in a new window with the search and dropdown values
 function openPageInNewWindow(pageURL) {
-  const dropdown = document.getElementById('filterDropdown');
-  const dropdownValue = dropdown.value;
-  let selecteddata = dropdown.value; // Change const to let
-
+  let selectedData = selectedData.value; // Change const to let
   const newURL = `${pageURL}?dropdown=${encodeURIComponent(selecteddata)}`;
 
   // Open the new page in a new window
