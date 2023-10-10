@@ -1015,11 +1015,10 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     const selecteddatavalue = document.getElementById('selecteddata');
     const selecteddata = urlParams.get('selectedatavalue');
 
-  if (dropdownValue) {
-    dropdown.value = decodeURIComponent(dropdownValue);
+  if (selecteddata) {
+    selecteddata.value = decodeURIComponent(selecteddata);
   } else {
     // If no dropdown value is provided in the URL, set a default value
-    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
     selecteddata = 'ORZID2 GMENU ABX INPT MAIN';
   }
     /*const dropdown = document.getElementById('filterDropdown');
