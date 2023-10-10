@@ -951,10 +951,18 @@ window.addEventListener('DOMContentLoaded', adjustFontSize);
 document.getElementById('searchInput').addEventListener('input', searchData);
 document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
-// Call the adjustFontSize function when the DOM is ready
+
+    // Call the adjustFontSize function and read the search parameter from the URL and populate the search boxwhen the DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
   adjustFontSize();
+   const urlParams = new URLSearchParams(window.location.search);
+  const searchInput = document.getElementById('searchInput');
+  const searchValue = urlParams.get('search');
+
+  if (searchValue) {
+    searchInput.value = decodeURIComponent(searchValue);
 });
+
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
 
@@ -978,13 +986,14 @@ document.getElementById('stCloudButton').addEventListener('click', function () {
 document.getElementById('siouxFallsButton').addEventListener('click', function () {
   navigateToPage('SiouxFallsCDSSV1.html');
 });
-
-// Function to navigate to a page and set the search box value
-function navigateToPage(pageURL) {
+// Function to open a page in a new window with the search box value
+function openPageInNewWindow(pageURL) {
   const searchInput = document.getElementById('searchInput');
   const searchValue = searchInput.value;
   const newURL = `${pageURL}?search=${encodeURIComponent(searchValue)}`;
-  window.location.href = newURL;
+  
+  // Open the new page in a new window
+  window.open(newURL, '_blank');
 }
     
 // Fetch data and initialize the dropdown
