@@ -3,10 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap">
   <title>Sioux Falls Antimicrobial CDSS</title>
   <style>
     /* Common styles */
+    @font-face {
+  font-family: 'PT Serif Bold';
+  src: url('Fonts/PTSerif-Bold.eot');
+  src: url('Fonts/PTSerif-Bold.eot?#iefix') format('embedded-opentype'),
+       url('Fonts/PTSerif-Bold.woff2') format('woff2'),
+       url('Fonts/PTSerif-Bold.woff') format('woff'),
+       url('Fonts/PTSerif-Bold.ttf') format('truetype'),
+       url('Fonts/PTSerif-Bold.svg#PTSerifbold') format('svg');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'PT Serif Italic';
+  src: url('Fonts/PTSerif-Italic.eot');
+  src: url('Fonts/PTSerif-Italic.eot?#iefix') format('embedded-opentype'),
+       url('Fonts/PTSerif-Italic.woff2') format('woff2'),
+       url('Fonts/PTSerif-Italic.woff') format('woff'),
+       url('Fonts/PTSerif-Italic.ttf') format('truetype'),
+       url('Fonts/PTSerif-Italic.svg#PTSerifitalic') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PT Serif Regular';
+  src: url('Fonts/PTSerif-Regular.eot');
+  src: url('Fonts/PTSerif-Regular.eot?#iefix') format('embedded-opentype'),
+       url('Fonts/PTSerif-Regular.woff2') format('woff2'),
+       url('Fonts/PTSerif-Regular.woff') format('woff'),
+       url('Fonts/PTSerif-Regular.ttf') format('truetype'),
+       url('Fonts/PTSerif-Regular.svg#PTSerifregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+   
     .no-term {
       display: none;
     }
@@ -38,7 +72,7 @@
     }
 
     .bold {
-      font-weight: bold;
+      font-family: 'PT Serif Bold', Arial, sans-serif;
      /*  background-color: lightblue; /* Set your desired background color here */
     }
         /* Table styles */
@@ -48,7 +82,7 @@
     }
 
     .table td {
-      font-family: "Times New Roman", serif;
+      font-family: 'PT Serif Regular', Arial, sans-serif;
       white-space: wrap; 
       overflow: hidden;
       text-overflow: ellipsis;
@@ -126,6 +160,7 @@
 #indexButton,
 #goForwardButton,
 #CNSButton {
+  font-family: 'PT Serif Regular', Arial, sans-serif;
   background-color: transparent; /* Make the background transparent */
   border: none; /* Remove the border */
   border-radius: 10px; /* Adjust border-radius for rounded corners */
@@ -147,6 +182,7 @@
   background-color: #4db8ff; /* lighter shade of blue */
 }
   #filterDropdown {
+    font-family: 'PT Serif Regular', Arial, sans-serif;
     margin-right: 20px;
     width: 100%;
     z-index: 2;
@@ -159,6 +195,7 @@
     }
   
   #searchInput {
+    font-family: 'PT Serif Regular', Arial, sans-serif;
     width: 100%;
     text-align: left;
     max-width: 300px;
@@ -169,18 +206,23 @@
   .blankSpace {
    padding: 20px 30px; // blank div(or blank space) height and width. Depends on you.
 }
-    
+
   </style>
 </head>
 <body>
   <div id="header">
-    <div class ="buttons-container">
-        <button id="goBackButton">&#9664;</button>
-        <button id="mainMenuButton">Sioux Falls Home</button>
-        <button id="indexButton">Index</button>
-        <button id="goForwardButton">&#9654;</button>
-    </div>
-    
+<div class="buttons-container">
+  <button id="goBackButton">&#9664;</button>
+  <button id="mainMenuButton">Des Moines Home</button>
+  <button id="indexButton">Index</button>
+  <button id="goForwardButton">&#9654;</button>
+  <button id="desMoinesButton">Des Moines</button>
+  <button id="minneapolisButton">Minneapolis</button>
+  <button id="omahaButton">Omaha</button>
+  <button id="stCloudButton">St. Cloud</button>
+  <button id="siouxFallsButton">Sioux Falls</button>
+</div>
+
     <div class ="search-container">
         <input type="text" id="searchInput" placeholder="Search...">
     </div>
@@ -297,12 +339,10 @@ function getMatchCount(item, searchText) {
   const contents = item.Contents || [];
 
   contents.forEach(content => {
-const text = content.Text ? content.Text.toLowerCase() : '';
-
-if (text && text.toLowerCase().includes(searchText)) {
-  matchCount++;
-}
-
+    const text = content.Text || '';
+    if (text.toLowerCase().includes(searchText)) {
+      matchCount++;
+    }
   });
 
   return matchCount;
@@ -383,6 +423,9 @@ function searchData() {
   // Scroll to the top of the dropdown
   dropdown.scrollTop = 0;
 }
+
+
+
 
 function searchAndOpenDropdown() {
   var searchInput = document.getElementById('searchInput');
@@ -551,7 +594,7 @@ function handleRowClick(item) {
         console.log('Invalid URL:', URL);
       }
     } else {
-      console.log('No matching item found in OMJSON.json or SiouxFallsItemLink.json');
+      console.log('No matching item found in OMJSON.json or DesMoinesItemLink.json');
     }
   }
 }
@@ -908,12 +951,52 @@ window.addEventListener('DOMContentLoaded', adjustFontSize);
 document.getElementById('searchInput').addEventListener('input', searchData);
 document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
-// Call the adjustFontSize function when the DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
+
+// JavaScript code to read the search parameter from the URL and populate the search box
+window.addEventListener('DOMContentLoaded', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchInput = document.getElementById('searchInput');
+  const searchValue = urlParams.get('search');
+
+  if (searchValue) {
+    searchInput.value = decodeURIComponent(searchValue);
+  }
   adjustFontSize();
 });
+
+
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
+
+// JavaScript code to handle button clicks
+document.getElementById('desMoinesButton').addEventListener('click', function () {
+  openPageInNewWindow("DesMoinesCDSSV1.html");
+});
+
+document.getElementById('minneapolisButton').addEventListener('click', function () {
+  openPageInNewWindow("MinneapolisCDSSV1.html");
+});
+
+document.getElementById('omahaButton').addEventListener('click', function () {
+  openPageInNewWindow('OmahaCDSSV1.html');
+});
+
+document.getElementById('stCloudButton').addEventListener('click', function () {
+  openPageInNewWindow('StCloudCDSSV1.html');
+});
+
+document.getElementById('siouxFallsButton').addEventListener('click', function () {
+  openPageInNewWindow('SiouxFallsCDSSV1.html');
+});
+// Function to open a page in a new window with the search box value
+function openPageInNewWindow(pageURL) {
+  const searchInput = document.getElementById('searchInput');
+  const searchValue = searchInput.value;
+  const newURL = `${pageURL}?search=${encodeURIComponent(searchValue)}`;
+  
+  // Open the new page in a new window
+  window.open(newURL, '_blank');
+}
     
 // Fetch data and initialize the dropdown
 Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
