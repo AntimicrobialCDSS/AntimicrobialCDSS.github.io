@@ -977,34 +977,41 @@ window.addEventListener('resize', adjustFontSize);
 
 // JavaScript code to handle button clicks
 document.getElementById('desMoinesButton').addEventListener('click', function () {
-  openPageInNewWindow("DesMoinesCDSSV1.html");
+  openPageInNewWindow("DesMoinesCDSSV1.html", "CI GMENU"); // Pass the replacement value
 });
 
 document.getElementById('minneapolisButton').addEventListener('click', function () {
-  openPageInNewWindow("MinneapolisCDSSV1.html");
+  openPageInNewWindow("MinneapolisCDSSV1.html", "GMENU"); // Pass the replacement value
 });
 
 document.getElementById('omahaButton').addEventListener('click', function () {
-  openPageInNewWindow('OmahaCDSSV1.html');
+  openPageInNewWindow('OmahaCDSSV1.html', "NE GMENU"); // Pass the replacement value
 });
 
 document.getElementById('stCloudButton').addEventListener('click', function () {
-  openPageInNewWindow('StCloudCDSSV1.html');
+  openPageInNewWindow('StCloudCDSSV1.html', "GMENU"); // Pass the replacement value
 });
 
 document.getElementById('siouxFallsButton').addEventListener('click', function () {
-  openPageInNewWindow('SiouxFallsCDSSV1.html');
+  openPageInNewWindow('SiouxFallsCDSSV1.html', "GMENU"); // Pass the replacement value
 });
+
 // Function to open a page in a new window with the search and dropdown values
-function openPageInNewWindow(pageURL) {
+function openPageInNewWindow(pageURL, replacementValue) {
   const dropdown = document.getElementById('filterDropdown');
-  const dropdownValue = dropdown.value;
-  
+  let dropdownValue = dropdown.value;
+
+  // Check if a replacement value is provided and modify the dropdownValue accordingly
+  if (replacementValue) {
+    dropdownValue = dropdownValue.replace("GMENU", replacementValue);
+  }
+
   const newURL = `${pageURL}?dropdown=${encodeURIComponent(dropdownValue)}`;
-  
+
   // Open the new page in a new window
   window.open(newURL, '_blank');
 }
+
 // Fetch data and initialize the dropdown
 Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
   .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
