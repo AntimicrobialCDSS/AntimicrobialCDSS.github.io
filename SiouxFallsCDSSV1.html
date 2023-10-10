@@ -1360,7 +1360,7 @@ let selectedData;
 // Function to open a page in a new window with the search and dropdown values
 function openPageInNewWindow(pageURL) {
   let selecteddata = selectedData.value; // Change const to let
-  const newURL = `${pageURL}?dropdown=${encodeURIComponent(selecteddata)}`;
+  const newURL = `${pageURL}?selectedData=${encodeURIComponent(selecteddata)}`;
 
   // Open the new page in a new window
   window.open(newURL, '_blank');
@@ -1385,8 +1385,8 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()])
       selectedData = 'ORZID2 GMENU ABX INPT MAIN'; // Assign the default value
     }
     
-    pushHistory(dropdown.value);
-    filterData({ target: dropdown });
+    /*pushHistory(dropdown.value);
+    filterData({ target: dropdown });*/
   })
   .catch(error => {
     console.error('Error:', error);
