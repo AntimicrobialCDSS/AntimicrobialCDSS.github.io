@@ -573,9 +573,12 @@ function handleRowClick(item) {
   const matchingItem = omData.find(
     omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
   );
-
+  const dropdown = document.getElementById('filterDropdown');
+  
+  
   if (matchingItem) {
     selectedData = matchingItem;
+    dropdown.value = matchingItem;
     pushHistory(matchingItem.Name);
     createOMTable(matchingItem); // Move createOMTable here
     scrollToTop(); // Move scrollToTop here
@@ -800,8 +803,6 @@ function createOMTable(selectedData) {
 function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
   const matchingData = omData.find(item => item.Name === selectedOption);
-  const dropdown = document.getElementById('filterDropdown');
-  dropdown.value = selectedItem;
   
   if (matchingData) {
 
