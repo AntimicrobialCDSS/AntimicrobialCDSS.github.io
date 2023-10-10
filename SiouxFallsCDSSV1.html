@@ -1359,7 +1359,7 @@ let selectedData;
 
 // Function to open a page in a new window with the search and dropdown values
 function openPageInNewWindow(pageURL) {
-  let selecteddata = selectedData.value; // Change const to let
+  let selecteddata = selectedData.Name; // Change const to let
   const newURL = `${pageURL}?selectedData=${encodeURIComponent(selecteddata)}`;
 
   // Open the new page in a new window
