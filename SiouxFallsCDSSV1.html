@@ -992,8 +992,9 @@ document.getElementById('siouxFallsButton').addEventListener('click', function (
 });
 // Function to open a page in a new window with the search and dropdown values
 function openPageInNewWindow(pageURL) {
-  let selectedData = selectedData.value; // Change const to let
-  const newURL = `${pageURL}?dropdown=${encodeURIComponent(selecteddata)}`;
+  const dropdown = document.getElementById('filterDropdown');
+  const selectedData = dropdown.value;
+  const newURL = `${pageURL}?dropdown=${encodeURIComponent(selectedData)}`;
 
   // Open the new page in a new window
   window.open(newURL, '_blank');
@@ -1009,23 +1010,22 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     populateDropdown(omData); 
     const urlParams = new URLSearchParams(window.location.search);
     const selecteddatavalue = document.getElementById('selecteddata');
-    const selecteddata = urlParams.get('selectedatavalue');
+    let selecteddata = urlParams.get('selectedatavalue'); // Change const to let
 
     if (selecteddata) {
-      selecteddata.value = decodeURIComponent(selecteddata);
+      selecteddata = decodeURIComponent(selecteddata); // Assign directly
     } else {
       selecteddata = 'ORZID2 GMENU ABX INPT MAIN';
     }
-    
-    /*const dropdown = document.getElementById('filterDropdown');
-    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';*/
-    pushHistory(dropdown.value);
+
+    const dropdown = document.getElementById('filterDropdown');
+    dropdown.value = selecteddata; // Set dropdown value
+    pushHistory(selecteddata); // Pass selecteddata instead of dropdown.value
     filterData({ target: dropdown });
   })
   .catch(error => {
     console.error('Error:', error);
   });
-  
   </script>
 </body>
 
