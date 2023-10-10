@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sioux Falls Antimicrobial CDSS</title>
+  <title>Minneapolis Antimicrobial CDSS</title>
   <style>
     /* Common styles */
     @font-face {
@@ -213,7 +213,7 @@
   <div id="header">
 <div class="buttons-container">
   <button id="goBackButton">&#9664;</button>
-  <button id="mainMenuButton">Sioux Falls Home</button>
+  <button id="mainMenuButton">Minneapolis Home</button>
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
   <button id="desMoinesButton">Des Moines</button>
@@ -244,21 +244,21 @@
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
-      const response = await fetch('SiouxFallsOMJSON.json');
+      const response = await fetch('MinneapolisOMJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ODJSON Data
     async function fetchODData() {
-      const response = await fetch('SiouxFallsODJSON.json');
+      const response = await fetch('MinneapolisODJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ItemLink Data
     async function fetchItemLink() {
-      const response = await fetch('SiouxFallsItemLinks.json');
+      const response = await fetch('MinneapolisItemLinks.json');
       const data = await response.json();
       return data;
     }
@@ -272,7 +272,7 @@
     // Global variables
 let omData = []; // OMJSON data
 let odData = []; // ODJSON data
-/*let selectedData = null; // Currently selected data*/
+let selectedData = null; // Currently selected data
 let history = []; // History of selected items
 let forwardHistory = []; // History of forward selections
 let historyIndex = -1; // Index of the current selection in the history
@@ -990,255 +990,30 @@ document.getElementById('stCloudButton').addEventListener('click', function () {
 document.getElementById('siouxFallsButton').addEventListener('click', function () {
   openPageInNewWindow('SiouxFallsCDSSV1.html');
 });
-// Function to create the table with OMJSON data
-function createOMTable(selectedData) {
-  const table = document.createElement('table');
-  table.classList.add('table');
-
-  const tbody = document.createElement('tbody');
-
-  const { Contents } = selectedData;
-  const maxRow = Math.max(...Contents.map(item => item.Row));
-  const columns = Math.max(...Contents.map(item => item.Column));
-
-  // Before processing each row, create an array to store the last matched index for each row
-  const lastMatchedIndexes = new Array(maxRow).fill(0);
-
-  for (let row = 1; row <= maxRow; row++) {
-    // Before processing each row, create a Set to store the already matched texts for all rows
-    const matchedTexts = new Set();
-    let allUpperCase = true; // Flag to check if all text in the row is in uppercase
-    let isInTop5Rows = row <= 5; // Check if row is in the top 5 rows
-    let trimmedValueNotBlank = false; // Flag to check if trimmed value is not blank
-
-    const bodyRow = document.createElement('tr');
-
-    for (let column = 1; column <= columns; column++) {
-      const matchingItems = Contents.filter(
-        item => item.Row === row && item.Column === column
-      );
-
-      const displayCell = document.createElement('td');
-
-      if (matchingItems.length > 0) {
-        matchingItems.forEach(matchingItem => {
-          const { Text, Item, Header, DisplayText } = matchingItem;
-          let cellContent = Text || '';
-
-          if (cellContent === '' && DisplayText) {
-            cellContent = DisplayText;
-          } else if (cellContent === '' && Item) {
-            cellContent = Item;
-          }
-
-          const cellContentElement = document.createElement('div');
-
-          const contentText = cellContent; // Preserve original case-sensitive text
-          let currentIndex = 0;
-
-          // Check if the row click item starts with 'ORZID' or 'ORZ GTX'
-          if (Item && (Item.startsWith('ORZID') || Item.startsWith('ORZ GTX'))) {
-            cellContentElement.classList.add('clickable');
-            cellContentElement.addEventListener('click', () => {
-              handleRowClick(matchingItem);
-            });
-            cellContentElement.textContent = cellContent;
-          } else {
-            // Check if there are partial string matches with links in a row
-            if (abxLinkData.length > 0) {
-              const linkContainer = document.createElement('div');
-              const matchingURLs = abxLinkData.filter(item =>
-                contentText.toLowerCase().includes(item.Name.toLowerCase())
-              );
-
-              const sortedMatchingURLs = matchingURLs.sort((a, b) => {
-                const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
-                const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
-                return aIndex - bIndex;
-              });
-
-              // Initialize currentIndex to 0 for each row
-              currentIndex = 0;
-
-              sortedMatchingURLs.forEach(matchingURL => {
-                const { Name, URL } = matchingURL;
-                const nameRegex = new RegExp(`\\b${Name}\\b`, 'gi');
-                let match;
-
-                while ((match = nameRegex.exec(contentText)) !== null) {
-                  // If currentIndex is ahead of the current match index, update currentIndex to the end of this match
-                  if (currentIndex > match.index) {
-                    currentIndex = match.index + match[0].length;
-                    continue;
-                  }
-
-                  const nonLinkText = contentText.substring(currentIndex, match.index);
-                  const linkText = match[0].toLowerCase(); // Convert linkText to lowercase for case-insensitive comparison
-
-                  // Check if the link text is already added for any row
-                  if (matchedTexts.has(linkText)) {
-                    // Append the remaining text from the last matched index to the current matched index
-                    const remainingText = contentText.substring(lastMatchedIndexes[row - 1], match.index);
-                    const remainingTextNode = document.createTextNode(remainingText);
-                    linkContainer.appendChild(remainingTextNode);
-
-                    currentIndex = match.index + match[0].length;
-                    continue;
-                  }
-
-                  const linkElement = document.createElement('a');
-                  linkElement.href = URL;
-                  linkElement.classList.add('AbxLink');
-                  linkElement.target = '_blank';
-                  linkElement.textContent = match[0]; // Use the original case for the link text
-
-                  const nonLinkTextNode = document.createTextNode(nonLinkText);
-                  linkContainer.appendChild(nonLinkTextNode);
-                  linkContainer.appendChild(linkElement);
-
-                  // Store the link text to prevent matching it to another link for any row
-                  matchedTexts.add(linkText);
-
-                  // Store the last matched index for this row
-                  lastMatchedIndexes[row - 1] = match.index + match[0].length;
-
-                  currentIndex = match.index + match[0].length;
-                }
-              });
-
-              if (currentIndex < contentText.length) {
-                const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
-                const remainingTextNode = document.createTextNode(remainingText);
-                linkContainer.appendChild(remainingTextNode);
-              }
-
-              cellContentElement.appendChild(linkContainer);
-            } else {
-              cellContentElement.textContent = contentText;
-            }
-          }
-
-          if (Header === 1) {
-            cellContentElement.classList.add('bold');
-            displayCell.classList.add('bold');
-          }
-
-          displayCell.appendChild(cellContentElement);
-
-          // Check if the cell content is in uppercase
-          if (cellContent !== cellContent.toUpperCase()) {
-            allUpperCase = false;
-          }
-        });
-      }
-
-      bodyRow.appendChild(displayCell);
-    }
-
-    // Check if the trimmed value is not blank
-    const trimmedValue = bodyRow.innerText.trim();
-    if (trimmedValue !== '') {
-      trimmedValueNotBlank = true;
-    }
-
-    if (allUpperCase && isInTop5Rows && trimmedValueNotBlank) {
-      // If all conditions are met, set the background color to light blue
-      bodyRow.style.backgroundColor = 'lightblue';
-    }
-
-    tbody.appendChild(bodyRow);
-  }
-
-  table.appendChild(tbody);
-
-  const resultContainer = document.getElementById('resultContainer');
-  resultContainer.innerHTML = '';
-  if (selectedData) {
-    resultContainer.appendChild(table);
-  }
-}
-
-
-// Function to filter data based on the selected option
-function filterData(event, sortByTerm = false) {
-  const selectedOption = event.target.value;
-  const matchingData = omData.find(item => item.Name === selectedOption);
-
-  if (matchingData) {
-    selectedData = matchingData;
-    createOMTable(matchingData);
-    pushHistory(matchingData.Name);
-  } else {
-    // Handle the case when selectedData is not found
-    // For example, display an error message or clear the result container
-    const resultContainer = document.getElementById('resultContainer');
-    resultContainer.innerHTML = 'Selected data not found.';
-  }
-  scrollToTop();
-  adjustFontSize();
-
-  if (sortByTerm) {
-    sortDropdownByTerm();
-  }
-}
-
-// Function to sort the dropdown options alphabetically by term
-function sortDropdownByTerm() {
+// Function to open a page in a new window with the search and dropdown values
+function openPageInNewWindow(pageURL) {
+  const searchInput = document.getElementById('searchInput');
+  const searchValue = searchInput.value;
   const dropdown = document.getElementById('filterDropdown');
-  const options = Array.from(dropdown.options);
-  const sortedOptions = options.sort((a, b) => {
-    return a.textContent.localeCompare(b.textContent, undefined, { sensitivity: 'base' });
-  });
-
-  dropdown.innerHTML = ''; // Clear existing options
-
-  // Add sorted options back to the dropdown
-  for (const option of sortedOptions) {
-    dropdown.appendChild(option);
-  }
+  const dropdownValue = dropdown.value;
+  
+  const newURL = `${pageURL}?search=${encodeURIComponent(searchValue)}&dropdown=${encodeURIComponent(dropdownValue)}`;
+  
+  // Open the new page in a new window
+  window.open(newURL, '_blank');
 }
+// Fetch data and initialize the dropdown
+Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
+  .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
+    omData = omjsonData;
+    odData = odjsonData;
+    itemLinkData = itemlinkjsonData;
+    abxLinkData = abxlinkjsonData;
+    populateDropdown(omData); 
+      const urlParams = new URLSearchParams(window.location.search);
+  const dropdown = document.getElementById('filterDropdown');
+  const dropdownValue = urlParams.get('dropdown');
 
-// Function to push the current selection to the history
-function pushHistory(item) {
-  if (item !== history[historyIndex]) {
-    historyIndex++;
-    history.splice(historyIndex, history.length - historyIndex, item);
-    forwardHistory = [];
-  }
-}
-
-// Function to handle the Go Back button click event
-function handleGoBack() {
-  if (historyIndex > 0) {
-    historyIndex--;
-    const selectedItem = history[historyIndex];
-    const dropdown = document.getElementById('filterDropdown');
-    document.getElementById('searchInput').value = null;
-    document.getElementById('searchInput').placeholder = "Search...";
-    populateDropdown(omData);
-    dropdown.value = selectedItem;
-    filterData({ target: dropdown });
-  }
-      scrollToTop()
-      adjustFontSize();
-}
-
-// Function to handle the Go Forward button click event
-function handleGoForward() {
-  if (historyIndex < history.length - 1) {
-    historyIndex++;
-    const selectedItem = history[historyIndex];
-    const dropdown = document.getElementById('filterDropdown');
-    document.getElementById('searchInput').value = null;
-    document.getElementById('searchInput').placeholder = "Search...";
-    populateDropdown(omData);
-    dropdown.value = selectedItem;
-    filterData({ target: dropdown });
-  }
-      scrollToTop()
-      adjustFontSize();
-}
-    // Function to handle the Main Menu button click event
     function handleMainMenu() {
       const dropdown = document.getElementById('filterDropdown');
       document.getElementById('searchInput').value = null;
@@ -1249,149 +1024,22 @@ function handleGoForward() {
       scrollToTop()    
       adjustFontSize();
     }
-
-    // Function to handle the Index button click event
-    function handleIndex() {
-      const dropdown = document.getElementById('filterDropdown');
-      document.getElementById('searchInput').value = null;
-      document.getElementById('searchInput').placeholder = "Search...";
-      populateDropdown(omData);
-      dropdown.value = 'ORZID2 GMENU ABX INDEX INPATIENT';
-      filterData({ target: dropdown });
-      scrollToTop();    
-      adjustFontSize();
-    }
-
-    // Function to handle the Index button click event
-    function handleCNS() {
-      const dropdown = document.getElementById('filterDropdown');
-      document.getElementById('searchInput').value = null;
-      document.getElementById('searchInput').placeholder = "Search...";
-      populateDropdown(omData);
-      dropdown.value = 'ORZID2 GMENU ABX CNS';
-      filterData({ target: dropdown });  
-      scrollToTop();    
-      adjustFontSize();
-    }
-
-    // Function to handle the Download JSON button click event
-    function handleDownloadJSON() {
-      const displayText = selectedData.DisplayText || selectedData.Name;
-      const data = JSON.stringify(selectedData, null, 2);
-      const filename = `${displayText}.json`;
-
-      const element = document.createElement('a');
-      element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-      element.setAttribute('download', filename);
-      element.style.display = 'none';
-      document.body.appendChild(element);
-      element.click();
-      document.body.removeChild(element);
-    }
-
-    // Function to open the dropdown when clicking into the search input
-    function openDropdown() {
-      const dropdown = document.getElementById('filterDropdown');
-      dropdown.size = dropdown.options.length;
-      dropdown.style.display = 'block';
-    }
     
-    // Function to check if the target element or its parent is the search input
-    function isSearchInput(element) {
-      const searchInput = document.getElementById('searchInput');
-      return element === searchInput || element.parentNode === searchInput;
-    }
-  
-// Attach event listeners
-document.getElementById('downloadJSONButton').addEventListener('click', handleDownloadJSON);
-document.getElementById('goBackButton').addEventListener('click', handleGoBack);
-document.getElementById('goForwardButton').addEventListener('click', handleGoForward);
-document.getElementById('mainMenuButton').addEventListener('click', handleMainMenu);
-/*document.getElementById('CNSButton').addEventListener('click', handleCNS);*/
-document.getElementById('indexButton').addEventListener('click', handleIndex);
-document.getElementById('filterDropdown').addEventListener('change', filterData);
-window.addEventListener('resize', adjustFontSize);
-window.addEventListener('DOMContentLoaded', adjustFontSize);
-document.getElementById('searchInput').addEventListener('input', searchData);
-document.getElementById('searchInput').addEventListener('click', openDropdown);
-document.getElementById('searchInput').addEventListener('input', openDropdown);
-
-// JavaScript code to read the dropdown parameter from the URL and set the dropdown value
-/*window.addEventListener('DOMContentLoaded', function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  const dropdown = document.getElementById('filterDropdown');
-  const dropdownValue = urlParams.get('dropdown');
-
   if (dropdownValue) {
     dropdown.value = decodeURIComponent(dropdownValue);
   } else {
     // If no dropdown value is provided in the URL, set a default value
     dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
   }
-  });
-*/
-
-// Call the adjustFontSize function when the window is resized
-window.addEventListener('resize', adjustFontSize);
-
-// JavaScript code to handle button clicks
-document.getElementById('desMoinesButton').addEventListener('click', function () {
-  openPageInNewWindow("DesMoinesCDSSV1.html");
-});
-
-document.getElementById('minneapolisButton').addEventListener('click', function () {
-  openPageInNewWindow("MinneapolisCDSSV1.html");
-});
-
-document.getElementById('omahaButton').addEventListener('click', function () {
-  openPageInNewWindow('OmahaCDSSV1.html');
-});
-
-document.getElementById('stCloudButton').addEventListener('click', function () {
-  openPageInNewWindow('StCloudCDSSV1.html');
-});
-
-document.getElementById('siouxFallsButton').addEventListener('click', function () {
-  openPageInNewWindow('SiouxFallsCDSSV1.html');
-});
-// Declare selectedData as a global variable
-let selectedData;
-
-// Function to open a page in a new window with the search and dropdown values
-function openPageInNewWindow(pageURL) {
-  let selecteddata = selectedData.Name; // Change const to let
-  const newURL = `${pageURL}?selectedData=${encodeURIComponent(selecteddata)}`;
-
-  // Open the new page in a new window
-  window.open(newURL, '_blank');
-}
-
-// Fetch data and initialize the dropdown
-Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()])
-  .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
-    omData = omjsonData;
-    odData = odjsonData;
-    itemLinkData = itemlinkjsonData;
-    abxLinkData = abxlinkjsonData;
-    populateDropdown(omData); 
-    const urlParams = new URLSearchParams(window.location.search);
-    const selecteddatavalue = document.getElementById('selecteddata');
-    const selecteddata = urlParams.get('selectedatavalue');
-
-    if (selecteddata) {
-      selectedData = selecteddatavalue; // Assign the value to the global variable
-      selectedData.value = decodeURIComponent(selecteddata);
-    } else {
-      selectedData = 'ORZID2 GMENU ABX INPT MAIN'; // Assign the default value
-    }
-    
-    /*pushHistory(dropdown.value);
-    filterData({ target: dropdown });*/
+    pushHistory(dropdown.value);
+    filterData({ target: dropdown });
+    scrollToTop()    
+    adjustFontSize();
   })
   .catch(error => {
     console.error('Error:', error);
   });
-
+  
   </script>
 </body>
 
