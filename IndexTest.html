@@ -25,7 +25,7 @@
 
         .button-container {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 10px; /* Add space between buttons */
         }
 
@@ -36,27 +36,11 @@
             border: none;
             cursor: pointer;
             text-align: center;
-            flex: 1; /* Make buttons grow to fill the container width */
-            max-width: calc(50% - 5px); /* 50% width with padding in between */
         }
 
         /* Style the "Minneapolis," "Des Moines," and "Omaha" buttons differently */
         .special-button {
             background-color: #ff9900; /* Orange background color */
-        }
-
-        /* Style the orange button container */
-        .orange-buttons {
-            flex: 1; /* Take up the full width */
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Style the blue button container */
-        .blue-buttons {
-            flex: 1; /* Take up the full width */
-            display: flex;
-            flex-direction: column;
         }
     </style>
 </head>
@@ -67,18 +51,15 @@
 
         <p>Click version below to open Antimicrobial CDSS.</p>
         <div class="button-container">
-            <div class="orange-buttons">
-                <button class="button special-button">Minneapolis</button>
-                <button class="button special-button">Des Moines</button>
-                <button class="button special-button">Omaha</button>
-            </div>
-            <div class="blue-buttons">
-                <button class="button">Sioux Falls</button>
-                <button class="button">Saint Cloud</button>
-            </div>
+            <button class="button special-button">Minneapolis</button>
+            <button class="button special-button">Des Moines</button>
+            <button class="button special-button">Omaha</button>
+        </div>
+        <div class="button-container">
+            <button class="button">Sioux Falls</button>
+            <button class="button">Saint Cloud</button>
         </div>
     </div>
     <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVALogo">
 </body>
 </html>
-
