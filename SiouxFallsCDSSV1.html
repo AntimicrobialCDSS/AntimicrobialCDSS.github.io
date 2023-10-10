@@ -952,16 +952,19 @@ document.getElementById('searchInput').addEventListener('input', searchData);
 document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
 
-// JavaScript code to read the search parameter from the URL and populate the search box
+// JavaScript code to read the dropdown parameter from the URL and set the dropdown value
 window.addEventListener('DOMContentLoaded', function () {
   const urlParams = new URLSearchParams(window.location.search);
-  const searchInput = document.getElementById('searchInput');
-  const searchValue = urlParams.get('search');
+  const dropdown = document.getElementById('filterDropdown');
+  const dropdownValue = urlParams.get('dropdown');
 
-  if (searchValue) {
-    searchInput.value = decodeURIComponent(searchValue);
+  if (dropdownValue) {
+    dropdown.value = decodeURIComponent(dropdownValue);
+  } else {
+    // If no dropdown value is provided in the URL, set a default value
+    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
   }
-  adjustFontSize();
+  adjustfontsize();
 });
 
 
@@ -988,16 +991,18 @@ document.getElementById('stCloudButton').addEventListener('click', function () {
 document.getElementById('siouxFallsButton').addEventListener('click', function () {
   openPageInNewWindow('SiouxFallsCDSSV1.html');
 });
-// Function to open a page in a new window with the search box value
+// Function to open a page in a new window with the search and dropdown values
 function openPageInNewWindow(pageURL) {
   const searchInput = document.getElementById('searchInput');
   const searchValue = searchInput.value;
-  const newURL = `${pageURL}?search=${encodeURIComponent(searchValue)}`;
+  const dropdown = document.getElementById('filterDropdown');
+  const dropdownValue = dropdown.value;
+  
+  const newURL = `${pageURL}?search=${encodeURIComponent(searchValue)}&dropdown=${encodeURIComponent(dropdownValue)}`;
   
   // Open the new page in a new window
   window.open(newURL, '_blank');
 }
-    
 // Fetch data and initialize the dropdown
 Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
   .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
