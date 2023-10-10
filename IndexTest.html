@@ -25,6 +25,7 @@
 
         .button-row {
             display: flex;
+            flex-direction: column; /* Stack buttons vertically */
             gap: 10px; /* Add space between buttons */
         }
 
@@ -36,6 +37,10 @@
             border: none;
             cursor: pointer;
             text-align: center;
+            text-decoration: none; /* Remove underline from anchor tags */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Style the "Minneapolis," "Des Moines," and "Omaha" buttons differently */
@@ -51,17 +56,18 @@
 
         <p>Click version below to open Antimicrobial CDSS.</p>
         <div class="button-row">
-            <button class="button special-button">Minneapolis</button>
-            <button class="button special-button">Des Moines</button>
-            <button class="button special-button">Omaha</button>
+            <a class="button special-button" href="MinneapolisCDSSV1.html">Minneapolis</a>
+            <a class="button special-button" href="DesMoinesCDSSV1.html">Des Moines</a>
+            <a class="button special-button" href="OmahaCDSSV1.html">Omaha</a>
         </div>
         <div class="button-row">
-            <button class="button">Sioux Falls</button>
-            <button class="button">Saint Cloud</button>
+            <a class="button" href="SiouxFallsCDSSV1.html">Sioux Falls</a>
+            <a class="button" href="StCloudCDSSV1.html">Saint Cloud</a>
         </div>
     </div>
     <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVALogo">
 </body>
 </html>
+
 
 
