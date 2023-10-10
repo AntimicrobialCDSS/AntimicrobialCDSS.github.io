@@ -952,16 +952,18 @@ document.getElementById('searchInput').addEventListener('input', searchData);
 document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
 
-    // Call the adjustFontSize function and read the search parameter from the URL and populate the search boxwhen the DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-  adjustFontSize();
-   const urlParams = new URLSearchParams(window.location.search);
+// JavaScript code to read the search parameter from the URL and populate the search box
+window.addEventListener('DOMContentLoaded', function () {
+  const urlParams = new URLSearchParams(window.location.search);
   const searchInput = document.getElementById('searchInput');
   const searchValue = urlParams.get('search');
 
   if (searchValue) {
     searchInput.value = decodeURIComponent(searchValue);
+  }
+  adjustfontsize()
 });
+
 
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
