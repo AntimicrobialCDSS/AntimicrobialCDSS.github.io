@@ -1354,9 +1354,12 @@ document.getElementById('stCloudButton').addEventListener('click', function () {
 document.getElementById('siouxFallsButton').addEventListener('click', function () {
   openPageInNewWindow('SiouxFallsCDSSV1.html');
 });
+// Declare selectedData as a global variable
+let selectedData;
+
 // Function to open a page in a new window with the search and dropdown values
 function openPageInNewWindow(pageURL) {
-  let selectedData = selectedData.value; // Change const to let
+  let selecteddata = selectedData.value; // Change const to let
   const newURL = `${pageURL}?dropdown=${encodeURIComponent(selecteddata)}`;
 
   // Open the new page in a new window
@@ -1364,7 +1367,7 @@ function openPageInNewWindow(pageURL) {
 }
 
 // Fetch data and initialize the dropdown
-Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
+Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()])
   .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
     omData = omjsonData;
     odData = odjsonData;
@@ -1376,47 +1379,19 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     const selecteddata = urlParams.get('selectedatavalue');
 
     if (selecteddata) {
-      selecteddata.value = decodeURIComponent(selecteddata);
+      selectedData = selecteddatavalue; // Assign the value to the global variable
+      selectedData.value = decodeURIComponent(selecteddata);
     } else {
-      selecteddata = 'ORZID2 GMENU ABX INPT MAIN';
+      selectedData = 'ORZID2 GMENU ABX INPT MAIN'; // Assign the default value
     }
     
-    /*const dropdown = document.getElementById('filterDropdown');
-    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';*/
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
   })
   .catch(error => {
     console.error('Error:', error);
   });
-  
 
-// Fetch data and initialize the dropdown
-Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
-  .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
-    omData = omjsonData;
-    odData = odjsonData;
-    itemLinkData = itemlinkjsonData;
-    abxLinkData = abxlinkjsonData;
-    populateDropdown(omData); 
-    const urlParams = new URLSearchParams(window.location.search);
-    const selecteddatavalue = document.getElementById('selecteddata');
-    let selecteddata = urlParams.get('selectedatavalue'); // Change const to let
-
-    if (selecteddata) {
-      selecteddata = decodeURIComponent(selecteddata); // Assign directly
-    } else {
-      selecteddata = 'ORZID2 GMENU ABX INPT MAIN';
-    }
-
-    const dropdown = document.getElementById('filterDropdown');
-    dropdown.value = selecteddata; // Set dropdown value
-    pushHistory(selecteddata); // Pass selecteddata instead of dropdown.value
-    filterData({ target: dropdown });
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
   </script>
 </body>
 
