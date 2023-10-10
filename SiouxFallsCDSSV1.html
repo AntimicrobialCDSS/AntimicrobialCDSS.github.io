@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sioux Falls Antimicrobial CDSS</title>
+  <title>Minneapolis Antimicrobial CDSS</title>
   <style>
     /* Common styles */
     @font-face {
@@ -213,7 +213,7 @@
   <div id="header">
 <div class="buttons-container">
   <button id="goBackButton">&#9664;</button>
-  <button id="mainMenuButton">Sioux Falls Home</button>
+  <button id="mainMenuButton">Minneapolis Home</button>
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
   <button id="desMoinesButton">Des Moines</button>
@@ -244,21 +244,21 @@
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
-      const response = await fetch('SiouxFallsOMJSON.json');
+      const response = await fetch('MinneapolisOMJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ODJSON Data
     async function fetchODData() {
-      const response = await fetch('SiouxFallsODJSON.json');
+      const response = await fetch('MinneapolisODJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ItemLink Data
     async function fetchItemLink() {
-      const response = await fetch('SiouxFallsItemLinks.json');
+      const response = await fetch('MinneapolisItemLinks.json');
       const data = await response.json();
       return data;
     }
@@ -953,7 +953,7 @@ document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
 
 // JavaScript code to read the dropdown parameter from the URL and set the dropdown value
-window.addEventListener('DOMContentLoaded', function () {
+/*window.addEventListener('DOMContentLoaded', function () {
   const urlParams = new URLSearchParams(window.location.search);
   const dropdown = document.getElementById('filterDropdown');
   const dropdownValue = urlParams.get('dropdown');
@@ -964,9 +964,8 @@ window.addEventListener('DOMContentLoaded', function () {
     // If no dropdown value is provided in the URL, set a default value
     dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
   }
-  adjustfontsize();
-});
-
+  });
+*/
 
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
@@ -1011,9 +1010,18 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     itemLinkData = itemlinkjsonData;
     abxLinkData = abxlinkjsonData;
     populateDropdown(omData); 
+      const urlParams = new URLSearchParams(window.location.search);
+  const dropdown = document.getElementById('filterDropdown');
+  const dropdownValue = urlParams.get('dropdown');
 
-    const dropdown = document.getElementById('filterDropdown');
+  if (dropdownValue) {
+    dropdown.value = decodeURIComponent(dropdownValue);
+  } else {
+    // If no dropdown value is provided in the URL, set a default value
     dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+  }
+    /*const dropdown = document.getElementById('filterDropdown');
+    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';*/
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
   })
