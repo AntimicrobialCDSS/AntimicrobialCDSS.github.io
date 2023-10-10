@@ -578,7 +578,7 @@ function handleRowClick(item) {
   
   if (matchingItem) {
     selectedData = matchingItem;
-    dropdown.value = matchingItem;
+    dropdown.value = matchingItem.Name;
     pushHistory(matchingItem.Name);
     createOMTable(matchingItem); // Move createOMTable here
     scrollToTop(); // Move scrollToTop here
