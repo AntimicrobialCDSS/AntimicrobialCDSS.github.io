@@ -459,6 +459,7 @@ function searchAndOpenDropdown() {
     }
   }
 
+  
   searchInput.addEventListener('input', function (event) {
     var filterText = searchInput.value.trim().toLowerCase();
     filterDropdownOptions(filterText);
@@ -803,7 +804,7 @@ function filterData(event, sortByTerm = false) {
   
   if (matchingData) {
     selectedData = matchingData;
-    dropdown.value = matchingData;
+    /*dropdown.value = matchingData;*/
     createOMTable(matchingData);
     pushHistory(matchingData.Name);
   } else {
