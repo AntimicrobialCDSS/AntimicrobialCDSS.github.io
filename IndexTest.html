@@ -57,14 +57,18 @@
             gap: 10px; /* Add space between buttons */
         }
 
-        .button {
+         .button {
             flex: 1; /* Make buttons share the row equally */
             background-color: #0096d6; /* Light blue background color */
             color: white;
             padding: 10px 20px; /* Adjust padding as needed */
             border: none;
             cursor: pointer;
-            text-align: center;
+            text-align: left; /* Align button text to the left */
+            text-decoration: none; /* Remove underline from anchor tags */
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Align content to the left */
         }
 
         /* Style the "Minneapolis," "Des Moines," and "Omaha" buttons differently */
