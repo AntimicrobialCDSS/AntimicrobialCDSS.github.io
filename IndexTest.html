@@ -37,18 +37,12 @@
             cursor: pointer;
             text-align: center;
             flex: 1; /* Make buttons grow to fill the container width */
+            max-width: calc(50% - 5px); /* 50% width with padding in between */
         }
 
         /* Style the "Minneapolis," "Des Moines," and "Omaha" buttons differently */
         .special-button {
             background-color: #ff9900; /* Orange background color */
-        }
-
-        /* Style the container for Sioux Falls and Saint Cloud buttons */
-        .other-buttons {
-            display: flex;
-            flex-direction: column; /* Arrange buttons vertically */
-            gap: 10px; /* Add space between buttons */
         }
     </style>
 </head>
@@ -62,10 +56,6 @@
             <button class="button special-button">Minneapolis</button>
             <button class="button special-button">Des Moines</button>
             <button class="button special-button">Omaha</button>
-        </div>
-
-        <!-- Container for Sioux Falls and Saint Cloud buttons -->
-        <div class="other-buttons">
             <button class="button">Sioux Falls</button>
             <button class="button">Saint Cloud</button>
         </div>
@@ -74,5 +64,4 @@
 </body>
 </html>
 
-</body>
 </html>
