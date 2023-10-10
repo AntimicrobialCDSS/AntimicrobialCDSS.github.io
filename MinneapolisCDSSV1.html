@@ -953,7 +953,7 @@ document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
 
 // JavaScript code to read the dropdown parameter from the URL and set the dropdown value
-window.addEventListener('DOMContentLoaded', function () {
+/*window.addEventListener('DOMContentLoaded', function () {
   const urlParams = new URLSearchParams(window.location.search);
   const dropdown = document.getElementById('filterDropdown');
   const dropdownValue = urlParams.get('dropdown');
@@ -965,7 +965,7 @@ window.addEventListener('DOMContentLoaded', function () {
     dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
   }
   });
-
+*/
 
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
@@ -1010,7 +1010,16 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     itemLinkData = itemlinkjsonData;
     abxLinkData = abxlinkjsonData;
     populateDropdown(omData); 
+      const urlParams = new URLSearchParams(window.location.search);
+  const dropdown = document.getElementById('filterDropdown');
+  const dropdownValue = urlParams.get('dropdown');
 
+  if (dropdownValue) {
+    dropdown.value = decodeURIComponent(dropdownValue);
+  } else {
+    // If no dropdown value is provided in the URL, set a default value
+    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+  }
     /*const dropdown = document.getElementById('filterDropdown');
     dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
     pushHistory(dropdown.value);
