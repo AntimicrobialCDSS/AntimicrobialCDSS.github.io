@@ -44,6 +44,20 @@
         .special-button {
             background-color: #ff9900; /* Orange background color */
         }
+
+        /* Style the orange button container */
+        .orange-buttons {
+            flex: 1; /* Take up the full width */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Style the blue button container */
+        .blue-buttons {
+            flex: 1; /* Take up the full width */
+            display: flex;
+            flex-direction: column;
+        }
     </style>
 </head>
 <body>
@@ -53,15 +67,18 @@
 
         <p>Click version below to open Antimicrobial CDSS.</p>
         <div class="button-container">
-            <button class="button special-button">Minneapolis</button>
-            <button class="button special-button">Des Moines</button>
-            <button class="button special-button">Omaha</button>
-            <button class="button">Sioux Falls</button>
-            <button class="button">Saint Cloud</button>
+            <div class="orange-buttons">
+                <button class="button special-button">Minneapolis</button>
+                <button class="button special-button">Des Moines</button>
+                <button class="button special-button">Omaha</button>
+            </div>
+            <div class="blue-buttons">
+                <button class="button">Sioux Falls</button>
+                <button class="button">Saint Cloud</button>
+            </div>
         </div>
     </div>
     <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVALogo">
 </body>
 </html>
 
-</html>
