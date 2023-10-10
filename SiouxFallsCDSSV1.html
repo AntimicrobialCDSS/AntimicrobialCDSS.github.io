@@ -272,7 +272,7 @@
     // Global variables
 let omData = []; // OMJSON data
 let odData = []; // ODJSON data
-let selectedData = null; // Currently selected data
+/*let selectedData = null; // Currently selected data*/
 let history = []; // History of selected items
 let forwardHistory = []; // History of forward selections
 let historyIndex = -1; // Index of the current selection in the history
@@ -1019,6 +1019,7 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
   } else {
     // If no dropdown value is provided in the URL, set a default value
     dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+    selecteddata = 'ORZID2 GMENU ABX INPT MAIN';
   }
     /*const dropdown = document.getElementById('filterDropdown');
     dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';*/
