@@ -1024,7 +1024,7 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';*/
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
-  /*})*/
+  })
   .catch(error => {
     console.error('Error:', error);
   });
