@@ -23,13 +23,13 @@
             padding: 20px; /* Add padding to the container */
         }
 
-        .button-container {
+        .button-row {
             display: flex;
-            flex-direction: column;
             gap: 10px; /* Add space between buttons */
         }
 
         .button {
+            flex: 1; /* Make buttons share the row equally */
             background-color: #0096d6; /* Light blue background color */
             color: white;
             padding: 10px 20px; /* Adjust padding as needed */
@@ -50,12 +50,12 @@
         <!-- Your disclaimer content here -->
 
         <p>Click version below to open Antimicrobial CDSS.</p>
-        <div class="button-container">
+        <div class="button-row">
             <button class="button special-button">Minneapolis</button>
             <button class="button special-button">Des Moines</button>
             <button class="button special-button">Omaha</button>
         </div>
-        <div class="button-container">
+        <div class="button-row">
             <button class="button">Sioux Falls</button>
             <button class="button">Saint Cloud</button>
         </div>
@@ -63,4 +63,5 @@
     <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVALogo">
 </body>
 </html>
+
 
