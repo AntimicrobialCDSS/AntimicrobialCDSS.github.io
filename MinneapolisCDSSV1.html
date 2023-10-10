@@ -211,13 +211,18 @@
 </head>
 <body>
   <div id="header">
-    <div class ="buttons-container">
-        <button id="goBackButton">&#9664;</button>
-        <button id="mainMenuButton">Minneapolis Home</button>
-        <button id="indexButton">Index</button>
-        <button id="goForwardButton">&#9654;</button>
-    </div>
-    
+<div class="buttons-container">
+  <button id="goBackButton">&#9664;</button>
+  <button id="mainMenuButton">Minneapolis Home</button>
+  <button id="indexButton">Index</button>
+  <button id="goForwardButton">&#9654;</button>
+  <button id="desMoinesButton">Des Moines</button>
+  <button id="minneapolisButton">Minneapolis</button>
+  <button id="omahaButton">Omaha</button>
+  <button id="stCloudButton">St. Cloud</button>
+  <button id="siouxFallsButton">Sioux Falls</button>
+</div>
+
     <div class ="search-container">
         <input type="text" id="searchInput" placeholder="Search...">
     </div>
@@ -952,6 +957,35 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
+
+// JavaScript code to handle button clicks
+document.getElementById('desMoinesButton').addEventListener('click', function () {
+  navigateToPage('DesMoinesCDSSV1.html');
+});
+
+document.getElementById('minneapolisButton').addEventListener('click', function () {
+  navigateToPage('MinneapolisCDSSV1.html');
+});
+
+document.getElementById('omahaButton').addEventListener('click', function () {
+  navigateToPage('OmahaCDSSV1.html');
+});
+
+document.getElementById('stCloudButton').addEventListener('click', function () {
+  navigateToPage('StCloudCDSSV1.html');
+});
+
+document.getElementById('siouxFallsButton').addEventListener('click', function () {
+  navigateToPage('SiouxFallsCDSSV1.html');
+});
+
+// Function to navigate to a page and set the search box value
+function navigateToPage(pageURL) {
+  const searchInput = document.getElementById('searchInput');
+  const searchValue = searchInput.value;
+  const newURL = `${pageURL}?search=${encodeURIComponent(searchValue)}`;
+  window.location.href = newURL;
+}
     
 // Fetch data and initialize the dropdown
 Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
