@@ -800,8 +800,7 @@ function createOMTable(selectedData) {
 function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
   const matchingData = omData.find(item => item.Name === selectedOption);
-      const dropdown = document.getElementById('filterDropdown');
-    dropdown = dropdown.value
+  
   if (matchingData) {
 
     selectedData = matchingData;
