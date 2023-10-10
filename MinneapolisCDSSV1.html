@@ -1011,11 +1011,11 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     abxLinkData = abxlinkjsonData;
     populateDropdown(omData); 
 
-    const dropdown = document.getElementById('filterDropdown');
+    /*const dropdown = document.getElementById('filterDropdown');
     dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
-  })
+  })*/
   .catch(error => {
     console.error('Error:', error);
   });
