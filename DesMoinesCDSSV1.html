@@ -795,11 +795,10 @@ function createOMTable(selectedData) {
 
     tbody.appendChild(bodyRow);
   }
-
-  // Add a new row for Item.Name at the bottom of the table
+ // Add a new row for Item.Name at the bottom of the table
   const itemRow = document.createElement('tr');
   const itemCell = document.createElement('td');
-  itemCell.textContent = selectedData.Name; // Replace 'Item.Name' with the actual item name
+  itemCell.textContent = "Menu Name: " + selectedData.Name; // Replace 'Item.Name' with the actual item name
   itemRow.appendChild(itemCell);
   tbody.appendChild(itemRow);
 
