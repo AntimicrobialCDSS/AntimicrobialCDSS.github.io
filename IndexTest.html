@@ -58,7 +58,7 @@
 
         .button-row {
             display: flex;
-            gap: 10px; /* Add space between buttons */
+            gap: 10px 10px; /* Add space between buttons */
             float: Left;
             width: 100%;
         }
@@ -83,8 +83,15 @@
         }
             #CDSSVALogo {
             font-family: 'PT Serif Regular', Arial, sans-serif;
+            position: relative;
             bottom: 0;
-            float: Left; 
+              z-index: 2;
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: flex-start;
+              flex-direction: column;
+              width: 900px;
+              box-sizing: border-box; 
     }
     </style>
 </head>
@@ -109,7 +116,9 @@ Questions, comments or concerns may be submitted by email (VISN23AntimicrobialCD
             <a class="button" href="StCloudCDSSV1.html">Saint Cloud</a>
         </div>
     </div>
+    <div class = "CDSSVALogo">    
     <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVALogo">
+    </div>
 </body>
 </html>
 
