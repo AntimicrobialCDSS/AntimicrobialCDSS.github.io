@@ -50,7 +50,7 @@
 
         .container {
             max-width: 800px;
-            width: 100%;
+            flex-basis: 100%;
             margin: 0 auto;
             padding: 20px; /* Add padding to the container */
             float: Left; 
@@ -60,7 +60,7 @@
             display: flex;
             gap: 10px 10px; /* Add space between buttons */
             float: Left;
-            width: 100%;
+            flex-basis: 100%;
         }
 
          .button {
@@ -70,16 +70,12 @@
             padding: 10px 20px; /* Adjust padding as needed */
             border: none;
             cursor: pointer;
+            flex-basis: 100%;
         }
 
         /* Style the "Minneapolis," "Des Moines," and "Omaha" buttons differently */
         .special-button {
-            flex: 1; /* Make buttons share the row equally */
             background-color: #ff9900; /* Orange background color */
-            color: white;
-            padding: 10px 20px; /* Adjust padding as needed */
-            border: none;
-            cursor: pointer;
         }
             #CDSSVALogo {
             font-family: 'PT Serif Regular', Arial, sans-serif;
@@ -92,7 +88,11 @@
               flex-direction: column;
               width: 800px;
               box-sizing: border-box; 
-    }
+        }
+                
+         .blankSpace {
+           padding: 20px 30px; // blank div(or blank space) height and width. Depends on you.
+        }
     </style>
 </head>
 <body>
@@ -111,10 +111,14 @@ Questions, comments or concerns may be submitted by email (VISN23AntimicrobialCD
             <a class="button special-button" href="DesMoinesCDSSV1.html">Des Moines</a>
             <a class="button special-button" href="OmahaCDSSV1.html">Omaha</a>
         </div>
+        <div class = "blankSpace">  
+            </div>
         <div class="button-row">
             <a class="button" href="SiouxFallsCDSSV1.html">Sioux Falls</a>
             <a class="button" href="StCloudCDSSV1.html">Saint Cloud</a>
         </div>
+    
+     
     </div>
     <div class = "CDSSVALogo">    
     <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVALogo">
