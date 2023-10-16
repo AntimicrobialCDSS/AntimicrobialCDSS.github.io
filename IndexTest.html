@@ -45,7 +45,6 @@
             margin: 0;
             padding: 0;
             background-color: #f0f0f0;
-            justify-content: flex-start; 
         }
 
         .container {
@@ -53,6 +52,13 @@
             margin: 0 auto;
             padding: 20px;
             text-align: left; /* Align everything to the left */
+            justify-content: flex-start; 
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            flex-direction: column;
+            width: 800px;
+            box-sizing: border-box;
         }
     
         .blue-button-row {
@@ -114,9 +120,10 @@
             <a class="button" href="SiouxFallsCDSSV1.html">Sioux Falls</a>
             <a class="button" href="StCloudCDSSV1.html">Saint Cloud</a>
         </div>
-    </div>
+   
     <div class="CDSSVALogo">
         <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVALogo">
+    </div>
     </div>
 </body>
 </html>
