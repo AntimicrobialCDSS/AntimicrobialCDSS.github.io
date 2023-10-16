@@ -88,6 +88,8 @@
             border: none;
             cursor: pointer;
             flex-basis: 100%;
+ white-space: nowrap;
+}
         }
 
         .special-button {
@@ -106,10 +108,15 @@
             width: 800px;
             box-sizing: border-box;
         }
-
+.bottom-left-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
         .blankSpace {
             padding: 20px 30px;
         }
+
     </style>
 </head>
 <body>
@@ -128,7 +135,7 @@
             <a class="button" href="StCloudCDSSV1.html">Saint Cloud</a>
         </div>
     </div>
-    <div class="CDSSVALogo">
+    <div class="CDSSVALogo bottom-left-image">
         <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVALogo">
     </div>
 </body>
