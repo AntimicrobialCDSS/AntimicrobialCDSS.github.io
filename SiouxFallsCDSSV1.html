@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minneapolis Antimicrobial CDSS</title>
+  <title>Sioux Falls Antimicrobial CDSS</title>
   <link rel="icon" href="CDSSLogo.png" type="image/x-icon">
   <style>
     /* Common styles */
@@ -214,14 +214,10 @@
   <div id="header">
 <div class="buttons-container">
   <button id="goBackButton">&#9664;</button>
-  <button id="mainMenuButton">Minneapolis Home</button>
+  <button id="mainMenuButton">Sioux Falls Home</button>
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
-  <button id="desMoinesButton">Des Moines</button>
-  <button id="minneapolisButton">Minneapolis</button>
-  <button id="omahaButton">Omaha</button>
-  <button id="stCloudButton">St. Cloud</button>
-  <button id="siouxFallsButton">Sioux Falls</button>
+
 </div>
 
     <div class ="search-container">
@@ -235,8 +231,18 @@
  <table class="table">
   <div id="resultContainer"></div>
 </table>
+  
   <div id="footer">
-    <div class ="picture-container">
+  <p>Select to view other versions:</p>
+    <div class="buttons-container">
+      <button id="desMoinesButton">Des Moines</button>
+      <button id="minneapolisButton">Minneapolis</button>
+      <button id="omahaButton">Omaha</button>
+      <button id="stCloudButton">St. Cloud</button>
+      <button id="siouxFallsButton">Sioux Falls</button>
+    </div>
+
+    <div class="picture-container">
       <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVAlogo">
     </div>
   </div>
@@ -245,21 +251,21 @@
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
-      const response = await fetch('MinneapolisOMJSON.json');
+      const response = await fetch('SiouxFallsOMJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ODJSON Data
     async function fetchODData() {
-      const response = await fetch('MinneapolisODJSON.json');
+      const response = await fetch('SiouxFallsODJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ItemLink Data
     async function fetchItemLink() {
-      const response = await fetch('MinneapolisItemLinks.json');
+      const response = await fetch('SiouxFallsItemLinks.json');
       const data = await response.json();
       return data;
     }
