@@ -3,10 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap">
   <title>Omaha Antimicrobial CDSS</title>
+  <link rel="icon" href="CDSSLogo.png" type="image/x-icon">
   <style>
     /* Common styles */
+    @font-face {
+  font-family: 'PT Serif Bold';
+  src: url('Fonts/PTSerif-Bold.eot');
+  src: url('Fonts/PTSerif-Bold.eot?#iefix') format('embedded-opentype'),
+       url('Fonts/PTSerif-Bold.woff2') format('woff2'),
+       url('Fonts/PTSerif-Bold.woff') format('woff'),
+       url('Fonts/PTSerif-Bold.ttf') format('truetype'),
+       url('Fonts/PTSerif-Bold.svg#PTSerifbold') format('svg');
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'PT Serif Italic';
+  src: url('Fonts/PTSerif-Italic.eot');
+  src: url('Fonts/PTSerif-Italic.eot?#iefix') format('embedded-opentype'),
+       url('Fonts/PTSerif-Italic.woff2') format('woff2'),
+       url('Fonts/PTSerif-Italic.woff') format('woff'),
+       url('Fonts/PTSerif-Italic.ttf') format('truetype'),
+       url('Fonts/PTSerif-Italic.svg#PTSerifitalic') format('svg');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'PT Serif Regular';
+  src: url('Fonts/PTSerif-Regular.eot');
+  src: url('Fonts/PTSerif-Regular.eot?#iefix') format('embedded-opentype'),
+       url('Fonts/PTSerif-Regular.woff2') format('woff2'),
+       url('Fonts/PTSerif-Regular.woff') format('woff'),
+       url('Fonts/PTSerif-Regular.ttf') format('truetype'),
+       url('Fonts/PTSerif-Regular.svg#PTSerifregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+   
     .no-term {
       display: none;
     }
@@ -38,7 +73,7 @@
     }
 
     .bold {
-      font-weight: bold;
+      font-family: 'PT Serif Bold', Arial, sans-serif;
      /*  background-color: lightblue; /* Set your desired background color here */
     }
         /* Table styles */
@@ -48,7 +83,7 @@
     }
 
     .table td {
-      font-family: "Times New Roman", serif;
+      font-family: 'PT Serif Regular', Arial, sans-serif;
       white-space: wrap; 
       overflow: hidden;
       text-overflow: ellipsis;
@@ -126,6 +161,7 @@
 #indexButton,
 #goForwardButton,
 #CNSButton {
+  font-family: 'PT Serif Regular', Arial, sans-serif;
   background-color: transparent; /* Make the background transparent */
   border: none; /* Remove the border */
   border-radius: 10px; /* Adjust border-radius for rounded corners */
@@ -147,6 +183,7 @@
   background-color: #4db8ff; /* lighter shade of blue */
 }
   #filterDropdown {
+    font-family: 'PT Serif Regular', Arial, sans-serif;
     margin-right: 20px;
     width: 100%;
     z-index: 2;
@@ -159,6 +196,7 @@
     }
   
   #searchInput {
+    font-family: 'PT Serif Regular', Arial, sans-serif;
     width: 100%;
     text-align: left;
     max-width: 300px;
@@ -169,18 +207,19 @@
   .blankSpace {
    padding: 20px 30px; // blank div(or blank space) height and width. Depends on you.
 }
-    
+
   </style>
 </head>
 <body>
   <div id="header">
-    <div class ="buttons-container">
-        <button id="goBackButton">&#9664;</button>
-        <button id="mainMenuButton">Omaha Home</button>
-        <button id="indexButton">Index</button>
-        <button id="goForwardButton">&#9654;</button>
-    </div>
-    
+<div class="buttons-container">
+  <button id="goBackButton">&#9664;</button>
+  <button id="mainMenuButton">Omaha Home</button>
+  <button id="indexButton">Index</button>
+  <button id="goForwardButton">&#9654;</button>
+
+</div>
+
     <div class ="search-container">
         <input type="text" id="searchInput" placeholder="Search...">
     </div>
@@ -192,8 +231,18 @@
  <table class="table">
   <div id="resultContainer"></div>
 </table>
+  
   <div id="footer">
-    <div class ="picture-container">
+  <p>Select to view other versions:</p>
+    <div class="buttons-container">
+      <button id="desMoinesButton">Des Moines</button>
+      <button id="minneapolisButton">Minneapolis</button>
+      <button id="omahaButton">Omaha</button>
+      <button id="stCloudButton">St. Cloud</button>
+      <button id="siouxFallsButton">Sioux Falls</button>
+    </div>
+
+    <div class="picture-container">
       <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVAlogo">
     </div>
   </div>
@@ -417,6 +466,7 @@ function searchAndOpenDropdown() {
     }
   }
 
+  
   searchInput.addEventListener('input', function (event) {
     var filterText = searchInput.value.trim().toLowerCase();
     filterDropdownOptions(filterText);
@@ -530,9 +580,12 @@ function handleRowClick(item) {
   const matchingItem = omData.find(
     omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
   );
-
+  const dropdown = document.getElementById('filterDropdown');
+  
+  
   if (matchingItem) {
     selectedData = matchingItem;
+    dropdown.value = matchingItem.Name;
     pushHistory(matchingItem.Name);
     createOMTable(matchingItem); // Move createOMTable here
     scrollToTop(); // Move scrollToTop here
@@ -552,7 +605,7 @@ function handleRowClick(item) {
         console.log('Invalid URL:', URL);
       }
     } else {
-      console.log('No matching item found in OMJSON.json or OmahaItemLink.json');
+      console.log('No matching item found in OMJSON.json or DesMoinesItemLink.json');
     }
   }
 }
@@ -757,8 +810,9 @@ function createOMTable(selectedData) {
 function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
   const matchingData = omData.find(item => item.Name === selectedOption);
-
+  
   if (matchingData) {
+
     selectedData = matchingData;
     createOMTable(matchingData);
     pushHistory(matchingData.Name);
@@ -838,7 +892,7 @@ function handleGoForward() {
       document.getElementById('searchInput').value = null;
       document.getElementById('searchInput').placeholder = "Search...";
       populateDropdown(omData);
-      dropdown.value = 'ORZID2 NE GMENU ABX INPT MAIN';
+      dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
       filterData({ target: dropdown });
       scrollToTop()    
       adjustFontSize();
@@ -850,7 +904,7 @@ function handleGoForward() {
       document.getElementById('searchInput').value = null;
       document.getElementById('searchInput').placeholder = "Search...";
       populateDropdown(omData);
-      dropdown.value = 'ORZID2 NE GMENU ABX INDEX INPATIENT';
+      dropdown.value = 'ORZID2 GMENU ABX INDEX INPATIENT';
       filterData({ target: dropdown });
       scrollToTop();    
       adjustFontSize();
@@ -862,7 +916,7 @@ function handleGoForward() {
       document.getElementById('searchInput').value = null;
       document.getElementById('searchInput').placeholder = "Search...";
       populateDropdown(omData);
-      dropdown.value = 'ORZID2 NE GMENU ABX CNS';
+      dropdown.value = 'ORZID2 GMENU ABX CNS';
       filterData({ target: dropdown });  
       scrollToTop();    
       adjustFontSize();
@@ -909,13 +963,62 @@ window.addEventListener('DOMContentLoaded', adjustFontSize);
 document.getElementById('searchInput').addEventListener('input', searchData);
 document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
-// Call the adjustFontSize function when the DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-  adjustFontSize();
-});
+
+// JavaScript code to read the dropdown parameter from the URL and set the dropdown value
+/*window.addEventListener('DOMContentLoaded', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const dropdown = document.getElementById('filterDropdown');
+  const dropdownValue = urlParams.get('dropdown');
+
+  if (dropdownValue) {
+    dropdown.value = decodeURIComponent(dropdownValue);
+  } else {
+    // If no dropdown value is provided in the URL, set a default value
+    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+  }
+  });
+*/
+
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
-    
+
+// JavaScript code to handle button clicks
+document.getElementById('desMoinesButton').addEventListener('click', function () {
+  openPageInNewWindow("DesMoinesCDSSV1.html", "CI GMENU"); // Pass the replacement value
+});
+
+document.getElementById('minneapolisButton').addEventListener('click', function () {
+  openPageInNewWindow("MinneapolisCDSSV1.html", "GMENU"); // Pass the replacement value
+});
+
+document.getElementById('omahaButton').addEventListener('click', function () {
+  openPageInNewWindow('OmahaCDSSV1.html', "NE GMENU"); // Pass the replacement value
+});
+
+document.getElementById('stCloudButton').addEventListener('click', function () {
+  openPageInNewWindow('StCloudCDSSV1.html', "GMENU"); // Pass the replacement value
+});
+
+document.getElementById('siouxFallsButton').addEventListener('click', function () {
+  openPageInNewWindow('SiouxFallsCDSSV1.html', "GMENU"); // Pass the replacement value
+});
+
+// Function to open a page in a new window with the search and dropdown values
+function openPageInNewWindow(pageURL, replacementValue) {
+  const dropdown = document.getElementById('filterDropdown');
+  let dropdownValue = dropdown.value;
+
+  // Check if a replacement value is provided and modify the dropdownValue accordingly
+  if (replacementValue) {
+    dropdownValue = dropdownValue.replace("GMENU", replacementValue);
+  }
+
+  const newURL = `${pageURL}?dropdown=${encodeURIComponent(dropdownValue)}`;
+
+  // Open the new page in a new window
+  window.open(newURL, '_blank');
+}
+
 // Fetch data and initialize the dropdown
 Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
   .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
@@ -924,11 +1027,20 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     itemLinkData = itemlinkjsonData;
     abxLinkData = abxlinkjsonData;
     populateDropdown(omData); 
-
-    const dropdown = document.getElementById('filterDropdown');
-    dropdown.value = 'ORZID2 NE GMENU ABX INPT MAIN';
+      const urlParams = new URLSearchParams(window.location.search);
+  const dropdown = document.getElementById('filterDropdown');
+  const dropdownValue = urlParams.get('dropdown');
+    
+  if (dropdownValue) {
+    dropdown.value = decodeURIComponent(dropdownValue);
+  } else {
+    // If no dropdown value is provided in the URL, set a default value
+    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+  }
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
+    scrollToTop()    
+    adjustFontSize();
   })
   .catch(error => {
     console.error('Error:', error);
