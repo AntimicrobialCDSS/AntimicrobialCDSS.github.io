@@ -1049,7 +1049,25 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
   .catch(error => {
     console.error('Error:', error);
   });
+  window.onbeforeunload = function() {
+  return "This action will close the Antimicrobial CDSS app.";
+};
+
+window.addEventListener("beforeunload", function(e) {
+  var confirmationMessage = "This action will close the Antimicrobial CDSS app.";
   
+  e.returnValue = confirmationMessage; // For older browsers
+  return confirmationMessage;
+});
+
+window.addEventListener("unload", function(e) {
+  // This code will execute if the user clicks "OK" in the confirmation alert.
+  // You can add your logic to proceed with the action here.
+  // Note that some actions might not work in the 'unload' event, so be cautious.
+
+  // Example: Proceed with the action
+  // yourFunctionToProceed();
+});
   </script>
 </body>
 
