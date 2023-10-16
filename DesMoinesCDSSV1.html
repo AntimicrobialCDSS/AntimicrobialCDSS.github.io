@@ -984,33 +984,37 @@ window.addEventListener('resize', adjustFontSize);
 
 // JavaScript code to handle button clicks
 document.getElementById('desMoinesButton').addEventListener('click', function () {
-  openPageInNewWindow("DesMoinesCDSSV1.html", "CI GMENU"); // Pass the replacement value
+openPageInNewWindow("DesMoinesCDSSV1.html", { " CI ": "", " NE ": "", "GMENU": "CI GMENU" });
 });
 
 document.getElementById('minneapolisButton').addEventListener('click', function () {
-  openPageInNewWindow("MinneapolisCDSSV1.html", "GMENU"); // Pass the replacement value
+  openPageInNewWindow("MinneapolisCDSSV1.html",{ " CI ": "", " NE ": "" }); // Pass the replacement value
 });
 
 document.getElementById('omahaButton').addEventListener('click', function () {
-  openPageInNewWindow('OmahaCDSSV1.html', "NE GMENU"); // Pass the replacement value
+  openPageInNewWindow('OmahaCDSSV1.html', { " CI ": "", " NE ": "", "GMENU": "NE GMENU" }); // Pass the replacement value
 });
 
 document.getElementById('stCloudButton').addEventListener('click', function () {
-  openPageInNewWindow('StCloudCDSSV1.html', "GMENU"); // Pass the replacement value
+  openPageInNewWindow('StCloudCDSSV1.html', { " CI ": "", " NE ": "" }); // Pass the replacement value
 });
 
 document.getElementById('siouxFallsButton').addEventListener('click', function () {
-  openPageInNewWindow('SiouxFallsCDSSV1.html', "GMENU"); // Pass the replacement value
+  openPageInNewWindow('SiouxFallsCDSSV1.html', { " CI ": "", " NE ": "" }); // Pass the replacement value
 });
 
-// Function to open a page in a new window with the search and dropdown values
-function openPageInNewWindow(pageURL, replacementValue) {
+// Function to open a page in a new window with multiple replacement values
+function openPageInNewWindow(pageURL, replacements) {
   const dropdown = document.getElementById('filterDropdown');
   let dropdownValue = dropdown.value;
 
-  // Check if a replacement value is provided and modify the dropdownValue accordingly
-  if (replacementValue) {
-    dropdownValue = dropdownValue.replace("GMENU", replacementValue);
+  // Check if replacements are provided and modify the dropdownValue accordingly
+  if (replacements) {
+    for (const key in replacements) {
+      if (replacements.hasOwnProperty(key)) {
+        dropdownValue = dropdownValue.replace(key, replacements[key]);
+      }
+    }
   }
 
   const newURL = `${pageURL}?dropdown=${encodeURIComponent(dropdownValue)}`;
