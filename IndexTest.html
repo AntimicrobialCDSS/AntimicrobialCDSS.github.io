@@ -54,12 +54,17 @@
             padding: 20px;
             text-align: left; /* Align everything to the left */
         }
-
-        .button-row {
+    
+        .blue-button-row {
             display: flex;
             gap: 10px;
             flex-basis: 100%;
-            justify-content: flex-start; /* Align buttons to the left */
+        }
+
+        .orange-button-row {
+            display: flex;
+            gap: 10px;
+            flex-basis: 100%;
         }
 
         .button {
@@ -99,15 +104,15 @@
         <p>DISCLAIMER:</p>
         <p>This tool is intended for use by trainees and health-care professionals within the VISN23, at health care systems listed below, as a reference to guide treatment of infectious diseases in conjunction with the Computerized Patient Record System (CPRS). The developers of this guide make no guarantees on the accuracy or completeness of contained information, it's use in health-care systems apart from VISN23 health care systems, and it's appropriateness in patient-specific circumstances. The developers, VISN23 and member facilities are not liable for any claims or losses arising from the use or misuse of this guide, its contents, and any omissions from its contents or otherwise. This guide may not contain all relevant or required information and should not be used as the sole resource for patient-care or prescribing decisions. Updates to this guide are released periodically and it is up to the user to ensure use of the most up to date version. Certain links and documents contained within the guide are specific to the selected health care system and will only be accessible when logged onto the selected health care system's intranet. Local health-care system guidance takes precedence over any information contained within this guide. The Minneapolis VAHCS has a RESTRICTED antimicrobial formulary.  All restricted antimicrobials must be placed using the CDSS in CPRS or ID approval. Information in this guide is adapted from the VISN23 health care systems' Antimicrobial Computer Decision Support System (CDSS). Questions, comments or concerns may be submitted by email (VISN23AntimicrobialCDSS@va.gov) or by phone (612-271-4121 or 612-719-6778)</p>
         <p>Click version below to open Antimicrobial CDSS.</p>
-        <div class="button-row">
-            <a class="button" href="SiouxFallsCDSSV1.html">Sioux Falls</a>
-            <a class="button" href="StCloudCDSSV1.html">Saint Cloud</a>
-        </div>
-        <div class="blankSpace"></div>
-        <div class="button-row">
+        <div class="orange-button-row">
             <a class="button special-button" href="MinneapolisCDSSV1.html">Minneapolis</a>
             <a class="button special-button" href="DesMoinesCDSSV1.html">Des Moines</a>
             <a class="button special-button" href="OmahaCDSSV1.html">Omaha</a>
+        </div>
+        <div class="blankSpace"></div>
+        <div class="blue-button-row">
+            <a class="button" href="SiouxFallsCDSSV1.html">Sioux Falls</a>
+            <a class="button" href="StCloudCDSSV1.html">Saint Cloud</a>
         </div>
     </div>
     <div class="CDSSVALogo">
