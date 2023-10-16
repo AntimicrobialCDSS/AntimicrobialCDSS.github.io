@@ -646,7 +646,7 @@ function createOMTable(selectedData) {
 
   const { Contents } = selectedData;
   const maxRow = Math.max(...Contents.map(item => item.Row));
-  const columns = Math.max(...Contents.map(item => item.Column);
+  const columns = Math.max(...Contents.map(item => item.Column));
 
   // Before processing each row, create an array to store the last matched index for each row
   const lastMatchedIndexes = new Array(maxRow).fill(0);
@@ -811,6 +811,7 @@ function createOMTable(selectedData) {
     resultContainer.appendChild(table);
   }
 }
+
 
 
 // Function to filter data based on the selected option
