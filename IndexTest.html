@@ -50,6 +50,7 @@
 
         .container {
             max-width: 800px;
+            width: 100%;
             margin: 0 auto;
             padding: 20px; /* Add padding to the container */
             float: Left; 
@@ -58,12 +59,8 @@
         .button-row {
             display: flex;
             gap: 10px; /* Add space between buttons */
-            float: Left; 
-        }
-        .button-row2 {
-            display: flex;
-            gap: 10px; /* Add space between buttons */
-            float: Left; 
+            float: Left;
+            width: 100%;
         }
 
          .button {
@@ -77,11 +74,17 @@
 
         /* Style the "Minneapolis," "Des Moines," and "Omaha" buttons differently */
         .special-button {
+            flex: 1; /* Make buttons share the row equally */
             background-color: #ff9900; /* Orange background color */
+            color: white;
+            padding: 10px 20px; /* Adjust padding as needed */
+            border: none;
+            cursor: pointer;
         }
             #CDSSVALogo {
-         font-family: 'PT Serif Regular', Arial, sans-serif;
-                float: Left; 
+            font-family: 'PT Serif Regular', Arial, sans-serif;
+            bottom: 0;
+            float: Left; 
     }
     </style>
 </head>
@@ -101,7 +104,7 @@ Questions, comments or concerns may be submitted by email (VISN23AntimicrobialCD
             <a class="button special-button" href="DesMoinesCDSSV1.html">Des Moines</a>
             <a class="button special-button" href="OmahaCDSSV1.html">Omaha</a>
         </div>
-        <div class="button-row2">
+        <div class="button-row">
             <a class="button" href="SiouxFallsCDSSV1.html">Sioux Falls</a>
             <a class="button" href="StCloudCDSSV1.html">Saint Cloud</a>
         </div>
