@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minneapolis Antimicrobial CDSS</title>
+  <link rel="icon" href="CDSSLogo.png" type="image/x-icon">
   <style>
     /* Common styles */
     @font-face {
@@ -216,11 +217,7 @@
   <button id="mainMenuButton">Minneapolis Home</button>
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
-  <button id="desMoinesButton">Des Moines</button>
-  <button id="minneapolisButton">Minneapolis</button>
-  <button id="omahaButton">Omaha</button>
-  <button id="stCloudButton">St. Cloud</button>
-  <button id="siouxFallsButton">Sioux Falls</button>
+
 </div>
 
     <div class ="search-container">
@@ -234,8 +231,18 @@
  <table class="table">
   <div id="resultContainer"></div>
 </table>
+  
   <div id="footer">
-    <div class ="picture-container">
+  <p>Select to view other versions:</p>
+    <div class="buttons-container">
+      <button id="desMoinesButton">Des Moines</button>
+      <button id="minneapolisButton">Minneapolis</button>
+      <button id="omahaButton">Omaha</button>
+      <button id="stCloudButton">St. Cloud</button>
+      <button id="siouxFallsButton">Sioux Falls</button>
+    </div>
+
+    <div class="picture-container">
       <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVAlogo">
     </div>
   </div>
@@ -459,6 +466,7 @@ function searchAndOpenDropdown() {
     }
   }
 
+  
   searchInput.addEventListener('input', function (event) {
     var filterText = searchInput.value.trim().toLowerCase();
     filterDropdownOptions(filterText);
@@ -572,9 +580,12 @@ function handleRowClick(item) {
   const matchingItem = omData.find(
     omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
   );
-
+  const dropdown = document.getElementById('filterDropdown');
+  
+  
   if (matchingItem) {
     selectedData = matchingItem;
+    dropdown.value = matchingItem.Name;
     pushHistory(matchingItem.Name);
     createOMTable(matchingItem); // Move createOMTable here
     scrollToTop(); // Move scrollToTop here
@@ -799,8 +810,9 @@ function createOMTable(selectedData) {
 function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
   const matchingData = omData.find(item => item.Name === selectedOption);
-
+  
   if (matchingData) {
+
     selectedData = matchingData;
     createOMTable(matchingData);
     pushHistory(matchingData.Name);
@@ -972,34 +984,41 @@ window.addEventListener('resize', adjustFontSize);
 
 // JavaScript code to handle button clicks
 document.getElementById('desMoinesButton').addEventListener('click', function () {
-  openPageInNewWindow("DesMoinesCDSSV1.html");
+  openPageInNewWindow("DesMoinesCDSSV1.html", "CI GMENU"); // Pass the replacement value
 });
 
 document.getElementById('minneapolisButton').addEventListener('click', function () {
-  openPageInNewWindow("MinneapolisCDSSV1.html");
+  openPageInNewWindow("MinneapolisCDSSV1.html", "GMENU"); // Pass the replacement value
 });
 
 document.getElementById('omahaButton').addEventListener('click', function () {
-  openPageInNewWindow('OmahaCDSSV1.html');
+  openPageInNewWindow('OmahaCDSSV1.html', "NE GMENU"); // Pass the replacement value
 });
 
 document.getElementById('stCloudButton').addEventListener('click', function () {
-  openPageInNewWindow('StCloudCDSSV1.html');
+  openPageInNewWindow('StCloudCDSSV1.html', "GMENU"); // Pass the replacement value
 });
 
 document.getElementById('siouxFallsButton').addEventListener('click', function () {
-  openPageInNewWindow('SiouxFallsCDSSV1.html');
+  openPageInNewWindow('SiouxFallsCDSSV1.html', "GMENU"); // Pass the replacement value
 });
+
 // Function to open a page in a new window with the search and dropdown values
-function openPageInNewWindow(pageURL) {
+function openPageInNewWindow(pageURL, replacementValue) {
   const dropdown = document.getElementById('filterDropdown');
-  const dropdownValue = dropdown.value;
-  
+  let dropdownValue = dropdown.value;
+
+  // Check if a replacement value is provided and modify the dropdownValue accordingly
+  if (replacementValue) {
+    dropdownValue = dropdownValue.replace("GMENU", replacementValue);
+  }
+
   const newURL = `${pageURL}?dropdown=${encodeURIComponent(dropdownValue)}`;
-  
+
   // Open the new page in a new window
   window.open(newURL, '_blank');
 }
+
 // Fetch data and initialize the dropdown
 Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
   .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
@@ -1011,17 +1030,17 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
       const urlParams = new URLSearchParams(window.location.search);
   const dropdown = document.getElementById('filterDropdown');
   const dropdownValue = urlParams.get('dropdown');
-
+    
   if (dropdownValue) {
     dropdown.value = decodeURIComponent(dropdownValue);
   } else {
     // If no dropdown value is provided in the URL, set a default value
     dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
   }
-    /*const dropdown = document.getElementById('filterDropdown');
-    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';*/
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
+    scrollToTop()    
+    adjustFontSize();
   })
   .catch(error => {
     console.error('Error:', error);
