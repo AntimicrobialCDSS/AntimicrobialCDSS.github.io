@@ -1050,9 +1050,11 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     console.error('Error:', error);
   });
     
-window.onbeforeunload = function() {
-  return "This action will close the Antimicrobial CDSS app.";
-};
+window.addEventListener("beforeunload", function(e) {
+  var confirmationMessage = "This action will close the Antimicrobial CDSS app.";
+  e.returnValue = confirmationMessage;
+  return confirmationMessage;
+});
   </script>
 </body>
 
