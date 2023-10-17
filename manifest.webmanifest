@@ -6,8 +6,8 @@
   "description": "Github Page as a Progressive Web App",
  
   // Scope and start URL - these need to change to yours
-  "scope": "/github-page-pwa/",
-  "start_url": "/github-page-pwa/",
+  "scope": "/AntimicrobialCDSS/",
+  "start_url": "/AntimicrobialCDSS/",
  
   // colours of the app as displayed in the installer
   "background_color": "#ffffff",
