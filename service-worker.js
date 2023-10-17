@@ -7,11 +7,10 @@ const VERSION = 'version_01';
 // The files to make available for offline use. make sure to add 
 // others to this list
 const URLS = [
-  `${GHPATH}/`,
-  `${GHPATH}/index.html`,
-  `${GHPATH}/MinneapolisCDDSV1.html`,
-  `${GHPATH}/MinneapolisOMJSON.json`,
-  `${GHPATH}/MinneapolisODJSOn.json`,
+  '${GHPATH}/index.html',
+  '${GHPATH}/MinneapolisCDDSV1.html',
+  '${GHPATH}/MinneapolisOMJSON.json',
+  '${GHPATH}/MinneapolisODJSOn.json',
 ]
 
 const CACHE_NAME = APP_PREFIX + VERSION
