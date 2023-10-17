@@ -2,7 +2,7 @@
 const GHPATH = 'https://github.com/AntimicrobialCDSS/AntimicrobialCDSS.github.io/blob/main';
 // Change to a different app prefix name
 const APP_PREFIX = 'my_awesome_';
-const VERSION = 'version_01';
+const VERSION = 'version_02';
 
 // The files to make available for offline use. make sure to add 
 // others to this list
