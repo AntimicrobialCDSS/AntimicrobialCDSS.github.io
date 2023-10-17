@@ -1,5 +1,5 @@
 
-const GHPATH = 'https://antimicrobialcdss.github.io/';
+const GHPATH = 'https://antimicrobialcdss.github.io';
 // Change to a different app prefix name
 const APP_PREFIX = 'my_awesome_';
 const VERSION = 'version_01';
