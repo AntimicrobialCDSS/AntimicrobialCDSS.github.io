@@ -15,22 +15,27 @@ const URLS = [
   '${GHPATH}/VASeal.jpg',
   
   '${GHPATH}/MinneapolisCDSSV1.html',
+  '${GHPATH}/MinneapolisItemLinks.json',
   '${GHPATH}/MinneapolisOMJSON.json',
   '${GHPATH}/MinneapolisODJSON.json',
   
   '${GHPATH}/DesMoinesCDSSV1.html',
+   '${GHPATH}/DesMoinesItemLinks.json',
   '${GHPATH}/DesMoinesOMJSON.json',
   '${GHPATH}/DesMoinesODJSON.json',
   
   '${GHPATH}/OmahaCDSSV1.html',
+  '${GHPATH}/OmahaItemLinks.json',
   '${GHPATH}/OmahaOMJSON.json',
   '${GHPATH}/OmahaODJSON.json',
   
   '${GHPATH}/SiouxFallsCDSSV1.html',
+  '${GHPATH}/SiouxFallsItemLinks.json',
   '${GHPATH}/SiouxFallsOMJSON.json',
   '${GHPATH}/SiouxFallsODJSON.json',
 
   '${GHPATH}/StCloudCDSSV1.html',
+  '${GHPATH}/StCloudItemLinks.json,
   '${GHPATH}/StCloudOMJSON.json',
   '${GHPATH}/StCloudODJSON.json',
   
