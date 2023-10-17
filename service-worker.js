@@ -8,7 +8,7 @@ const VERSION = 'version_01';
 // others to this list
 const URLS = [
   '${GHPATH}/index.html',
-  '${GHPATH}/MinneapolisCDDSV1.html',
+  '${GHPATH}/MinneapolisCDSSV1.html',
   '${GHPATH}/MinneapolisOMJSON.json',
   '${GHPATH}/MinneapolisODJSOn.json',
 ]
