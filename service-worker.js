@@ -7,10 +7,33 @@ const VERSION = 'version_01';
 // The files to make available for offline use. make sure to add 
 // others to this list
 const URLS = [
+  '${GHPATH}/AbxLinks.json',
   '${GHPATH}/index.html',
+  '${GHPATH}/CDSSLogo.png',
+  '${GHPATH}/CDSSLogoTab.png',
+  '${GHPATH}/CDSSVALogo.png',
+  '${GHPATH}/VASeal.jpg',
+  
   '${GHPATH}/MinneapolisCDSSV1.html',
   '${GHPATH}/MinneapolisOMJSON.json',
   '${GHPATH}/MinneapolisODJSON.json',
+  
+  '${GHPATH}/DesMoinesCDSSV1.html',
+  '${GHPATH}/DesMoinesOMJSON.json',
+  '${GHPATH}/DesMoinesODJSON.json',
+  
+  '${GHPATH}/OmahaCDSSV1.html',
+  '${GHPATH}/OmahaOMJSON.json',
+  '${GHPATH}/OmahaODJSON.json',
+  
+  '${GHPATH}/SiouxFallsCDSSV1.html',
+  '${GHPATH}/SiouxFallsOMJSON.json',
+  '${GHPATH}/SiouxFallsODJSON.json',
+
+  '${GHPATH}/StCloudCDSSV1.html',
+  '${GHPATH}/StCloudOMJSON.json',
+  '${GHPATH}/StCloudODJSON.json',
+  
 ]
 
 const CACHE_NAME = APP_PREFIX + VERSION
