@@ -6,8 +6,8 @@
   "description": "Github Page as a Progressive Web App",
  
   // Scope and start URL - these need to change to yours
-  "scope": "/AntimicrobialCDSS/",
-  "start_url": "/AntimicrobialCDSS/",
+  "scope": "/AntimicrobialCDSS.github.io/",
+  "start_url": "/AntimicrobialCDSS.github.io/",
  
   // colours of the app as displayed in the installer
   "background_color": "#ffffff",
@@ -22,7 +22,7 @@
   // you may not be able to install the app. 
   "icons": [
       {
-        "src": "/AntimicrobialCDSS/CDSSLogo.png",
+        "src": "/AntimicrobialCDSS.github.io/CDSSLogo.png",
         "type": "image/png",
         "sizes": "700x700"
       }
