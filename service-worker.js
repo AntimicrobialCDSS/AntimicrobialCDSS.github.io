@@ -10,7 +10,7 @@ const URLS = [
   '${GHPATH}/index.html',
   '${GHPATH}/MinneapolisCDSSV1.html',
   '${GHPATH}/MinneapolisOMJSON.json',
-  '${GHPATH}/MinneapolisODJSOn.json',
+  '${GHPATH}/MinneapolisODJSON.json',
 ]
 
 const CACHE_NAME = APP_PREFIX + VERSION
