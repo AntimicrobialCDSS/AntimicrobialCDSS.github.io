@@ -35,7 +35,7 @@ const URLS = [
   '${GHPATH}/SiouxFallsODJSON.json',
 
   '${GHPATH}/StCloudCDSSV1.html',
-  '${GHPATH}/StCloudItemLinks.json,
+  '${GHPATH}/StCloudItemLinks.json',
   '${GHPATH}/StCloudOMJSON.json',
   '${GHPATH}/StCloudODJSON.json',
   
