@@ -22,7 +22,7 @@
   // you may not be able to install the app. 
   "icons": [
       {
-        "src": "/AntimicrobialCDSS/CDSSicon.png",
+        "src": "/AntimicrobialCDSS/CDSSLogo.png",
         "type": "image/png",
         "sizes": "700x700"
       }
