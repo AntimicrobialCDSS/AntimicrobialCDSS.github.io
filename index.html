@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antimicrobial CDSS Online</title>
+    <link rel="canonical" href="https://antimicrobialcdss.github.io/github-page-pwa/" />
+    <link rel="manifest" href="/github-page-pwa/manifest.webmanifest">
     <link rel="icon" href="CDSSLogoTab.png" type="image/x-icon">
     <style>
         @font-face {
@@ -122,4 +124,12 @@
         <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
 </body>
+  <script>
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register (
+          '/github-page-pwa/sw.js',
+          {scope: '/github-page-pwa/'}
+        )
+      }
+  </script>
 </html>
