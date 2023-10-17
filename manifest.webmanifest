@@ -22,7 +22,7 @@
   // you may not be able to install the app. 
   "icons": [
       {
-        "src": "/github-page-pwa/img/icon.png",
+        "src": "/AntimicrobialCDSS/CDSSicon.png",
         "type": "image/png",
         "sizes": "700x700"
       }
