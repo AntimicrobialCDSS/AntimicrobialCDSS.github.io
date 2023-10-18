@@ -22,7 +22,7 @@
   // you may not be able to install the app. 
   "icons": [
       {
-        "src": "CDSSLogo.png",
+        "src": "CDSSLogoLarge.png",
         "type": "image/png",
         "sizes": "510X510"
       }
