@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antimicrobial CDSS Online</title>
-    <link rel="icon" href="CDSSLogo.png" type="image/x-icon">
+    <link rel="canonical" href="https://AntimicrobialCDSS.github.io/AntimicrobialCDSS/" />
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="CDSSLogoTab.png" type="image/x-icon">
     <style>
         @font-face {
           font-family: 'PT Serif Bold';
@@ -89,7 +91,7 @@
         }
         #CDSSLogo, 
         #VASeal{
-          width: 400px; /* Set the maximum width for the image */
+          max-width: 300px; /* Set the maximum width for the image */
           height: auto;
           float: Left; /* Float the image to the right */
         }
@@ -121,5 +123,48 @@
     <div class="bottom-image">
         <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
+    <button id="install-button">Install App</button>
+
+    <script>
+        // PWA registration code (already in your script)
+
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js', {
+            scope: '/'
+          });
+        }
+
+        // Add an event listener to trigger the installation prompt
+        let deferredInstallPrompt;
+
+        window.addEventListener('beforeinstallprompt', (event) => {
+            // Store the event to use it later when you want to show the install prompt.
+            deferredInstallPrompt = event;
+        });
+
+        // Add a click event listener to the install button
+        const installButton = document.getElementById('install-button');
+
+        installButton.addEventListener('click', () => {
+            if (deferredInstallPrompt) {
+                // Show the installation prompt to the user
+                deferredInstallPrompt.prompt();
+
+                // Wait for the user's choice
+                deferredInstallPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the installation');
+                    } else {
+                        console.log('User dismissed the installation');
+                    }
+
+                    // Reset the deferred event
+                    deferredInstallPrompt = null;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
 </body>
 </html>
