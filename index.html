@@ -125,18 +125,17 @@
     </div>
     <button id="install-button">Install App</button>
 
-    <script>
-        // PWA registration code (already in your script)
-
+  <script>
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker.register('/service-worker.js', {
             scope: '/'
           });
         }
 
-        // Add an event listener to trigger the installation prompt
-        let deferredInstallPrompt;
+        // Initialize the deferredInstallPrompt variable
+        let deferredInstallPrompt = null;
 
+        // Add an event listener to trigger the installation prompt
         window.addEventListener('beforeinstallprompt', (event) => {
             // Store the event to use it later when you want to show the install prompt.
             deferredInstallPrompt = event;
