@@ -139,16 +139,12 @@
             <a class="button" href="SiouxFallsCDSSV1.html">Sioux Falls</a>
             <a class="button" href="StCloudCDSSV1.html">Saint Cloud</a>
         </div>
-        <div class="blankSpace"></div>
-        <div class="green-button-row">
-            <button id="install-button" class="appinstall-button">Install Antimicrobial CDSS App</button>
-        </div>
     </div>
     <div class="bottom-image">
         <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
     
- <script>
+    <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/service-worker.js', {
                 scope: '/'
@@ -160,32 +156,11 @@
         window.addEventListener('beforeinstallprompt', (event) => {
             // Prevent the default behavior (to show the browser's own install prompt)
             event.preventDefault();
-            // Store the event to use it later when you want to show the custom install button.
+            // Store the event to use it later when you want to show a custom alert.
             deferredInstallPrompt = event;
 
-            // Show the custom install button
-            const installButton = document.getElementById('install-button');
-            installButton.style.display = 'block';
-        });
-
-        const installButton = document.getElementById('install-button');
-        installButton.addEventListener('click', () => {
-            if (deferredInstallPrompt) {
-                // Show the installation prompt to the user
-                deferredInstallPrompt.prompt();
-
-                // Wait for the user's choice
-                deferredInstallPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the installation');
-                    } else {
-                        console.log('User dismissed the installation');
-                    }
-
-                    // Reset the deferred event
-                    deferredInstallPrompt = null;
-                });
-            }
+            // Show a pop-up alert to inform the user that the app can be installed.
+            alert("The Antimicrobial CDSS App can be installed. Please use your browser's menu to install it.");
         });
     </script>
 </body>
