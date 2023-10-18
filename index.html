@@ -126,9 +126,12 @@
         <p>Questions, comments or concerns may be submitted by email (VISN23AntimicrobialCDSS@va.gov) or by phone (612-271-4121 or 612-719-6778)</p>
         <p><span class="bold-text">Select version below to open the Antimicrobial CDSS:</span></p>
     </div>
-    <div class="button-container">
+     <div class="button-container">
         <div class="blue-button-row">
-            <a class="button" href="MinneapolisCDSSV1.html">Minneapolis</a>
+            <a class="special-button" href="MinneapolisCDSSV1.html">Minneapolis</a>
+        <div/>
+        <div class="blankSpace"></div>
+        <div class="blue-button-row">
             <a class="button" href="DesMoinesCDSSV1.html">Des Moines</a>
             <a class="button" href="OmahaCDSSV1.html">Omaha</a>
         </div>
@@ -139,7 +142,7 @@
         </div>
         <div class="blankSpace"></div>
         <div class="green-button-row">
-            <button id="install-button" class="appinstall-button">Install App</button>
+            <button id="install-button" class="appinstall-button">Install Antimicrobial CDSS App</button>
         </div>
     </div>
     <div class="bottom-image">
@@ -153,35 +156,29 @@
           });
         }
 
-        // Initialize the deferredInstallPrompt variable
-        let deferredInstallPrompt = null;
-
         // Add an event listener to trigger the installation prompt
         window.addEventListener('beforeinstallprompt', (event) => {
             // Store the event to use it later when you want to show the install prompt.
-            deferredInstallPrompt = event;
-        });
+            let deferredInstallPrompt = event;
 
-        // Add a click event listener to the install button
-        const installButton = document.getElementById('install-button');
+            // Add a click event listener to the install button
+            const installButton = document.getElementById('install-button');
 
-        installButton.addEventListener('click', () => {
-            if (deferredInstallPrompt) {
-                // Show the installation prompt to the user
-                deferredInstallPrompt.prompt();
+            installButton.addEventListener('click', () => {
+                if (deferredInstallPrompt) {
+                    // Show the installation prompt to the user
+                    deferredInstallPrompt.prompt();
 
-                // Wait for the user's choice
-                deferredInstallPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the installation');
-                    } else {
-                        console.log('User dismissed the installation');
-                    }
-
-                    // Reset the deferred event
-                    deferredInstallPrompt = null;
-                });
-            }
+                    // Wait for the user's choice
+                    deferredInstallPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            console.log('User accepted the installation');
+                        } else {
+                            console.log('User dismissed the installation');
+                        }
+                    });
+                }
+            });
         });
     </script>
 </body>
