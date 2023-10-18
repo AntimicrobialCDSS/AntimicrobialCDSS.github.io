@@ -147,24 +147,28 @@
     <div class="bottom-image">
         <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
-<Script>
+    
+ <script>
         if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/service-worker.js', {
-            scope: '/'
-          });
+            navigator.serviceWorker.register('/service-worker.js', {
+                scope: '/'
+            });
         }
 
-        // Add an event listener to trigger the installation prompt
-        let deferredInstallPrompt;
+        let deferredInstallPrompt = null;
 
         window.addEventListener('beforeinstallprompt', (event) => {
-            // Store the event to use it later when you want to show the install prompt.
+            // Prevent the default behavior (to show the browser's own install prompt)
+            event.preventDefault();
+            // Store the event to use it later when you want to show the custom install button.
             deferredInstallPrompt = event;
+
+            // Show the custom install button
+            const installButton = document.getElementById('install-button');
+            installButton.style.display = 'block';
         });
 
-        // Add a click event listener to the install button
         const installButton = document.getElementById('install-button');
-
         installButton.addEventListener('click', () => {
             if (deferredInstallPrompt) {
                 // Show the installation prompt to the user
