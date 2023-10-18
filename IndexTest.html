@@ -4,118 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antimicrobial CDSS Online</title>
-    <link rel="icon" href="CDSSLogo.png" type="image/x-icon">
+    <link rel="canonical" href="https://AntimicrobialCDSS.github.io/AntimicrobialCDSS/" />
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="CDSSLogoTab.png" type="image/x-icon">
     <style>
-      @font-face {
-  font-family: 'PT Serif Bold';
-  src: url('Fonts/PTSerif-Bold.eot');
-  src: url('Fonts/PTSerif-Bold.eot?#iefix') format('embedded-opentype'),
-       url('Fonts/PTSerif-Bold.woff2') format('woff2'),
-       url('Fonts/PTSerif-Bold.woff') format('woff'),
-       url('Fonts/PTSerif-Bold.ttf') format('truetype'),
-       url('Fonts/PTSerif-Bold.svg#PTSerifbold') format('svg');
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: 'PT Serif Italic';
-  src: url('Fonts/PTSerif-Italic.eot');
-  src: url('Fonts/PTSerif-Italic.eot?#iefix') format('embedded-opentype'),
-       url('Fonts/PTSerif-Italic.woff2') format('woff2'),
-       url('Fonts/PTSerif-Italic.woff') format('woff'),
-       url('Fonts/PTSerif-Italic.ttf') format('truetype'),
-       url('Fonts/PTSerif-Italic.svg#PTSerifitalic') format('svg');
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'PT Serif Regular';
-  src: url('Fonts/PTSerif-Regular.eot');
-  src: url('Fonts/PTSerif-Regular.eot?#iefix') format('embedded-opentype'),
-       url('Fonts/PTSerif-Regular.woff2') format('woff2'),
-       url('Fonts/PTSerif-Regular.woff') format('woff'),
-       url('Fonts/PTSerif-Regular.ttf') format('truetype'),
-       url('Fonts/PTSerif-Regular.svg#PTSerifregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-                         body {
-    font-family: 'PT Serif Regular', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
-    justify-content: flex-start;
-    display: flex;
-}
-
-
-.container {
-    max-width: 800px;
-    margin: 0;
-    padding: 20px;
-}
-
-    
- .container p {
-    word-wrap: break-word;
-}
-
-.blue-button-row,
-.orange-button-row {
-    display: flex;
-    gap: 10px;
-    flex-basis: 100%;
-}
-
-.special-button {
-    background-color: #ff9900;
-}
-
+        @font-face {
+          font-family: 'PT Serif Bold';
+          src: url('Fonts/PTSerif-Bold.eot');
+          src: url('Fonts/PTSerif-Bold.eot?#iefix') format('embedded-opentype'),
+               url('Fonts/PTSerif-Bold.woff2') format('woff2'),
+               url('Fonts/PTSerif-Bold.woff') format('woff'),
+               url('Fonts/PTSerif-Bold.ttf') format('truetype'),
+               url('Fonts/PTSerif-Bold.svg#PTSerifbold') format('svg');
+          font-weight: bold;
+        }
+        @font-face {
+          font-family: 'PT Serif Italic';
+          src: url('Fonts/PTSerif-Italic.eot');
+          src: url('Fonts/PTSerif-Italic.eot?#iefix') format('embedded-opentype'),
+               url('Fonts/PTSerif-Italic.woff2') format('woff2'),
+               url('Fonts/PTSerif-Italic.woff') format('woff'),
+               url('Fonts/PTSerif-Italic.ttf') format('truetype'),
+               url('Fonts/PTSerif-Italic.svg#PTSerifitalic') format('svg');
+          font-weight: normal;
+          font-style: italic;
+        }
+        @font-face {
+          font-family: 'PT Serif Regular';
+          src: url('Fonts/PTSerif-Regular.eot');
+          src: url('Fonts/PTSerif-Regular.eot?#iefix') format('embedded-opentype'),
+               url('Fonts/PTSerif-Regular.woff2') format('woff2'),
+               url('Fonts/PTSerif-Regular.woff') format('woff'),
+               url('Fonts/PTSerif-Regular.ttf') format('truetype'),
+               url('Fonts/PTSerif-Regular.svg#PTSerifregular') format('svg');
+          font-weight: normal;
+          font-style: normal;
+        }
+        body {
+            font-family: 'PT Serif Regular', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .textContainer {
+            margin-top: 0px;
+            max-width: 800px;
+            padding: 10px;
+        }
+        .bold-text {
+            font-family: 'PT Serif Bold', Arial, sans-serif;
+            font-weight: bold;
+        }
         .button {
+            white-space: nowrap;
             flex: 1;
             background-color: #0096d6;
             color: white;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
-            flex-basis: 100%;
- white-space: nowrap;
-}
-        
-
+            text-align: center
+        }
         .special-button {
             background-color: #ff9900;
         }
-
-        #CDSSVALogo {
-            font-family: 'PT Serif Regular', Arial, sans-serif;
-            position: relative;
-            bottom: 0;
-            z-index: 2;
+        .blue-button-row,
+        .orange-button-row {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            flex-direction: column;
-            width: 800px;
-            box-sizing: border-box;
+            gap: 10px;
+            flex-basis: 100%;
         }
-.bottom-left-image {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-}
-        .blankSpace {
-            padding: 20px 30px;
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            max-width: 800px;
+            margin: 10px;
+        }
+        .top-image,
+        .bottom-image {
+            margin-top: 20px;
+            margin-left: 10px;
+            float: left;
+            clear: left;
+        }
+        #CDSSLogo, 
+        #VASeal{
+          max-width: 300px; /* Set the maximum width for the image */
+          height: auto;
+          float: Left; /* Float the image to the right */
         }
 
     </style>
 </head>
 <body>
-    <div class="container">
-        <p>DISCLAIMER:</p>
-        <p>This tool is intended for use by trainees and health-care professionals within the VISN23, at health care systems listed below, as a reference to guide treatment of infectious diseases in conjunction with the Computerized Patient Record System (CPRS). The developers of this guide make no guarantees on the accuracy or completeness of contained information, it's use in health-care systems apart from VISN23 health care systems, and it's appropriateness in patient-specific circumstances. The developers, VISN23 and member facilities are not liable for any claims or losses arising from the use or misuse of this guide, its contents, and any omissions from its contents or otherwise. This guide may not contain all relevant or required information and should not be used as the sole resource for patient-care or prescribing decisions. Updates to this guide are released periodically and it is up to the user to ensure use of the most up to date version. Certain links and documents contained within the guide are specific to the selected health care system and will only be accessible when logged onto the selected health care system's intranet. Local health-care system guidance takes precedence over any information contained within this guide. The Minneapolis VAHCS has a RESTRICTED antimicrobial formulary.  All restricted antimicrobials must be placed using the CDSS in CPRS or ID approval. Information in this guide is adapted from the VISN23 health care systems' Antimicrobial Computer Decision Support System (CDSS). Questions, comments or concerns may be submitted by email (VISN23AntimicrobialCDSS@va.gov) or by phone (612-271-4121 or 612-719-6778)</p>
-        <p>Click version below to open Antimicrobial CDSS.</p>
+    <div class="top-image">
+        <img src="CDSSLogo.png" alt="CDSS Logo" id="CDSSLogo">
+    </div>
+    <div class="textContainer">
+        <p><span class="bold-text">DISCLAIMER:</span></p>
+        <p>This tool is intended for use by trainees and health-care professionals within the VISN23, at health care systems listed below, as a reference to guide treatment of infectious diseases in conjunction with the Computerized Patient Record System (CPRS). The developers of this guide make no guarantees on the accuracy or completeness of contained information, it's use in health-care systems apart from VISN23 health care systems, and it's appropriateness in patient-specific circumstances. The developers, VISN23 and member facilities are not liable for any claims or losses arising from the use or misuse of this guide, its contents, and any omissions from its contents or otherwise. This guide may not contain all relevant or required information and should not be used as the sole resource for patient-care or prescribing decisions. Updates to this guide are released periodically and it is up to the user to ensure use of the most up to date version. Certain links and documents contained within the guide are specific to the selected health care system and will only be accessible when logged onto the selected health care system's intranet. Local health-care system guidance takes precedence over any information contained within this guide. The Minneapolis VAHCS has a RESTRICTED antimicrobial formulary.  All restricted antimicrobials must be placed using the CDSS in CPRS or ID approval. Information in this guide is adapted from the VISN23 health care systems' Antimicrobial Computer Decision Support System (CDSS).</p> 
+        <p>Questions, comments or concerns may be submitted by email (VISN23AntimicrobialCDSS@va.gov) or by phone (612-271-4121 or 612-719-6778)</p>
+        <p><span class="bold-text">Select version below to open the Antimicrobial CDSS:</span></p>
+    </div>
+    <div class="button-container">
         <div class="orange-button-row">
             <a class="button special-button" href="MinneapolisCDSSV1.html">Minneapolis</a>
             <a class="button special-button" href="DesMoinesCDSSV1.html">Des Moines</a>
@@ -127,8 +120,49 @@
             <a class="button" href="StCloudCDSSV1.html">Saint Cloud</a>
         </div>
     </div>
-    <div class="CDSSVALogo bottom-left-image">
-        <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVALogo">
+    <div class="bottom-image">
+        <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
+    <button id="install-button">Install App</button>
+
+    <script>
+        // PWA registration code (already in your script)
+
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js', {
+            scope: '/'
+          });
+        }
+
+        // Add an event listener to trigger the installation prompt
+        let deferredInstallPrompt;
+
+        window.addEventListener('beforeinstallprompt', (event) => {
+            // Store the event to use it later when you want to show the install prompt.
+            deferredInstallPrompt = event;
+        });
+
+        // Add a click event listener to the install button
+        const installButton = document.getElementById('install-button');
+
+        installButton.addEventListener('click', () => {
+            if (deferredInstallPrompt) {
+                // Show the installation prompt to the user
+                deferredInstallPrompt.prompt();
+
+                // Wait for the user's choice
+                deferredInstallPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the installation');
+                    } else {
+                        console.log('User dismissed the installation');
+                    }
+
+                    // Reset the deferred event
+                    deferredInstallPrompt = null;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
