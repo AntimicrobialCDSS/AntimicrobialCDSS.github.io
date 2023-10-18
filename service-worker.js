@@ -9,11 +9,57 @@ const URLS = [
   '/CDSSLogoTab.png',
   '/CDSSVALogo.png',
   '/VASeal.jpg',
+  '/manifest.webmanifest',
+  '/service-worker.js',
   
   '/MinneapolisCDSSV1.html',
   '/MinneapolisItemLinks.json',
   '/MinneapolisOMJSON.json',
   '/MinneapolisODJSON.json',
+    
+  '/DesMoinesCDSSV1.html',
+  '/DesMoinesItemLinks.json',
+  '/DesMoinesOMJSON.json',
+  '/DesMoinesODJSON.json',
+  
+  '/OmahaCDSSV1.html',
+  '/OmahaItemLinks.json',
+  '/OmahaOMJSON.json',
+  '/OmahaODJSON.json',
+  
+  '/SiouxFallsCDSSV1.html',
+  '/SiouxFallsItemLinks.json',
+  '/SiouxFallsOMJSON.json',
+  '/SiouxFallsODJSON.json',
+
+  '/StCloudCDSSV1.html',
+  '/StCloudItemLinks.json',
+  '/StCloudOMJSON.json',
+  '/StCloudODJSON.json',
+
+  '/Fonts/PTSerif-Bold.eot',
+  '/Fonts/PTSerif-Bold.svg',
+  '/Fonts/PTSerif-Bold.ttf',
+  '/Fonts/PTSerif-Bold.woff',
+  '/Fonts/PTSerif-Bold.woff2',
+
+  '/Fonts/PTSerif-BoldItalic.eot',
+  '/Fonts/PTSerif-BoldItalic.svg',
+  '/Fonts/PTSerif-BoldItalic.ttf',
+  '/Fonts/PTSerif-BoldItalic.woff',
+  '/Fonts/PTSerif-BoldItalic.woff2',
+
+  '/Fonts/PTSerif-Italic.eot',
+  '/Fonts/PTSerif-Italic.svg',
+  '/Fonts/PTSerif-Italic.ttf',
+  '/Fonts/PTSerif-Italic.woff',
+  '/Fonts/PTSerif-Italic.woff2',
+
+  '/Fonts/PTSerif-Regular.eot',
+  '/Fonts/PTSerif-Regular.svg',
+  '/Fonts/PTSerif-Regular.ttf',
+  '/Fonts/PTSerif-Regular.woff',
+  '/Fonts/PTSerif-Regular.woff2',
 ];
 
 const CACHE_NAME = APP_PREFIX + VERSION;
