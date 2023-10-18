@@ -1,6 +1,6 @@
 const GHPATH = 'https://github.com/AntimicrobialCDSS/AntimicrobialCDSS.github.io/blob/main';
-const APP_PREFIX = 'my_awesome_';
-const VERSION = 'version_02';
+const APP_PREFIX = 'App_';
+const VERSION = 'V01';
 
 const URLS = [
   '/AbxLinks.json',
