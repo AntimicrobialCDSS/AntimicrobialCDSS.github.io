@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Saint Cloud Antimicrobial CDSS</title>
-  <link rel="icon" href="CDSSLogoTab.png" type="image/x-icon">
+  <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
   <style>
     /* Common styles */
     @font-face {
@@ -149,8 +149,13 @@
   }
     
     
-#CDSSVALogo {
-  width: 800px; /* Set the maximum width for the image */
+#CDSSLogo {
+  width: 200px; /* Set the maximum width for the image */
+  height: auto;
+  float: Left; /* Float the image to the right */
+}
+  #VASeal {
+  width: 400px; /* Set the maximum width for the image */
   height: auto;
   float: Left; /* Float the image to the right */
 }
@@ -243,7 +248,8 @@
     </div>
 
     <div class="picture-container">
-      <img src="CDSSVALogo.png" alt="CDSS VA Logo" id="CDSSVAlogo">
+      <img src="CDSSLogo.png" alt="CDSS Logo" id="CDSSlogo">
+      <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
   </div>
   <button id="downloadJSONButton">Download JSON</button>
@@ -525,10 +531,10 @@ function adjustFontSize() {
   const screenWidth = window.innerWidth;
 
   const fontSizeLookup = {
-    1: ['13px', '14px', '16x', '18px', '21px'],
-    2: ['11px', '13px', '14px', '16px', '18px'],
-    3: ['9px', '11px', '13px', '14px', '16px'],
-    4: ['6px', '9px', '11px', '13px', '14px'],
+    1: ['10px', '12px', '14px', '16px', '20px'],
+    2: ['8px', '10px', '12px', '14px', '16px'],
+    3: ['6px', '8px', '10px', '12px', '14px'],
+    4: ['4px', '6px', '8px', '10px', '12px'],
   };
 
   const firstRow = tableRows[0];
