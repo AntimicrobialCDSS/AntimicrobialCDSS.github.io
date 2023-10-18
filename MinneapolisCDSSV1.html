@@ -992,6 +992,9 @@ document.getElementById('searchInput').addEventListener('input', openDropdown);
   });
 */
 
+// Call the adjustFontSize function when the window is resized
+window.addEventListener('resize', adjustFontSize);
+
 // JavaScript code to handle button clicks
 document.getElementById('desMoinesButton').addEventListener('click', function () {
 openPageInNewWindow("DesMoinesCDSSV1.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
@@ -1002,11 +1005,11 @@ document.getElementById('minneapolisButton').addEventListener('click', function 
 });
 
 document.getElementById('omahaButton').addEventListener('click', function () {
-  openPageInNewWindow('OmahaCDSSV1.html', { " NE ": " ", "GMENU": "NE GMENU" }); // Pass the replacement value
+  openPageInNewWindow('OmahaCDSSV1.html', { " CI ": " ", " NE ": " ", "GMENU": "NE GMENU" }); // Pass the replacement value
 });
 
 document.getElementById('stCloudButton').addEventListener('click', function () {
-  openPageInNewWindow('StCloudCDSSV1.html', { " NE ": " " }); // Pass the replacement value
+  openPageInNewWindow('StCloudCDSSV1.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
 });
 
 document.getElementById('siouxFallsButton').addEventListener('click', function () {
