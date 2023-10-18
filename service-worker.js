@@ -7,38 +7,17 @@ const VERSION = 'version_02';
 // The files to make available for offline use. make sure to add 
 // others to this list
 const URLS = [
-  '${GHPATH}/AbxLinks.json',
-  '${GHPATH}/index.html',
-  '${GHPATH}/CDSSLogo.png',
-  '${GHPATH}/CDSSLogoTab.png',
-  '${GHPATH}/CDSSVALogo.png',
-  '${GHPATH}/VASeal.jpg',
+  '/AbxLinks.json',
+  '/index.html',
+  '/CDSSLogo.png',
+  '/CDSSLogoTab.png',
+  '/CDSSVALogo.png',
+  '/VASeal.jpg',
   
-  '${GHPATH}/MinneapolisCDSSV1.html',
-  '${GHPATH}/MinneapolisItemLinks.json',
-  '${GHPATH}/MinneapolisOMJSON.json',
-  '${GHPATH}/MinneapolisODJSON.json',
-  
-  '${GHPATH}/DesMoinesCDSSV1.html',
-   '${GHPATH}/DesMoinesItemLinks.json',
-  '${GHPATH}/DesMoinesOMJSON.json',
-  '${GHPATH}/DesMoinesODJSON.json',
-  
-  '${GHPATH}/OmahaCDSSV1.html',
-  '${GHPATH}/OmahaItemLinks.json',
-  '${GHPATH}/OmahaOMJSON.json',
-  '${GHPATH}/OmahaODJSON.json',
-  
-  '${GHPATH}/SiouxFallsCDSSV1.html',
-  '${GHPATH}/SiouxFallsItemLinks.json',
-  '${GHPATH}/SiouxFallsOMJSON.json',
-  '${GHPATH}/SiouxFallsODJSON.json',
-
-  '${GHPATH}/StCloudCDSSV1.html',
-  '${GHPATH}/StCloudItemLinks.json',
-  '${GHPATH}/StCloudOMJSON.json',
-  '${GHPATH}/StCloudODJSON.json',
-  
+  '/MinneapolisCDSSV1.html',
+  '/MinneapolisItemLinks.json',
+  '/MinneapolisOMJSON.json',
+  '/MinneapolisODJSON.json',
 ]
 
 const CACHE_NAME = APP_PREFIX + VERSION
