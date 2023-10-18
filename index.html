@@ -67,7 +67,22 @@
             text-align: center
         }
         .special-button {
+            white-space: nowrap;
+            flex: 1;
             background-color: #ff9900;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-align: center
+        }
+        .appinstall-button {
+            background-color: #228B22; /* This is the color green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
         }
         .blue-button-row,
         .orange-button-row {
@@ -109,6 +124,9 @@
         <p><span class="bold-text">Select version below to open the Antimicrobial CDSS:</span></p>
     </div>
     <div class="button-container">
+        <button id="install-button">Install App</button>
+    <div/>
+    <div class="button-container">
         <div class="orange-button-row">
             <a class="button special-button" href="MinneapolisCDSSV1.html">Minneapolis</a>
             <a class="button special-button" href="DesMoinesCDSSV1.html">Des Moines</a>
@@ -123,7 +141,6 @@
     <div class="bottom-image">
         <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
-    <button id="install-button">Install App</button>
 
   <script>
         if ('serviceWorker' in navigator) {
