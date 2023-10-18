@@ -8,6 +8,7 @@ const URLS = [
   '/CDSSLogo.png',
   '/CDSSLogoTab.png',
   '/CDSSVALogo.png',
+  '/CDSSLogoApp.png',
   '/VASeal.jpg',
   '/manifest.webmanifest',
   '/service-worker.js',
