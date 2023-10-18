@@ -140,16 +140,17 @@
             <a class="button" href="StCloudCDSSV1.html">Saint Cloud</a>
         </div>
         <div class="blankSpace"></div>
-        <div class="green-button-row">
-            <button id="install-button" class="appinstall-button">Install Antimicrobial CDSS App</button>
-        </div>
+     <div class="green-button-row">
+        <button id="install-button" class="appinstall-button" style="display: none;">Install Antimicrobial CDSS App</button>
+    </div>
+
         </div>
     </div>
     <div class="bottom-image">
         <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
     <script>
-        // PWA registration code (already in your script)
+        // Your existing PWA registration code
 
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker.register('/service-worker.js', {
@@ -163,9 +164,13 @@
         window.addEventListener('beforeinstallprompt', (event) => {
             // Store the event to use it later when you want to show the install prompt.
             deferredInstallPrompt = event;
+
+            // Show the install button
+            const installButton = document.getElementById('install-button');
+            installButton.style.display = 'block';
         });
 
-        // Add a click event listener to the install button
+        // Your existing click event listener for the install button
         const installButton = document.getElementById('install-button');
 
         installButton.addEventListener('click', () => {
@@ -187,5 +192,7 @@
             }
         });
     </script>
+</body>
+</html>
 </body>
 </html>
