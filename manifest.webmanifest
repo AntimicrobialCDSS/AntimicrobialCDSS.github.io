@@ -1,9 +1,9 @@
 {
   // Name of the app and short name in case there isn't enough space
-  "name": "Github Page PWA",
-  "short_name": "GPPWA",
+  "name": "Antimicrobial CDSS",
+  "short_name": "CDSS",
   // Description what your app is
-  "description": "Github Page as a Progressive Web App",
+  "description": "Antimicrobial CDSS App",
  
   // Scope and start URL - these need to change to yours
   "scope": "/AntimicrobialCDSS.github.io/",
