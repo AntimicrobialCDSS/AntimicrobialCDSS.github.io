@@ -147,28 +147,17 @@
     <div class="bottom-image">
         <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
-
-      <script>
+<Script>
         if ('serviceWorker' in navigator) {
-            // Register the service worker with the correct scope
-            navigator.serviceWorker.register('service-worker.js', {
-                scope: '/'
-            })
-            .then((registration) => {
-                console.log('Service Worker registered with scope:', registration.scope);
-            })
-            .catch((error) => {
-                console.error('Service Worker registration failed:', error);
-            });
+          navigator.serviceWorker.register('/service-worker.js', {
+            scope: '/'
+          });
         }
 
-        // Initialize the deferredInstallPrompt variable
-        let deferredInstallPrompt = null;
-
         // Add an event listener to trigger the installation prompt
+        let deferredInstallPrompt;
+
         window.addEventListener('beforeinstallprompt', (event) => {
-            // Prevent the default behavior (to show the browser's own install prompt)
-            event.preventDefault();
             // Store the event to use it later when you want to show the install prompt.
             deferredInstallPrompt = event;
         });
