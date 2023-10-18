@@ -1,11 +1,7 @@
-
 const GHPATH = 'https://github.com/AntimicrobialCDSS/AntimicrobialCDSS.github.io/blob/main';
-// Change to a different app prefix name
 const APP_PREFIX = 'my_awesome_';
 const VERSION = 'version_02';
 
-// The files to make available for offline use. make sure to add 
-// others to this list
 const URLS = [
   '/AbxLinks.json',
   '/index.html',
@@ -18,46 +14,67 @@ const URLS = [
   '/MinneapolisItemLinks.json',
   '/MinneapolisOMJSON.json',
   '/MinneapolisODJSON.json',
-]
+];
 
-const CACHE_NAME = APP_PREFIX + VERSION
+const CACHE_NAME = APP_PREFIX + VERSION;
+
 self.addEventListener('fetch', function (e) {
-  console.log('Fetch request : ' + e.request.url);
+  console.log('Fetch request: ' + e.request.url);
+
   e.respondWith(
-    caches.match(e.request).then(function (request) {
-      if (request) {
-        console.log('Responding with cache : ' + e.request.url);
-        return request
+    caches.match(e.request).then(function (response) {
+      if (response) {
+        console.log('Responding with cache: ' + e.request.url);
+        return response;
       } else {
-        console.log('File is not cached, fetching : ' + e.request.url);
-        return fetch(e.request)
+        console.log('File is not cached, fetching: ' + e.request.url);
+
+        // Attempt to fetch the resource and handle errors
+        return fetch(e.request).then(function (response) {
+          if (!response || response.status !== 200 || response.type !== 'basic') {
+            console.error('Fetch failed for: ' + e.request.url);
+            return response;
+          }
+
+          // Clone the response before caching and returning it
+          const responseToCache = response.clone();
+          caches.open(CACHE_NAME).then(function (cache) {
+            cache.put(e.request, responseToCache);
+          });
+
+          return response;
+        }).catch(function (error) {
+          console.error('Fetch error: ' + error);
+        });
       }
     })
-  )
-})
+  );
+});
 
 self.addEventListener('install', function (e) {
+  console.log('Installing service worker: ' + CACHE_NAME);
+
   e.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
-      console.log('Installing cache : ' + CACHE_NAME);
-      return cache.addAll(URLS)
+      return cache.addAll(URLS).then(function () {
+        console.log('Cached files: ' + URLS.join(', '));
+      });
     })
-  )
-})
+  );
+});
 
 self.addEventListener('activate', function (e) {
+  console.log('Activating service worker: ' + CACHE_NAME);
+
   e.waitUntil(
     caches.keys().then(function (keyList) {
-      var cacheWhitelist = keyList.filter(function (key) {
-        return key.indexOf(APP_PREFIX)
-      })
-      cacheWhitelist.push(CACHE_NAME);
-      return Promise.all(keyList.map(function (key, i) {
-        if (cacheWhitelist.indexOf(key) === -1) {
-          console.log('Deleting cache : ' + keyList[i]);
-          return caches.delete(keyList[i])
+      return Promise.all(keyList.map(function (key) {
+        if (key !== CACHE_NAME) {
+          console.log('Deleting cache: ' + key);
+          return caches.delete(key);
         }
-      }))
+      }));
     })
-  )
-})
+  );
+});
+
