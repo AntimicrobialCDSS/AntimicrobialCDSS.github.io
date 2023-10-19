@@ -1,5 +1,5 @@
 const APP_PREFIX = 'App_';
-const VERSION = 'V04';
+const VERSION = 'V05';
 
 const URLS = [
   '/AbxLinks.json',
