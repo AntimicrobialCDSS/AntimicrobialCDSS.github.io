@@ -14,5 +14,11 @@
         "sizes": "512X512"
         "purpose": "any"
       }
+      {
+        "src": "CDSSLogoApp.png",
+        "type": "image/png",
+        "sizes": "512X512"
+        "purpose": "maskable"
+      }
   ]
 }
