@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Antimicrobial CDSS Online</title>
-    <link rel="canonical" href="https://AntimicrobialCDSS.github.io/" />
+    <link rel="canonical" href="https://AntimicrobialCDSS.github.io/AntimicrobialCDSS/" />
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="icon" href="CDSSLogoTab.png" type="image/x-icon">
     <style>
@@ -149,53 +149,49 @@
     <div class="bottom-image">
         <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
-    <div class="blankSpace"></div>
-    <div class="blankSpace"></div>
-    <div class="blankSpace"></div>
-    <br><a href="IndexTest.html">DeveloperOptionsV5</a></p>
-  <p>Registration status: <strong id="status"></strong></p>
-  <p>State: <strong id="state"></strong></p>
-     <script>
-    function printState(state) {
-      document.getElementById('state').innerHTML = state;
-    }
+    <br><a href="IndexTest.html">DeveloperoptionsV6</a></p>
+    <script>
+        // Your existing PWA registration code
 
-    if ('serviceWorker' in navigator) {
-
-      navigator.serviceWorker.register(
-        'service-worker.js',
-        { scope: './' }
-      ).then( function(registration) {
-        var serviceWorker;
-
-        document.getElementById('status').innerHTML = 'successful';
-
-        if (registration.installing) {
-          serviceWorker = registration.installing;
-          printState('installing');
-        } else if (registration.waiting) {
-          serviceWorker = registration.waiting;
-          printState('waiting');
-        } else if (registration.active) {
-          serviceWorker = registration.active;
-          printState('active');
-        }
-
-        if (serviceWorker) {
-          printState(serviceWorker.state);
-
-          serviceWorker.addEventListener('statechange', function(e) {
-            printState(e.target.state);
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js', {
+            scope: '/'
           });
         }
-      }).catch(function(error) {
-        document.getElementById('status').innerHTML = error;
-      });
-    } else {
-        document.getElementById('status').innerHTML = 'unavailable';
-      }
 
-  </script>
-    <script type="module" src="app.js"></script>
+        // Add an event listener to trigger the installation prompt
+        let deferredInstallPrompt;
+
+        window.addEventListener('beforeinstallprompt', (event) => {
+            // Store the event to use it later when you want to show the install prompt.
+            deferredInstallPrompt = event;
+
+            // Show the install button
+            const installButton = document.getElementById('install-button');
+            installButton.style.display = 'block';
+        });
+
+        // Your existing click event listener for the install button
+        const installButton = document.getElementById('install-button');
+
+        installButton.addEventListener('click', () => {
+            if (deferredInstallPrompt) {
+                // Show the installation prompt to the user
+                deferredInstallPrompt.prompt();
+
+                // Wait for the user's choice
+                deferredInstallPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the installation');
+                    } else {
+                        console.log('User dismissed the installation');
+                    }
+
+                    // Reset the deferred event
+                    deferredInstallPrompt = null;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
