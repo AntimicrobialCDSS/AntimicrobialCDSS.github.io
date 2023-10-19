@@ -2,7 +2,7 @@
   "name": "Antimicrobial CDSS",
   "short_name": "CDSS",
   "description": "Antimicrobial CDSS App",
-  "scope": "/index.html",
+  "scope": "/",
   "start_url": "/index.html",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
