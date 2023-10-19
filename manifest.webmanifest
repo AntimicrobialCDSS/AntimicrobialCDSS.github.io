@@ -2,14 +2,14 @@
   "name": "Antimicrobial CDSS",
   "short_name": "CDSS",
   "description": "Antimicrobial CDSS App",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/index.html",
+  "start_url": "/index.html",
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "display": "standalone", 
   "icons": [
       {
-        "src": "https://github.com/AntimicrobialCDSS/AntimicrobialCDSS.github.io/blob/main/CDSSLogo.png?raw=true",
+        "src": "CDSSLogo.png",
         "sizes": "512X512",
         "type": "image/png",
         "purpose": "any"
