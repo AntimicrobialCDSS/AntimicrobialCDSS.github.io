@@ -9,7 +9,7 @@
   "display": "standalone", 
   "icons": [
       {
-        "src": "CDSSLogoApp.png",
+        "src": "https://github.com/AntimicrobialCDSS/AntimicrobialCDSS.github.io/blob/main/CDSSLogo.png?raw=true",
         "sizes": "512X512",
         "type": "image/png",
         "purpose": "any"
