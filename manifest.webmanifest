@@ -10,8 +10,8 @@
   "icons": [
       {
         "src": "CDSSLogoApp.png",
-        "type": "image/png",
         "sizes": "512X512",
+        "type": "image/png",
         "purpose": "any"
       }
   ]
