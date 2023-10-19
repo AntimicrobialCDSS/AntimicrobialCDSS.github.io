@@ -1,4 +1,3 @@
-const GHPATH = 'https://github.com/AntimicrobialCDSS/AntimicrobialCDSS.github.io/blob/main';
 const APP_PREFIX = 'App_';
 const VERSION = 'V02';
 
