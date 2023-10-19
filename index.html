@@ -152,43 +152,15 @@
     <div class="blankSpace"></div>
     <div class="blankSpace"></div>
     <div class="blankSpace"></div>
-    <br><a href="IndexTest.html">Developer options</a></p>
+    <br><a href="IndexTest.html">DeveloperOptionsV1</a></p>
     <script>
-        // Your existing PWA registration code
-
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/service-worker.js', {
-            scope: '/'
-          });
-        }
-
-window.addEventListener('beforeinstallprompt', (event) => {
-    // Store the event to use it later when you want to show the install prompt.
-    deferredInstallPrompt = event;
-
-    // Show the install button
-    const installButton = document.getElementById('install-button');
-    installButton.style.display = 'block';
-    console.log('Before Install Prompt Event Fired');
-});
-
-const installButton = document.getElementById('install-button');
-
-installButton.addEventListener('click', () => {
-    if (deferredInstallPrompt) {
-        // Show the installation prompt to the user
-        deferredInstallPrompt.prompt();
-
-        // Wait for the user's choice
-        deferredInstallPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the installation');
-            } else {
-                console.log('User dismissed the installation');
-            }
-
-            // Reset the deferred event
-            deferredInstallPrompt = null;
-        });
-    }
-});
+        if (navigator.serviceWorker) {
+        navigator.serviceWorker.register (
+          '/github-page-pwa/sw.js',
+          {scope: '/github-page-pwa/'}
+        )
+      }
+            
+    </script>
+</body>
+</html>
