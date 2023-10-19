@@ -11,7 +11,8 @@
       {
         "src": "CDSSLogoApp.png",
         "type": "image/png",
-        "sizes": "512X512"
+        "sizes": "512X512",
+        "purpose": "any"
       }
   ]
 }
