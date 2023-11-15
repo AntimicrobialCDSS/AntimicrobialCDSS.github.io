@@ -362,6 +362,8 @@ function getMatchCount(item, searchText) {
   if (terms.length === 0) {
     return 0;
   } else {
+    let matchCount = 0;
+
     // If there are terms, check for matches in the item's contents
     contents.forEach(content => {
       const text = content.Text || '';
@@ -372,9 +374,6 @@ function getMatchCount(item, searchText) {
 
     return matchCount;
   }
-}
-
-  return matchCount;
 }
 
 // Function to search and sort data based on the input
