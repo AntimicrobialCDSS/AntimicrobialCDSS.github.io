@@ -4,6 +4,7 @@ const VERSION = 'V05';
 const URLS = [
   '/AbxLinks.json',
   '/index.html',
+  '/Disclaimer.html',
   '/CDSSLogo.png',
   '/CDSSLogoTab.png',
   '/CDSSVALogo.png',
