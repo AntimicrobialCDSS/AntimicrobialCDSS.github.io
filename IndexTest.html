@@ -296,55 +296,74 @@ function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
 
-  // Filter items that match the criteria
-  const filteredData = omData.filter(item => {
-    const itemName = (item.name || '').toLowerCase();
-    return !(itemName.startsWith('orzid gmenu') || itemName.startsWith('orzid3')) || (item.terms && item.terms.length > 0);
-  });
-
   // Count the number of matches
-  const matchCount = filteredData.length;
+  const matchCount = omData.length;
   const firstLine = document.createElement('option');
-
+  
   if (matchCount === 0) {
     // If there are no matches, create an option with red text
     firstLine.textContent = 'No Matches';
     firstLine.style.color = 'red'; // Set the text color to red
+    
   } else {
     // If there are matches, create an option for the match count with green text
     firstLine.textContent = `Matches: ${matchCount}`;
     firstLine.style.color = 'green'; // Set the text color to green
   }
+   
+    firstLine.disabled = true;
+    firstLine.selected = true;
+    dropdown.appendChild(firstLine);
+  
+    omData.forEach(item => {
+      const terms = [];
 
-  firstLine.disabled = true;
-  firstLine.selected = true;
-  dropdown.appendChild(firstLine);
+      // Check for "Term1" through "Term99" in the item
+      for (let i = 1; i <= 99; i++) {
+        const termKey = `Term${i}`;
+        if (item[termKey]) {
+          terms.push(item[termKey]);
+        }
+      }
 
-  filteredData.forEach(item => {
-    const terms = item.terms || [];
+      // Create separate dropdown options for each "Term" value
+      terms.forEach(term => {
+        const option = document.createElement('option');
+        option.value = item.Name;
+        option.textContent = term;
+        dropdown.appendChild(option);
+      });
 
-    // Create separate dropdown options for each "Term" value
-    terms.forEach(term => {
-      const option = document.createElement('option');
-      option.value = item.name;
-      option.textContent = term;
-      dropdown.appendChild(option);
+      if (terms.length === 0) {
+        // If "Term1" through "Term99" don't exist, use "DisplayText" or "Name"
+        const option = document.createElement('option');
+        option.value = item.Name;
+        option.textContent = item.DisplayText || item.Name;
+        option.classList.add('no-term'); // Add a CSS class to hide this option
+        dropdown.appendChild(option);
+      }
     });
+  }
 
-    if (terms.length === 0) {
-      // If no terms exist, use "DisplayText" or "Name"
-      const option = document.createElement('option');
-      option.value = item.name;
-      option.textContent = item.displayText || item.name;
-      dropdown.appendChild(option);
-    }
-  });
-}
 
 // Helper function to get the number of matches in an item
 function getMatchCount(item, searchText) {
   let matchCount = 0;
   const contents = item.Contents || [];
+  const terms = [];
+
+  // Check for "Term1" through "Term99" in the item
+  for (let i = 1; i <= 99; i++) {
+    const termKey = `Term${i}`;
+    if (item[termKey]) {
+      terms.push(item[termKey]);
+    }
+  }
+
+  // If there are no terms, return 0 match count
+  if (terms.length === 0) {
+    return 0;
+  }
 
   contents.forEach(content => {
     const text = content.Text || '';
@@ -355,6 +374,7 @@ function getMatchCount(item, searchText) {
 
   return matchCount;
 }
+
 
 // Function to search and sort data based on the input
 function searchData() {
