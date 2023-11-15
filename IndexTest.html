@@ -43,7 +43,7 @@
 }
    
     .no-term {
-     /* display: none; */
+      display: none;
     }
     .not-clickable-cell {
       background-color: transparent;
@@ -296,33 +296,13 @@ function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
 
-  // Count the number of matches, excluding items with 'no-term' formatting
-  const matchCount = omData.reduce((count, item) => {
-    if (!item) {
-      return count; // Skip undefined items
-    }
+  // Filter items that match the criteria
+  const filteredData = omData.filter(item => {
+    return !(item.name.startsWith('ORZID GMENU') || item.name.startsWith('ORZID3')) || item.terms.length > 0;
+  });
 
-    const terms = [];
-
-    for (let i = 1; i <= 99; i++) {
-      const termKey = `Term${i}`;
-      if (item[termKey]) {
-        terms.push(item[termKey]);
-      }
-    }
-
-    if (
-      terms.length === 0 &&
-      item.Name &&
-      !(item.Name.startsWith('ORZID GMENU') || item.Name.startsWith('ORZID3')) &&
-      item.classList && item.classList.contains('no-term')
-    ) {
-      return count + 1;
-    }
-
-    return count;
-  }, 0);
-
+  // Count the number of matches
+  const matchCount = filteredData.length;
   const firstLine = document.createElement('option');
 
   if (matchCount === 0) {
@@ -339,37 +319,22 @@ function populateDropdown(omData) {
   firstLine.selected = true;
   dropdown.appendChild(firstLine);
 
-  omData.forEach(item => {
-    if (!item) {
-      return; // Skip undefined items
-    }
+  filteredData.forEach(item => {
+    const terms = item.terms || [];
 
-    const terms = [];
-
-    for (let i = 1; i <= 99; i++) {
-      const termKey = `Term${i}`;
-      if (item[termKey]) {
-        terms.push(item[termKey]);
-      }
-    }
-
+    // Create separate dropdown options for each "Term" value
     terms.forEach(term => {
       const option = document.createElement('option');
-      option.value = item.Name;
+      option.value = item.name;
       option.textContent = term;
       dropdown.appendChild(option);
     });
 
-    if (
-      terms.length === 0 &&
-      item.Name &&
-      !(item.Name.startsWith('ORZID GMENU') || item.Name.startsWith('ORZID3')) &&
-      item.classList && item.classList.contains('no-term')
-    ) {
+    if (terms.length === 0) {
+      // If no terms exist, use "DisplayText" or "Name"
       const option = document.createElement('option');
-      option.value = item.Name;
-      option.textContent = item.DisplayText || item.Name;
-      option.classList.add('no-term');
+      option.value = item.name;
+      option.textContent = item.displayText || item.name;
       dropdown.appendChild(option);
     }
   });
