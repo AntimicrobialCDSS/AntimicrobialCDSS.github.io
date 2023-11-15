@@ -315,8 +315,9 @@ function populateDropdown(omData) {
         dropdown.appendChild(option);
       });
     });
-    // Count the number of matches
-  const matchCount = omData.length;
+    
+  // Count the number of matches
+  const matchCount = Dropdown.length;
   const firstLine = document.createElement('option');
   
   if (matchCount === 0) {
