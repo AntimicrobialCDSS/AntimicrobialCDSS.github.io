@@ -298,8 +298,8 @@ function populateDropdown(omData) {
 
   // Filter items that match the criteria
   const filteredData = omData.filter(item => {
-    const itemName = item.name || '';
-    return !(itemName.startsWith('ORZID GMENU') || itemName.startsWith('ORZID3')) || (item.terms && item.terms.length > 0);
+    const itemName = (item.name || '').toLowerCase();
+    return !(itemName.startsWith('orzid gmenu') || itemName.startsWith('orzid3')) || (item.terms && item.terms.length > 0);
   });
 
   // Count the number of matches
