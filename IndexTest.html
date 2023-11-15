@@ -334,48 +334,18 @@ function populateDropdown(omData) {
         dropdown.appendChild(option);
       });
 
-      if (terms.length === 0) {
+    /*  if (terms.length === 0) {
         // If "Term1" through "Term99" don't exist, use "DisplayText" or "Name"
         const option = document.createElement('option');
         option.value = item.Name;
         option.textContent = item.DisplayText || item.Name;
         option.classList.add('no-term'); // Add a CSS class to hide this option
         dropdown.appendChild(option);
-      }
+      }*/
     });
   }
 
-// Helper function to get the number of matches in an item
-function getMatchCount(item, searchText) {
-  const contents = item.Contents || [];
-  const terms = [];
-
-  // Check for "Term1" through "Term99" in the item
-  for (let i = 1; i <= 99; i++) {
-    const termKey = `Term${i}`;
-    if (item[termKey]) {
-      terms.push(item[termKey]);
-    }
-  }
-
-  // If there are no terms, return 0 match count
-  if (terms.length === 0) {
-    return matchCount = 0
-  } else {
-
-    // If there are terms, check for matches in the item's contents
-    contents.forEach(content => {
-      const text = content.Text || '';
-      if (text.toLowerCase().includes(searchText)) {
-        matchCount++;
-      }
-    });
-
-    return matchCount;
-  }
-}
-
-// Function to search and sort data based on the input
+    // Function to search and sort data based on the input
 function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
