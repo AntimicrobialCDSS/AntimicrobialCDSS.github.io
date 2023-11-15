@@ -298,6 +298,10 @@ function populateDropdown(omData) {
 
   // Count the number of matches, excluding items with 'no-term' formatting
   const matchCount = omData.reduce((count, item) => {
+    if (!item) {
+      return count; // Skip undefined items
+    }
+
     const terms = [];
 
     for (let i = 1; i <= 99; i++) {
@@ -309,8 +313,9 @@ function populateDropdown(omData) {
 
     if (
       terms.length === 0 &&
+      item.Name &&
       !(item.Name.startsWith('ORZID GMENU') || item.Name.startsWith('ORZID3')) &&
-      !item.classList.contains('no-term')
+      item.classList && item.classList.contains('no-term')
     ) {
       return count + 1;
     }
@@ -335,6 +340,10 @@ function populateDropdown(omData) {
   dropdown.appendChild(firstLine);
 
   omData.forEach(item => {
+    if (!item) {
+      return; // Skip undefined items
+    }
+
     const terms = [];
 
     for (let i = 1; i <= 99; i++) {
@@ -353,8 +362,9 @@ function populateDropdown(omData) {
 
     if (
       terms.length === 0 &&
+      item.Name &&
       !(item.Name.startsWith('ORZID GMENU') || item.Name.startsWith('ORZID3')) &&
-      !item.classList.contains('no-term')
+      item.classList && item.classList.contains('no-term')
     ) {
       const option = document.createElement('option');
       option.value = item.Name;
@@ -364,8 +374,6 @@ function populateDropdown(omData) {
     }
   });
 }
-
-
 
 // Helper function to get the number of matches in an item
 function getMatchCount(item, searchText) {
