@@ -1,0 +1,4 @@
+[
+{"Item":"ORZ GTX URL MICROMEDEX LINKS","URL":"http:\/\/vhav23mdx1v.v23.med.va.gov\/home\/dispatch"},
+{"Item":"ORZ GTX URL UP-TO-DATE LINKS","URL":"http:\/\/uptodateonline.com\/utd\/portalLogin.do?portal=VISN23&key=794936452297"}
+]
