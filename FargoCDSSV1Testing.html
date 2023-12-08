@@ -356,7 +356,7 @@ function populateDropdown(omData) {
       let displayText = item.DisplayText || '';
       if (displayText.trim() === '') {
         // If displayText is blank, use name only for items starting with "ORZID " or "ORZID2"
-        if (item.Name.startsWith('ORZID ') || item.Name.startsWith('ORZID2')) {
+        if (item.Name.startsWith('ORZID2')) {
           displayText = item.Name;
         } else {
           // Skip items that don't meet the conditions
