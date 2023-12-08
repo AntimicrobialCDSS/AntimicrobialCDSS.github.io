@@ -887,7 +887,7 @@ function handleGoForward() {
       document.getElementById('searchInput').value = null;
       document.getElementById('searchInput').placeholder = "Search...";
       populateDropdown(omData);
-      dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+      dropdown.value = 'ORZID2 MAIN MENU';
       filterData({ target: dropdown });
       scrollToTop()    
       adjustFontSize();
@@ -969,7 +969,7 @@ document.getElementById('searchInput').addEventListener('input', openDropdown);
     dropdown.value = decodeURIComponent(dropdownValue);
   } else {
     // If no dropdown value is provided in the URL, set a default value
-    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+    dropdown.value = 'ORZID2 MAIN MENU';
   }
   });
 */
@@ -1038,7 +1038,7 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     dropdown.value = decodeURIComponent(dropdownValue);
   } else {
     // If no dropdown value is provided in the URL, set a default value
-    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+    dropdown.value = 'ORZID2 MAIN MENU';
   }
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
