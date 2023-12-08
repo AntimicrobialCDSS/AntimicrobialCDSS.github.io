@@ -1,39 +1,46 @@
 const APP_PREFIX = 'App_';
-const VERSION = 'V05';
+const VERSION = 'V06';
 
 const URLS = [
   '/AbxLinks.json',
   '/index.html',
   '/Disclaimer.html',
   '/CDSSLogo.png',
+  '/CDSSLogoApp.png',
+  '/CDSSLogoLarge.png',
   '/CDSSLogoTab.png',
   '/CDSSVALogo.png',
-  '/CDSSLogoApp.png',
   '/VASeal.jpg',
   '/manifest.webmanifest',
   '/service-worker.js',
+  '/Disclaimer.html',
   
-  '/MinneapolisCDSSV1.html',
+  '/MinneapolisCDSS.html',
   '/MinneapolisItemLinks.json',
   '/MinneapolisOMJSON.json',
   '/MinneapolisODJSON.json',
     
-  '/DesMoinesCDSSV1.html',
+  '/DesMoinesCDSS.html',
   '/DesMoinesItemLinks.json',
   '/DesMoinesOMJSON.json',
   '/DesMoinesODJSON.json',
+      
+  '/FargoCDSS.html',
+  '/FargoItemLinks.json',
+  '/FargoOMJSON.json',
+  '/FargoODJSON.json',
   
-  '/OmahaCDSSV1.html',
+  '/OmahaCDSS.html',
   '/OmahaItemLinks.json',
   '/OmahaOMJSON.json',
   '/OmahaODJSON.json',
   
-  '/SiouxFallsCDSSV1.html',
+  '/SiouxFallsCDSS.html',
   '/SiouxFallsItemLinks.json',
   '/SiouxFallsOMJSON.json',
   '/SiouxFallsODJSON.json',
 
-  '/StCloudCDSSV1.html',
+  '/StCloudCDSS.html',
   '/StCloudItemLinks.json',
   '/StCloudOMJSON.json',
   '/StCloudODJSON.json',
