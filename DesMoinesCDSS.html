@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minneapolis Antimicrobial CDSS</title>
+  <title>Des Moines Antimicrobial CDSS</title>
   <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
   <style>
     /* Common styles */
@@ -218,7 +218,7 @@
   <div id="header">
 <div class="buttons-container">
   <button id="goBackButton">&#9664;</button>
-  <button id="mainMenuButton">Minneapolis Home</button>
+  <button id="mainMenuButton">Des Moines Home</button>
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
 
@@ -257,21 +257,21 @@
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
-      const response = await fetch('MinneapolisOMJSON.json');
+      const response = await fetch('DesMoinesOMJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ODJSON Data
     async function fetchODData() {
-      const response = await fetch('MinneapolisODJSON.json');
+      const response = await fetch('DesMoinesODJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ItemLink Data
     async function fetchItemLink() {
-      const response = await fetch('MinneapolisItemLinks.json');
+      const response = await fetch('DesMoinesItemLinks.json');
       const data = await response.json();
       return data;
     }
@@ -594,7 +594,7 @@ function handleRowClick(item) {
         console.log('Invalid URL:', URL);
       }
     } else {
-      console.log('No matching item found in OMJSON.json or MinneapolisItemLink.json');
+      console.log('No matching item found in OMJSON.json or DesMoinesItemLink.json');
     }
   }
 }
@@ -888,7 +888,7 @@ function handleGoForward() {
       document.getElementById('searchInput').value = null;
       document.getElementById('searchInput').placeholder = "Search...";
       populateDropdown(omData);
-      dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+      dropdown.value = 'ORZID2 CI GMENU ABX INPT MAIN';
       filterData({ target: dropdown });
       scrollToTop()    
       adjustFontSize();
@@ -900,7 +900,7 @@ function handleGoForward() {
       document.getElementById('searchInput').value = null;
       document.getElementById('searchInput').placeholder = "Search...";
       populateDropdown(omData);
-      dropdown.value = 'ORZID2 GMENU ABX INDEX INPATIENT';
+      dropdown.value = 'ORZID2 CI GMENU ABX INDEX INPATIENT';
       filterData({ target: dropdown });
       scrollToTop();    
       adjustFontSize();
@@ -970,7 +970,7 @@ document.getElementById('searchInput').addEventListener('input', openDropdown);
     dropdown.value = decodeURIComponent(dropdownValue);
   } else {
     // If no dropdown value is provided in the URL, set a default value
-    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+    dropdown.value = 'ORZID2 CI GMENU ABX INPT MAIN';
   }
   });
 */
@@ -1039,7 +1039,7 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     dropdown.value = decodeURIComponent(dropdownValue);
   } else {
     // If no dropdown value is provided in the URL, set a default value
-    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+    dropdown.value = 'ORZID2 CI GMENU ABX INPT MAIN';
   }
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
