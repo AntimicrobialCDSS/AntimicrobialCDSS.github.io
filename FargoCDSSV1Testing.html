@@ -379,7 +379,7 @@ function populateDropdown(omData) {
     }
   });
 */
-    function populateDropdown(omData) {
+function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
 
@@ -422,26 +422,6 @@ function populateDropdown(omData) {
     // If there are no matches, create an option with red text
     firstLine.textContent = 'No Matches';
     firstLine.style.color = 'red'; // Set the text color to red
-  } else {
-    // If there are matches, create an option for the match count with green text
-    firstLine.textContent = `Matches: ${matchCount}`;
-    firstLine.style.color = 'green'; // Set the text color to green
-  }
-
-  firstLine.disabled = true;
-  firstLine.selected = true;
-  dropdown.insertBefore(firstLine, dropdown.firstChild);
-}
-
-  // Count the number of matches after the dropdown is populated
-  const matchCount = dropdown.length;
-  const firstLine = document.createElement('option');
-
-  if (matchCount === 0) {
-    // If there are no matches, create an option with red text
-    firstLine.textContent = 'No Matches';
-    firstLine.style.color = 'red'; // Set the text color to red
-
   } else {
     // If there are matches, create an option for the match count with green text
     firstLine.textContent = `Matches: ${matchCount}`;
