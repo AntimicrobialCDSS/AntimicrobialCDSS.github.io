@@ -334,6 +334,70 @@ function populateDropdown(omData) {
   firstLine.selected = true;
   dropdown.insertBefore(firstLine, dropdown.firstChild);
 }
+*/
+
+function populateDropdown(omData) {
+  const dropdown = document.getElementById('filterDropdown');
+  dropdown.innerHTML = '';
+
+  omData.forEach(item => {
+    const terms = [];
+
+    // Check for "Term1" through "Term99" in the item
+    for (let i = 1; i <= 99; i++) {
+      const termKey = `Term${i}`;
+      if (item[termKey]) {
+        terms.push(item[termKey]);
+      }
+    }
+
+    // If there are no terms, use displayText or name based on conditions
+    if (terms.length === 0) {
+      let displayText = item.DisplayText || '';
+      if (displayText.trim() === '') {
+        // If displayText is blank, use name only for items starting with "ORZID " or "ORZID2"
+        if (item.Name.startsWith('ORZID ') || item.Name.startsWith('ORZID2')) {
+          displayText = item.Name;
+        } else {
+          // Skip items that don't meet the conditions
+          return;
+        }
+      }
+
+      const option = document.createElement('option');
+      option.value = item.Name;
+      option.textContent = displayText;
+      dropdown.appendChild(option);
+    } else {
+      // Create separate dropdown options for each "Term" value
+      terms.forEach(term => {
+        const option = document.createElement('option');
+        option.value = item.Name;
+        option.textContent = term;
+        dropdown.appendChild(option);
+      });
+    }
+  });
+
+  // Count the number of matches after the dropdown is populated
+  const matchCount = dropdown.length;
+  const firstLine = document.createElement('option');
+
+  if (matchCount === 0) {
+    // If there are no matches, create an option with red text
+    firstLine.textContent = 'No Matches';
+    firstLine.style.color = 'red'; // Set the text color to red
+
+  } else {
+    // If there are matches, create an option for the match count with green text
+    firstLine.textContent = `Matches: ${matchCount}`;
+    firstLine.style.color = 'green'; // Set the text color to green
+  }
+
+  firstLine.disabled = true;
+  firstLine.selected = true;
+  dropdown.insertBefore(firstLine, dropdown.firstChild);
+}
 
     // Function to search and sort data based on the input
 function searchData() {
@@ -409,70 +473,6 @@ function searchData() {
 
   // Scroll to the top of the dropdown
   dropdown.scrollTop = 0;
-}
-*/
-
-function populateDropdown(omData) {
-  const dropdown = document.getElementById('filterDropdown');
-  dropdown.innerHTML = '';
-
-  omData.forEach(item => {
-    const terms = [];
-
-    // Check for "Term1" through "Term99" in the item
-    for (let i = 1; i <= 99; i++) {
-      const termKey = `Term${i}`;
-      if (item[termKey]) {
-        terms.push(item[termKey]);
-      }
-    }
-
-    // If there are no terms, use displayText or name based on conditions
-    if (terms.length === 0) {
-      let displayText = item.DisplayText || '';
-      if (displayText.trim() === '') {
-        // If displayText is blank, use name only for items starting with "ORZID " or "ORZID2"
-        if (item.Name.startsWith('ORZID ') || item.Name.startsWith('ORZID2')) {
-          displayText = item.Name;
-        } else {
-          // Skip items that don't meet the conditions
-          return;
-        }
-      }
-
-      const option = document.createElement('option');
-      option.value = item.Name;
-      option.textContent = displayText;
-      dropdown.appendChild(option);
-    } else {
-      // Create separate dropdown options for each "Term" value
-      terms.forEach(term => {
-        const option = document.createElement('option');
-        option.value = item.Name;
-        option.textContent = term;
-        dropdown.appendChild(option);
-      });
-    }
-  });
-
-  // Count the number of matches after the dropdown is populated
-  const matchCount = dropdown.length;
-  const firstLine = document.createElement('option');
-
-  if (matchCount === 0) {
-    // If there are no matches, create an option with red text
-    firstLine.textContent = 'No Matches';
-    firstLine.style.color = 'red'; // Set the text color to red
-
-  } else {
-    // If there are matches, create an option for the match count with green text
-    firstLine.textContent = `Matches: ${matchCount}`;
-    firstLine.style.color = 'green'; // Set the text color to green
-  }
-
-  firstLine.disabled = true;
-  firstLine.selected = true;
-  dropdown.insertBefore(firstLine, dropdown.firstChild);
 }
 
 
