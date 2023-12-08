@@ -13,7 +13,6 @@ const URLS = [
   '/VASeal.jpg',
   '/manifest.webmanifest',
   '/service-worker.js',
-  '/Disclaimer.html',
   
   '/MinneapolisCDSS.html',
   '/MinneapolisItemLinks.json',
