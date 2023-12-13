@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Saint Cloud Antimicrobial CDSS</title>
+  <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
   <style>
     /* Common styles */
@@ -164,7 +165,7 @@
 #mainMenuButton,
 #indexButton,
 #goForwardButton,
-#CNSButton {
+#install-button {
   font-family: 'PT Serif Regular', Arial, sans-serif;
   background-color: transparent; /* Make the background transparent */
   border: none; /* Remove the border */
@@ -183,7 +184,7 @@
 #mainMenuButton:hover,
 #indexButton:hover,
 #goForwardButton:hover,
-#CNSButton:hover {
+#install-button:hover {
   background-color: #4db8ff; /* lighter shade of blue */
 }
   #filterDropdown {
@@ -221,7 +222,7 @@
   <button id="mainMenuButton">Saint Cloud Home</button>
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
-
+  <button id="install-button" style="display: none";>Install/Update App</button>
 </div>
 
     <div class ="search-container">
@@ -1048,6 +1049,47 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
 window.onbeforeunload = function() {
   return "This action will close the Antimicrobial CDSS app.";
 };
+// Your existing PWA registration code
+
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js', {
+            scope: '/'
+          });
+        }
+
+        // Add an event listener to trigger the installation prompt
+        let deferredInstallPrompt;
+
+        window.addEventListener('beforeinstallprompt', (event) => {
+            // Store the event to use it later when you want to show the install prompt.
+            deferredInstallPrompt = event;
+
+            // Show the install button
+            const installButton = document.getElementById('install-button');
+            installButton.style.display = 'block';
+        });
+
+        // Your existing click event listener for the install button
+        const installButton = document.getElementById('install-button');
+
+        installButton.addEventListener('click', () => {
+            if (deferredInstallPrompt) {
+                // Show the installation prompt to the user
+                deferredInstallPrompt.prompt();
+
+                // Wait for the user's choice
+                deferredInstallPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the installation');
+                    } else {
+                        console.log('User dismissed the installation');
+                    }
+
+                    // Reset the deferred event
+                    deferredInstallPrompt = null;
+                });
+            }
+        });
   </script>
 </body>
 
