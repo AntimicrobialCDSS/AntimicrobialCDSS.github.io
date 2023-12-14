@@ -2,6 +2,7 @@ const APP_PREFIX = 'App_';
 const VERSION = 'V07';
 
 const URLS = [
+  '/Antimicrobial CDSS Frequently Asked Questions.pdf
   '/AbxLinks.json',
   '/index.html',
   '/Disclaimer.html',
