@@ -1,4 +1,4 @@
-const APP_PREFIX = 'App_';
+const APP_PREFIX = 'CDSS_';
 const VERSION = '1.0';
 
 const URLS = [
