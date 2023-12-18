@@ -1,5 +1,5 @@
 const APP_PREFIX = 'CDSS_';
-const VERSION = '1.0';
+const VERSION = '1.01';
 
 const URLS = [
   '/Antimicrobial CDSS Frequently Asked Questions.pdf',
