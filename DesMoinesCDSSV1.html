@@ -508,6 +508,7 @@ searchInput.addEventListener('click', function () {
 });
     
 let maxColumns; // Declare maxColumns variable here
+
 function adjustFontSize() {
   const table = document.querySelector('.table');
   const tableRows = table.querySelectorAll('tr');
@@ -532,27 +533,18 @@ function adjustFontSize() {
       const fontSizeIndex = Math.min(screenWidth / 320, 4) | 0;
       const fontSize = fontSizeLookup[maxColumnsInRow][fontSizeIndex];
       column.style.fontSize = fontSize;
-    });
 
     // Calculate and set the table width based on screen size and columnCount
-   /* const columnCount = Math.min(columns.length, 4);
-    const maxFontSizeIndex = Math.min(screenWidth / 320, 4) | 0;
-    const maxFontSize = fontSizeLookup[maxColumnsInRow][maxFontSizeIndex];
-    const maxFontSizeValue = parseInt(maxFontSize, 10);
-    */
-    
-    // Calculate table width based on column count and font size
-    let tableWidth;
-
-    if (maxColumns === 1) {
-      tableWidth = FontSize * 48;
+    let widthColumn;    
+      if (maxColumns === 1) {
+      widthColumn = FontSize * 48;
     } else if (maxColumns === 2) {
-      tableWidth = FontSize * 43;
+      widthColumn = FontSize * 22;
     } else {
       // Default value if columnCount is not 1 or 2
-      tableWidth = FontSize * 57; // You can adjust this default value as needed
+      widthColumn = FontSize * 18; // You can adjust this default value as needed
     }
-    table.style.width = tableWidth + 'px';
+    column.style.width = widthColumn + 'px';
   });
 }
 
