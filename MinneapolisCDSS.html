@@ -511,7 +511,7 @@ let maxColumns; // Declare maxColumns variable here
 function adjustFontSize() {
   const table = document.querySelector('.table');
   const tableRows = table.querySelectorAll('tr');
-  const screenWidth = screen.width;
+  const screenWidth = document.documentElement.clientWidth;
 
   const fontSizeLookup = {
     1: ['10px', '12px', '14px', '16px', '20px'],
