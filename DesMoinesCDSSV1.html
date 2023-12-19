@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Des Moines Antimicrobial CDSS</title>
+  <title>Minneapolis Antimicrobial CDSS</title>
+  <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
   <style>
     /* Common styles */
@@ -93,7 +94,7 @@
 #header {
   position: sticky;
   top: 0;
-  background-color: #0099ff;
+  background-color: #00aedb;
   z-index: 1;
   display: flex;
   flex-wrap: wrap;
@@ -107,8 +108,7 @@
 #footer {
   position: relative;
   bottom: 0;
-  /*background-color: #0099ff;*/
-  z-index: 2;
+  z-index: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -165,7 +165,7 @@
 #mainMenuButton,
 #indexButton,
 #goForwardButton,
-#CNSButton {
+#install-button {
   font-family: 'PT Serif Regular', Arial, sans-serif;
   background-color: transparent; /* Make the background transparent */
   border: none; /* Remove the border */
@@ -184,14 +184,14 @@
 #mainMenuButton:hover,
 #indexButton:hover,
 #goForwardButton:hover,
-#CNSButton:hover {
+#install-button:hover {
   background-color: #4db8ff; /* lighter shade of blue */
 }
   #filterDropdown {
     font-family: 'PT Serif Regular', Arial, sans-serif;
     margin-right: 20px;
     width: 100%;
-    z-index: 2;
+    z-index: 1;
     position: absolute;
     top: 100%;
     display: none; 
@@ -208,7 +208,7 @@
     font-size: 14px;
     font-family: "Times New Roman", serif;
   }
-    
+
   .blankSpace {
    padding: 20px 30px; // blank div(or blank space) height and width. Depends on you.
 }
@@ -219,10 +219,10 @@
   <div id="header">
 <div class="buttons-container">
   <button id="goBackButton">&#9664;</button>
-  <button id="mainMenuButton">Des Moines Home</button>
+  <button id="mainMenuButton">Minneapolis Home</button>
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
-
+  <button id="install-button" style="display: none";>Install/Update App</button>
 </div>
 
     <div class ="search-container">
@@ -241,7 +241,7 @@
   <p>Select to view other versions:</p>
     <div class="buttons-container">
       <button id="desMoinesButton">Des Moines</button>
-      <button id="minneapolisButton">Minneapolis</button>
+      <button id="fargoButton">Fargo(testing)</button>
       <button id="omahaButton">Omaha</button>
       <button id="stCloudButton">St. Cloud</button>
       <button id="siouxFallsButton">Sioux Falls</button>
@@ -252,26 +252,26 @@
       <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
   </div>
-  <button id="downloadJSONButton">Download JSON</button>
-  
+  <button id="downloadJSONButton">Download JSON (testing)</button>
+  <p>V1.03</p>
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
-      const response = await fetch('DesMoinesOMJSON.json');
+      const response = await fetch('MinneapolisOMJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ODJSON Data
     async function fetchODData() {
-      const response = await fetch('DesMoinesODJSON.json');
+      const response = await fetch('MinneapolisODJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ItemLink Data
     async function fetchItemLink() {
-      const response = await fetch('DesMoinesItemLinks.json');
+      const response = await fetch('MinneapolisItemLinks.json');
       const data = await response.json();
       return data;
     }
@@ -296,36 +296,27 @@ function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
 
-  // Count the number of matches
-  const matchCount = omData.length;
-  const firstLine = document.createElement('option');
-  
-  if (matchCount === 0) {
-    // If there are no matches, create an option with red text
-    firstLine.textContent = 'No Matches';
-    firstLine.style.color = 'red'; // Set the text color to red
-    
-  } else {
-    // If there are matches, create an option for the match count with green text
-    firstLine.textContent = `Matches: ${matchCount}`;
-    firstLine.style.color = 'green'; // Set the text color to green
-  }
-   
-    firstLine.disabled = true;
-    firstLine.selected = true;
-    dropdown.appendChild(firstLine);
-  
-    omData.forEach(item => {
-      const terms = [];
+  omData.forEach(item => {
+    const terms = [];
 
-      // Check for "Term1" through "Term99" in the item
-      for (let i = 1; i <= 99; i++) {
-        const termKey = `Term${i}`;
-        if (item[termKey]) {
-          terms.push(item[termKey]);
-        }
+    // Check for "Term1" through "Term99" in the item
+    for (let i = 1; i <= 99; i++) {
+      const termKey = `Term${i}`;
+      if (item[termKey]) {
+        terms.push(item[termKey]);
       }
+    }
 
+    // If there are no terms for item and item.name starts with "ORZID2"
+    if (terms.length === 0 && item.Name.startsWith('ORZID2')) {
+      // Use displayText if not blank, else use item.name
+      const displayText = item.DisplayText || item.Name;
+
+      const option = document.createElement('option');
+      option.value = item.Name;
+      option.textContent = displayText;
+      dropdown.appendChild(option);
+    } else {
       // Create separate dropdown options for each "Term" value
       terms.forEach(term => {
         const option = document.createElement('option');
@@ -333,35 +324,29 @@ function populateDropdown(omData) {
         option.textContent = term;
         dropdown.appendChild(option);
       });
-
-      if (terms.length === 0) {
-        // If "Term1" through "Term99" don't exist, use "DisplayText" or "Name"
-        const option = document.createElement('option');
-        option.value = item.Name;
-        option.textContent = item.DisplayText || item.Name;
-        option.classList.add('no-term'); // Add a CSS class to hide this option
-        dropdown.appendChild(option);
-      }
-    });
-  }
-
-
-// Helper function to get the number of matches in an item
-function getMatchCount(item, searchText) {
-  let matchCount = 0;
-  const contents = item.Contents || [];
-
-  contents.forEach(content => {
-    const text = content.Text || '';
-    if (text.toLowerCase().includes(searchText)) {
-      matchCount++;
     }
   });
 
-  return matchCount;
+  // Count the number of matches after the dropdown is populated
+  const matchCount = dropdown.length;
+  const firstLine = document.createElement('option');
+
+  if (matchCount === 0) {
+    // If there are no matches, create an option with red text
+    firstLine.textContent = 'No Matches';
+    firstLine.style.color = 'red'; // Set the text color to red
+  } else {
+    // If there are matches, create an option for the match count with green text
+    firstLine.textContent = `Matches: ${matchCount}`;
+    firstLine.style.color = 'green'; // Set the text color to green
+  }
+
+  firstLine.disabled = true;
+  firstLine.selected = true;
+  dropdown.insertBefore(firstLine, dropdown.firstChild);
 }
 
-// Function to search and sort data based on the input
+    // Function to search and sort data based on the input
 function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
@@ -436,8 +421,6 @@ function searchData() {
   // Scroll to the top of the dropdown
   dropdown.scrollTop = 0;
 }
-
-
 
 
 function searchAndOpenDropdown() {
@@ -528,7 +511,7 @@ let maxColumns; // Declare maxColumns variable here
 function adjustFontSize() {
   const table = document.querySelector('.table');
   const tableRows = table.querySelectorAll('tr');
-  const screenWidth = window.innerWidth;
+  const screenWidth = document.documentElement.clientWidth;
 
   const fontSizeLookup = {
     1: ['10px', '12px', '14px', '16px', '20px'],
@@ -562,7 +545,7 @@ function adjustFontSize() {
     let tableWidth;
 
     if (columnCount === 1) {
-      tableWidth = maxFontSizeValue * 42;
+      tableWidth = maxFontSizeValue * 48;
     } else if (columnCount === 2) {
       tableWidth = maxFontSizeValue * 43;
     } else {
@@ -611,7 +594,7 @@ function handleRowClick(item) {
         console.log('Invalid URL:', URL);
       }
     } else {
-      console.log('No matching item found in OMJSON.json or DesMoinesItemLink.json');
+      console.log('No matching item found in OMJSON.json or MinneapolisItemLink.json');
     }
   }
 }
@@ -804,7 +787,7 @@ function createOMTable(selectedData) {
  // Add a new row for Item.Name at the bottom of the table
   const itemRow = document.createElement('tr');
   const itemCell = document.createElement('td');
-  itemCell.textContent = "VistA Menu Name: " + selectedData.Name; // Replace 'Item.Name' with the actual item name
+  itemCell.textContent = "VistA Menu Name: " + selectedData.Name + ", screenwidth: " + document.documentElement.clientWidth; // Replace 'Item.Name' with the actual item name
   itemRow.appendChild(itemCell);
   tbody.appendChild(itemRow);
 
@@ -905,7 +888,7 @@ function handleGoForward() {
       document.getElementById('searchInput').value = null;
       document.getElementById('searchInput').placeholder = "Search...";
       populateDropdown(omData);
-      dropdown.value = 'ORZID2 CI GMENU ABX INPT MAIN';
+      dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
       filterData({ target: dropdown });
       scrollToTop()    
       adjustFontSize();
@@ -917,7 +900,7 @@ function handleGoForward() {
       document.getElementById('searchInput').value = null;
       document.getElementById('searchInput').placeholder = "Search...";
       populateDropdown(omData);
-      dropdown.value = 'ORZID2 CI GMENU ABX INDEX INPATIENT';
+      dropdown.value = 'ORZID2 GMENU ABX INDEX INPATIENT';
       filterData({ target: dropdown });
       scrollToTop();    
       adjustFontSize();
@@ -929,7 +912,7 @@ function handleGoForward() {
       document.getElementById('searchInput').value = null;
       document.getElementById('searchInput').placeholder = "Search...";
       populateDropdown(omData);
-      dropdown.value = 'ORZID2 CI GMENU ABX CNS';
+      dropdown.value = 'ORZID2 GMENU ABX CNS';
       filterData({ target: dropdown });  
       scrollToTop();    
       adjustFontSize();
@@ -997,23 +980,23 @@ window.addEventListener('resize', adjustFontSize);
 
 // JavaScript code to handle button clicks
 document.getElementById('desMoinesButton').addEventListener('click', function () {
-openPageInNewWindow("DesMoinesCDSSV1.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
+openPageInNewWindow("DesMoinesCDSS.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
 });
 
-document.getElementById('minneapolisButton').addEventListener('click', function () {
-  openPageInNewWindow("MinneapolisCDSSV1.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
+document.getElementById('fargoButton').addEventListener('click', function () {
+  openPageInNewWindow("FargoCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
 });
 
 document.getElementById('omahaButton').addEventListener('click', function () {
-  openPageInNewWindow('OmahaCDSSV1.html', { " CI ": " ", " NE ": " ", "GMENU": "NE GMENU" }); // Pass the replacement value
+  openPageInNewWindow('OmahaCDSS.html', { " CI ": " ", " NE ": " ", "GMENU": "NE GMENU" }); // Pass the replacement value
 });
 
 document.getElementById('stCloudButton').addEventListener('click', function () {
-  openPageInNewWindow('StCloudCDSSV1.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
+  openPageInNewWindow('StCloudCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
 });
 
 document.getElementById('siouxFallsButton').addEventListener('click', function () {
-  openPageInNewWindow('SiouxFallsCDSSV1.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
+  openPageInNewWindow('SiouxFallsCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
 });
 
 // Function to open a page in a new window with multiple replacement values
@@ -1052,7 +1035,7 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     dropdown.value = decodeURIComponent(dropdownValue);
   } else {
     // If no dropdown value is provided in the URL, set a default value
-    dropdown.value = 'ORZID2 CI GMENU ABX INPT MAIN';
+    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
   }
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
@@ -1066,6 +1049,47 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
 window.onbeforeunload = function() {
   return "This action will close the Antimicrobial CDSS app.";
 };
+            // Your existing PWA registration code
+
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js', {
+            scope: '/'
+          });
+        }
+
+        // Add an event listener to trigger the installation prompt
+        let deferredInstallPrompt;
+
+        window.addEventListener('beforeinstallprompt', (event) => {
+            // Store the event to use it later when you want to show the install prompt.
+            deferredInstallPrompt = event;
+
+            // Show the install button
+            const installButton = document.getElementById('install-button');
+            installButton.style.display = 'block';
+        });
+
+        // Your existing click event listener for the install button
+        const installButton = document.getElementById('install-button');
+
+        installButton.addEventListener('click', () => {
+            if (deferredInstallPrompt) {
+                // Show the installation prompt to the user
+                deferredInstallPrompt.prompt();
+
+                // Wait for the user's choice
+                deferredInstallPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the installation');
+                    } else {
+                        console.log('User dismissed the installation');
+                    }
+
+                    // Reset the deferred event
+                    deferredInstallPrompt = null;
+                });
+            }
+        });
   </script>
 </body>
 
