@@ -535,22 +535,22 @@ function adjustFontSize() {
     });
 
     // Calculate and set the table width based on screen size and columnCount
-    const columnCount = Math.min(columns.length, 4);
+   /* const columnCount = Math.min(columns.length, 4);
     const maxFontSizeIndex = Math.min(screenWidth / 320, 4) | 0;
     const maxFontSize = fontSizeLookup[maxColumnsInRow][maxFontSizeIndex];
     const maxFontSizeValue = parseInt(maxFontSize, 10);
-    /*const tableWidth = (maxFontSizeValue * 20) * columnCount;*/
+    */
     
     // Calculate table width based on column count and font size
     let tableWidth;
 
-    if (columnCount === 1) {
-      tableWidth = maxFontSizeValue * 48;
-    } else if (columnCount === 2) {
-      tableWidth = maxFontSizeValue * 43;
+    if (maxColumns === 1) {
+      tableWidth = FontSize * 48;
+    } else if (maxColumns === 2) {
+      tableWidth = FontSize * 43;
     } else {
       // Default value if columnCount is not 1 or 2
-      tableWidth = maxFontSizeValue * 57; // You can adjust this default value as needed
+      tableWidth = FontSize * 57; // You can adjust this default value as needed
     }
     table.style.width = tableWidth + 'px';
   });
