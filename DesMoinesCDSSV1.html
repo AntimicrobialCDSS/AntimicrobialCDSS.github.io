@@ -517,12 +517,12 @@ function adjustFontSize() {
   const firstRow = tableRows[0];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
-  table.style.width = 75 + 'vw';
+  table.style.width = 100+'vw';
 
   tableRows.forEach(row => {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
-      column.style.fontSize = (screenWidth*0.005)/maxColumns + 'vw';
+      column.style.fontSize = (maxColumns/2)*(screenWidth*0.005)/maxColumns + 'vw';
     });
   });
 }
