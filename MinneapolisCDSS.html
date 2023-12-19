@@ -253,7 +253,7 @@
     </div>
   </div>
   <button id="downloadJSONButton">Download JSON (testing)</button>
-  <p>V1.02</p>
+  <p>V1.03</p>
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
@@ -511,7 +511,7 @@ let maxColumns; // Declare maxColumns variable here
 function adjustFontSize() {
   const table = document.querySelector('.table');
   const tableRows = table.querySelectorAll('tr');
-  const screenWidth = window.innerWidth;
+  const screenWidth = document.documentElement.clientWidth;
 
   const fontSizeLookup = {
     1: ['10px', '12px', '14px', '16px', '20px'],
@@ -545,7 +545,7 @@ function adjustFontSize() {
     let tableWidth;
 
     if (columnCount === 1) {
-      tableWidth = maxFontSizeValue * 50;
+      tableWidth = maxFontSizeValue * 48;
     } else if (columnCount === 2) {
       tableWidth = maxFontSizeValue * 43;
     } else {
