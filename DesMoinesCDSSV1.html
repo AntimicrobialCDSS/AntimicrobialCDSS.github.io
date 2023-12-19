@@ -508,17 +508,16 @@ searchInput.addEventListener('click', function () {
 });
     
 let maxColumns; // Declare maxColumns variable here
-
 function adjustFontSize() {
   const table = document.querySelector('.table');
   const tableRows = table.querySelectorAll('tr');
   const screenWidth = document.documentElement.clientWidth;
 
   const fontSizeLookup = {
-    1: ['8px', '10px', '14px', '16px', '20px'],
-    2: ['6px', '8px', '12px', '14px', '16px'],
-    3: ['4px', '6px', '10px', '12px', '14px'],
-    4: ['2px', '4px', '8px', '10px', '12px'],
+    1: ['10px', '12px', '14px', '16px', '20px'],
+    2: ['8px', '10px', '12px', '14px', '16px'],
+    3: ['6px', '8px', '10px', '12px', '14px'],
+    4: ['4px', '6px', '8px', '10px', '12px'],
   };
 
   const firstRow = tableRows[0];
@@ -533,21 +532,30 @@ function adjustFontSize() {
       const fontSizeIndex = Math.min(screenWidth / 320, 4) | 0;
       const fontSize = fontSizeLookup[maxColumnsInRow][fontSizeIndex];
       column.style.fontSize = fontSize;
+    });
 
     // Calculate and set the table width based on screen size and columnCount
-    let widthColumn;    
-      if (maxColumns === 1) {
-      widthColumn = FontSize * 48;
-    } else if (maxColumns === 2) {
-      widthColumn = FontSize * 22;
+    const columnCount = Math.min(columns.length, 4);
+    const maxFontSizeIndex = Math.min(screenWidth / 320, 4) | 0;
+    const maxFontSize = fontSizeLookup[maxColumnsInRow][maxFontSizeIndex];
+    const maxFontSizeValue = parseInt(maxFontSize, 10);
+    /*const tableWidth = (maxFontSizeValue * 20) * columnCount;*/
+    
+    // Calculate table width based on column count and font size
+    let tableWidth;
+
+    if (columnCount === 1) {
+      tableWidth = maxFontSizeValue * 48;
+    } else if (columnCount === 2) {
+      tableWidth = maxFontSizeValue * 43;
     } else {
       // Default value if columnCount is not 1 or 2
-      widthColumn = FontSize * 18; // You can adjust this default value as needed
+      tableWidth = maxFontSizeValue * 57; // You can adjust this default value as needed
     }
-    column.style.width = widthColumn + 'px';
+    table.style.width = tableWidth + 'px';
   });
-});
 }
+
 // Call the adjustFontSize function when the DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
   adjustFontSize();
@@ -779,7 +787,7 @@ function createOMTable(selectedData) {
  // Add a new row for Item.Name at the bottom of the table
   const itemRow = document.createElement('tr');
   const itemCell = document.createElement('td');
-  itemCell.textContent = "VistA Menu Name: " + selectedData.Name + ", screenwidth: " + document.documentElement.clientWidth; // Replace 'Item.Name' with the actual item name
+  itemCell.textContent = "VistA Menu Name: " + selectedData.Name; // Replace 'Item.Name' with the actual item name
   itemRow.appendChild(itemCell);
   tbody.appendChild(itemRow);
 
@@ -790,6 +798,7 @@ function createOMTable(selectedData) {
   if (selectedData) {
     resultContainer.appendChild(table);
   }
+  adjustFontSize()
 }
 
 
@@ -803,7 +812,6 @@ function filterData(event, sortByTerm = false) {
 
     selectedData = matchingData;
     createOMTable(matchingData);
-    adjustfontsize();
     pushHistory(matchingData.Name);
   } else {
     // Handle the case when selectedData is not found
