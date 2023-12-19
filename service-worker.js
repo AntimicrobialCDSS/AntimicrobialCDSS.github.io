@@ -6,6 +6,8 @@ const URLS = [
   '/AbxLinks.json',
   '/index.html',
   '/Disclaimer.html',
+  '/AppInstall.html',
+  '/AppInstall.jpg',
   '/CDSSLogo.png',
   '/CDSSLogoApp.png',
   '/CDSSLogoLarge.png',
