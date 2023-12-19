@@ -517,8 +517,11 @@ function adjustFontSize() {
   const firstRow = tableRows[0];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
+  table.style.width = screenwidth - screenwidth/3 + 'px';
+  table.style.fontSize = screenwidth/maxColumns;
+  };
 
- /* const fontSizeLookup = {
+     /* const fontSizeLookup = {
     1: ['10px', '12px', '14px', '16px', '20px'],
     2: ['8px', '10px', '12px', '14px', '16px'],
     3: ['6px', '8px', '10px', '12px', '14px'],
@@ -556,10 +559,6 @@ function adjustFontSize() {
       // Default value if columnCount is not 1 or 2
       tableWidth = maxFontSizeValue * 57; // You can adjust this default value as needed
     }*/
-    table.style.width = screenwidth - screenwidth/3 + 'px';
-    table.style.fontSize = screenwidth/maxColumns;
-  });
-}
 
 // Call the adjustFontSize function when the DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
