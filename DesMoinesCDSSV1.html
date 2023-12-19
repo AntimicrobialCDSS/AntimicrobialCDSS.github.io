@@ -213,10 +213,7 @@
    padding: 20px 30px; // blank div(or blank space) height and width. Depends on you.
 }
 
-/* Mobile browsers only */
-@media only screen and (max-device-width: 480px) {      
-        td#main_box { -webkit-text-size-adjust:100% }               
-}
+
     
   </style>
 </head>
@@ -517,8 +514,11 @@ function adjustFontSize() {
   const table = document.querySelector('.table');
   const tableRows = table.querySelectorAll('tr');
   const screenWidth = document.documentElement.clientWidth;
+  const firstRow = tableRows[0];
+  const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
+  const maxColumns = Math.min(columnsInFirstRow, 4);
 
-  const fontSizeLookup = {
+ /* const fontSizeLookup = {
     1: ['10px', '12px', '14px', '16px', '20px'],
     2: ['8px', '10px', '12px', '14px', '16px'],
     3: ['6px', '8px', '10px', '12px', '14px'],
@@ -544,8 +544,7 @@ function adjustFontSize() {
     const maxFontSizeIndex = Math.min(screenWidth / 320, 4) | 0;
     const maxFontSize = fontSizeLookup[maxColumnsInRow][maxFontSizeIndex];
     const maxFontSizeValue = parseInt(maxFontSize, 10);
-    /*const tableWidth = (maxFontSizeValue * 20) * columnCount;*/
-    
+
     // Calculate table width based on column count and font size
     let tableWidth;
 
@@ -556,8 +555,9 @@ function adjustFontSize() {
     } else {
       // Default value if columnCount is not 1 or 2
       tableWidth = maxFontSizeValue * 57; // You can adjust this default value as needed
-    }
-    table.style.width = tableWidth + 'px';
+    }*/
+    table.style.width = Screenwidth + 'px';
+    table.style.fontSize = Math(screenwidth/maxColumns)
   });
 }
 
