@@ -811,6 +811,7 @@ function filterData(event, sortByTerm = false) {
 
     selectedData = matchingData;
     createOMTable(matchingData);
+    adjustfontsize();
     pushHistory(matchingData.Name);
   } else {
     // Handle the case when selectedData is not found
