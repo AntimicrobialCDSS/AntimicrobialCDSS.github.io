@@ -509,7 +509,7 @@ searchInput.addEventListener('click', function () {
   }
 });
     
-let maxColumns; // Declare maxColumns variable here
+
 function adjustFontSize() {
   const table = document.querySelector('.table');
   const tableRows = table.querySelectorAll('tr');
@@ -517,51 +517,15 @@ function adjustFontSize() {
   const firstRow = tableRows[0];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
-  table.style.width = screenWidth - screenWidth/3 + 'px';
-  columns.forEach((column, index) => {
-  column.style.fontsize = screenWidth/maxColumns;   
-  });
-  /*table.style.fontSize = screenWidth/maxColumns;*/
-  };
-
-     /* const fontSizeLookup = {
-    1: ['10px', '12px', '14px', '16px', '20px'],
-    2: ['8px', '10px', '12px', '14px', '16px'],
-    3: ['6px', '8px', '10px', '12px', '14px'],
-    4: ['4px', '6px', '8px', '10px', '12px'],
-  };
-
-  const firstRow = tableRows[0];
-  const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
-  const maxColumns = Math.min(columnsInFirstRow, 4);
+  table.style.width = screenWidth - screenWidth / 3 + 'px';
 
   tableRows.forEach(row => {
     const columns = row.querySelectorAll('td');
-    const maxColumnsInRow = Math.min(columns.length, 4); // Calculate maxColumns for this row
-
     columns.forEach((column, index) => {
-      const fontSizeIndex = Math.min(screenWidth / 320, 4) | 0;
-      const fontSize = fontSizeLookup[maxColumnsInRow][fontSizeIndex];
-      column.style.fontSize = fontSize;
+      column.style.fontSize = screenWidth / maxColumns + 'px';
     });
-
-    // Calculate and set the table width based on screen size and columnCount
-    const columnCount = Math.min(columns.length, 4);
-    const maxFontSizeIndex = Math.min(screenWidth / 320, 4) | 0;
-    const maxFontSize = fontSizeLookup[maxColumnsInRow][maxFontSizeIndex];
-    const maxFontSizeValue = parseInt(maxFontSize, 10);
-
-    // Calculate table width based on column count and font size
-    let tableWidth;
-
-    if (columnCount === 1) {
-      tableWidth = maxFontSizeValue * 80;
-    } else if (columnCount === 2) {
-      tableWidth = maxFontSizeValue * 43;
-    } else {
-      // Default value if columnCount is not 1 or 2
-      tableWidth = maxFontSizeValue * 57; // You can adjust this default value as needed
-    }*/
+  });
+}
 
 // Call the adjustFontSize function when the DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
