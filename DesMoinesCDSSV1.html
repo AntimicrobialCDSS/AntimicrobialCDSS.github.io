@@ -518,7 +518,10 @@ function adjustFontSize() {
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
   table.style.width = screenWidth - screenWidth/3 + 'px';
-  table.style.fontSize = screenWidth/maxColumns;
+  columns.forEach((column, index) => {
+  column.style.fontsize = screenWidth/maxColumns;   
+  });
+  /*table.style.fontSize = screenWidth/maxColumns;*/
   };
 
      /* const fontSizeLookup = {
