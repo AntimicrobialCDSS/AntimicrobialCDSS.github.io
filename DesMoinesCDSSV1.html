@@ -556,7 +556,7 @@ function adjustFontSize() {
       // Default value if columnCount is not 1 or 2
       tableWidth = maxFontSizeValue * 57; // You can adjust this default value as needed
     }*/
-    table.style.width = Screenwidth + 'px';
+    table.style.width = Math(Screenwidth - Screenwidth/3) + 'px';
     table.style.fontSize = Math(screenwidth/maxColumns)
   });
 }
