@@ -1,1 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antimicrobial CDSS Online</title>
+    <link rel="canonical" href="https://AntimicrobialCDSS.github.io/AntimicrobialCDSS/" />
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
+    <style>
+        @font-face {
+          font-family: 'PT Serif Bold';
+          src: url('Fonts/PTSerif-Bold.eot');
+          src: url('Fonts/PTSerif-Bold.eot?#iefix') format('embedded-opentype'),
+               url('Fonts/PTSerif-Bold.woff2') format('woff2'),
+               url('Fonts/PTSerif-Bold.woff') format('woff'),
+               url('Fonts/PTSerif-Bold.ttf') format('truetype'),
+               url('Fonts/PTSerif-Bold.svg#PTSerifbold') format('svg');
+          font-weight: bold;
+        }
+        @font-face {
+          font-family: 'PT Serif Italic';
+          src: url('Fonts/PTSerif-Italic.eot');
+          src: url('Fonts/PTSerif-Italic.eot?#iefix') format('embedded-opentype'),
+               url('Fonts/PTSerif-Italic.woff2') format('woff2'),
+               url('Fonts/PTSerif-Italic.woff') format('woff'),
+               url('Fonts/PTSerif-Italic.ttf') format('truetype'),
+               url('Fonts/PTSerif-Italic.svg#PTSerifitalic') format('svg');
+          font-weight: normal;
+          font-style: italic;
+        }
+        @font-face {
+          font-family: 'PT Serif Regular';
+          src: url('Fonts/PTSerif-Regular.eot');
+          src: url('Fonts/PTSerif-Regular.eot?#iefix') format('embedded-opentype'),
+               url('Fonts/PTSerif-Regular.woff2') format('woff2'),
+               url('Fonts/PTSerif-Regular.woff') format('woff'),
+               url('Fonts/PTSerif-Regular.ttf') format('truetype'),
+               url('Fonts/PTSerif-Regular.svg#PTSerifregular') format('svg');
+          font-weight: normal;
+          font-style: normal;
+        }
+        body {
+            font-family: 'PT Serif Regular', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .textContainer {
+            margin-top: 0px;
+            max-width: 800px;
+            padding: 10px;
+        }
+        .bold-text {
+            font-family: 'PT Serif Bold', Arial, sans-serif;
+            font-weight: bold;
+        }
+        .button {
+            white-space: nowrap;
+            flex: 1;
+            background-color: #0096d6;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .special-button {
+            white-space: nowrap;
+            flex: 1;
+            background-color: #ff9900;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .appinstall-button {
+            white-space: nowrap;
+            flex: 1;
+            background-color: #228B22; /* This is the color green */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .blue-button-row,
+        .orange-button-row,
+        .green-button-row {
+            display: flex;
+            gap: 10px;
+            flex-basis: 100%;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            margin: 10px;
+            max-width: 800px;
+        }
+        .top-image,
+        .bottom-image {
+            margin-top: 20px;
+            margin-left: 10px;
+            float: left;
+            clear: left;
+        }
+        #CDSSLogo,
+        #VASeal {
+            max-width: 400px; /* Set the maximum width for the image */
+            height: auto;
+            float: left; /* Float the image to the right */
+        }
+    </style>
+</head>
+<body>
+    <div class="top-image">
+        <img src="CDSSLogo.png" alt="CDSS Logo" id="CDSSLogo">
+    </div>
+    <div class="textContainer">
+        <p><span class="bold-text">DISCLAIMER:</span></p>
+        <p>This tool is intended for use by trainees and health-care professionals within Veteran’s Integrated 
+            Services Networks (VISN23) as a reference to guide treatment of infectious diseases in conjunction with 
+            the Computerized Patient Record System (CPRS). The developers of this guide make no guarantees on 
+            the accuracy or completeness of contained information, its use in health-care systems apart from 
+            VISN23 health care systems, and its appropriateness in patient-specific circumstances. The developers 
+            are not liable for any claims or losses arising from the use or misuse of this guide, its contents, and any 
+            omissions from its contents or otherwise. This guide may not contain all relevant or required 
+            information and should not be used as the sole resource for patient care or prescribing decisions. 
+            Updates to this guide are released periodically, and it is up to the user to ensure use of the most up-to-
+            date version. Certain links and documents contained within the guide are accessible only when logged 
+            into the VISN23 intranet. Local health-care system guidance takes precedence over any information 
+            contained within this guide.</p>
+          <p>Questions, comments, or concerns may be submitted by email (VISN23AntimicrobialCDSS@va.gov) or by phone (612-271-4121 or 612-719-6778)</p>
 
+    </div>
+    <div class="bottom-image">
+        <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
+    </div>
+
+</body>
+</html>
