@@ -522,7 +522,7 @@ function adjustFontSize() {
   tableRows.forEach(row => {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
-      column.style.fontSize = screenWidth / maxColumns + 'px';
+      column.style.fontSize = screenWidth * 0.01 + screenWidth / maxColumns + 'px';
     });
   });
 }
