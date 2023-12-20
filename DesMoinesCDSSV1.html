@@ -517,12 +517,12 @@ function adjustFontSize() {
   const firstRow = tableRows[0];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
-  if(screenWidth<480){
+  if(screenWidth<400){
     table.style.width = '125vw'
   }
-  else if (screenWidth>1700){
+  /*else if (screenWidth>1700){
     table.style.width = '75vw'
-  }
+  }*/
   else {
     table.style.width = '100vw'
        }
