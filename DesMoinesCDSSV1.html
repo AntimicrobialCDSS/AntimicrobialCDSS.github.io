@@ -551,7 +551,7 @@ function adjustFontSize() {
         else if (screenWidth>1599){
         column.style.fontSize = (maxColumns/2)*(screenWidth*0.0015)/maxColumns + 'vw';
        }*/
-    column.style.fontSize = (screenWidth-(screenWidth/200*0.009))/maxColumns*(maxColumns/2) + 'vw';
+    column.style.fontSize = (0.009-(screenWidth/200)*0.0009)/maxColumns*(maxColumns/2) + 'vw';
     });
   });
 }
