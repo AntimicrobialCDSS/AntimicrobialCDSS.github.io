@@ -530,15 +530,19 @@ function adjustFontSize() {
   tableRows.forEach(row => {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
-      if(screenWidth<480){
+      if(screenWidth<500){
       column.style.fontSize = (maxColumns/2)*(screenWidth*0.007)/maxColumns + 'vw';
       }
-       else if (screenWidth>1400){
-        column.style.fontSize = (maxColumns/2)*(screenWidth*0.002)/maxColumns + 'vw';
+       else if ((screenWidth>499)&&(screenWidth<999)){
+        column.style.fontSize = (maxColumns/2)*(screenWidth*0.005)/maxColumns + 'vw';
        }
-      else{
+        else if ((screenWidth>1000)&&(screenWidth<1500)){
         column.style.fontSize = (maxColumns/2)*(screenWidth*0.003)/maxColumns + 'vw';
        }
+        else if (screenWidth>1500){
+        column.style.fontSize = (maxColumns/2)*(screenWidth*0.002)/maxColumns + 'vw';
+       }
+    
     });
   });
 }
