@@ -517,11 +517,13 @@ function adjustFontSize() {
   const firstRow = tableRows[0];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
-  table.style.width = 175 - (screenWidth/20) + 'vw' 
+  /*table.style.width = 175 - (screenWidth/20) + 'vw' */
+  table.style.width = 200 - (screenWidth/25) + 'vw'
   tableRows.forEach(row => {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
-      column.style.fontSize = (2-((screenWidth/200)*0.05))/(maxColumns-maxColumns/3) + 'vw';
+      /*column.style.fontSize = (2-((screenWidth/200)*0.05))/(maxColumns-maxColumns/3) + 'vw';*/
+       column.style.fontSize = (2-((screenWidth*0.0003))/(maxColumns-maxColumns/2) + 'vw';
     });
   });
 }
