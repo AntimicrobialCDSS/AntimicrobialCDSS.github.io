@@ -517,12 +517,28 @@ function adjustFontSize() {
   const firstRow = tableRows[0];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
-  table.style.width = 100+'vw';
-
+  if(screenWidth<480){
+    table.style.width = '125vw'
+  }
+  else if (screenWidth>1700){
+    table.style.width = '75vw'
+  }
+  else {
+    table.style.width = '100vw'
+       }
+        
   tableRows.forEach(row => {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
+      if(screenWidth<480){
       column.style.fontSize = (maxColumns/2)*(screenWidth*0.005)/maxColumns + 'vw';
+      }
+       else if (screenWidth>1700){
+        column.style.fontSize = (maxColumns/2)*(screenWidth*0.003)/maxColumns + 'vw';
+       }
+      else{
+        column.style.fontSize = (maxColumns/2)*(screenWidth*0.004)/maxColumns + 'vw';
+       }
     });
   });
 }
