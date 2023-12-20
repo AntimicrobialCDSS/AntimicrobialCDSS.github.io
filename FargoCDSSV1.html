@@ -523,13 +523,13 @@ function adjustFontSize() {
    table.style.width = '900px'
    }
   else if (screenWidth<400){
-     table.style.width = '600px'
+     table.style.width = '500px'
    }
   else if ((screenWidth>399)&&(screenWidth<800)&&(maxColumns===1)){
     table.style.width = '1000px'
   }
   else if ((screenWidth>399)&&(screenWidth<800)){
-    table.style.width = '700px'
+    table.style.width = '600px'
   }
   else if ((screenWidth>799)&&(screenWidth<1200)){
     table.style.width = '1000px'
@@ -545,7 +545,7 @@ function adjustFontSize() {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
          if(screenWidth<400){
-      column.style.fontSize = '12px';
+      column.style.fontSize = '11px';
       }
         else if ((screenWidth>399)&&(screenWidth<800)){
        column.style.fontSize = '14px';
