@@ -518,17 +518,17 @@ function adjustFontSize() {
   const firstRow = tableRows[0];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
- if(screenWidth<400){
-    table.style.width = '700px'
+ if(screenWidth<400){ 
+   table.style.width = '800px'
   }
   else if ((screenWidth>399)&&(screenWidth<800)){
-    table.style.width = '900px'
+    table.style.width = '1000px'
   }
   else if ((screenWidth>799)&&(screenWidth<1200)){
-    table.style.width = '1100px'
+    table.style.width = '1200px'
     }
   else if ((screenWidth>1199)&&(screenWidth<1600)){
-    table.style.width = '1300px'
+    table.style.width = '1400px'
     }
   else if (screenWidth>1599){
     table.style.width = '1600px'
@@ -538,19 +538,19 @@ function adjustFontSize() {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
          if(screenWidth<400){
-      column.style.fontSize = '10px';
+      column.style.fontSize = '12px';
       }
         else if ((screenWidth>399)&&(screenWidth<800)){
-       column.style.fontSize = '12px';
+       column.style.fontSize = '14px';
        }
        else if ((screenWidth>799)&&(screenWidth<1200)){
-        column.style.fontSize = '14px';
+        column.style.fontSize = '16px';
        }
         else if ((screenWidth>1199)&&(screenWidth<1600)){
         column.style.fontSize = '18px';
        }
         else if (screenWidth>1599){
-        column.style.fontSize = '24px';
+        column.style.fontSize = '20px';
        }      
       /* if(screenWidth<400){
       column.style.fontSize = (maxColumns/2)*(screenWidth*0.001)/maxColumns + 'vw';
