@@ -518,7 +518,7 @@ function adjustFontSize() {
   const firstRow = tableRows[0];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
- if((screenWidth<400)&&(maxColumns=1)){
+ if((screenWidth<400)&&(maxColumns===1)){
    table.style.width = '900px'
    }
   else if (screenWidth<400) {
