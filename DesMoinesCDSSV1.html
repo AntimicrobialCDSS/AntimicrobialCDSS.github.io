@@ -523,8 +523,9 @@ function adjustFontSize() {
   tableRows.forEach(row => {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
-      /*column.style.fontSize = (2-((screenWidth/200)*0.05))/(maxColumns-maxColumns/3) + 'vw';*/
-       column.style.fontSize = (2-(screenWidth*0.0003))/(maxColumns-maxColumns/2) + 'vw';
+      /*column.style.fontSize = (2-((screenWidth/200)*0.05))/(maxColumns-maxColumns/3) + 'vw';
+       column.style.fontSize = (2-(screenWidth*0.0003))/(maxColumns-maxColumns/2) + 'vw';*/
+       column.style.fontSize = (2-(screenWidth*0.0004))/(maxColumns-maxColumns/2) + 'vw';
     });
   });
 }
