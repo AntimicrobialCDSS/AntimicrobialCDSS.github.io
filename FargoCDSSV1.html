@@ -255,7 +255,7 @@
     </div>
   </div>
   <button id="downloadJSONButton">Download JSON (testing)</button>
-  <p>V1.10</p>
+  <p>V1.20</p>
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
@@ -538,19 +538,19 @@ function adjustFontSize() {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
       if(screenWidth<400){
-      column.style.fontSize = (maxColumns/2)*(screenWidth*0.0085)/maxColumns + 'vw';
+      column.style.fontSize = (maxColumns/2)*(screenWidth*0.001)/maxColumns + 'vw';
       }
         else if ((screenWidth>399)&&(screenWidth<800)){
-        column.style.fontSize = (maxColumns/2)*(screenWidth*0.006)/maxColumns + 'vw';
+        column.style.fontSize = (maxColumns/2)*(screenWidth*0.008)/maxColumns + 'vw';
        }
        else if ((screenWidth>799)&&(screenWidth<1200)){
-        column.style.fontSize = (maxColumns/2)*(screenWidth*0.004)/maxColumns + 'vw';
+        column.style.fontSize = (maxColumns/2)*(screenWidth*0.006)/maxColumns + 'vw';
        }
         else if ((screenWidth>1199)&&(screenWidth<1600)){
-        column.style.fontSize = (maxColumns/2)*(screenWidth*0.002)/maxColumns + 'vw';
+        column.style.fontSize = (maxColumns/2)*(screenWidth*0.004)/maxColumns + 'vw';
        }
         else if (screenWidth>1599){
-        column.style.fontSize = (maxColumns/2)*(screenWidth*0.0015)/maxColumns + 'vw';
+        column.style.fontSize = (maxColumns/2)*(screenWidth*0.002)/maxColumns + 'vw';
        }      
     });
   });
