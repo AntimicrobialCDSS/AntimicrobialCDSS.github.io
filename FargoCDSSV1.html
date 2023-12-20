@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minneapolis Antimicrobial CDSS</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
@@ -518,7 +519,7 @@ function adjustFontSize() {
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
  if(screenWidth<400){
-    table.style.width = '600px'
+    table.style.width = '500px'
   }
   else if ((screenWidth>399)&&(screenWidth<800)){
     table.style.width = '700px'
@@ -537,16 +538,16 @@ function adjustFontSize() {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
          if(screenWidth<400){
-      column.style.fontSize = '8px';
+      column.style.fontSize = '10px';
       }
         else if ((screenWidth>399)&&(screenWidth<800)){
-       column.style.fontSize = '10px';
+       column.style.fontSize = '12px';
        }
        else if ((screenWidth>799)&&(screenWidth<1200)){
-        column.style.fontSize = '12px';
+        column.style.fontSize = '14px';
        }
         else if ((screenWidth>1199)&&(screenWidth<1600)){
-        column.style.fontSize = '16px';
+        column.style.fontSize = '18px';
        }
         else if (screenWidth>1599){
         column.style.fontSize = '24px';
