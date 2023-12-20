@@ -536,7 +536,7 @@ function adjustFontSize() {
   tableRows.forEach(row => {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
-      column.style.fontSize = (0.009-((screenWidth/200)*0.0009))/maxColumns + 'vw';
+      column.style.fontSize = (0.009-((screenWidth/200)*0.05))/maxColumns + 'vw';
       /*
       if(screenWidth<400){
       column.style.fontSize = (maxColumns/2)*(screenWidth*0.009)/maxColumns + 'vw';
