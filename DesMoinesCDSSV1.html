@@ -536,7 +536,7 @@ function adjustFontSize() {
   tableRows.forEach(row => {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
-      /*if(screenWidth<400){
+      if(screenWidth<400){
       column.style.fontSize = (maxColumns/2)*(screenWidth*0.009)/maxColumns + 'vw';
       }
         else if ((screenWidth>399)&&(screenWidth<800)){
@@ -550,8 +550,6 @@ function adjustFontSize() {
        }
         else if (screenWidth>1599){
         column.style.fontSize = (maxColumns/2)*(screenWidth*0.0015)/maxColumns + 'vw';
-       }*/
-    column.style.fontSize = (maxColumns/2)*(screenWidth*(0.009-(screenWidth/200*.0009))/maxColumns + 'vw';
     });
   });
 }
