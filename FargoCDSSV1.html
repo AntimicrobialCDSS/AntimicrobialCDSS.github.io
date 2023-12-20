@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fargo Antimicrobial CDSS</title>
+  <title>Minneapolis Antimicrobial CDSS</title>
+  <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
   <style>
     /* Common styles */
@@ -164,7 +165,7 @@
 #mainMenuButton,
 #indexButton,
 #goForwardButton,
-#CNSButton {
+#install-button {
   font-family: 'PT Serif Regular', Arial, sans-serif;
   background-color: transparent; /* Make the background transparent */
   border: none; /* Remove the border */
@@ -183,7 +184,7 @@
 #mainMenuButton:hover,
 #indexButton:hover,
 #goForwardButton:hover,
-#CNSButton:hover {
+#install-button:hover {
   background-color: #4db8ff; /* lighter shade of blue */
 }
   #filterDropdown {
@@ -207,21 +208,23 @@
     font-size: 14px;
     font-family: "Times New Roman", serif;
   }
-    
+
   .blankSpace {
    padding: 20px 30px; // blank div(or blank space) height and width. Depends on you.
 }
 
+
+    
   </style>
 </head>
 <body>
   <div id="header">
 <div class="buttons-container">
   <button id="goBackButton">&#9664;</button>
-  <button id="mainMenuButton">Fargo Home</button>
+  <button id="mainMenuButton">Minneapolis Home</button>
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
-
+  <button id="install-button" style="display: none";>Install/Update App</button>
 </div>
 
     <div class ="search-container">
@@ -240,7 +243,7 @@
   <p>Select to view other versions:</p>
     <div class="buttons-container">
       <button id="desMoinesButton">Des Moines</button>
-      <button id="minneapolisButton">Minneapolis</button>
+      <button id="fargoButton">Fargo(testing)</button>
       <button id="omahaButton">Omaha</button>
       <button id="stCloudButton">St. Cloud</button>
       <button id="siouxFallsButton">Sioux Falls</button>
@@ -251,26 +254,26 @@
       <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
   </div>
-  <button id="downloadJSONButton">Download JSON</button>
-  
+  <button id="downloadJSONButton">Download JSON (testing)</button>
+  <p>V1.10</p>
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
-      const response = await fetch('FargoOMJSON.json');
+      const response = await fetch('MinneapolisOMJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ODJSON Data
     async function fetchODData() {
-      const response = await fetch('FargoODJSON.json');
+      const response = await fetch('MinneapolisODJSON.json');
       const data = await response.json();
       return data;
     }
 
     // Fetch ItemLink Data
     async function fetchItemLink() {
-      const response = await fetch('FargoItemLinks.json');
+      const response = await fetch('MinneapolisItemLinks.json');
       const data = await response.json();
       return data;
     }
@@ -306,13 +309,24 @@ function populateDropdown(omData) {
       }
     }
 
-    // Create separate dropdown options for each "Term" value
-    terms.forEach(term => {
+    // If there are no terms for item and item.name starts with "ORZID2"
+    if (terms.length === 0 && item.Name.startsWith('ORZID2')) {
+      // Use displayText if not blank, else use item.name
+      const displayText = item.DisplayText || item.Name;
+
       const option = document.createElement('option');
       option.value = item.Name;
-      option.textContent = term;
+      option.textContent = displayText;
       dropdown.appendChild(option);
-    });
+    } else {
+      // Create separate dropdown options for each "Term" value
+      terms.forEach(term => {
+        const option = document.createElement('option');
+        option.value = item.Name;
+        option.textContent = term;
+        dropdown.appendChild(option);
+      });
+    }
   });
 
   // Count the number of matches after the dropdown is populated
@@ -323,7 +337,6 @@ function populateDropdown(omData) {
     // If there are no matches, create an option with red text
     firstLine.textContent = 'No Matches';
     firstLine.style.color = 'red'; // Set the text color to red
-
   } else {
     // If there are matches, create an option for the match count with green text
     firstLine.textContent = `Matches: ${matchCount}`;
@@ -412,8 +425,6 @@ function searchData() {
 }
 
 
-
-
 function searchAndOpenDropdown() {
   var searchInput = document.getElementById('searchInput');
   var dropdown = document.getElementById('filterDropdown');
@@ -498,53 +509,51 @@ searchInput.addEventListener('click', function () {
   }
 });
     
-let maxColumns; // Declare maxColumns variable here
+
 function adjustFontSize() {
   const table = document.querySelector('.table');
   const tableRows = table.querySelectorAll('tr');
-  const screenWidth = window.innerWidth;
-
-  const fontSizeLookup = {
-    1: ['10px', '12px', '14px', '16px', '20px'],
-    2: ['8px', '10px', '12px', '14px', '16px'],
-    3: ['6px', '8px', '10px', '12px', '14px'],
-    4: ['4px', '6px', '8px', '10px', '12px'],
-  };
-
+  const screenWidth = document.documentElement.clientWidth;
+  /*const screenWidth = screen.width*/
   const firstRow = tableRows[0];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
-
+ if(screenWidth<400){
+    table.style.width = '175vw'
+  }
+  else if ((screenWidth>399)&&(screenWidth<800)){
+    table.style.width = '150vw'
+  }
+  else if ((screenWidth>799)&&(screenWidth<1200)){
+    table.style.width = '125vw'
+    }
+  else if ((screenWidth>1199)&&(screenWidth<1600)){
+    table.style.width = '100vw'
+    }
+  else if (screenWidth>1599){
+    table.style.width = '75vw'
+    }
+    
   tableRows.forEach(row => {
     const columns = row.querySelectorAll('td');
-    const maxColumnsInRow = Math.min(columns.length, 4); // Calculate maxColumns for this row
-
     columns.forEach((column, index) => {
-      const fontSizeIndex = Math.min(screenWidth / 320, 4) | 0;
-      const fontSize = fontSizeLookup[maxColumnsInRow][fontSizeIndex];
-      column.style.fontSize = fontSize;
+      if(screenWidth<400){
+      column.style.fontSize = (maxColumns/2)*(screenWidth*0.0085)/maxColumns + 'vw';
+      }
+        else if ((screenWidth>399)&&(screenWidth<800)){
+        column.style.fontSize = (maxColumns/2)*(screenWidth*0.006)/maxColumns + 'vw';
+       }
+       else if ((screenWidth>799)&&(screenWidth<1200)){
+        column.style.fontSize = (maxColumns/2)*(screenWidth*0.004)/maxColumns + 'vw';
+       }
+        else if ((screenWidth>1199)&&(screenWidth<1600)){
+        column.style.fontSize = (maxColumns/2)*(screenWidth*0.002)/maxColumns + 'vw';
+       }
+        else if (screenWidth>1599){
+        column.style.fontSize = (maxColumns/2)*(screenWidth*0.0015)/maxColumns + 'vw';
+       }
+      
     });
-
-    // Calculate and set the table width based on screen size and columnCount
-    const columnCount = Math.min(columns.length, 4);
-    const maxFontSizeIndex = Math.min(screenWidth / 320, 4) | 0;
-    const maxFontSize = fontSizeLookup[maxColumnsInRow][maxFontSizeIndex];
-    const maxFontSizeValue = parseInt(maxFontSize, 10);
-    /*const tableWidth = (maxFontSizeValue * 20) * columnCount;*/
-    
-    // Calculate table width based on column count and font size
-    let tableWidth;
-
-    if (columnCount === 1) {
-      tableWidth = maxFontSizeValue * 42;
-    } else if (columnCount === 2) {
-      tableWidth = maxFontSizeValue * 43;
-    } else {
-      // Default value if columnCount is not 1 or 2
-      tableWidth = maxFontSizeValue * 57; // You can adjust this default value as needed
-    }
-    table.style.width = tableWidth + 'px';
-  });
 }
 
 // Call the adjustFontSize function when the DOM is ready
@@ -585,7 +594,7 @@ function handleRowClick(item) {
         console.log('Invalid URL:', URL);
       }
     } else {
-      console.log('No matching item found in OMJSON.json or FargoItemLink.json');
+      console.log('No matching item found in OMJSON.json or MinneapolisItemLink.json');
     }
   }
 }
@@ -789,6 +798,7 @@ function createOMTable(selectedData) {
   if (selectedData) {
     resultContainer.appendChild(table);
   }
+  adjustFontSize()
 }
 
 
@@ -879,7 +889,7 @@ function handleGoForward() {
       document.getElementById('searchInput').value = null;
       document.getElementById('searchInput').placeholder = "Search...";
       populateDropdown(omData);
-      dropdown.value = 'ORZID2 MAIN MENU';
+      dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
       filterData({ target: dropdown });
       scrollToTop()    
       adjustFontSize();
@@ -971,23 +981,23 @@ window.addEventListener('resize', adjustFontSize);
 
 // JavaScript code to handle button clicks
 document.getElementById('desMoinesButton').addEventListener('click', function () {
-openPageInNewWindow("DesMoinesCDSSV1.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
+openPageInNewWindow("DesMoinesCDSS.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
 });
 
-document.getElementById('minneapolisButton').addEventListener('click', function () {
-  openPageInNewWindow("MinneapolisCDSSV1.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
+document.getElementById('fargoButton').addEventListener('click', function () {
+  openPageInNewWindow("FargoCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
 });
 
 document.getElementById('omahaButton').addEventListener('click', function () {
-  openPageInNewWindow('OmahaCDSSV1.html', { " CI ": " ", " NE ": " ", "GMENU": "NE GMENU" }); // Pass the replacement value
+  openPageInNewWindow('OmahaCDSS.html', { " CI ": " ", " NE ": " ", "GMENU": "NE GMENU" }); // Pass the replacement value
 });
 
 document.getElementById('stCloudButton').addEventListener('click', function () {
-  openPageInNewWindow('StCloudCDSSV1.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
+  openPageInNewWindow('StCloudCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
 });
 
 document.getElementById('siouxFallsButton').addEventListener('click', function () {
-  openPageInNewWindow('SiouxFallsCDSSV1.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
+  openPageInNewWindow('SiouxFallsCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
 });
 
 // Function to open a page in a new window with multiple replacement values
@@ -1026,7 +1036,7 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     dropdown.value = decodeURIComponent(dropdownValue);
   } else {
     // If no dropdown value is provided in the URL, set a default value
-    dropdown.value = 'ORZID2 MAIN MENU';
+    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
   }
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
@@ -1040,6 +1050,47 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
 window.onbeforeunload = function() {
   return "This action will close the Antimicrobial CDSS app.";
 };
+            // Your existing PWA registration code
+
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js', {
+            scope: '/'
+          });
+        }
+
+        // Add an event listener to trigger the installation prompt
+        let deferredInstallPrompt;
+
+        window.addEventListener('beforeinstallprompt', (event) => {
+            // Store the event to use it later when you want to show the install prompt.
+            deferredInstallPrompt = event;
+
+            // Show the install button
+            const installButton = document.getElementById('install-button');
+            installButton.style.display = 'block';
+        });
+
+        // Your existing click event listener for the install button
+        const installButton = document.getElementById('install-button');
+
+        installButton.addEventListener('click', () => {
+            if (deferredInstallPrompt) {
+                // Show the installation prompt to the user
+                deferredInstallPrompt.prompt();
+
+                // Wait for the user's choice
+                deferredInstallPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the installation');
+                    } else {
+                        console.log('User dismissed the installation');
+                    }
+
+                    // Reset the deferred event
+                    deferredInstallPrompt = null;
+                });
+            }
+        });
   </script>
 </body>
 
