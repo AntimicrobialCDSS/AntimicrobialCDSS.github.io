@@ -255,7 +255,7 @@
     </div>
   </div>
   <button id="downloadJSONButton">Download JSON (testing)</button>
-  <p>V1.20</p>
+  <p>V1.21</p>
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
@@ -519,19 +519,19 @@ function adjustFontSize() {
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
  if(screenWidth<400){
-    table.style.width = '175vw'
+    table.style.width = '600px'
   }
   else if ((screenWidth>399)&&(screenWidth<800)){
-    table.style.width = '150vw'
+    table.style.width = '700px'
   }
   else if ((screenWidth>799)&&(screenWidth<1200)){
-    table.style.width = '125vw'
+    table.style.width = '900px'
     }
   else if ((screenWidth>1199)&&(screenWidth<1600)){
-    table.style.width = '100vw'
+    table.style.width = '1200px'
     }
   else if (screenWidth>1599){
-    table.style.width = '75vw'
+    table.style.width = '1600px'
     }
     
   tableRows.forEach(row => {
