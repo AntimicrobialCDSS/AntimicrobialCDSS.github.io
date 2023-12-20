@@ -519,16 +519,16 @@ function adjustFontSize() {
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
  if(screenWidth<400){
-    table.style.width = '500px'
-  }
-  else if ((screenWidth>399)&&(screenWidth<800)){
     table.style.width = '700px'
   }
-  else if ((screenWidth>799)&&(screenWidth<1200)){
+  else if ((screenWidth>399)&&(screenWidth<800)){
     table.style.width = '900px'
+  }
+  else if ((screenWidth>799)&&(screenWidth<1200)){
+    table.style.width = '1100px'
     }
   else if ((screenWidth>1199)&&(screenWidth<1600)){
-    table.style.width = '1200px'
+    table.style.width = '1300px'
     }
   else if (screenWidth>1599){
     table.style.width = '1600px'
