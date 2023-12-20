@@ -101,7 +101,8 @@
   justify-content: flex-start;
   flex-direction: column;
   /* Set a width to limit the header */
-  width: 900px;
+  min-width: 900px;
+  width: 100%;
   box-sizing: border-box; /* Include padding and borders in the width calculation */
 }
 
@@ -506,55 +507,57 @@ searchInput.addEventListener('click', function () {
     filterData({ target: document.getElementById('filterDropdown') }, true);
   }
 });
-    
-let maxColumns; // Declare maxColumns variable here
 function adjustFontSize() {
   const table = document.querySelector('.table');
   const tableRows = table.querySelectorAll('tr');
   const screenWidth = window.innerWidth;
-
-  const fontSizeLookup = {
-    1: ['10px', '12px', '14px', '16px', '20px'],
-    2: ['8px', '10px', '12px', '14px', '16px'],
-    3: ['6px', '8px', '10px', '12px', '14px'],
-    4: ['4px', '6px', '8px', '10px', '12px'],
-  };
-
+  /*const screenWidth = screen.width*/
   const firstRow = tableRows[0];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
-
+ if((screenWidth<400)&&(maxColumns===1)){
+   table.style.width = '900px'
+   }
+  else if (screenWidth<400){
+     table.style.width = '500px'
+   }
+  else if ((screenWidth>399)&&(screenWidth<800)&&(maxColumns===1)){
+    table.style.width = '1000px'
+  }
+  else if ((screenWidth>399)&&(screenWidth<800)){
+    table.style.width = '600px'
+  }
+  else if ((screenWidth>799)&&(screenWidth<1200)){
+    table.style.width = '1000px'
+    }
+  else if ((screenWidth>1199)&&(screenWidth<1600)){
+    table.style.width = '1200px'
+    }
+  else if (screenWidth>1599){
+    table.style.width = '1400px'
+    }
+    
   tableRows.forEach(row => {
     const columns = row.querySelectorAll('td');
-    const maxColumnsInRow = Math.min(columns.length, 4); // Calculate maxColumns for this row
-
     columns.forEach((column, index) => {
-      const fontSizeIndex = Math.min(screenWidth / 320, 4) | 0;
-      const fontSize = fontSizeLookup[maxColumnsInRow][fontSizeIndex];
-      column.style.fontSize = fontSize;
+         if(screenWidth<400){
+      column.style.fontSize = '11px';
+      }
+        else if ((screenWidth>399)&&(screenWidth<800)){
+       column.style.fontSize = '14px';
+       }
+       else if ((screenWidth>799)&&(screenWidth<1200)){
+        column.style.fontSize = '16px';
+       }
+        else if ((screenWidth>1199)&&(screenWidth<1600)){
+        column.style.fontSize = '18px';
+       }
+        else if (screenWidth>1599){
+        column.style.fontSize = '20px';
+       }      
     });
-
-    // Calculate and set the table width based on screen size and columnCount
-    const columnCount = Math.min(columns.length, 4);
-    const maxFontSizeIndex = Math.min(screenWidth / 320, 4) | 0;
-    const maxFontSize = fontSizeLookup[maxColumnsInRow][maxFontSizeIndex];
-    const maxFontSizeValue = parseInt(maxFontSize, 10);
-    /*const tableWidth = (maxFontSizeValue * 20) * columnCount;*/
-    
-    // Calculate table width based on column count and font size
-    let tableWidth;
-
-    if (columnCount === 1) {
-      tableWidth = maxFontSizeValue * 42;
-    } else if (columnCount === 2) {
-      tableWidth = maxFontSizeValue * 43;
-    } else {
-      // Default value if columnCount is not 1 or 2
-      tableWidth = maxFontSizeValue * 57; // You can adjust this default value as needed
-    }
-    table.style.width = tableWidth + 'px';
   });
-}
+} 
 
 // Call the adjustFontSize function when the DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
