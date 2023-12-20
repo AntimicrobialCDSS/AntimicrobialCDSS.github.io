@@ -255,7 +255,7 @@
     </div>
   </div>
   <button id="downloadJSONButton">Download JSON (testing)</button>
-  <p>V1.24</p>
+  <p>V1.25</p>
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
@@ -802,7 +802,8 @@ function createOMTable(selectedData) {
  // Add a new row for Item.Name at the bottom of the table
   const itemRow = document.createElement('tr');
   const itemCell = document.createElement('td');
-  itemCell.textContent = "VistA Menu Name: " + selectedData.Name; // Replace 'Item.Name' with the actual item name
+  const screenWidth2 = window.innerWidth;
+  itemCell.textContent = "VistA Menu Name: " + selectedData.Name + ", ScreenWidth: " + screenWidth2; // Replace 'Item.Name' with the actual item name
   itemRow.appendChild(itemCell);
   tbody.appendChild(itemRow);
 
