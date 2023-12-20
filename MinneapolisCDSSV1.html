@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width">
   <title>Minneapolis Antimicrobial CDSS</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
@@ -253,7 +253,7 @@
     </div>
   </div>
   <button id="downloadJSONButton">Download JSON (testing)</button>
-  <p>V1.02</p>
+  <p>V1.03</p>
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
@@ -545,7 +545,7 @@ function adjustFontSize() {
     let tableWidth;
 
     if (columnCount === 1) {
-      tableWidth = maxFontSizeValue * 50;
+      tableWidth = maxFontSizeValue * 48;
     } else if (columnCount === 2) {
       tableWidth = maxFontSizeValue * 43;
     } else {
