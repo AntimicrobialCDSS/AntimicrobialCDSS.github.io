@@ -255,7 +255,7 @@
     </div>
   </div>
   <button id="downloadJSONButton">Download JSON (testing)</button>
-  <p>V1.11</p>
+  <p>V1.12</p>
   <script>
 // Fetch OMJSON Data
     async function fetchOMData() {
@@ -518,16 +518,16 @@ function adjustFontSize() {
   const firstRow = tableRows[0];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
-  const widthCalc = 150 - (screenWidth/30) 
+  const widthCalc = 150 - (screenWidth/30) + 'vw'
   /*table.style.width = 175 - (screenWidth/20) + 'vw' x
   table.style.width = 200 - (screenWidth/25) + 'vw'
   table.style.width = '100vw'*/
-   table.style.width =  widthCalc + 'vw';
+   table.style.width =  widthCalc;
   
  
   tableRows.forEach(row => {
     const columns = row.querySelectorAll('td');
-    const colCalc = (1.3-(screenWidth*0.00035))/((maxColumns+0.3)-maxColumns/1.1);
+    const colCalc = (1.3-(screenWidth*0.00035))/((maxColumns+0.3)-maxColumns/1.1)+ 'vw';
     columns.forEach((column, index) => {
       /*column.style.fontSize = (2-((screenWidth/200)*0.05))/(maxColumns-maxColumns/3) + 'vw';
        column.style.fontSize = (2-(screenWidth*0.0003))/(maxColumns-maxColumns/2) + 'vw';
@@ -537,7 +537,7 @@ function adjustFontSize() {
       column.style.fontSize = (1.3-(screenWidth*0.00035))/(maxColumns-maxColumns/1.75) + 'vw';
       column.style.fontSize = (1.3-(screenWidth*0.00035))/((maxColumns+0.2)-maxColumns/1.75) + 'vw';
       column.style.fontSize = '1.6vw';*/
-      column.style.fontSize = colCalc + 'vw';
+      column.style.fontSize = colCalc;
       
     });
   });
