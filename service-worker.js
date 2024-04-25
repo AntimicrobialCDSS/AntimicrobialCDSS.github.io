@@ -1,5 +1,5 @@
 const APP_PREFIX = 'CDSS_';
-const VERSION = '1.04';
+const VERSION = '1.05';
 
 const URLS = [
   '/Antimicrobial CDSS Frequently Asked Questions.pdf',
@@ -77,6 +77,12 @@ const CACHE_NAME = APP_PREFIX + VERSION;
 self.addEventListener('fetch', function (e) {
   console.log('Fetch request: ' + e.request.url);
 
+  // Check if the request is for a third-party resource
+  if (!e.request.url.startsWith(self.location.origin)) {
+    console.log('Skipping caching for third-party resource: ' + e.request.url);
+    return;
+  }
+
   e.respondWith(
     caches.match(e.request).then(function (response) {
       if (response) {
@@ -103,33 +109,6 @@ self.addEventListener('fetch', function (e) {
           console.error('Fetch error: ' + error);
         });
       }
-    })
-  );
-});
-
-self.addEventListener('install', function (e) {
-  console.log('Installing service worker: ' + CACHE_NAME);
-
-  e.waitUntil(
-    caches.open(CACHE_NAME).then(function (cache) {
-      return cache.addAll(URLS).then(function () {
-        console.log('Cached files: ' + URLS.join(', '));
-      });
-    })
-  );
-});
-
-self.addEventListener('activate', function (e) {
-  console.log('Activating service worker: ' + CACHE_NAME);
-
-  e.waitUntil(
-    caches.keys().then(function (keyList) {
-      return Promise.all(keyList.map(function (key) {
-        if (key !== CACHE_NAME) {
-          console.log('Deleting cache: ' + key);
-          return caches.delete(key);
-        }
-      }));
     })
   );
 });
