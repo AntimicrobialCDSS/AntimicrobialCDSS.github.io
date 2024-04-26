@@ -525,6 +525,19 @@ function adjustFontSize() {
   const firstRow = tableRows[1];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
   const maxColumns = Math.min(columnsInFirstRow, 4);
+// Log screenWidth and maxColumns
+  console.log('Screen Width:', screenWidth);
+  console.log('Max Columns:', maxColumns);
+
+  // Get the computed font size of the first cell in the first row
+  const firstCell = firstRow ? firstRow.querySelector('td') : null;
+  const computedFontSize = firstCell ? window.getComputedStyle(firstCell).fontSize : 'N/A';
+  console.log('Computed Font Size:', computedFontSize);
+
+  // Get the computed width of the table
+  const computedTableWidth = window.getComputedStyle(table).width;
+  console.log('Computed Table Width:', computedTableWidth);
+  
  if((screenWidth<400)&&(maxColumns===1)){
    table.style.width = '900px'
    }
@@ -652,7 +665,7 @@ function createOMTable(selectedData) {
 
   // Before processing each row, create an array to store the last matched index for each row
   const lastMatchedIndexes = new Array(maxRow).fill(0);
-
+  adjustFontSize()
   for (let row = 1; row <= maxRow; row++) {
     // Before processing each row, create a Set to store the already matched texts for all rows
     const matchedTexts = new Set();
@@ -811,6 +824,7 @@ function createOMTable(selectedData) {
   if (selectedData) {
     resultContainer.appendChild(table);
   }
+  adjustFontSize()
 }
 
 
