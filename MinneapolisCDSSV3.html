@@ -520,7 +520,7 @@ searchInput.addEventListener('click', function () {
 function adjustFontSize() {
   const table = document.querySelector('.table');
   const tableRows = table.querySelectorAll('tr');
-  const screenWidth = window.innerWidth;
+  const screenWidth = window.innerWidth / window.devicePixelRatio;
   /*const screenWidth = screen.width*/
   const firstRow = tableRows[1];
   const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
