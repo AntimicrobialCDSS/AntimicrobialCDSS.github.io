@@ -674,8 +674,9 @@ function createOMTable(selectedData) {
                 linkContainer.appendChild(remainingTextNode);
               }
               cellContentElement.appendChild(linkContainer);
-            } else {
-              cellContentElement.textContent = contentText;
+            } else { 
+              const textNode = document.createTextNode(contentText);
+              cellContentElement.appendChild(textNode);
             }
           }
           if (Header === 1) {
