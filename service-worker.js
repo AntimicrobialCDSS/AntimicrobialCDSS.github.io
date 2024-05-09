@@ -8,6 +8,7 @@ const URLS = [
   '/Disclaimer.html',
   '/AppInstall.html',
   '/AppInstall.jpg',
+  '/Resources.html',
   '/CDSSLogo.png',
   '/CDSSLogoApp.png',
   '/CDSSLogoLarge.png',
