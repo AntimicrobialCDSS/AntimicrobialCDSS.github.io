@@ -692,7 +692,7 @@ function createOMTable(selectedData) {
       bodyRow.appendChild(displayCell);
     }
     // Check if the trimmed value is not blank
-    const trimmedValue = bodyRow.innerText !== '';
+    const trimmedValue = bodyRow.textContent.trim();
     if (trimmedValue !== '') {
       trimmedValueNotBlank = true;
     }
