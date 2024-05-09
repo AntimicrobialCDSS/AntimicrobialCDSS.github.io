@@ -206,7 +206,7 @@
   </style>
 </head>
 <body>
-  <div id="header">
+<div id="header">
 <div class="buttons-container">
   <button id="goBackButton">&#9664;</button>
   <button id="mainMenuButton">Minneapolis Home</button>
@@ -220,9 +220,9 @@
     <div class ="dropbox-container">
         <select id="filterDropdown"></select>
     </div>
-  </div>
+</div>
  <table class="table">
-  <div id="resultContainer"></div>
+  <tbody id="resultContainer"></tbody>
 </table>
   <div id="footer">
   <p>Select to view other versions:</p>
@@ -692,12 +692,7 @@ function createOMTable(selectedData) {
       bodyRow.appendChild(displayCell);
     }
     // Check if the trimmed value is not blank
-        let trimmedValue = '';
-    bodyRow.querySelectorAll('td').f
-    orEach(cell => {
-          trimmedValue +=
-    cell.textContent;
-    });
+    const trimmedValue = bodyRow.innerText.trim();
     if (trimmedValue !== '') {
       trimmedValueNotBlank = true;
     }
@@ -977,3 +972,4 @@ if ('serviceWorker' in navigator) {
 </script>
 </body>
 </html>
+
