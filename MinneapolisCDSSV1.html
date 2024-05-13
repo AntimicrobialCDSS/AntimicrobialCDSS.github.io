@@ -325,7 +325,6 @@ function populateDropdown(omData) {
   dropdown.insertBefore(firstLine, dropdown.firstChild);
 }
 
-// Function to search and sort data based on the input
 function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
@@ -359,11 +358,11 @@ function searchData() {
       }
       // Check if any of the search terms are present in the item's displayText or contentTexts
       searchTerms.forEach(term => {
-        if (displayText.toLowerCase().includes(term)) {
+        if (displayText && displayText.toLowerCase().includes(term)) {
           relevanceScore += 50; // Increase relevance score if search term is found in displayText
         }
         contentTexts.forEach(text => {
-          if (text.includes(term)) {
+          if (text && text.includes(term)) {
             relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
           }
         });
@@ -373,24 +372,15 @@ function searchData() {
         relevanceScore, // Add relevance score to the item
       };
     })
-    .filter(item => item.relevanceScore > 0) // Filter out items with relevance score of 0
-    .sort((a, b) => {
-      // Sort based on relevance score, descending
-      if (a.relevanceScore !== b.relevanceScore) {
-        return b.relevanceScore - a.relevanceScore;
-      }
-      // If relevance score is the same, sort alphabetically by displayText
-      const aDisplayText = a.DisplayText || a.Name;
-      const bDisplayText = b.DisplayText || b.Name;
-      return aDisplayText.localeCompare(bDisplayText, undefined, { sensitivity: 'base' });
-    });
-    filteredData = filteredData.filter(item => !(item.DisplayText || item.Name).toLowerCase().includes('index'));
+    .filter(item => item.relevanceScore > 0 && (item.DisplayText || item.Name)); // Filter out items with relevance score of 0 and missing DisplayText or Name
+    // Sort filteredData here if needed
     // Call the function to populate the dropdown with filtered and sorted data
     populateDropdown(filteredData);
   }
   // Scroll to the top of the dropdown
   dropdown.scrollTop = 0;
 }
+
     
 function searchAndOpenDropdown() {
   var searchInput = document.getElementById('searchInput');
