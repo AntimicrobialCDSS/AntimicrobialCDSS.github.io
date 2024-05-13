@@ -396,28 +396,29 @@ function searchAndOpenDropdown() {
   var searchInput = document.getElementById('searchInput');
   var dropdown = document.getElementById('filterDropdown');
   var isDropdownOpen = false;
-  function filterDropdownOptions(filterText) {
-    var options = dropdown.options;
-    var matchFound = false;
-    for (var i = 0; i < options.length; i++) {
-      var option = options[i];
-      var optionText = option.text.toLowerCase();
-      if (optionText.indexOf(filterText) !== -1) {
-        option.selected = true;
-        matchFound = true;
-      }
-    }
-    dropdown.size = options.length;
-    if (matchFound) {
-      // Open the dropdown by setting its display property
-      dropdown.style.display = 'block';
-      isDropdownOpen = true;
-    } else {
-      // Close the dropdown by hiding it
-      dropdown.style.display = 'none';
-      isDropdownOpen = false;
+ function filterDropdownOptions(filterText) {
+  var options = dropdown.options;
+  var matchFound = false;
+  for (var i = 0; i < options.length; i++) {
+    var option = options[i];
+    var optionText = option.text.toLowerCase();
+    // Check if optionText is not empty or missing
+    if (optionText && optionText.indexOf(filterText) !== -1) {
+      option.selected = true;
+      matchFound = true;
     }
   }
+  dropdown.size = options.length;
+  if (matchFound) {
+    // Open the dropdown by setting its display property
+    dropdown.style.display = 'block';
+    isDropdownOpen = true;
+  } else {
+    // Close the dropdown by hiding it
+    dropdown.style.display = 'none';
+    isDropdownOpen = false;
+  }
+}
 
   searchInput.addEventListener('input', function (event) {
     var filterText = searchInput.value.trim().toLowerCase();
