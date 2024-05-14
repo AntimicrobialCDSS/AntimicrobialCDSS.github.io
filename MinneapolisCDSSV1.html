@@ -10,6 +10,8 @@
   gtag('config', 'G-RZT6D0E0DS');
   </script>
   <script>
+  var Title = "Minneapolis Antimicrobial CDSS"
+  var Title = "Minneapolis Antimicrobial CDSS"  
   const OMjson = 'MinneapolisOMJSON.json';
   const ODjson = 'MinneapolisODJSON.json';
   const ItemLinkjson = 'MinneapolisItemLinks.json';
@@ -18,6 +20,9 @@
   const LinkPrefix = 'ORZ GTX';
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN';
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';
+  var locationName = "Minneapolis Antimicrobial CDSS";
+  var hideButtons = 1;
+      
   // JavaScript code to handle button clicks
 document.getElementById('desMoinesButton').addEventListener('click', function () {
 openPageInNewWindow("DesMoinesCDSS.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
@@ -37,7 +42,7 @@ document.getElementById('siouxFallsButton').addEventListener('click', function (
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minneapolis Antimicrobial CDSS</title>
+  <title id="pageTitle"></title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
   <style>
@@ -267,6 +272,7 @@ document.getElementById('siouxFallsButton').addEventListener('click', function (
   <button id="downloadJSONButton">Download JSON (testing)</button>
   <p>V1.04</p>
 <script>
+document.getElementById('pageTitle').textContent = locationName;
 // Fetch OMJSON Data
 async function fetchOMData() {
     const response = await fetch(OMjson);
@@ -304,6 +310,14 @@ let historyIndex = -1; // Index of the current selection in the history
 let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
+  // Get the buttons container
+var buttonsContainer = document.querySelector('.buttons-container');
+// Function to hide or remove buttons based on the value of hideButtons
+if (hideButtons === 1) {
+// Method 1: Hide buttons by setting their display property to 'none'
+buttonsContainer.style.display = 'none';
+}
+  
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
