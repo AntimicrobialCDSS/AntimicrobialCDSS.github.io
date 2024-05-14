@@ -8,10 +8,24 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-RZT6D0E0DS');
-</script>
+  </script>
+  <script>
+  var Title = 'Minneapolis Antimicrobial CDSS'
+  var MainMenuButton = 'Minneapolis Home'
+  const MainMenu = 'ORZID2 GMENU ABX INPT MAIN';
+  var IndexButton = 'Index'
+  const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';
+  const OMjson = 'MinneapolisOMJSON.json';
+  const ODjson = 'MinneapolisODJSON.json';
+  const ItemLinkjson = 'MinneapolisItemLinks.json';
+  const AbxLinkjson = 'AbxLinks.json';
+  const MenuPrefix = 'ORZID2';
+  const LinkPrefix = 'ORZ GTX';
+  var hideButtons = 'False';
+  </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minneapolis Antimicrobial CDSS</title>
+  <title id="pageTitle"></title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
   <style>
@@ -85,7 +99,7 @@
     }
     .table td {
       font-family: 'PT Serif Regular', Arial, sans-serif;
-      white-space: wrap; 
+      white-space: pre-wrap; 
       overflow: hidden;
       text-overflow: ellipsis;
     } /* Disable text wrapping within a cell */
@@ -124,6 +138,13 @@
   gap: 15px;
   justify-content: flex-start;
 }
+.buttons-containerBottom {
+  margin: 10px; /* Add the desired margin value */
+  display: flex;
+  align-items: flex-start; 
+  gap: 15px;
+  justify-content: flex-start;
+}    
 .picture-container {
   margin: 10px; /* Add the desired margin value */
   display: flex;
@@ -225,8 +246,7 @@
   <div id="resultContainer"></div>
 </table>
   <div id="footer">
-  <p>Select to view other versions:</p>
-    <div class="buttons-container">
+    <div class="buttons-containerBottom">
       <button id="desMoinesButton">Des Moines</button>
       <button id="fargoButton">Fargo(testing)</button>
       <button id="omahaButton">Omaha</button>
@@ -238,32 +258,89 @@
       <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
   </div>
-  <button id="downloadJSONButton">Download JSON (testing)</button>
+  <button id="downloadJSONButton">Download JSON</button>
+  <a href="MinneapolisOMJSON.json" download="MinneapolisOMJSON.json">Download</a>
   <p>V1.04</p>
 <script>
-    // Fetch OMJSON Data
+function adjustFontSize() {
+  const table = document.querySelector('.table');
+  const tableRows = table.querySelectorAll('tr');
+  const screenWidth = window.innerWidth / window.devicePixelRatio;
+  const firstRow = tableRows[0];
+  const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
+  const maxColumns = Math.min(columnsInFirstRow, 4);
+ if((screenWidth<400)&&(maxColumns===1)){
+   table.style.width = '900px'
+   }
+  else if (screenWidth<400){
+     table.style.width = '500px'
+   }
+  else if ((screenWidth>399)&&(screenWidth<800)&&(maxColumns===1)){
+    table.style.width = '1000px'
+  }
+  else if ((screenWidth>399)&&(screenWidth<800)){
+    table.style.width = '600px'
+  }
+  else if ((screenWidth>799)&&(screenWidth<1200)){
+    table.style.width = '1000px'
+    }
+  else if ((screenWidth>1199)&&(screenWidth<1600)){
+    table.style.width = '1200px'
+    }
+  else if (screenWidth>1599){
+    table.style.width = '1400px'
+    }
+    
+  tableRows.forEach(row => {
+    const columns = row.querySelectorAll('td');
+    columns.forEach((column, index) => {
+         if(screenWidth<400){
+      column.style.fontSize = '11px';
+      }
+        else if ((screenWidth>399)&&(screenWidth<800)){
+       column.style.fontSize = '14px';
+       }
+       else if ((screenWidth>799)&&(screenWidth<1200)){
+        column.style.fontSize = '16px';
+       }
+        else if ((screenWidth>1199)&&(screenWidth<1600)){
+        column.style.fontSize = '18px';
+       }
+        else if (screenWidth>1599){
+        column.style.fontSize = '20px';
+       }      
+    });
+  });
+} 
+
+// Call the adjustFontSize function when the DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  adjustFontSize();
+});
+  
+// Fetch OMJSON Data
 async function fetchOMData() {
-    const response = await fetch('MinneapolisOMJSON.json');
+    const response = await fetch(OMjson);
     const data = await response.json();
     return data;
   }
 
 // Fetch ODJSON Data
 async function fetchODData() {
-  const response = await fetch('MinneapolisODJSON.json');
+  const response = await fetch(ODjson);
   const data = await response.json();
   return data;
   }
 
 // Fetch ItemLink Data
   async function fetchItemLink() {
-    const response = await fetch('MinneapolisItemLinks.json');
+    const response = await fetch(ItemLinkjson);
     const data = await response.json();
     return data;
   }
   // Fetch AbxLink Data
 async function fetchAbxLink() {
-  const response = await fetch('AbxLinks.json');
+  const response = await fetch(AbxLinkjson);
   const data = await response.json();
   return data;
   }
@@ -278,6 +355,18 @@ let historyIndex = -1; // Index of the current selection in the history
 let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
+  // Get the buttons container
+var buttonsContainer = document.querySelector('.buttons-containerBottom');
+// Function to hide or remove buttons based on the value of hideButtons
+if (hideButtons === 'True') {
+// Method 1: Hide buttons by setting their display property to 'none'
+buttonsContainer.style.display = 'none';
+}
+  
+document.getElementById('pageTitle').textContent = Title;
+document.getElementById('mainMenuButton').textContent = MainMenuButton;
+document.getElementById('indexButton').textContent = IndexButton;
+  
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
@@ -290,8 +379,8 @@ function populateDropdown(omData) {
         terms.push(item[termKey]);
       }
     }
-    // If there are no terms for item and item.name starts with "ORZID2"
-    if (terms.length === 0 && item.Name.startsWith('ORZID2')) {
+    // If there are no terms for item and item.name starts with MenuPrefix
+    if (terms.length === 0 && item.Name.startsWith(MenuPrefix)) {
       // Use displayText if not blank, else use item.name
       const displayText = item.DisplayText || item.Name;
       const option = document.createElement('option');
@@ -341,7 +430,7 @@ function searchData() {
     // Filter data based on search text and prioritize items with matches in terms
     let filteredData = omData.map(item => {
       const displayText = item.DisplayText || item.Name;
-      const contentTexts = (item.Contents?.map(content => content.Text.toLowerCase()) || []);
+      const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
       const terms = [];
       // Check for "Term1" through "Term99" in the item and calculate relevance score
       let relevanceScore = 0;
@@ -457,62 +546,6 @@ searchInput.addEventListener('click', function () {
   }
 });
 
-function adjustFontSize() {
-  const table = document.querySelector('.table');
-  const tableRows = table.querySelectorAll('tr');
-  const screenWidth = window.innerWidth / window.devicePixelRatio;
-  const firstRow = tableRows[0];
-  const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
-  const maxColumns = Math.min(columnsInFirstRow, 4);
- if((screenWidth<400)&&(maxColumns===1)){
-   table.style.width = '900px'
-   }
-  else if (screenWidth<400){
-     table.style.width = '500px'
-   }
-  else if ((screenWidth>399)&&(screenWidth<800)&&(maxColumns===1)){
-    table.style.width = '1000px'
-  }
-  else if ((screenWidth>399)&&(screenWidth<800)){
-    table.style.width = '600px'
-  }
-  else if ((screenWidth>799)&&(screenWidth<1200)){
-    table.style.width = '1000px'
-    }
-  else if ((screenWidth>1199)&&(screenWidth<1600)){
-    table.style.width = '1200px'
-    }
-  else if (screenWidth>1599){
-    table.style.width = '1400px'
-    }
-    
-  tableRows.forEach(row => {
-    const columns = row.querySelectorAll('td');
-    columns.forEach((column, index) => {
-         if(screenWidth<400){
-      column.style.fontSize = '11px';
-      }
-        else if ((screenWidth>399)&&(screenWidth<800)){
-       column.style.fontSize = '14px';
-       }
-       else if ((screenWidth>799)&&(screenWidth<1200)){
-        column.style.fontSize = '16px';
-       }
-        else if ((screenWidth>1199)&&(screenWidth<1600)){
-        column.style.fontSize = '18px';
-       }
-        else if (screenWidth>1599){
-        column.style.fontSize = '20px';
-       }      
-    });
-  });
-} 
-
-// Call the adjustFontSize function when the DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-  adjustFontSize();
-});
-
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
 
@@ -611,8 +644,8 @@ function createOMTable(selectedData) {
           const cellContentElement = document.createElement('div');
           const contentText = cellContent; // Preserve original case-sensitive text
           let currentIndex = 0;
-          // Check if the row click item starts with 'ORZID' or 'ORZ GTX'
-          if (Item && (Item.startsWith('ORZID') || Item.startsWith('ORZ GTX'))) {
+          // Check if the row click item starts with MenuPrefix or LinkPrefix
+          if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             cellContentElement.classList.add('clickable');
             cellContentElement.addEventListener('click', () => {
               handleRowClick(matchingItem);
@@ -714,7 +747,6 @@ function createOMTable(selectedData) {
   if (selectedData) {
     resultContainer.appendChild(table);
   }
-  adjustFontSize()
 }
   
 // Function to filter data based on the selected option
@@ -799,7 +831,7 @@ function handleMainMenu() {
   document.getElementById('searchInput').value = null;
   document.getElementById('searchInput').placeholder = "Search...";
   populateDropdown(omData);
-  dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+  dropdown.value = MainMenu;
   filterData({ target: dropdown });
   scrollToTop()    
   adjustFontSize();
@@ -811,20 +843,8 @@ function handleIndex() {
   document.getElementById('searchInput').value = null;
   document.getElementById('searchInput').placeholder = "Search...";
   populateDropdown(omData);
-  dropdown.value = 'ORZID2 GMENU ABX INDEX INPATIENT';
+  dropdown.value = Index;
   filterData({ target: dropdown });
-  scrollToTop();    
-  adjustFontSize();
-  }
-
-// Function to handle the Index button click event
-function handleCNS() {
-  const dropdown = document.getElementById('filterDropdown');
-  document.getElementById('searchInput').value = null;
-  document.getElementById('searchInput').placeholder = "Search...";
-  populateDropdown(omData);
-  dropdown.value = 'ORZID2 GMENU ABX CNS';
-  filterData({ target: dropdown });  
   scrollToTop();    
   adjustFontSize();
   }
@@ -854,23 +874,6 @@ function openDropdown() {
   const searchInput = document.getElementById('searchInput');
   return element === searchInput || element.parentNode === searchInput;
   }
-  
-// Attach event listeners
-document.getElementById('downloadJSONButton').addEventListener('click', handleDownloadJSON);
-document.getElementById('goBackButton').addEventListener('click', handleGoBack);
-document.getElementById('goForwardButton').addEventListener('click', handleGoForward);
-document.getElementById('mainMenuButton').addEventListener('click', handleMainMenu);
-/*document.getElementById('CNSButton').addEventListener('click', handleCNS);*/
-document.getElementById('indexButton').addEventListener('click', handleIndex);
-document.getElementById('filterDropdown').addEventListener('change', filterData);
-window.addEventListener('resize', adjustFontSize);
-window.addEventListener('DOMContentLoaded', adjustFontSize);
-document.getElementById('searchInput').addEventListener('input', searchData);
-document.getElementById('searchInput').addEventListener('click', openDropdown);
-document.getElementById('searchInput').addEventListener('input', openDropdown);
-
-// Call the adjustFontSize function when the window is resized
-window.addEventListener('resize', adjustFontSize);
 
 // JavaScript code to handle button clicks
 document.getElementById('desMoinesButton').addEventListener('click', function () {
@@ -888,6 +891,22 @@ document.getElementById('stCloudButton').addEventListener('click', function () {
 document.getElementById('siouxFallsButton').addEventListener('click', function () {
   openPageInNewWindow('SiouxFallsCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
 });
+
+// Attach event listeners
+document.getElementById('downloadJSONButton').addEventListener('click', handleDownloadJSON);
+document.getElementById('goBackButton').addEventListener('click', handleGoBack);
+document.getElementById('goForwardButton').addEventListener('click', handleGoForward);
+document.getElementById('mainMenuButton').addEventListener('click', handleMainMenu);
+document.getElementById('indexButton').addEventListener('click', handleIndex);
+document.getElementById('filterDropdown').addEventListener('change', filterData);
+window.addEventListener('resize', adjustFontSize);
+window.addEventListener('DOMContentLoaded', adjustFontSize);
+document.getElementById('searchInput').addEventListener('input', searchData);
+document.getElementById('searchInput').addEventListener('click', openDropdown);
+document.getElementById('searchInput').addEventListener('input', openDropdown);
+
+// Call the adjustFontSize function when the window is resized
+window.addEventListener('resize', adjustFontSize);
 
 // Function to open a page in a new window with multiple replacement values
 function openPageInNewWindow(pageURL, replacements) {
@@ -921,7 +940,7 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     dropdown.value = decodeURIComponent(dropdownValue);
   } else {
     // If no dropdown value is provided in the URL, set a default value
-    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+    dropdown.value = MainMenu;
   }
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
@@ -970,8 +989,4 @@ if ('serviceWorker' in navigator) {
         });
 </script>
 </body>
-</html>
-  </script>
-</body>
-
 </html>
