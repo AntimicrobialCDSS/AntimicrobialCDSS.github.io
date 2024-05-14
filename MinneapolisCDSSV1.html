@@ -8,7 +8,13 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-RZT6D0E0DS');
-</script>
+  </script>
+  <script>
+  const OMjson = 'MinneapolisOMJSON.json';
+  const ODjson = 'MinneapolisODJSON.json';
+  const ItemLinkjson = 'MinneapolisItemLinks.json';
+  const AbxLinkjson = 'AbxLinks.json';
+  </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minneapolis Antimicrobial CDSS</title>
@@ -241,83 +247,89 @@
   <button id="downloadJSONButton">Download JSON (testing)</button>
   <p>V1.04</p>
 <script>
-// Function to populate the dropdown with data from a specified JSON file
-async function populateDropdown(jsonFileName) {
-  try {
-    const response = await fetch(jsonFileName);
+// Fetch OMJSON Data
+async function fetchOMData() {
+    const response = await fetch(OMjson);
     const data = await response.json();
-    const dropdown = document.getElementById('filterDropdown');
-    dropdown.innerHTML = '';
-    data.forEach(item => {
-      const terms = [];
-      // Check for "Term1" through "Term99" in the item
-      for (let i = 1; i <= 99; i++) {
-        const termKey = `Term${i}`;
-        if (item[termKey]) {
-          terms.push(item[termKey]);
-        }
+    return data;
+  }
+
+// Fetch ODJSON Data
+async function fetchODData() {
+  const response = await fetch(ODjson);
+  const data = await response.json();
+  return data;
+  }
+
+// Fetch ItemLink Data
+  async function fetchItemLink() {
+    const response = await fetch(ItemLinkjson);
+    const data = await response.json();
+    return data;
+  }
+  // Fetch AbxLink Data
+async function fetchAbxLink() {
+  const response = await fetch(AbxLinkjson);
+  const data = await response.json();
+  return data;
+  }
+
+// Global variables
+let omData = []; // OMJSON data
+let odData = []; // ODJSON data
+let selectedData = null; // Currently selected data
+let history = []; // History of selected items
+let forwardHistory = []; // History of forward selections
+let historyIndex = -1; // Index of the current selection in the history
+let itemLinkData = []; // ItemLink data
+let abxLinkData = []; // AbxLink data
+
+function populateDropdown(omData) {
+  const dropdown = document.getElementById('filterDropdown');
+  dropdown.innerHTML = '';
+  omData.forEach(item => {
+    const terms = [];
+    // Check for "Term1" through "Term99" in the item
+    for (let i = 1; i <= 99; i++) {
+      const termKey = `Term${i}`;
+      if (item[termKey]) {
+        terms.push(item[termKey]);
       }
-      // If there are no terms for item and item.name starts with "ORZID2"
-      if (terms.length === 0 && item.Name.startsWith('ORZID2')) {
-        // Use displayText if not blank, else use item.name
-        const displayText = item.DisplayText || item.Name;
+    }
+    // If there are no terms for item and item.name starts with "ORZID2"
+    if (terms.length === 0 && item.Name.startsWith('ORZID2')) {
+      // Use displayText if not blank, else use item.name
+      const displayText = item.DisplayText || item.Name;
+      const option = document.createElement('option');
+      option.value = item.Name;
+      option.textContent = displayText;
+      dropdown.appendChild(option);
+    } else {
+      // Create separate dropdown options for each "Term" value
+      terms.forEach(term => {
         const option = document.createElement('option');
         option.value = item.Name;
-        option.textContent = displayText;
+        option.textContent = term;
         dropdown.appendChild(option);
-      } else {
-        // Create separate dropdown options for each "Term" value
-        terms.forEach(term => {
-          const option = document.createElement('option');
-          option.value = item.Name;
-          option.textContent = term;
-          dropdown.appendChild(option);
-        });
-      }
-    });
-    // Count the number of matches after the dropdown is populated
-    const matchCount = dropdown.length;
-    const firstLine = document.createElement('option');
-    if (matchCount === 0) {
-      // If there are no matches, create an option with red text
-      firstLine.textContent = 'No Matches';
-      firstLine.style.color = 'red'; // Set the text color to red
-    } else {
-      // If there are matches, create an option for the match count with green text
-      firstLine.textContent = `Matches: ${matchCount}`;
-      firstLine.style.color = 'green'; // Set the text color to green
+      });
     }
-    firstLine.disabled = true;
-    firstLine.selected = true;
-    dropdown.insertBefore(firstLine, dropdown.firstChild);
-  } catch (error) {
-    console.error('Error populating dropdown:', error);
+  });
+  // Count the number of matches after the dropdown is populated
+  const matchCount = dropdown.length;
+  const firstLine = document.createElement('option');
+  if (matchCount === 0) {
+    // If there are no matches, create an option with red text
+    firstLine.textContent = 'No Matches';
+    firstLine.style.color = 'red'; // Set the text color to red
+  } else {
+    // If there are matches, create an option for the match count with green text
+    firstLine.textContent = `Matches: ${matchCount}`;
+    firstLine.style.color = 'green'; // Set the text color to green
   }
+  firstLine.disabled = true;
+  firstLine.selected = true;
+  dropdown.insertBefore(firstLine, dropdown.firstChild);
 }
-
-// Function to fetch data and initialize the dropdown
-async function initializeData() {
-  try {
-    // Fetch all required data
-    const omData = await fetchData('MinneapolisOMJSON.json');
-    const odData = await fetchData('MinneapolisODJSON.json');
-    const itemLinkData = await fetchData('MinneapolisItemLinks.json');
-    const abxLinkData = await fetchData('AbxLinks.json');
-    // Populate dropdown and set default value
-    await populateDropdown(omData);
-    const defaultDropdownValue = 'ORZID2 GMENU ABX INPT MAIN';
-    document.getElementById('filterDropdown').value = defaultDropdownValue;
-    filterData({ target: document.getElementById('filterDropdown') });
-    pushHistory(defaultDropdownValue);
-    scrollToTop();
-    adjustFontSize();
-  } catch (error) {
-    console.error('Error initializing data:', error);
-  }
-}
-
-// Call the initializeData function
-initializeData();
 
 // Function to search and sort data based on the input
 function searchData() {
