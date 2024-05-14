@@ -21,7 +21,7 @@
   const AbxLinkjson = 'AbxLinks.json';
   const MenuPrefix = 'ORZID2';
   const LinkPrefix = 'ORZ GTX';
-  var hideButtons = 1;
+  var hideButtons = 'True';
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -302,7 +302,7 @@ let abxLinkData = []; // AbxLink data
   // Get the buttons container
 var buttonsContainer = document.querySelector('.buttons-containerBottom');
 // Function to hide or remove buttons based on the value of hideButtons
-if (hideButtons === 1) {
+if (hideButtons === 'True') {
 // Method 1: Hide buttons by setting their display property to 'none'
 buttonsContainer.style.display = 'none';
 }
