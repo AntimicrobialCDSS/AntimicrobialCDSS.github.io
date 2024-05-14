@@ -155,6 +155,13 @@ document.getElementById('siouxFallsButton').addEventListener('click', function (
   gap: 15px;
   justify-content: flex-start;
 }
+.buttons-containerBottom {
+  margin: 10px; /* Add the desired margin value */
+  display: flex;
+  align-items: flex-start; 
+  gap: 15px;
+  justify-content: flex-start;
+}    
 .picture-container {
   margin: 10px; /* Add the desired margin value */
   display: flex;
@@ -257,7 +264,7 @@ document.getElementById('siouxFallsButton').addEventListener('click', function (
 </table>
   <div id="footer">
   <p>Select to view other versions:</p>
-    <div class="buttons-container">
+    <div class="buttons-containerBottom">
       <button id="desMoinesButton">Des Moines</button>
       <button id="fargoButton">Fargo(testing)</button>
       <button id="omahaButton">Omaha</button>
@@ -311,7 +318,7 @@ let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
   // Get the buttons container
-var buttonsContainer = document.querySelector('.buttons-container');
+var buttonsContainer = document.querySelector('.buttons-containerBottom');
 // Function to hide or remove buttons based on the value of hideButtons
 if (hideButtons === 1) {
 // Method 1: Hide buttons by setting their display property to 'none'
