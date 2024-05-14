@@ -854,7 +854,7 @@ function handleIndex() {
     const data = JSON.stringify(omData, null, 2);
     const element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-    element.setAttribute('download', 'MinneapolisOMJSON.json);
+    element.setAttribute('download', 'MinneapolisOMJSON.json');
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();
