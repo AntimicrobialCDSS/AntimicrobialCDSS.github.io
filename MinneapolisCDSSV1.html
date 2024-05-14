@@ -14,6 +14,26 @@
   const ODjson = 'MinneapolisODJSON.json';
   const ItemLinkjson = 'MinneapolisItemLinks.json';
   const AbxLinkjson = 'AbxLinks.json';
+  const MenuPrefix = 'ORZID2';
+  const LinkPrefix = 'ORZ GTX';
+  const MainMenu = 'ORZID2';
+  const Index = 'ORZ GTX';
+  // JavaScript code to handle button clicks
+document.getElementById('desMoinesButton').addEventListener('click', function () {
+openPageInNewWindow("DesMoinesCDSS.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
+});
+document.getElementById('fargoButton').addEventListener('click', function () {
+  openPageInNewWindow("FargoCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
+});
+document.getElementById('omahaButton').addEventListener('click', function () {
+  openPageInNewWindow('OmahaCDSS.html', { " CI ": " ", " NE ": " ", "GMENU": "NE GMENU" }); // Pass the replacement value
+});
+document.getElementById('stCloudButton').addEventListener('click', function () {
+  openPageInNewWindow('StCloudCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
+});
+document.getElementById('siouxFallsButton').addEventListener('click', function () {
+  openPageInNewWindow('SiouxFallsCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
+});  
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -296,8 +316,8 @@ function populateDropdown(omData) {
         terms.push(item[termKey]);
       }
     }
-    // If there are no terms for item and item.name starts with "ORZID2"
-    if (terms.length === 0 && item.Name.startsWith('ORZID2')) {
+    // If there are no terms for item and item.name starts with MenuPrefix
+    if (terms.length === 0 && item.Name.startsWith(MenuPrefix)) {
       // Use displayText if not blank, else use item.name
       const displayText = item.DisplayText || item.Name;
       const option = document.createElement('option');
@@ -617,8 +637,8 @@ function createOMTable(selectedData) {
           const cellContentElement = document.createElement('div');
           const contentText = cellContent; // Preserve original case-sensitive text
           let currentIndex = 0;
-          // Check if the row click item starts with 'ORZID' or 'ORZ GTX'
-          if (Item && (Item.startsWith('ORZID') || Item.startsWith('ORZ GTX'))) {
+          // Check if the row click item starts with MenuPrefix or LinkPrefix
+          if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             cellContentElement.classList.add('clickable');
             cellContentElement.addEventListener('click', () => {
               handleRowClick(matchingItem);
@@ -804,7 +824,7 @@ function handleMainMenu() {
   document.getElementById('searchInput').value = null;
   document.getElementById('searchInput').placeholder = "Search...";
   populateDropdown(omData);
-  dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+  dropdown.value = MainMenu;
   filterData({ target: dropdown });
   scrollToTop()    
   adjustFontSize();
@@ -816,20 +836,8 @@ function handleIndex() {
   document.getElementById('searchInput').value = null;
   document.getElementById('searchInput').placeholder = "Search...";
   populateDropdown(omData);
-  dropdown.value = 'ORZID2 GMENU ABX INDEX INPATIENT';
+  dropdown.value = Index;
   filterData({ target: dropdown });
-  scrollToTop();    
-  adjustFontSize();
-  }
-
-// Function to handle the Index button click event
-function handleCNS() {
-  const dropdown = document.getElementById('filterDropdown');
-  document.getElementById('searchInput').value = null;
-  document.getElementById('searchInput').placeholder = "Search...";
-  populateDropdown(omData);
-  dropdown.value = 'ORZID2 GMENU ABX CNS';
-  filterData({ target: dropdown });  
   scrollToTop();    
   adjustFontSize();
   }
@@ -865,7 +873,6 @@ document.getElementById('downloadJSONButton').addEventListener('click', handleDo
 document.getElementById('goBackButton').addEventListener('click', handleGoBack);
 document.getElementById('goForwardButton').addEventListener('click', handleGoForward);
 document.getElementById('mainMenuButton').addEventListener('click', handleMainMenu);
-/*document.getElementById('CNSButton').addEventListener('click', handleCNS);*/
 document.getElementById('indexButton').addEventListener('click', handleIndex);
 document.getElementById('filterDropdown').addEventListener('change', filterData);
 window.addEventListener('resize', adjustFontSize);
@@ -876,23 +883,6 @@ document.getElementById('searchInput').addEventListener('input', openDropdown);
 
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
-
-// JavaScript code to handle button clicks
-document.getElementById('desMoinesButton').addEventListener('click', function () {
-openPageInNewWindow("DesMoinesCDSS.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
-});
-document.getElementById('fargoButton').addEventListener('click', function () {
-  openPageInNewWindow("FargoCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
-});
-document.getElementById('omahaButton').addEventListener('click', function () {
-  openPageInNewWindow('OmahaCDSS.html', { " CI ": " ", " NE ": " ", "GMENU": "NE GMENU" }); // Pass the replacement value
-});
-document.getElementById('stCloudButton').addEventListener('click', function () {
-  openPageInNewWindow('StCloudCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
-});
-document.getElementById('siouxFallsButton').addEventListener('click', function () {
-  openPageInNewWindow('SiouxFallsCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
-});
 
 // Function to open a page in a new window with multiple replacement values
 function openPageInNewWindow(pageURL, replacements) {
@@ -926,7 +916,7 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     dropdown.value = decodeURIComponent(dropdownValue);
   } else {
     // If no dropdown value is provided in the URL, set a default value
-    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+    dropdown.value = MainMenu;
   }
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
