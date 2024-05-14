@@ -262,7 +262,6 @@
   <button id="downloadJSONButton">Download JSON (testing)</button>
   <p>V1.04</p>
 <script>
-document.getElementById('pageTitle').textContent = locationName;
 // Fetch OMJSON Data
 async function fetchOMData() {
     const response = await fetch(OMjson);
@@ -307,7 +306,7 @@ if (hideButtons === 1) {
 // Method 1: Hide buttons by setting their display property to 'none'
 buttonsContainer.style.display = 'none';
 }
-
+  
 document.getElementById('pageTitle').textContent = Title;
 document.getElementById('mainMenuButton').textContent = MainMenu;
 document.getElementById('IndexButton').textContent = Index;
