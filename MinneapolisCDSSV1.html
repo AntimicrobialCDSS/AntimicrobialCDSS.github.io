@@ -11,34 +11,17 @@
   </script>
   <script>
   var Title = "Minneapolis Antimicrobial CDSS"
-  var Title = "Minneapolis Antimicrobial CDSS"  
+  var MainMenuButton = "Minneapolis Home"
+  const MainMenu = 'ORZID2 GMENU ABX INPT MAIN';
+  var IndexButton = "Index"
+  const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';
   const OMjson = 'MinneapolisOMJSON.json';
   const ODjson = 'MinneapolisODJSON.json';
   const ItemLinkjson = 'MinneapolisItemLinks.json';
   const AbxLinkjson = 'AbxLinks.json';
   const MenuPrefix = 'ORZID2';
   const LinkPrefix = 'ORZ GTX';
-  const MainMenu = 'ORZID2 GMENU ABX INPT MAIN';
-  const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';
-  var locationName = "Minneapolis Antimicrobial CDSS";
-  var hideButtons = 1;
-      
-  // JavaScript code to handle button clicks
-document.getElementById('desMoinesButton').addEventListener('click', function () {
-openPageInNewWindow("DesMoinesCDSS.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
-});
-document.getElementById('fargoButton').addEventListener('click', function () {
-  openPageInNewWindow("FargoCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
-});
-document.getElementById('omahaButton').addEventListener('click', function () {
-  openPageInNewWindow('OmahaCDSS.html', { " CI ": " ", " NE ": " ", "GMENU": "NE GMENU" }); // Pass the replacement value
-});
-document.getElementById('stCloudButton').addEventListener('click', function () {
-  openPageInNewWindow('StCloudCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
-});
-document.getElementById('siouxFallsButton').addEventListener('click', function () {
-  openPageInNewWindow('SiouxFallsCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
-});  
+  var hideButtons = 0; 
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -324,6 +307,10 @@ if (hideButtons === 1) {
 // Method 1: Hide buttons by setting their display property to 'none'
 buttonsContainer.style.display = 'none';
 }
+
+document.getElementById('pageTitle').textContent = Title;
+document.getElementById('mainMenuButton').textContent = MainMenu;
+document.getElementById('IndexButton').textContent = Index;
   
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
@@ -888,7 +875,24 @@ function openDropdown() {
   const searchInput = document.getElementById('searchInput');
   return element === searchInput || element.parentNode === searchInput;
   }
-  
+
+// JavaScript code to handle button clicks
+document.getElementById('desMoinesButton').addEventListener('click', function () {
+openPageInNewWindow("DesMoinesCDSS.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
+});
+document.getElementById('fargoButton').addEventListener('click', function () {
+  openPageInNewWindow("FargoCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
+});
+document.getElementById('omahaButton').addEventListener('click', function () {
+  openPageInNewWindow('OmahaCDSS.html', { " CI ": " ", " NE ": " ", "GMENU": "NE GMENU" }); // Pass the replacement value
+});
+document.getElementById('stCloudButton').addEventListener('click', function () {
+  openPageInNewWindow('StCloudCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
+});
+document.getElementById('siouxFallsButton').addEventListener('click', function () {
+  openPageInNewWindow('SiouxFallsCDSS.html', { " CI ": " ", " NE ": " " }); // Pass the replacement value
+});
+
 // Attach event listeners
 document.getElementById('downloadJSONButton').addEventListener('click', handleDownloadJSON);
 document.getElementById('goBackButton').addEventListener('click', handleGoBack);
