@@ -241,33 +241,12 @@
   <button id="downloadJSONButton">Download JSON (testing)</button>
   <p>V1.04</p>
 <script>
-    // Fetch OMJSON Data
-async function fetchOMData() {
-    const response = await fetch('MinneapolisOMJSON.json');
-    const data = await response.json();
-    return data;
-  }
-
-// Fetch ODJSON Data
-async function fetchODData() {
-  const response = await fetch('MinneapolisODJSON.json');
+// Fetch JSON Data
+async function fetchData(jsonFileName) {
+  const response = await fetch(jsonFileName);
   const data = await response.json();
   return data;
-  }
-
-// Fetch ItemLink Data
-  async function fetchItemLink() {
-    const response = await fetch('MinneapolisItemLinks.json');
-    const data = await response.json();
-    return data;
-  }
-  // Fetch AbxLink Data
-async function fetchAbxLink() {
-  const response = await fetch('AbxLinks.json');
-  const data = await response.json();
-  return data;
-  }
-
+}
 // Global variables
 let omData = []; // OMJSON data
 let odData = []; // ODJSON data
@@ -278,6 +257,16 @@ let historyIndex = -1; // Index of the current selection in the history
 let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
+// Function to fetch data and initialize the dropdown
+async function initializeData() {
+  try {
+    // Fetch all required data
+    [omData, odData, itemLinkData, abxLinkData] = await Promise.all([
+      fetchData('MinneapolisOMJSON.json'),
+      fetchData('MinneapolisODJSON.json'),
+      fetchData('MinneapolisItemLinks.json'),
+      fetchData('AbxLinks.json')
+    ]);
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
@@ -920,7 +909,7 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
     dropdown.value = decodeURIComponent(dropdownValue);
   } else {
     // If no dropdown value is provided in the URL, set a default value
-    dropdown.value = 'ORZID2 GMENU ABX INPT MAIN';
+    dropdown.value = '2 GMENU ABX INPT MAIN';
   }
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
