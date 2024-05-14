@@ -851,12 +851,10 @@ function handleIndex() {
 
   // Function to handle the Download JSON button click event
   function handleDownloadJSON() {
-    const displayText = selectedData.DisplayText || selectedData.Name;
-    const data = JSON.stringify(selectedData, null, 2);
-    const filename = `${displayText}.json`;
+    const data = JSON.stringify(omData, null, 2);
     const element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-    element.setAttribute('download', filename);
+    element.setAttribute('download', 'MinneapolisOMJSON.json);
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();
