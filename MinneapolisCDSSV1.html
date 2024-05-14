@@ -22,62 +22,6 @@
   const MenuPrefix = 'ORZID2';
   const LinkPrefix = 'ORZ GTX';
   var hideButtons = 'True';
-
-  function adjustFontSize() {
-  const table = document.querySelector('.table');
-  const tableRows = table.querySelectorAll('tr');
-  const screenWidth = window.innerWidth / window.devicePixelRatio;
-  const firstRow = tableRows[0];
-  const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
-  const maxColumns = Math.min(columnsInFirstRow, 4);
- if((screenWidth<400)&&(maxColumns===1)){
-   table.style.width = '900px'
-   }
-  else if (screenWidth<400){
-     table.style.width = '500px'
-   }
-  else if ((screenWidth>399)&&(screenWidth<800)&&(maxColumns===1)){
-    table.style.width = '1000px'
-  }
-  else if ((screenWidth>399)&&(screenWidth<800)){
-    table.style.width = '600px'
-  }
-  else if ((screenWidth>799)&&(screenWidth<1200)){
-    table.style.width = '1000px'
-    }
-  else if ((screenWidth>1199)&&(screenWidth<1600)){
-    table.style.width = '1200px'
-    }
-  else if (screenWidth>1599){
-    table.style.width = '1400px'
-    }
-    
-  tableRows.forEach(row => {
-    const columns = row.querySelectorAll('td');
-    columns.forEach((column, index) => {
-         if(screenWidth<400){
-      column.style.fontSize = '11px';
-      }
-        else if ((screenWidth>399)&&(screenWidth<800)){
-       column.style.fontSize = '14px';
-       }
-       else if ((screenWidth>799)&&(screenWidth<1200)){
-        column.style.fontSize = '16px';
-       }
-        else if ((screenWidth>1199)&&(screenWidth<1600)){
-        column.style.fontSize = '18px';
-       }
-        else if (screenWidth>1599){
-        column.style.fontSize = '20px';
-       }      
-    });
-  });
-} 
-
-// Call the adjustFontSize function when the DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-  adjustFontSize();
-});
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -318,6 +262,62 @@ document.addEventListener('DOMContentLoaded', function() {
   <button id="downloadJSONButton">Download JSON (testing)</button>
   <p>V1.04</p>
 <script>
+function adjustFontSize() {
+  const table = document.querySelector('.table');
+  const tableRows = table.querySelectorAll('tr');
+  const screenWidth = window.innerWidth / window.devicePixelRatio;
+  const firstRow = tableRows[0];
+  const columnsInFirstRow = firstRow ? firstRow.querySelectorAll('td').length : 0;
+  const maxColumns = Math.min(columnsInFirstRow, 4);
+ if((screenWidth<400)&&(maxColumns===1)){
+   table.style.width = '900px'
+   }
+  else if (screenWidth<400){
+     table.style.width = '500px'
+   }
+  else if ((screenWidth>399)&&(screenWidth<800)&&(maxColumns===1)){
+    table.style.width = '1000px'
+  }
+  else if ((screenWidth>399)&&(screenWidth<800)){
+    table.style.width = '600px'
+  }
+  else if ((screenWidth>799)&&(screenWidth<1200)){
+    table.style.width = '1000px'
+    }
+  else if ((screenWidth>1199)&&(screenWidth<1600)){
+    table.style.width = '1200px'
+    }
+  else if (screenWidth>1599){
+    table.style.width = '1400px'
+    }
+    
+  tableRows.forEach(row => {
+    const columns = row.querySelectorAll('td');
+    columns.forEach((column, index) => {
+         if(screenWidth<400){
+      column.style.fontSize = '11px';
+      }
+        else if ((screenWidth>399)&&(screenWidth<800)){
+       column.style.fontSize = '14px';
+       }
+       else if ((screenWidth>799)&&(screenWidth<1200)){
+        column.style.fontSize = '16px';
+       }
+        else if ((screenWidth>1199)&&(screenWidth<1600)){
+        column.style.fontSize = '18px';
+       }
+        else if (screenWidth>1599){
+        column.style.fontSize = '20px';
+       }      
+    });
+  });
+} 
+
+// Call the adjustFontSize function when the DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+  adjustFontSize();
+});
+  
 // Fetch OMJSON Data
 async function fetchOMData() {
     const response = await fetch(OMjson);
