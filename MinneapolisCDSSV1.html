@@ -258,8 +258,10 @@
       <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
   </div>
-  <button id="downloadJSONButton">Download JSON</button>
-  <a href="https://raw.githubusercontent.com/AntimicrobialCDSS/AntimicrobialCDSS.github.io/main/MinneapolisOMJSON.json" download="MinneapolisOMJSON.json">Download OMjson</a>
+  <p>Download content (json and TXML files):</p>
+  <button id="downloadOMJSONButton">All Menus (OMJSON)</button>
+  <button id="downloadODJSONButton">All Orders (ODJSON)</button>
+  <button id="downloadJSONButton">This Menu Only</button>
   <p>V1.04</p>
 <script>
 function adjustFontSize() {
@@ -862,7 +864,31 @@ function handleIndex() {
     element.click();
     document.body.removeChild(element);
     }
+  
+  // Function to handle the Download JSON button click event
+  function handleDownloadOMJSON() {
+    const data = JSON.stringify(omData, null, 2);
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+    element.setAttribute('download', OMjson);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    }
 
+  // Function to handle the Download JSON button click event
+  function handleDownloadODJSON() {
+    const data = JSON.stringify(odData, null, 2);
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+    element.setAttribute('download', ODjson);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    }
+  
 // Function to open the dropdown when clicking into the search input
 function openDropdown() {
   const dropdown = document.getElementById('filterDropdown');
