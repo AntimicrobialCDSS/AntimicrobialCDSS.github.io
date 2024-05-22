@@ -22,7 +22,8 @@
   const AbxLinkjson = 'AbxLinks.json';
   const MenuPrefix = 'ORZID2';
   const LinkPrefix = 'ORZ GTX';
-  var hideButtons = 'False';
+  var hideVersionButtons = 'False';
+  var hideDownloadButtons = 'False';
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -132,20 +133,13 @@
   width: 900px;
   box-sizing: border-box; /* Include padding and borders in the width calculation */
 }
-.buttons-container {
+.buttons-container, .buttons-containerBottom, .buttons-Version {
   margin: 10px; /* Add the desired margin value */
   display: flex;
   align-items: flex-start; 
   gap: 15px;
   justify-content: flex-start;
 }
-.buttons-containerBottom {
-  margin: 10px; /* Add the desired margin value */
-  display: flex;
-  align-items: flex-start; 
-  gap: 15px;
-  justify-content: flex-start;
-}    
 .picture-container {
   margin: 10px; /* Add the desired margin value */
   display: flex;
@@ -258,13 +252,15 @@
       <img src="CDSSLogo.png" alt="CDSS Logo" id="CDSSlogo">
       <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
-  </div>
-  <p>Download content (json and TXML files):</p>
-  <button id="downloadOMJSONButton">Menus</button>
-  <button id="downloadODJSONButton">Orders (ODJSON)</button>
-  <button id="downloadJSONButton">Displayed Menu</button>
-  <button id="downloadTXMLButton">Template Fields</button>
+  <div class="buttons-containerDownload">
+    <p>Download content (json and TXML files):</p>
+    <button id="downloadOMJSONButton">Menus</button>
+    <button id="downloadODJSONButton">Orders (ODJSON)</button>
+    <button id="downloadJSONButton">Displayed Menu</button>
+    <button id="downloadTXMLButton">Template Fields</button>
+  </div> 
   <p>V1.04</p>
+  </div>
 <script>
 function adjustFontSize() {
   const table = document.querySelector('.table');
@@ -359,14 +355,18 @@ let historyIndex = -1; // Index of the current selection in the history
 let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
-  // Get the buttons container
+// Function to hide or remove buttons based on the value of hideVersionButtons
 var buttonsContainer = document.querySelector('.buttons-containerBottom');
-// Function to hide or remove buttons based on the value of hideButtons
-if (hideButtons === 'True') {
-// Method 1: Hide buttons by setting their display property to 'none'
+if (hideVersionButtons === 'True') {
 buttonsContainer.style.display = 'none';
 }
-  
+
+// Function to hide or remove buttons based on the value of hideButtons
+var buttonsContainer = document.querySelector('.buttons-containerBottom');
+if (hideVersionButtons === 'True') {
+buttonsContainer.style.display = 'none';
+}
+
 document.getElementById('pageTitle').textContent = Title;
 document.getElementById('mainMenuButton').textContent = MainMenuButton;
 document.getElementById('indexButton').textContent = IndexButton;
