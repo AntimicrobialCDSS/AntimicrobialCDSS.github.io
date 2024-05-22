@@ -262,7 +262,7 @@
   <button id="downloadOMJSONButton">All Menus (OMJSON)</button>
   <button id="downloadODJSONButton">All Orders (ODJSON)</button>
   <button id="downloadJSONButton">This Menu Only</button>
-  <a href="#" download="downloadLink">Download Minneapolis TXML</a>
+  <a href="#" id="downloadLink">Download Minneapolis TXML</a>
   <p>V1.04</p>
 <script>
 function adjustFontSize() {
@@ -903,6 +903,7 @@ function handleIndex() {
           document.body.removeChild(link);
         })
         .catch(error => console.error('Download error:', error));
+    });
 // Function to open the dropdown when clicking into the search input
 function openDropdown() {
   const dropdown = document.getElementById('filterDropdown');
