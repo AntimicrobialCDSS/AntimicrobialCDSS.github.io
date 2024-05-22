@@ -258,8 +258,11 @@
       <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
   </div>
-  <button id="downloadJSONButton">Download JSON</button>
-  <a href="MinneapolisOMJSON.json" download="MinneapolisOMJSON.json">Download</a>
+  <p>Download content (json and TXML files):</p>
+  <button id="downloadOMJSONButton">All Menus (OMJSON)</button>
+  <button id="downloadODJSONButton">All Orders (ODJSON)</button>
+  <button id="downloadJSONButton">This Menu Only</button>
+  <a href="#" download="downloadLink">Download Minneapolis TXML</a>
   <p>V1.04</p>
 <script>
 function adjustFontSize() {
@@ -851,16 +854,55 @@ function handleIndex() {
 
   // Function to handle the Download JSON button click event
   function handleDownloadJSON() {
-    const data = JSON.stringify(omData, null, 1);
+    const displayText = selectedData.DisplayText || selectedData.Name;
+    const data = JSON.stringify(selectedData, null, 2);
+    const filename = `${displayText}.json`;
     const element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-    element.setAttribute('download', 'MinneapolisOMJSON.json');
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    }
+  
+  // Function to handle the Download JSON button click event
+  function handleDownloadOMJSON() {
+    const data = JSON.stringify(omData, null, 2);
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+    element.setAttribute('download', OMjson);
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
     }
 
+  // Function to handle the Download JSON button click event
+  function handleDownloadODJSON() {
+    const data = JSON.stringify(odData, null, 2);
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+    element.setAttribute('download', ODjson);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    }
+  document.getElementById('downloadLink').addEventListener('click', function(event) {
+      event.preventDefault();
+      const url = 'Minneapolis.txml'; // URL to your .txml file
+      fetch(url)
+        .then(response => response.blob())
+        .then(blob => {
+          const link = document.createElement('a');
+          link.href = window.URL.createObjectURL(blob);
+          link.download = 'Minneapolis.txml';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        })
+        .catch(error => console.error('Download error:', error));
 // Function to open the dropdown when clicking into the search input
 function openDropdown() {
   const dropdown = document.getElementById('filterDropdown');
@@ -892,6 +934,8 @@ document.getElementById('siouxFallsButton').addEventListener('click', function (
 
 // Attach event listeners
 document.getElementById('downloadJSONButton').addEventListener('click', handleDownloadJSON);
+document.getElementById('downloadOMJSONButton').addEventListener('click', handleDownloadOMJSON);
+document.getElementById('downloadODJSONButton').addEventListener('click', handleDownloadODJSON);  
 document.getElementById('goBackButton').addEventListener('click', handleGoBack);
 document.getElementById('goForwardButton').addEventListener('click', handleGoForward);
 document.getElementById('mainMenuButton').addEventListener('click', handleMainMenu);
