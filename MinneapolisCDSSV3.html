@@ -262,7 +262,7 @@
   <button id="downloadOMJSONButton">All Menus (OMJSON)</button>
   <button id="downloadODJSONButton">All Orders (ODJSON)</button>
   <button id="downloadJSONButton">This Menu Only</button>
-  <a href="#" id="downloadLink">Download Minneapolis TXML</a>
+ <button id="downloadTXMLButton">This Menu Only</button>
   <p>V1.04</p>
 <script>
 function adjustFontSize() {
@@ -875,7 +875,7 @@ function handleIndex() {
       downloadFile('MinneapolisODJSON.json', 'MinneapolisODJSON.json');
     });
 
-    document.getElementById('downloadTXMLLink').addEventListener('click', function(event) {
+    document.getElementById('downloadTXMLButton').addEventListener('click', function(event) {
       event.preventDefault();
       downloadFile('Minneapolis.txml', 'Minneapolis.txml');
     });
