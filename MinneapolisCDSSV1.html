@@ -23,6 +23,7 @@
   const MenuPrefix = 'ORZID2';
   const LinkPrefix = 'ORZ GTX';
   var hideButtons = 'False';
+  var hideButtonsVersions = 'False';
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,6 +64,24 @@
   font-weight: normal;
   font-style: normal;
 }
+     .button {
+      white-space: nowrap;
+      flex: 1;
+      background-color: #00aedb; /* Blue color */
+      color: white;
+      padding: 20px; /* Increased padding for square buttons */
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none; /* Remove underline from links */
+      border-radius: 0; /* Square corners */
+      display: inline-block; /* Make links behave like buttons */
+      width: 75%; /* Take up 75% of the screen */
+    }
+    .button:hover {
+      background-color: #4db8ff; /* Light Blue color */
+    }
+    
     .no-term {
       display: none;
     }
@@ -255,7 +274,10 @@
       <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
     <div class="buttons-containerVersions">
-      <p>Download content (json and TXML files):</p>
+      <p>Download Menu Content:</p>
+      <a href=OMjson class="button" download=OMjson>Menus</a>
+      <a href=ODjson class="button" download=ODjson>Orders</a>
+      <a href=txmlFile class="button" download=txmlFile>TemplateFields</a>
       <a href=OMjson download= OMjson>Menus</a>
       <a href=ODjson download=ODjson>Orders</a>
       <a href=txmlFile download=txmlFile>Template Fields</a>
@@ -365,7 +387,7 @@ buttonsContainer.style.display = 'none';
 
 // Function to hide or remove buttons based on the value of hideVersionButtons
 var buttonsContainerVersions = document.querySelector('.buttons-containerVersion');
-if (hideButtons === 'True') {
+if (hideButtonsVersions === 'True') {
 buttonsContainerVersions.style.display = 'none';
 }
     
