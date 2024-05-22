@@ -133,7 +133,7 @@
   width: 900px;
   box-sizing: border-box; /* Include padding and borders in the width calculation */
 }
-.buttons-container, .buttons-containerBottom, .buttons-Version {
+.buttons-container, .buttons-containerBottom {
   margin: 10px; /* Add the desired margin value */
   display: flex;
   align-items: flex-start; 
@@ -239,13 +239,11 @@
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
   <button id="install-button" style="display: none";>Install/Update App</button>
-</div>
-<div class="buttons-containerBottom">
-      <button id="desMoinesButton">Des Moines</button>
-      <button id="fargoButton">Fargo(testing)</button>
-      <button id="omahaButton">Omaha</button>
-      <button id="stCloudButton">St. Cloud</button>
-      <button id="siouxFallsButton">Sioux Falls</button>
+  <button id="desMoinesButton" class="version-button">Des Moines</button>
+  <button id="fargoButton" class="version-button">Fargo (testing)</button>
+  <button id="omahaButton" class="version-button">Omaha</button>
+  <button id="stCloudButton" class="version-button">St. Cloud</button>
+  <button id="siouxFallsButton" class="version-button">Sioux Falls</button>
 </div>
     <div class ="search-container">
         <input type="text" id="searchInput" placeholder="Search...">
@@ -367,16 +365,19 @@ let abxLinkData = []; // AbxLink data
 
 // Function to hide or remove buttons based on the value of hideVersionButtons
 var buttonsContainer = document.querySelector('.buttons-containerBottom');
-if (hideVersionButtons === 'True') {
+if (hideDownloadButtons === 'True') {
 buttonsContainer.style.display = 'none';
 }
 
-// Function to hide or remove buttons based on the value of hideButtons
-var buttonsContainer = document.querySelector('.buttons-containerBottom');
-if (hideVersionButtons === 'True') {
-buttonsContainer.style.display = 'none';
-}
-
+window.addEventListener('DOMContentLoaded', (event) => {
+  const versionButtons = document.querySelectorAll('.version-button');
+  if (hideVersionButtons === 'True') {
+  versionButtons.forEach(button => {
+  button.style.display = 'none';
+    });
+  }
+});
+  
 document.getElementById('pageTitle').textContent = Title;
 document.getElementById('mainMenuButton').textContent = MainMenuButton;
 document.getElementById('indexButton').textContent = IndexButton;
