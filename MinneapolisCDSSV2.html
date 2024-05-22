@@ -18,6 +18,7 @@
   const OMjson = 'MinneapolisOMJSON.json';
   const ODjson = 'MinneapolisODJSON.json';
   const ItemLinkjson = 'MinneapolisItemLinks.json';
+  const txmlFile = 'Minneapolis.txml';
   const AbxLinkjson = 'AbxLinks.json';
   const MenuPrefix = 'ORZID2';
   const LinkPrefix = 'ORZ GTX';
@@ -259,10 +260,10 @@
     </div>
   </div>
   <p>Download content (json and TXML files):</p>
-  <button id="downloadOMJSONButton">All Menus (OMJSON)</button>
-  <button id="downloadODJSONButton">All Orders (ODJSON)</button>
-  <button id="downloadJSONButton">This Menu Only</button>
-  <a href="#" id="downloadLink">Download Minneapolis TXML</a>
+  <button id="downloadOMJSONButton">Menus</button>
+  <button id="downloadODJSONButton">Orders (ODJSON)</button>
+  <button id="downloadJSONButton">Displayed Menu</button>
+ <button id="downloadTXMLButton">Template Fields</button>
   <p>V1.04</p>
 <script>
 function adjustFontSize() {
@@ -851,7 +852,7 @@ function handleIndex() {
   scrollToTop();    
   adjustFontSize();
   }
-
+  
   // Function to handle the Download JSON button click event
   function handleDownloadJSON() {
     const displayText = selectedData.DisplayText || selectedData.Name;
@@ -865,45 +866,34 @@ function handleIndex() {
     element.click();
     document.body.removeChild(element);
     }
-  
-  // Function to handle the Download JSON button click event
-  function handleDownloadOMJSON() {
-    const data = JSON.stringify(omData, null, 2);
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-    element.setAttribute('download', OMjson);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-    }
 
   // Function to handle the Download JSON button click event
-  function handleDownloadODJSON() {
-    const data = JSON.stringify(odData, null, 2);
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-    element.setAttribute('download', ODjson);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-    }
-  document.getElementById('downloadLink').addEventListener('click', function(event) {
-      event.preventDefault();
-      const url = 'Minneapolis.txml'; // URL to your .txml file
+ function downloadFile(url, filename) {
       fetch(url)
         .then(response => response.blob())
         .then(blob => {
           const link = document.createElement('a');
           link.href = window.URL.createObjectURL(blob);
-          link.download = 'Minneapolis.txml';
+          link.download = filename;
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
         })
         .catch(error => console.error('Download error:', error));
+    }
+
+    document.getElementById('downloadOMJSONButton').addEventListener('click', function() {
+      downloadFile(OMjson, OMjson);
     });
+
+    document.getElementById('downloadODJSONButton').addEventListener('click', function() {
+      downloadFile(ODjson, ODjson);
+    });
+
+    document.getElementById('downloadTXMLButton').addEventListener('click', function() {
+      downloadFile(txmlFile, txmlFile);
+    });
+  
 // Function to open the dropdown when clicking into the search input
 function openDropdown() {
   const dropdown = document.getElementById('filterDropdown');
@@ -934,9 +924,7 @@ document.getElementById('siouxFallsButton').addEventListener('click', function (
 });
 
 // Attach event listeners
-document.getElementById('downloadJSONButton').addEventListener('click', handleDownloadJSON);
-document.getElementById('downloadOMJSONButton').addEventListener('click', handleDownloadOMJSON);
-document.getElementById('downloadODJSONButton').addEventListener('click', handleDownloadODJSON);  
+document.getElementById('downloadJSONButton').addEventListener('click', handleDownloadJSON);  
 document.getElementById('goBackButton').addEventListener('click', handleGoBack);
 document.getElementById('goForwardButton').addEventListener('click', handleGoForward);
 document.getElementById('mainMenuButton').addEventListener('click', handleMainMenu);
@@ -1029,6 +1017,10 @@ if ('serviceWorker' in navigator) {
                     deferredInstallPrompt = null;
                 });
             }
+        });
+</script>
+</body>
+</html>
         });
 </script>
 </body>
