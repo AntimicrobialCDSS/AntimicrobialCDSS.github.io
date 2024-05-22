@@ -851,6 +851,20 @@ function handleIndex() {
   scrollToTop();    
   adjustFontSize();
   }
+  
+  // Function to handle the Download JSON button click event
+  function handleDownloadJSON() {
+    const displayText = selectedData.DisplayText || selectedData.Name;
+    const data = JSON.stringify(selectedData, null, 2);
+    const filename = `${displayText}.json`;
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    }
 
   // Function to handle the Download JSON button click event
  function downloadFile(url, filename) {
@@ -875,8 +889,7 @@ function handleIndex() {
       downloadFile('MinneapolisODJSON.json', 'MinneapolisODJSON.json');
     });
 
-    document.getElementById('downloadTXMLButton').addEventListener('click', function(event) {
-      event.preventDefault();
+    document.getElementById('downloadTXMLButton').addEventListener('click', function() {
       downloadFile('Minneapolis.txml', 'Minneapolis.txml');
     });
   
