@@ -151,10 +151,8 @@
   width: 900px;
   box-sizing: border-box; /* Include padding and borders in the width calculation */
 }
-.buttons-container,
-.buttons-containerDownloads,
-.buttons-containerVersions,
-.buttons-containerMenuJson {
+    
+.buttons-container {
   margin: 10px; /* Add the desired margin value */
   display: flex;
   align-items: flex-start; 
@@ -162,6 +160,18 @@
   justify-content: flex-start;
 }
     
+.buttons-containerDownloads,
+.buttons-containerVersions,
+.buttons-containerMenuJson {
+  width: 100%
+  max-width: 800px
+  margin: 10px; /* Add the desired margin value */
+  display: flex;
+  align-items: flex-start; 
+  gap: 15px;
+  justify-content: flex-start;
+}
+
 .picture-container {
   margin: 10px; /* Add the desired margin value */
   display: flex;
