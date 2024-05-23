@@ -22,7 +22,7 @@
   const AbxLinkjson = 'AbxLinks.json';
   const MenuPrefix = 'ORZID2';
   const LinkPrefix = 'ORZ GTX';
-  var hideButtons = 'False';
+  var hideButtonsDownloads = 'False';
   var hideButtonsVersions = 'False';
   </script> 
   <meta charset="UTF-8">
@@ -152,7 +152,7 @@
   box-sizing: border-box; /* Include padding and borders in the width calculation */
 }
 .buttons-container,
-.buttons-containerBottom,
+.buttons-containerDownlaods,
 .buttons-containerVersions {
   margin: 10px; /* Add the desired margin value */
   display: flex;
@@ -376,8 +376,8 @@ let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
 // Function to hide or remove buttons based on the value of hideButtons
-var buttonsContainer = document.querySelector('.buttons-containerBottom');
-if (hideButtons === 'True') {
+var buttonsContainer = document.querySelector('.buttons-containerDownloads');
+if (hideButtonsDownloads === 'True') {
 buttonsContainer.style.display = 'none';
 }
 
