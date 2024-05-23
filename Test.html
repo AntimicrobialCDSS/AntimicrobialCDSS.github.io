@@ -275,9 +275,9 @@
     </div>
     <div class="buttons-containerVersions">
       <p>Download Menu Content:</p>
-      <a href="${OMjson}" class="button" download="${OMjson}">Menus</a>
-      <a href="${ODjson}" class="button" download="${ODjson}">Orders</a>
-      <a href="${txmlFile}" class="button" download="${txmlFile}">TemplateFields</a>
+      <a href="#" id="menusLink" class="button">Menus</a>
+      <a href="#" id="ordersLink" class="button">Orders</a>
+      <a href="#" id="templateFieldsLink" class="button">Template Fields</a>
      </div>
      <button id="downloadJSONButton">Display Menu Data</button>    
      <p>V1.04</p>
@@ -953,7 +953,17 @@ window.addEventListener('DOMContentLoaded', adjustFontSize);
 document.getElementById('searchInput').addEventListener('input', searchData);
 document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
+document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('menusLink').setAttribute('href', OMjson);
+      document.getElementById('menusLink').setAttribute('download', OMjson);
 
+      document.getElementById('ordersLink').setAttribute('href', ODjson);
+      document.getElementById('ordersLink').setAttribute('download', ODjson);
+
+      document.getElementById('templateFieldsLink').setAttribute('href', txmlFile);
+      document.getElementById('templateFieldsLink').setAttribute('download', txmlFile);
+    });
+  
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
 
