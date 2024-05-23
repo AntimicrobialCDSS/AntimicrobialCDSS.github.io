@@ -64,7 +64,10 @@
   font-weight: normal;
   font-style: normal;
 }
-     .button {
+    .button {
+      font-family: 'PT Serif Regular', Arial, sans-serif;
+  	  font-size: 12px;
+  	  /*padding: 5px 5px;  Adjust the values to your desired padding */
       white-space: nowrap;
       flex: 1;
       background-color: #00aedb; /* Blue color */
@@ -76,8 +79,9 @@
       text-decoration: none; /* Remove underline from links */
       border-radius: 0; /* Square corners */
       display: inline-block; /* Make links behave like buttons */
-      /*width: 75%; /* Take up 75% of the screen */
+      width: 150px; /* Take up 75% of the screen */
     }
+    
     .button:hover {
       background-color: #4db8ff; /* Light Blue color */
     }
@@ -164,7 +168,8 @@
 .buttons-containerVersions,
 .buttons-containerMenuJson {
   width: 100%;
-  max-width: 400px;
+  min-width: 800px;
+  max-width: 900px;
   margin: 10px; /* Add the desired margin value */
   align-items: flex-start; 
   gap: 15px;
@@ -213,7 +218,6 @@
   text-align: center;
   text-decoration: none;
   font-size: 20px;
-  font-family: "Times New Roman", serif;
   cursor: pointer;
   color: white;
   padding: 5px 5px; /* Adjust the values to your desired padding */
