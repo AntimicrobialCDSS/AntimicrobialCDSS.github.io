@@ -22,8 +22,8 @@
   const AbxLinkjson = 'AbxLinks.json';
   const MenuPrefix = 'ORZID2';
   const LinkPrefix = 'ORZ GTX';
-  var hideButtonsDownloads = 'False';
-  var hideButtonsVersions = 'False';
+  var hideButtonsDownloads = 'True';
+  var hideButtonsVersions = 'True';
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -153,7 +153,8 @@
 }
 .buttons-container,
 .buttons-containerDownloads,
-.buttons-containerVersions {
+.buttons-containerVersions,
+.buttons-containerMenuJson {
   margin: 10px; /* Add the desired margin value */
   display: flex;
   align-items: flex-start; 
@@ -252,7 +253,7 @@
   <button id="install-button" style="display: none";>Install/Update App</button>
 </div>
     <div class ="search-container">
-        <input type="text" id="searchInput" placeholder="Search...">
+        <input type="text" id="searchInput" placeholder=&#x1F50D;>
     </div>
     <div class ="dropbox-container">
         <select id="filterDropdown"></select>
@@ -278,8 +279,10 @@
       <a href="#" id="ordersLink" class="button">OrderData</a>
       <a href="#" id="templateFieldsLink" class="button">TemplateFieldData</a>
     </div>
+    <div class="buttons-containerDownloads">
      <button id="downloadJSONButton" class="button">CurrentMenuData</button>    
-     <p>V1.04</p>
+    </div>
+    <p>V1.04</p>
   </div>
 <script>
 function adjustFontSize() {
