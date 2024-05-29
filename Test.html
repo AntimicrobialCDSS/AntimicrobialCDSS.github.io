@@ -22,7 +22,7 @@
   const AbxLinkjson = 'AbxLinks.json';
   const MenuPrefix = 'ORZID2';
   const LinkPrefix = 'ORZ GTX';
-  var hideButtonsDownloads = 'False';
+  var hideButtonsDownloads = 'True';
   var hideButtonsVersions = 'False';
   </script> 
   <meta charset="UTF-8">
@@ -416,7 +416,7 @@ buttonsContainer.style.display = 'none';
 }
 
 // Function to hide or remove buttons based on the value of hideVersionButtons
-var buttonsContainerVersions = document.querySelector('.buttons-containerVersions');
+var buttonsContainerVersions = document.querySelector('menusLink');
 if (hideButtonsVersions === 'True') {
 buttonsContainerVersions.style.display = 'none';
 }
