@@ -79,10 +79,32 @@
       text-decoration: none; /* Remove underline from links */
       border-radius: 0; /* Square corners */
       display: inline-block; /* Make links behave like buttons */
-      width: 150px; /* Take up 75% of the screen */
+      width: 19%; /* Take up 75% of the screen */
     }
     
     .button:hover {
+      background-color: #4db8ff; /* Light Blue color */
+    }
+    
+    .button2 {
+      font-family: 'PT Serif Regular', Arial, sans-serif;
+  	  font-size: 12px;
+  	  /*padding: 5px 5px;  Adjust the values to your desired padding */
+      white-space: nowrap;
+      flex: 1;
+      background-color: #00aedb; /* Blue color */
+      color: white;
+      padding: 10px; /* Increased padding for square buttons */
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none; /* Remove underline from links */
+      border-radius: 0; /* Square corners */
+      display: inline-block; /* Make links behave like buttons */
+      width: 21.65%; /* Take up 75% of the screen */
+    }
+    
+    .button2:hover {
       background-color: #4db8ff; /* Light Blue color */
     }
     
@@ -168,7 +190,7 @@
 .buttons-containerVersions,
 .buttons-containerMenuJson {
   width: 100%;
-  min-width: 800px;
+  min-width: 700px;
   max-width: 900px;
   margin-left: 0px; /* Add the desired margin value */
   margin-top: 5px; 
@@ -287,13 +309,11 @@
       <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
     </div>
     <div class="buttons-containerDownloads">
-      <a href="#" id="menusLink" class="button">MenuData</a>
-      <a href="#" id="ordersLink" class="button">OrderData</a>
-      <a href="#" id="templateFieldsLink" class="button">TemplateFieldData</a>
-    </div>
-    <div class="buttons-containerDownloads">
-     <button id="downloadJSONButton" class="button">CurrentMenuData</button>    
-    </div>
+      <a href="#" id="menusLink" class="button2">MenuData</a>
+      <a href="#" id="ordersLink" class="button2">OrderData</a>
+      <a href="#" id="templateFieldsLink" class="button2">TemplateFieldData</a>
+      <a href="#" id="downloadJSONButton" class="button2">CurrentMenuData</a>
+    </div>  
     <p>V1.04</p>
 <script>
 function adjustFontSize() {
