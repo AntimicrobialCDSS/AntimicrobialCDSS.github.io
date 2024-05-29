@@ -410,9 +410,9 @@ let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
 // Function to hide or remove buttons based on the value of hideButtons
-var buttonsContainer = document.querySelector('menusLink');
+/*var buttonsContainer = document.querySelector('menusLink');*/
 if (hideButtonsDownloads === 'True') {
-buttonsContainer.style='display: none;';
+{document.getElementById("menusLink").style.display="none";};
 }
 
 // Function to hide or remove buttons based on the value of hideVersionButtons
