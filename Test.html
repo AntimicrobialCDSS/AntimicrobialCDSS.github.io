@@ -10,6 +10,7 @@
   gtag('config', 'G-RZT6D0E0DS');
   </script>
   <script>
+  const Location = 'Minneapolis' 
   var Title = 'Minneapolis Antimicrobial CDSS'
   var MainMenuButton = 'Minneapolis Home'
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN';
@@ -410,8 +411,27 @@ let historyIndex = -1; // Index of the current selection in the history
 let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
+// Function to hide location buttons
+If (location = 'Des Moines') {
+  {document.getElementById("desMoinesButton").style.display="none";};
+}
+If (location = 'Fargo') {
+  {document.getElementById("fargoButton").style.display="none";};
+}
+If (location = 'Minneapolis') {
+  {document.getElementById("minneapolisButton").style.display="none";};
+}  
+If (location = 'Omaha') {
+  {document.getElementById("omahaButton").style.display="none";};
+}  
+If (location = 'St. Cloud') {
+  {document.getElementById("stCloudButton").style.display="none";};
+}
+If (location = 'Sioux Falls') {
+  {document.getElementById("siouxFallsButton").style.display="none";};
+}  
+  
 // Function to hide or remove buttons based on the value of hideButtons
-/*var buttonsContainer = document.querySelector('menusLink');*/
 if (hideButtonsDownloads === 'True') {
   {document.getElementById("menusLink").style.display="none";};
   {document.getElementById("ordersLink").style.display="none";};
