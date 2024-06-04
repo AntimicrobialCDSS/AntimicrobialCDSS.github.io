@@ -10,6 +10,12 @@
   gtag('config', 'G-RZT6D0E0DS');
   </script>
   <script>
+document.getElementById('versionTag').textContent = Version;
+document.getElementById('pageTitle').textContent = Title;
+document.getElementById('mainMenuButton').textContent = MainMenuButton;
+document.getElementById('indexButton').textContent = IndexButton;
+    
+  var Version = 'V1.05'
   var CDSSlocation = 'Minneapolis'
   var Title = 'Minneapolis Antimicrobial CDSS'
   var MainMenuButton = 'Minneapolis Home'
@@ -314,7 +320,7 @@
       <a href="#" id="templateFieldsLink" class="button2">TemplateFieldData</a>
       <a href="#" id="downloadJSONButton" class="button2">CurrentMenuData</a>
     </div>  
-    <p>V1.04</p>
+    <span id="versionTag"></span>
 <script>
 function adjustFontSize() {
   const table = document.querySelector('.table');
@@ -444,7 +450,7 @@ buttonsContainerVersions.style.display = 'none';
     
 document.getElementById('pageTitle').textContent = Title;
 document.getElementById('mainMenuButton').textContent = MainMenuButton;
-document.getElementById('indexButton').textContent = IndexButton;
+document.getElementById('indexButton').textContent = IndexButton;  
   
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
