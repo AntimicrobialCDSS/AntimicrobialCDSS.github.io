@@ -1,23 +1,24 @@
 const APP_PREFIX = 'CDSS_';
-const VERSION = '1.08'; // Update the version when you make changes
+const VERSION = '1.09'; // Update the version when you make changes
 
 const URLS = [
-  '/Antimicrobial CDSS Frequently Asked Questions.pdf',
   '/AbxLinks.json',
-  '/index.html',
-  '/Disclaimer.html',
+  '/Antimicrobial CDSS Frequently Asked Questions.pdf',
   '/AppInstall.html',
   '/AppInstall.jpg',
-  '/Resources.html',
   '/CDSSLogo.png',
   '/CDSSLogoApp.png',
   '/CDSSLogoLarge.png',
   '/CDSSLogoTab.png',
   '/CDSSVALogo.png',
+  '/Disclaimer.html',
+  '/Resources.html',
   '/VASeal.jpg',
+  '/index.html',
   '/manifest.webmanifest',
   '/service-worker.js',
   
+  '/Minneapolis.txml',
   '/MinneapolisCDSS.html',
   '/MinneapolisItemLinks.json',
   '/MinneapolisOMJSON.json',
