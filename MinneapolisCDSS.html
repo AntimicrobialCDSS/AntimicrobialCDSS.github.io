@@ -26,6 +26,7 @@
   const LinkPrefix = 'ORZ GTX';
   var hideButtonsDownloads = 'False';
   var hideButtonsVersions = 'False';
+  var hideButtonsIndex = 'False';
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -429,6 +430,9 @@ if (CDSSlocation === 'St. Cloud') {
 if (CDSSlocation === 'Sioux Falls') {
   {document.getElementById("siouxFallsButton").style.display="none";};
 }  
+if (hideButtonsIndex === 'True') {
+  {document.getElementById("indexButton").style.display="none";};
+}
   
 // Function to hide or remove buttons based on the value of hideButtons
 if (hideButtonsDownloads === 'True') {
