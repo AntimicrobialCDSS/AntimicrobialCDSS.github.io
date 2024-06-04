@@ -1078,9 +1078,6 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
   .catch(error => {
     console.error('Error:', error);
   });   
-window.onbeforeunload = function() {
-  return "This action will close the Antimicrobial CDSS app.";
-};
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/service-worker.js', {
     scope: '/'
