@@ -26,6 +26,7 @@
   const LinkPrefix = 'ORZ GTX';
   var hideButtonsDownloads = 'False';
   var hideButtonsVersions = 'False';
+  var hideButtonsIndex = 'False';
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -429,6 +430,9 @@ if (CDSSlocation === 'St. Cloud') {
 if (CDSSlocation === 'Sioux Falls') {
   {document.getElementById("siouxFallsButton").style.display="none";};
 }  
+if (hideButtonsIndex === 'True') {
+  {document.getElementById("indexButton").style.display="none";};
+}
   
 // Function to hide or remove buttons based on the value of hideButtons
 if (hideButtonsDownloads === 'True') {
@@ -881,7 +885,7 @@ function handleGoBack() {
     const selectedItem = history[historyIndex];
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
-    document.getElementById('searchInput').placeholder = "Search...";
+    document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
@@ -897,7 +901,7 @@ function handleGoForward() {
     const selectedItem = history[historyIndex];
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
-    document.getElementById('searchInput').placeholder = "Search...";
+    document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
@@ -910,7 +914,7 @@ function handleGoForward() {
 function handleMainMenu() {
   const dropdown = document.getElementById('filterDropdown');
   document.getElementById('searchInput').value = null;
-  document.getElementById('searchInput').placeholder = "Search...";
+  document.getElementById('searchInput').placeholder = "\u{1F50D}";
   populateDropdown(omData);
   dropdown.value = MainMenu;
   filterData({ target: dropdown });
@@ -922,7 +926,7 @@ function handleMainMenu() {
 function handleIndex() {
   const dropdown = document.getElementById('filterDropdown');
   document.getElementById('searchInput').value = null;
-  document.getElementById('searchInput').placeholder = "Search...";
+  document.getElementById('searchInput').placeholder = "\u{1F50D}";
   populateDropdown(omData);
   dropdown.value = Index;
   filterData({ target: dropdown });
@@ -986,6 +990,9 @@ openPageInNewWindow("DesMoinesCDSS.html", { " CI ": " ", " NE ": " ", "GMENU": "
 });
 document.getElementById('fargoButton').addEventListener('click', function () {
   openPageInNewWindow("FargoCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
+});
+document.getElementById('minneapolisButton').addEventListener('click', function () {
+  openPageInNewWindow("MinneapolisCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
 });
 document.getElementById('omahaButton').addEventListener('click', function () {
   openPageInNewWindow('OmahaCDSS.html', { " CI ": " ", " NE ": " ", "GMENU": "NE GMENU" }); // Pass the replacement value
