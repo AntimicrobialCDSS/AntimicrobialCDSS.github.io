@@ -886,7 +886,7 @@ function handleGoBack() {
     const selectedItem = history[historyIndex];
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
-    document.getElementById('searchInput').placeholder = "Search...";
+    document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
@@ -902,7 +902,7 @@ function handleGoForward() {
     const selectedItem = history[historyIndex];
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
-    document.getElementById('searchInput').placeholder = "Search...";
+    document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
@@ -915,7 +915,7 @@ function handleGoForward() {
 function handleMainMenu() {
   const dropdown = document.getElementById('filterDropdown');
   document.getElementById('searchInput').value = null;
-  document.getElementById('searchInput').placeholder = "Search...";
+  document.getElementById('searchInput').placeholder = "\u{1F50D}";
   populateDropdown(omData);
   dropdown.value = MainMenu;
   filterData({ target: dropdown });
@@ -927,7 +927,7 @@ function handleMainMenu() {
 function handleIndex() {
   const dropdown = document.getElementById('filterDropdown');
   document.getElementById('searchInput').value = null;
-  document.getElementById('searchInput').placeholder = "Search...";
+  document.getElementById('searchInput').placeholder = "\u{1F50D}";
   populateDropdown(omData);
   dropdown.value = Index;
   filterData({ target: dropdown });
