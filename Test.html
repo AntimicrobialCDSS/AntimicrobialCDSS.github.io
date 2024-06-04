@@ -10,11 +10,6 @@
   gtag('config', 'G-RZT6D0E0DS');
   </script>
   <script>
-document.getElementById('versionTag').textContent = Version;
-document.getElementById('pageTitle').textContent = Title;
-document.getElementById('mainMenuButton').textContent = MainMenuButton;
-document.getElementById('indexButton').textContent = IndexButton;
-    
   var Version = 'V1.05'
   var CDSSlocation = 'Minneapolis'
   var Title = 'Minneapolis Antimicrobial CDSS'
@@ -448,9 +443,10 @@ if (hideButtonsVersions === 'True') {
 buttonsContainerVersions.style.display = 'none';
 }
     
+document.getElementById('versionTag').textContent = Version;
 document.getElementById('pageTitle').textContent = Title;
 document.getElementById('mainMenuButton').textContent = MainMenuButton;
-document.getElementById('indexButton').textContent = IndexButton;  
+document.getElementById('indexButton').textContent = IndexButton;
   
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
