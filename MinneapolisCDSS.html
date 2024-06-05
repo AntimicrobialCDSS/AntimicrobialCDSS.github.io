@@ -1035,7 +1035,14 @@ document.addEventListener('DOMContentLoaded', () => {
   
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
-
+  
+// Function to hide broken images if they are not in repository
+document.addEventListener("DOMContentLoaded", function(event) {
+  document.querySelectorAll('img').forEach(function(img){
+  img.onerror = function(){this.style.display='none';};
+  })
+});
+  
 // Function to open a page in a new window with multiple replacement values
 function openPageInNewWindow(pageURL, replacements) {
   const dropdown = document.getElementById('filterDropdown');
