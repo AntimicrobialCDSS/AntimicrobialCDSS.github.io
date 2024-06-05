@@ -889,7 +889,7 @@ function handleGoBack() {
     const selectedItem = history[historyIndex];
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
-    document.getElementById('searchInput').placeholder = "Search...";
+    document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
