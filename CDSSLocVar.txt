@@ -1,0 +1,113 @@
+Des Moines:
+ var Version = 'V1.05'
+  var CDSSlocation = 'Des Moines'
+  var Title = 'Des Moines Antimicrobial CDSS'
+  var MainMenuButton = 'Des Moines Home'
+  const MainMenu = 'ORZID2 CI GMENU ABX INPT MAIN';
+  var IndexButton = 'Index'
+  const Index = 'ORZID2 CI GMENU ABX INDEX INPATIENT';
+  const OMjson = 'DesMoinesOMJSON.json';
+  const ODjson = 'DesMoinesODJSON.json';
+  const txmlFile = 'Minneapolis.txml';
+  const ItemLinkjson = 'DesMoinesItemLinks.json';
+  const AbxLinkjson = 'AbxLinks.json';
+  const MenuPrefix = 'ORZID2';
+  const LinkPrefix = 'ORZ GTX';
+  var hideButtonsDownloads = 'True';
+  var hideButtonsVersions = 'False';
+  var hideButtonsIndex = 'False';
+
+Fargo:
+  var Version = 'V1.05'
+  var CDSSlocation = 'Fargo'
+  var Title = 'Fargo Antimicrobial CDSS'
+  var MainMenuButton = 'Fargo Home'
+  const MainMenu = 'ORZID2 MAIN MENU';
+  var IndexButton = 'Index'
+  const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';
+  const OMjson = 'FargoOMJSON.json';
+  const ODjson = 'FargoODJSON.json';
+  const txmlFile = 'Minneapolis.txml';
+  const ItemLinkjson = 'FargoItemLinks.json';
+  const AbxLinkjson = 'AbxLinks.json';
+  const MenuPrefix = 'ORZID2';
+  const LinkPrefix = 'ORZ GTX';
+  var hideButtonsDownloads = 'True';
+  var hideButtonsVersions = 'False';
+  var hideButtonsIndex = 'True';
+
+Minneapolis:
+  var Version = 'V1.05'
+  var CDSSlocation = 'Minneapolis'
+  var Title = 'Minneapolis Antimicrobial CDSS'
+  var MainMenuButton = 'Minneapolis Home'
+  const MainMenu = 'ORZID2 GMENU ABX INPT MAIN';
+  var IndexButton = 'Index'
+  const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';
+  const OMjson = 'MinneapolisOMJSON.json';
+  const ODjson = 'MinneapolisODJSON.json';
+  const txmlFile = 'Minneapolis.txml';
+  const ItemLinkjson = 'MinneapolisItemLinks.json';
+  const AbxLinkjson = 'AbxLinks.json';
+  const MenuPrefix = 'ORZID2';
+  const LinkPrefix = 'ORZ GTX';
+  var hideButtonsDownloads = 'False';
+  var hideButtonsVersions = 'False';
+  var hideButtonsIndex = 'False';
+
+Omaha:
+  var Version = 'V1.05'
+  var CDSSlocation = 'Omaha'
+  var Title = 'Omaha Antimicrobial CDSS'
+  var MainMenuButton = 'Omaha Home'
+  const MainMenu = 'ORZID2 NE GMENU ABX INPT MAIN';
+  var IndexButton = 'Index'
+  const Index = 'ORZID2 NE GMENU ABX INDEX INPATIENT';
+  const OMjson = 'OmahaOMJSON.json';
+  const ODjson = 'OmahaODJSON.json';
+  const txmlFile = 'Minneapolis.txml';
+  const ItemLinkjson = 'OmahaItemLinks.json';
+  const AbxLinkjson = 'AbxLinks.json';
+  const MenuPrefix = 'ORZID2';
+  const LinkPrefix = 'ORZ GTX';
+  var hideButtonsDownloads = 'True';
+  var hideButtonsVersions = 'False';
+  var hideButtonsIndex = 'False';
+
+Sioux Falls:
+  var Version = 'V1.05'
+  var CDSSlocation = 'Sioux Falls'
+  var Title = 'Sioux Falls Antimicrobial CDSS'
+  var MainMenuButton = 'Sioux Falls Home'
+  const MainMenu = 'ORZID2 GMENU ABX INPT MAIN';
+  var IndexButton = 'Index'
+  const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';
+  const OMjson = 'SiouxFallsOMJSON.json';
+  const ODjson = 'SiouxFallsODJSON.json';
+  const txmlFile = 'Minneapolis.txml';
+  const ItemLinkjson = 'SiouxFallsItemLinks.json';
+  const AbxLinkjson = 'AbxLinks.json';
+  const MenuPrefix = 'ORZID2';
+  const LinkPrefix = 'ORZ GTX';
+  var hideButtonsDownloads = 'True';
+  var hideButtonsVersions = 'False';
+  var hideButtonsIndex = 'False';
+
+St. Cloud:
+  var Version = 'V1.05'
+  var CDSSlocation = 'St. Cloud'
+  var Title = 'St. Cloud Antimicrobial CDSS'
+  var MainMenuButton = 'St. Cloud Home'
+  const MainMenu = 'ORZID2 GMENU ABX INPT MAIN';
+  var IndexButton = 'Index'
+  const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';
+  const OMjson = 'StCloudOMJSON.json';
+  const ODjson = 'StCloudODJSON.json';
+  const txmlFile = 'Minneapolis.txml';
+  const ItemLinkjson = 'StCloudItemLinks.json';
+  const AbxLinkjson = 'AbxLinks.json';
+  const MenuPrefix = 'ORZID2';
+  const LinkPrefix = 'ORZ GTX';
+  var hideButtonsDownloads = 'True';
+  var hideButtonsVersions = 'False';
+  var hideButtonsIndex = 'False';
