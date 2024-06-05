@@ -878,21 +878,27 @@ function pushHistory(item) {
   }
 }
 
-// Function to handle the Go Back button click event
 function handleGoBack() {
+  if (historyIndex === 0 || historyIndex === -1) {
+    window.location.href = "index.html";
+    return;
+  }
+  
   if (historyIndex > 0) {
     historyIndex--;
     const selectedItem = history[historyIndex];
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
-    document.getElementById('searchInput').placeholder = "\u{1F50D}";
+    document.getElementById('searchInput').placeholder = "Search...";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
   }
-      scrollToTop()
-      adjustFontSize();
+  
+  scrollToTop();
+  adjustFontSize();
 }
+
 
 // Function to handle the Go Forward button click event
 function handleGoForward() {
@@ -993,7 +999,7 @@ document.getElementById('fargoButton').addEventListener('click', function () {
 });
 document.getElementById('minneapolisButton').addEventListener('click', function () {
   openPageInNewWindow("MinneapolisCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
-});  
+});
 document.getElementById('omahaButton').addEventListener('click', function () {
   openPageInNewWindow('OmahaCDSS.html', { " CI ": " ", " NE ": " ", "GMENU": "NE GMENU" }); // Pass the replacement value
 });
@@ -1072,9 +1078,6 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
   .catch(error => {
     console.error('Error:', error);
   });   
-window.onbeforeunload = function() {
-  return "This action will close the Antimicrobial CDSS app.";
-};
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/service-worker.js', {
     scope: '/'
