@@ -703,6 +703,7 @@ function handleRowClick(item) {
 }
 
 // Function to create the table with OMJSON data
+// Function to create the table with OMJSON data
 function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
@@ -710,20 +711,24 @@ function createOMTable(selectedData) {
   const { Contents } = selectedData;
   const maxRow = Math.max(...Contents.map(item => item.Row));
   const columns = Math.max(...Contents.map(item => item.Column));
-  // Before processing each row, create an array to store the last matched index for each row
+  
+  // Array to store the last matched index for each row
   const lastMatchedIndexes = new Array(maxRow).fill(0);
+  
   for (let row = 1; row <= maxRow; row++) {
-    // Before processing each row, create a Set to store the already matched texts for all rows
+    // Set to store the already matched texts for all rows
     const matchedTexts = new Set();
     let allUpperCase = true; // Flag to check if all text in the row is in uppercase
     let isInTop5Rows = row <= 5; // Check if row is in the top 5 rows
     let trimmedValueNotBlank = false; // Flag to check if trimmed value is not blank
     const bodyRow = document.createElement('tr');
+    
     for (let column = 1; column <= columns; column++) {
       const matchingItems = Contents.filter(
         item => item.Row === row && item.Column === column
       );
       const displayCell = document.createElement('td');
+      
       if (matchingItems.length > 0) {
         matchingItems.forEach(matchingItem => {
           const { Text, Item, Header, DisplayText } = matchingItem;
@@ -745,16 +750,16 @@ function createOMTable(selectedData) {
             });
             cellContentElement.textContent = cellContent;
           } else {
-              const clickableSymbol = document.createElement('span');
-              clickableSymbol.textContent = '^ ';
-              clickableSymbol.classList.add('clickable');
-              clickableSymbol.addEventListener('click', () => {
-                handleRowClick(matchingItem);
-              });
-
-              cellContentElement.appendChild(clickableSymbol);
-              cellContentElement.appendChild(document.createTextNode(cellContent));
-            } else {
+            // Add the clickable symbol '^'
+            const clickableSymbol = document.createElement('span');
+            clickableSymbol.textContent = '^ ';
+            clickableSymbol.classList.add('clickable');
+            clickableSymbol.addEventListener('click', () => {
+              handleRowClick(matchingItem);
+            });
+            cellContentElement.appendChild(clickableSymbol);
+            cellContentElement.appendChild(document.createTextNode(cellContent));
+            
             // Check if there are partial string matches with links in a row
             if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('div');
@@ -811,14 +816,16 @@ function createOMTable(selectedData) {
               }
               cellContentElement.appendChild(linkContainer);
             } else {
-              cellContentElement.textContent = contentText;
+              cellContentElement.appendChild(document.createTextNode(contentText));
             }
           }
+          
           if (Header === 1) {
             cellContentElement.classList.add('bold');
             displayCell.classList.add('bold');
           }
           displayCell.appendChild(cellContentElement);
+          
           // Check if the cell content is in uppercase
           if (cellContent !== cellContent.toUpperCase()) {
             allUpperCase = false;
@@ -827,31 +834,34 @@ function createOMTable(selectedData) {
       }
       bodyRow.appendChild(displayCell);
     }
+    
     // Check if the trimmed value is not blank
     const trimmedValue = bodyRow.innerText.trim();
     if (trimmedValue !== '') {
       trimmedValueNotBlank = true;
     }
     if (allUpperCase && isInTop5Rows && trimmedValueNotBlank) {
-      // If all conditions are met, set the background color to light blue
+      // If all conditions are met, set the background color to lightblue
       bodyRow.style.backgroundColor = 'lightblue';
     }
     tbody.appendChild(bodyRow);
   }
- // Add a new row for Item.Name at the bottom of the table
+  
+  // Add a new row for Item.Name at the bottom of the table
   const itemRow = document.createElement('tr');
   const itemCell = document.createElement('td');
   itemCell.textContent = "VistA Menu Name: " + selectedData.Name; // Replace 'Item.Name' with the actual item name
   itemRow.appendChild(itemCell);
   tbody.appendChild(itemRow);
   table.appendChild(tbody);
+  
   const resultContainer = document.getElementById('resultContainer');
   resultContainer.innerHTML = '';
   if (selectedData) {
     resultContainer.appendChild(table);
   }
 }
-  
+
 // Function to create the table with ODJSON data
 function createODTable(selectedData) {
   const table = document.createElement('table');
