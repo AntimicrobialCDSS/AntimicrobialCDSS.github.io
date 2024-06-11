@@ -798,16 +798,15 @@ function createOMTable(selectedData) {
           }
          
           if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              const clickableSymbol = document.createElement('span');
+              const clickableSymbol = document.createElement('i');
               clickableSymbol.textContent = '^ ';
               clickableSymbol.classList.add('clickable');
-              clickableSymbol.style.display = 'inline-block';
               clickableSymbol.addEventListener('click', () => {
                   handleRowClick(matchingItem);
               });
-               cellContentElement.innerHTML += clickableSymbol.outerHTML
+              cellContentElement.appendChild(clickableSymbol);
           }
-          
+
           if (Header === 1) {
             cellContentElement.classList.add('bold');
             displayCell.classList.add('bold');
