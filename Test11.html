@@ -754,7 +754,7 @@ function handleRowClick(item) {
             cellContentElement.appendChild(clickableSymbol);
           }
 
-          if (Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+          if (!Item || (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix)))){
             if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('div');
               const matchingURLs = abxLinkData.filter(item =>
