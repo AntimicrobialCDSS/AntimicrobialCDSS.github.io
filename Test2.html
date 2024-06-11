@@ -633,40 +633,6 @@ searchInput.addEventListener('click', function () {
 
 // Call the adjustFontSize function when the window is resized
 window.addEventListener('resize', adjustFontSize);
-
-// Function to handle row click event
-function handleRowClick(item) {
-  const matchingItem = omData.find(
-    omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
-  );
-  const dropdown = document.getElementById('filterDropdown');
-  
-  if (matchingItem) {
-    selectedData = matchingItem;
-    dropdown.value = matchingItem.Name;
-    pushHistory(matchingItem.Name);
-    createOMTable(matchingItem); // Move createOMTable here
-    scrollToTop(); // Move scrollToTop here
-    adjustFontSize(); // Move adjustFontSize here
-  } else {
-    const matchingLink = itemLinkData.find(
-      linkItem => linkItem.Item.trim().toLowerCase() === item.Item.trim().toLowerCase()
-    );
-
-    if (matchingLink) {
-      const { URL } = matchingLink;
-
-      if (isValidURL(URL)) {
-        // Open the URL in a new window/tab
-        window.open(URL, '_blank');
-      } else {
-        console.log('Invalid URL:', URL);
-      }
-    } else {
-      console.log('No matching item found in OMJSON.json or MinneapolisItemLink.json');
-    }
-  }
-}
     
 // Function to check if a value is a valid URL
 function isValidURL(value) {
@@ -690,11 +656,52 @@ function scrollToTop() { // Add opening curly brace here
   });
 } 
   
-  // Function to escape special characters in a string to use in a regular expression
+// Function to escape special characters in a string to use in a regular expression
   function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
   
+function handleRowClick(item) {
+  const matchingItem = omData.find(
+    omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+  );
+  const dropdown = document.getElementById('filterDropdown');
+
+  if (matchingItem) {
+    selectedData = matchingItem;
+    dropdown.value = matchingItem.Name;
+    pushHistory(matchingItem.Name);
+    createOMTable(matchingItem);
+  } else {
+    const matchingItemIndex = odData.findIndex(
+      odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+    );
+
+    if (matchingItemIndex !== -1) {
+      selectedData = odData[matchingItemIndex];
+      createODTable(selectedData);
+    } else {
+      const matchingLink = itemLinkData.find(
+        linkItem => linkItem.Item.trim().toLowerCase() === item.Item.trim().toLowerCase()
+      );
+
+      if (matchingLink) {
+        const { URL } = matchingLink;
+
+        if (isValidURL(URL)) {
+          window.open(URL, '_blank');
+        } else {
+          console.log('Invalid URL:', URL);
+        }
+      } else {
+        console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
+      }
+    }
+  }
+  scrollToTop();
+  adjustFontSize();
+}
+
 function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
@@ -825,6 +832,7 @@ function createOMTable(selectedData) {
     resultContainer.appendChild(table);
   }
 }
+
 
 // Function to create the table with ODJSON data
 function createODTable(selectedData) {
