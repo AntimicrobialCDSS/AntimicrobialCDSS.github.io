@@ -1,0 +1,138 @@
+// Function to create the table with OMJSON data
+function createOMTable(selectedData) {
+  const table = document.createElement('table');
+  table.classList.add('table');
+  const tbody = document.createElement('tbody');
+  const { Contents } = selectedData;
+  const maxRow = Math.max(...Contents.map(item => item.Row));
+  const columns = Math.max(...Contents.map(item => item.Column));
+  // Before processing each row, create an array to store the last matched index for each row
+  const lastMatchedIndexes = new Array(maxRow).fill(0);
+  for (let row = 1; row <= maxRow; row++) {
+    // Before processing each row, create a Set to store the already matched texts for all rows
+    const matchedTexts = new Set();
+    let allUpperCase = true; // Flag to check if all text in the row is in uppercase
+    let isInTop5Rows = row <= 5; // Check if row is in the top 5 rows
+    let trimmedValueNotBlank = false; // Flag to check if trimmed value is not blank
+    const bodyRow = document.createElement('tr');
+    for (let column = 1; column <= columns; column++) {
+      const matchingItems = Contents.filter(
+        item => item.Row === row && item.Column === column
+      );
+      const displayCell = document.createElement('td');
+      if (matchingItems.length > 0) {
+        matchingItems.forEach(matchingItem => {
+          const { Text, Item, Header, DisplayText } = matchingItem;
+          let cellContent = Text || '';
+          if (cellContent === '' && DisplayText) {
+            cellContent = DisplayText;
+          } else if (cellContent === '' && Item) {
+            cellContent = Item;
+          }
+          const cellContentElement = document.createElement('div');
+          const contentText = cellContent; // Preserve original case-sensitive text
+          let currentIndex = 0;
+          // Check if the row click item starts with MenuPrefix or LinkPrefix
+          if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+            cellContentElement.classList.add('clickable');
+            cellContentElement.addEventListener('click', () => {
+              handleRowClick(matchingItem);
+            });
+            cellContentElement.textContent = cellContent;
+          } else {
+            // Check if there are partial string matches with links in a row
+            if (abxLinkData.length > 0) {
+              const linkContainer = document.createElement('div');
+              const matchingURLs = abxLinkData.filter(item =>
+                contentText.toLowerCase().includes(item.Name.toLowerCase())
+              );
+              const sortedMatchingURLs = matchingURLs.sort((a, b) => {
+                const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
+                const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
+                return aIndex - bIndex;
+              });
+              // Initialize currentIndex to 0 for each row
+              currentIndex = 0;
+              sortedMatchingURLs.forEach(matchingURL => {
+                const { Name, URL } = matchingURL;
+                const nameRegex = new RegExp(`\\b${Name}\\b`, 'gi');
+                let match;
+                while ((match = nameRegex.exec(contentText)) !== null) {
+                  // If currentIndex is ahead of the current match index, update currentIndex to the end of this match
+                  if (currentIndex > match.index) {
+                    currentIndex = match.index + match[0].length;
+                    continue;
+                  }
+                  const nonLinkText = contentText.substring(currentIndex, match.index);
+                  const linkText = match[0].toLowerCase(); // Convert linkText to lowercase for case-insensitive comparison
+                  // Check if the link text is already added for any row
+                  if (matchedTexts.has(linkText)) {
+                    // Append the remaining text from the last matched index to the current matched index
+                    const remainingText = contentText.substring(lastMatchedIndexes[row - 1], match.index);
+                    const remainingTextNode = document.createTextNode(remainingText);
+                    linkContainer.appendChild(remainingTextNode);
+                    currentIndex = match.index + match[0].length;
+                    continue;
+                  }
+                  const linkElement = document.createElement('a');
+                  linkElement.href = URL;
+                  linkElement.classList.add('AbxLink');
+                  linkElement.target = '_blank';
+                  linkElement.textContent = match[0]; // Use the original case for the link text
+                  const nonLinkTextNode = document.createTextNode(nonLinkText);
+                  linkContainer.appendChild(nonLinkTextNode);
+                  linkContainer.appendChild(linkElement);
+                  // Store the link text to prevent matching it to another link for any row
+                  matchedTexts.add(linkText);
+                  // Store the last matched index for this row
+                  lastMatchedIndexes[row - 1] = match.index + match[0].length;
+                  currentIndex = match.index + match[0].length;
+                }
+              });
+              if (currentIndex < contentText.length) {
+                const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
+                const remainingTextNode = document.createTextNode(remainingText);
+                linkContainer.appendChild(remainingTextNode);
+              }
+              cellContentElement.appendChild(linkContainer);
+            } else {
+              cellContentElement.textContent = contentText;
+            }
+          }
+          if (Header === 1) {
+            cellContentElement.classList.add('bold');
+            displayCell.classList.add('bold');
+          }
+          displayCell.appendChild(cellContentElement);
+          // Check if the cell content is in uppercase
+          if (cellContent !== cellContent.toUpperCase()) {
+            allUpperCase = false;
+          }
+        });
+      }
+      bodyRow.appendChild(displayCell);
+    }
+    // Check if the trimmed value is not blank
+    const trimmedValue = bodyRow.innerText.trim();
+    if (trimmedValue !== '') {
+      trimmedValueNotBlank = true;
+    }
+    if (allUpperCase && isInTop5Rows && trimmedValueNotBlank) {
+      // If all conditions are met, set the background color to light blue
+      bodyRow.style.backgroundColor = 'lightblue';
+    }
+    tbody.appendChild(bodyRow);
+  }
+ // Add a new row for Item.Name at the bottom of the table
+  const itemRow = document.createElement('tr');
+  const itemCell = document.createElement('td');
+  itemCell.textContent = "VistA Menu Name: " + selectedData.Name; // Replace 'Item.Name' with the actual item name
+  itemRow.appendChild(itemCell);
+  tbody.appendChild(itemRow);
+  table.appendChild(tbody);
+  const resultContainer = document.getElementById('resultContainer');
+  resultContainer.innerHTML = '';
+  if (selectedData) {
+    resultContainer.appendChild(table);
+  }
+}
