@@ -753,7 +753,17 @@ function createOMTable(selectedData) {
               /*cellContentElement.appendChild(clickableSymbol);*/
           }
           
-          if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+            const clickableSymbol = document.createElement('span');
+            clickableSymbol.textContent = '^ ';
+            clickableSymbol.classList.add('clickable');
+            clickableSymbol.addEventListener('click', () => {
+                handleRowClick(matchingItem);
+            });
+            cellContentElement.appendChild(clickableSymbol);
+          }
+          
+      if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
           if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('div');
               const matchingURLs = abxLinkData.filter(item =>
@@ -801,19 +811,14 @@ function createOMTable(selectedData) {
                   const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
                   const remainingTextNode = document.createTextNode(remainingText);
                   linkContainer.appendChild(remainingTextNode);
-              if (clickableSymbol) {
-                  cellContentElement.appendChild(clickableSymbol);
               }
+      
               cellContentElement.appendChild(linkContainer);
-              }
-             else {
-              if (clickableSymbol) {
-                  cellContentElement.appendChild(clickableSymbol);
-              }
+          } else {
               cellContentElement.textContent = contentText;
-            }
           }
-        }
+      }
+
           
           if (Header === 1) {
             cellContentElement.classList.add('bold');
