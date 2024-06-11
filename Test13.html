@@ -741,16 +741,6 @@ function createOMTable(selectedData) {
               });
               cellContentElement.textContent = cellContent;
           } 
-          
-          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              const clickableSymbol = document.createElement('span');
-              clickableSymbol.textContent = '^ ';
-              clickableSymbol.classList.add('clickable');
-              clickableSymbol.addEventListener('click', () => {
-                  handleRowClick(matchingItem);
-              });
-              cellContentElement.appendChild(clickableSymbol);
-          }
 
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
@@ -805,6 +795,17 @@ function createOMTable(selectedData) {
             } else {
               cellContentElement.textContent = contentText;
             }
+          }
+         
+          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+              const clickableSymbol = document.createElement('span');
+              clickableSymbol.textContent = '^ ';
+              clickableSymbol.classList.add('clickable');
+              clickableSymbol.style.display = 'inline-block';
+              clickableSymbol.addEventListener('click', () => {
+                  handleRowClick(matchingItem);
+              });
+               cellContentElement.innerHTML += clickableSymbol.outerHTML
           }
           
           if (Header === 1) {
