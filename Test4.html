@@ -703,7 +703,6 @@ function handleRowClick(item) {
 }
 
 // Function to create the table with OMJSON data
-// Function to create the table with OMJSON data
 function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
@@ -759,8 +758,10 @@ function createOMTable(selectedData) {
             });
             cellContentElement.appendChild(clickableSymbol);
             cellContentElement.appendChild(document.createTextNode(cellContent));
-            
-            // Check if there are partial string matches with links in a row
+          }
+          
+          // Check if there are partial string matches with links in a row
+          if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('div');
               const matchingURLs = abxLinkData.filter(item =>
@@ -815,8 +816,6 @@ function createOMTable(selectedData) {
                 linkContainer.appendChild(remainingTextNode);
               }
               cellContentElement.appendChild(linkContainer);
-            } else {
-              cellContentElement.appendChild(document.createTextNode(contentText));
             }
           }
           
