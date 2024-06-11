@@ -702,10 +702,11 @@ function handleRowClick(item) {
   scrollToTop();
   adjustFontSize();
 }
-function createOMTable(selectedData) {
+
+  function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
-  const clickableSymbol = ''
+  const clickableSymbol = ''; // You may need to define the clickable symbol here
   const tbody = document.createElement('tbody');
   const { Contents } = selectedData;
   const maxRow = Math.max(...Contents.map(item => item.Row));
@@ -725,6 +726,7 @@ function createOMTable(selectedData) {
       const matchingItems = Contents.filter(
         item => item.Row === row && item.Column === column
       );
+
       const displayCell = document.createElement('td');
 
       if (matchingItems.length > 0) {
@@ -736,85 +738,81 @@ function createOMTable(selectedData) {
           let currentIndex = 0;
 
           if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              cellContentElement.classList.add('clickable');
-              cellContentElement.addEventListener('click', () => {
-                  handleRowClick(matchingItem);
-              });
-              cellContentElement.textContent = cellContent;
-          } 
+            cellContentElement.classList.add('clickable');
+            cellContentElement.addEventListener('click', () => {
+              handleRowClick(matchingItem);
+            });
+            cellContentElement.textContent = cellContent;
+          }
 
           if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              const clickableSymbol = document.createElement('span');
-              clickableSymbol.textContent = '^ ';
-              clickableSymbol.classList.add('clickable');
-              clickableSymbol.addEventListener('click', () => {
-                  handleRowClick(matchingItem);
-              });
-              /*cellContentElement.appendChild(clickableSymbol);*/
+            const clickableSymbol = document.createElement('span');
+            clickableSymbol.textContent = '^ ';
+            clickableSymbol.classList.add('clickable');
+            clickableSymbol.addEventListener('click', () => {
+              handleRowClick(matchingItem);
+            });
+            cellContentElement.appendChild(clickableSymbol);
           }
-          
+
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-          if (abxLinkData.length > 0) {
+            if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('div');
               const matchingURLs = abxLinkData.filter(item =>
-                  contentText.toLowerCase().includes(item.Name.toLowerCase())
+                contentText.toLowerCase().includes(item.Name.toLowerCase())
               );
               const sortedMatchingURLs = matchingURLs.sort((a, b) => {
-                  const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
-                  const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
-                  return aIndex - bIndex;
+                const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
+                const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
+                return aIndex - bIndex;
               });
-      
+
               currentIndex = 0;
               sortedMatchingURLs.forEach(matchingURL => {
-                  const { Name, URL } = matchingURL;
-                  const nameRegex = new RegExp(`\\b${Name}\\b`, 'gi');
-                  let match;
-                  while ((match = nameRegex.exec(contentText)) !== null) {
-                      if (currentIndex > match.index) {
-                          currentIndex = match.index + match[0].length;
-                          continue;
-                      }
-                      const nonLinkText = contentText.substring(currentIndex, match.index);
-                      const linkText = match[0].toLowerCase();
-                      if (matchedTexts.has(linkText)) {
-                          const remainingText = contentText.substring(lastMatchedIndexes[row - 1], match.index);
-                          const remainingTextNode = document.createTextNode(remainingText);
-                          linkContainer.appendChild(remainingTextNode);
-                          currentIndex = match.index + match[0].length;
-                          continue;
-                      }
-                      const linkElement = document.createElement('a');
-                      linkElement.href = URL;
-                      linkElement.classList.add('AbxLink');
-                      linkElement.target = '_blank';
-                      linkElement.textContent = match[0];
-                      const nonLinkTextNode = document.createTextNode(nonLinkText);
-                      linkContainer.appendChild(nonLinkTextNode);
-                      linkContainer.appendChild(linkElement);
-                      matchedTexts.add(linkText);
-                      lastMatchedIndexes[row - 1] = match.index + match[0].length;
-                      currentIndex = match.index + match[0].length;
+                const { Name, URL } = matchingURL;
+                const nameRegex = new RegExp(`\\b${Name}\\b`, 'gi');
+                let match;
+                while ((match = nameRegex.exec(contentText)) !== null) {
+                  if (currentIndex > match.index) {
+                    currentIndex = match.index + match[0].length;
+                    continue;
                   }
+                  const nonLinkText = contentText.substring(currentIndex, match.index);
+                  const linkText = match[0].toLowerCase();
+                  if (matchedTexts.has(linkText)) {
+                    const remainingText = contentText.substring(lastMatchedIndexes[row - 1], match.index);
+                    const remainingTextNode = document.createTextNode(remainingText);
+                    linkContainer.appendChild(remainingTextNode);
+                    currentIndex = match.index + match[0].length;
+                    continue;
+                  }
+                  const linkElement = document.createElement('a');
+                  linkElement.href = URL;
+                  linkElement.classList.add('AbxLink');
+                  linkElement.target = '_blank';
+                  linkElement.textContent = match[0];
+                  const nonLinkTextNode = document.createTextNode(nonLinkText);
+                  linkContainer.appendChild(nonLinkTextNode);
+                  linkContainer.appendChild(linkElement);
+                  matchedTexts.add(linkText);
+                  lastMatchedIndexes[row - 1] = match.index + match[0].length;
+                  currentIndex = match.index + match[0].length;
+                }
               });
               if (currentIndex < contentText.length) {
-                  const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
-                  const remainingTextNode = document.createTextNode(remainingText);
-                  linkContainer.appendChild(remainingTextNode);
-              if (clickableSymbol) {
-                  cellContentElement.appendChild(clickableSymbol);
+                const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
+                const remainingTextNode = document.createTextNode(remainingText);
+                linkContainer.appendChild(remainingTextNode);
+                cellContentElement.appendChild(clickableSymbol); // Append the clickable symbol here
+                cellContentElement.appendChild(linkContainer);
               }
-              cellContentElement.appendChild(linkContainer);
+              else {
+                cellContentElement.appendChild(clickableSymbol); // Append the clickable symbol here
+                cellContentElement.textContent = contentText;
               }
-             else {
-              if (clickableSymbol) {
-                  cellContentElement.appendChild(clickableSymbol);
-              }
-              cellContentElement.textContent = contentText;
             }
           }
-        }
-          
+
           if (Header === 1) {
             cellContentElement.classList.add('bold');
             displayCell.classList.add('bold');
