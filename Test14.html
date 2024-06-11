@@ -702,11 +702,12 @@ function handleRowClick(item) {
   scrollToTop();
   adjustFontSize();
 }
+
 function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
   const tbody = document.createElement('tbody');
-  const clickableSymbol = ''
+  const clickableSymbol = '';
   const { Contents } = selectedData;
   const maxRow = Math.max(...Contents.map(item => item.Row));
   const columns = Math.max(...Contents.map(item => item.Column));
@@ -745,10 +746,13 @@ function createOMTable(selectedData) {
           
           if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
               const clickableSymbol = '^';
-              clickableSymbol.classList.add('clickable');
-              clickableSymbol.addEventListener('click', () => {
+              const clickableSymbolNode = document.createElement('span');
+              clickableSymbolNode.classList.add('clickable');
+              clickableSymbolNode.textContent = clickableSymbol;
+              clickableSymbolNode.addEventListener('click', () => {
                   handleRowClick(matchingItem);
               });
+              cellContentElement.appendChild(clickableSymbolNode);
           }
 
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
@@ -800,9 +804,27 @@ function createOMTable(selectedData) {
                 const remainingTextNode = document.createTextNode(remainingText);
                 linkContainer.appendChild(remainingTextNode);
               }
-              cellContentElement.appendChild(linkContainer + clickableSymbol);
+              cellContentElement.appendChild(linkContainer);
+              if (clickableSymbol) {
+                const clickableSymbolNode = document.createElement('span');
+                clickableSymbolNode.classList.add('clickable');
+                clickableSymbolNode.textContent = clickableSymbol;
+                clickableSymbolNode.addEventListener('click', () => {
+                    handleRowClick(matchingItem);
+                });
+                cellContentElement.appendChild(clickableSymbolNode);
+              }
             } else {
-              cellContentElement.textContent = contentText + clickableSymbol;
+              cellContentElement.textContent = contentText;
+              if (clickableSymbol) {
+                const clickableSymbolNode = document.createElement('span');
+                clickableSymbolNode.classList.add('clickable');
+                clickableSymbolNode.textContent = clickableSymbol;
+                clickableSymbolNode.addEventListener('click', () => {
+                    handleRowClick(matchingItem);
+                });
+                cellContentElement.appendChild(clickableSymbolNode);
+              }
             }
           }
           
