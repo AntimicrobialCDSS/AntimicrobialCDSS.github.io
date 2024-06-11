@@ -705,6 +705,7 @@ function handleRowClick(item) {
 function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
+  const clickableSymbol = ''
   const tbody = document.createElement('tbody');
   const { Contents } = selectedData;
   const maxRow = Math.max(...Contents.map(item => item.Row));
