@@ -736,6 +736,7 @@ function createOMTable(selectedData) {
           const cellContentElement = document.createElement('div');
           const contentText = cellContent; // Preserve original case-sensitive text
           let currentIndex = 0;
+          
           // Check if the row click item starts with MenuPrefix or LinkPrefix
           if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             cellContentElement.classList.add('clickable');
@@ -753,8 +754,7 @@ function createOMTable(selectedData) {
 
               cellContentElement.appendChild(clickableSymbol);
               cellContentElement.appendChild(document.createTextNode(cellContent));
-            }
-          else {
+            } else {
             // Check if there are partial string matches with links in a row
             if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('div');
@@ -851,7 +851,7 @@ function createOMTable(selectedData) {
     resultContainer.appendChild(table);
   }
 }
-
+  
 // Function to create the table with ODJSON data
 function createODTable(selectedData) {
   const table = document.createElement('table');
