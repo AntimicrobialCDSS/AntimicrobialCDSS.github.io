@@ -750,7 +750,7 @@ function createOMTable(selectedData) {
               clickableSymbol.addEventListener('click', () => {
                   handleRowClick(matchingItem);
               });
-              cellContentElement.appendChild(clickableSymbol);
+               cellContentElement.innerHTML += clickableSymbol.outerHTML
           }
 
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
