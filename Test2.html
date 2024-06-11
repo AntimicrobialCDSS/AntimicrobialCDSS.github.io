@@ -826,6 +826,40 @@ function createOMTable(selectedData) {
   }
 }
 
+// Function to create the table with ODJSON data
+function createODTable(selectedData) {
+  const table = document.createElement('table');
+  table.classList.add('table');
+
+  const tbody = document.createElement('tbody');
+
+  for (const [key, value] of Object.entries(selectedData)) {
+    const tr = document.createElement('tr');
+    const td = document.createElement('td');
+    td.textContent = `${key}: ${value}`;
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+  }
+
+  table.appendChild(tbody);
+
+  if (selectedData.LinkURL1) {
+    // Open the link if "LinkURL1" field is present
+    window.open(selectedData.LinkURL1, "Order Dialog Information");
+  } else {
+    const popup = window.open("", "Order Dialog Information", "width=600,height=400");
+    const popupContent = document.createElement('div');
+    popupContent.innerHTML = '<h2>Order Dialog Information</h2>';
+    popupContent.appendChild(table);
+
+    // Clear existing content in the popup
+    popup.document.body.innerHTML = "";
+    popup.document.title = "Order Dialog Information";
+
+    popup.document.body.appendChild(popupContent);
+  }
+}
+  
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
