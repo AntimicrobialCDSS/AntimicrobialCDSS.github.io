@@ -735,7 +735,7 @@ function createOMTable(selectedData) {
           let currentIndex = 0;
 
           if (Item) {
-            if (Item.startsWith('MenuLink') || Item.startsWith('ItemLink')) {
+            if (Item.startsWith('MenuPrefix') || Item.startsWith('LinkPrefix')) {
               cellContentElement.classList.add('clickable');
               cellContentElement.addEventListener('click', () => {
                 handleRowClick(matchingItem);
