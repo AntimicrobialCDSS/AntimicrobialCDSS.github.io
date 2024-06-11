@@ -702,7 +702,6 @@ function handleRowClick(item) {
   scrollToTop();
   adjustFontSize();
 }
-
 function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
@@ -735,24 +734,23 @@ function createOMTable(selectedData) {
           const contentText = cellContent;
           let currentIndex = 0;
 
-         if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              cellContentElement.classList.add('clickable');
-              cellContentElement.addEventListener('click', () => {
-                handleRowClick(matchingItem);
-              });
-              cellContentElement.textContent = cellContent;
-            } 
-         
-          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              const clickableSymbol = document.createElement('span');
-              clickableSymbol.textContent = '^ ';
-              clickableSymbol.classList.add('clickable');
-              clickableSymbol.addEventListener('click', () => {
-                handleRowClick(matchingItem);
-              });
-              cellContentElement.appendChild(clickableSymbol);
-            } 
+          if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+            cellContentElement.classList.add('clickable');
+            cellContentElement.addEventListener('click', () => {
+              handleRowClick(matchingItem);
+            });
+            cellContentElement.textContent = cellContent;
+          } 
+          else if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+            const clickableSymbol = document.createElement('span');
+            clickableSymbol.textContent = '^ ';
+            clickableSymbol.classList.add('clickable');
+            clickableSymbol.addEventListener('click', () => {
+              handleRowClick(matchingItem);
+            });
+            cellContentElement.appendChild(clickableSymbol);
           }
+
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('div');
@@ -807,7 +805,7 @@ function createOMTable(selectedData) {
               cellContentElement.textContent = contentText;
             }
           }
-        
+          
           if (Header === 1) {
             cellContentElement.classList.add('bold');
             displayCell.classList.add('bold');
