@@ -720,6 +720,9 @@ function createOMTable(selectedData) {
     let trimmedValueNotBlank = false;
     const bodyRow = document.createElement('tr');
 
+    let rowIsClickable = false;
+    let rowHasButton = false;
+
     for (let column = 1; column <= columns; column++) {
       const matchingItems = Contents.filter(
         item => item.Row === row && item.Column === column
@@ -735,10 +738,11 @@ function createOMTable(selectedData) {
           let currentIndex = 0;
 
           if (Item) {
-            cellContentElement.classList.add('clickable');
-            cellContentElement.addEventListener('click', () => {
-              handleRowClick(matchingItem);
-            });
+            if (Item.startsWith('MenuLink') || Item.startsWith('ItemLink')) {
+              rowIsClickable = true;
+            } else {
+              rowHasButton = true;
+            }
             cellContentElement.textContent = cellContent;
           } else {
             if (abxLinkData.length > 0) {
@@ -815,6 +819,23 @@ function createOMTable(selectedData) {
     if (allUpperCase && isInTop5Rows && trimmedValueNotBlank) {
       bodyRow.style.backgroundColor = 'lightblue';
     }
+
+    if (rowHasButton) {
+      const buttonCell = document.createElement('td');
+      const button = document.createElement('button');
+      button.textContent = 'Open';
+      button.addEventListener('click', () => {
+        handleRowClick(selectedData);
+      });
+      buttonCell.appendChild(button);
+      bodyRow.insertBefore(buttonCell, bodyRow.firstChild);
+    } else if (rowIsClickable) {
+      bodyRow.classList.add('clickable');
+      bodyRow.addEventListener('click', () => {
+        handleRowClick(selectedData);
+      });
+    }
+    
     tbody.appendChild(bodyRow);
   }
 
