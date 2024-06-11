@@ -703,83 +703,147 @@ function handleRowClick(item) {
   adjustFontSize();
 }
 function createOMTable(selectedData) {
-    const table = document.createElement('table');
-    table.classList.add('table');
-    const tbody = document.createElement('tbody');
-    const { Contents } = selectedData;
-    const maxRow = Math.max(...Contents.map(item => item.Row));
-    const columns = Math.max(...Contents.map(item => item.Column));
+  const table = document.createElement('table');
+  table.classList.add('table');
+  const tbody = document.createElement('tbody');
+  const { Contents } = selectedData;
+  const maxRow = Math.max(...Contents.map(item => item.Row));
+  const columns = Math.max(...Contents.map(item => item.Column));
 
-    // Array to store the last matched index for each row
-    const lastMatchedIndexes = new Array(maxRow).fill(0);
+  // Array to store the last matched index for each row
+  const lastMatchedIndexes = new Array(maxRow).fill(0);
 
-    for (let row = 1; row <= maxRow; row++) {
-        const matchedTexts = new Set();
-        let allUpperCase = true;
-        let isInTop5Rows = row <= 5;
-        let trimmedValueNotBlank = false;
-        const bodyRow = document.createElement('tr');
+  for (let row = 1; row <= maxRow; row++) {
+    const matchedTexts = new Set();
+    let allUpperCase = true;
+    let isInTop5Rows = row <= 5;
+    let trimmedValueNotBlank = false;
+    const bodyRow = document.createElement('tr');
 
-        for (let column = 1; column <= columns; column++) {
-            const matchingItems = Contents.filter(
-                item => item.Row === row && item.Column === column
-            );
+    for (let column = 1; column <= columns; column++) {
+      const matchingItems = Contents.filter(
+        item => item.Row === row && item.Column === column
+      );
+      const displayCell = document.createElement('td');
 
-            const displayCell = document.createElement('td');
+      if (matchingItems.length > 0) {
+        matchingItems.forEach(matchingItem => {
+          const { Text, Item, Header, DisplayText } = matchingItem;
+          let cellContent = Text || DisplayText || Item || '';
+          const cellContentElement = document.createElement('div');
+          const contentText = cellContent;
+          let currentIndex = 0;
 
-            if (matchingItems.length > 0) {
-                const cellContentElement = document.createElement('div');
-                cellContentElement.style.display = 'inline-block';
-                let cellContent = '';
+          if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+              cellContentElement.classList.add('clickable');
+              cellContentElement.addEventListener('click', () => {
+                  handleRowClick(matchingItem);
+              });
+              cellContentElement.textContent = cellContent;
+          } 
+          
+          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+              const clickableSymbol = document.createElement('span');
+              clickableSymbol.textContent = '^ ';
+              clickableSymbol.classList.add('clickable');
+              clickableSymbol.addEventListener('click', () => {
+                  handleRowClick(matchingItem);
+              });
+              cellContentElement.appendChild(clickableSymbol);
+          }
 
-                matchingItems.forEach(matchingItem => {
-                    const { Text, Item, Header, DisplayText } = matchingItem;
-                    cellContent += Text || DisplayText || Item || '';
-                });
+          if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+            if (abxLinkData.length > 0) {
+              const linkContainer = document.createElement('div');
+              const matchingURLs = abxLinkData.filter(item =>
+                contentText.toLowerCase().includes(item.Name.toLowerCase())
+              );
+              const sortedMatchingURLs = matchingURLs.sort((a, b) => {
+                const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
+                const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
+                return aIndex - bIndex;
+              });
 
-                // Append clickable symbol
-                if (row > 1) {
-                    const clickableSymbolText = document.createTextNode('^ ');
-                    cellContentElement.appendChild(clickableSymbolText);
-                    cellContentElement.classList.add('clickable');
-                    cellContentElement.addEventListener('click', () => {
-                        handleRowClick(matchingItems[0]); // Assuming the first item is enough to handle the click
-                    });
+              currentIndex = 0;
+              sortedMatchingURLs.forEach(matchingURL => {
+                const { Name, URL } = matchingURL;
+                const nameRegex = new RegExp(`\\b${Name}\\b`, 'gi');
+                let match;
+                while ((match = nameRegex.exec(contentText)) !== null) {
+                  if (currentIndex > match.index) {
+                    currentIndex = match.index + match[0].length;
+                    continue;
+                  }
+                  const nonLinkText = contentText.substring(currentIndex, match.index);
+                  const linkText = match[0].toLowerCase();
+                  if (matchedTexts.has(linkText)) {
+                    const remainingText = contentText.substring(lastMatchedIndexes[row - 1], match.index);
+                    const remainingTextNode = document.createTextNode(remainingText);
+                    linkContainer.appendChild(remainingTextNode);
+                    currentIndex = match.index + match[0].length;
+                    continue;
+                  }
+                  const linkElement = document.createElement('a');
+                  linkElement.href = URL;
+                  linkElement.classList.add('AbxLink');
+                  linkElement.target = '_blank';
+                  linkElement.textContent = match[0];
+                  const nonLinkTextNode = document.createTextNode(nonLinkText);
+                  linkContainer.appendChild(nonLinkTextNode);
+                  linkContainer.appendChild(linkElement);
+                  matchedTexts.add(linkText);
+                  lastMatchedIndexes[row - 1] = match.index + match[0].length;
+                  currentIndex = match.index + match[0].length;
                 }
-
-                // Append content text
-                cellContentElement.textContent += cellContent;
-
-                displayCell.appendChild(cellContentElement);
+              });
+              if (currentIndex < contentText.length) {
+                const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
+                const remainingTextNode = document.createTextNode(remainingText);
+                linkContainer.appendChild(remainingTextNode);
+              }
+              cellContentElement.appendChild(linkContainer);
+            } else {
+              cellContentElement.textContent = contentText;
             }
-
-            bodyRow.appendChild(displayCell);
-        }
-
-        const trimmedValue = bodyRow.innerText.trim();
-        if (trimmedValue !== '') {
-            trimmedValueNotBlank = true;
-        }
-        if (allUpperCase && isInTop5Rows && trimmedValueNotBlank) {
-            bodyRow.style.backgroundColor = 'lightblue';
-        }
-
-        tbody.appendChild(bodyRow);
+          }
+          
+          if (Header === 1) {
+            cellContentElement.classList.add('bold');
+            displayCell.classList.add('bold');
+          }
+          displayCell.appendChild(cellContentElement);
+          if (cellContent !== cellContent.toUpperCase()) {
+            allUpperCase = false;
+          }
+        });
+      }
+      bodyRow.appendChild(displayCell);
     }
 
-    // Add a new row for the VistA Menu Name at the bottom of the table
-    const itemRow = document.createElement('tr');
-    const itemCell = document.createElement('td');
-    itemCell.textContent = "VistA Menu Name: " + selectedData.Name;
-    itemRow.appendChild(itemCell);
-    tbody.appendChild(itemRow);
-
-    table.appendChild(tbody);
-    const resultContainer = document.getElementById('resultContainer');
-    resultContainer.innerHTML = '';
-    if (selectedData) {
-        resultContainer.appendChild(table);
+    const trimmedValue = bodyRow.innerText.trim();
+    if (trimmedValue !== '') {
+      trimmedValueNotBlank = true;
     }
+    if (allUpperCase && isInTop5Rows && trimmedValueNotBlank) {
+      bodyRow.style.backgroundColor = 'lightblue';
+    }
+
+    tbody.appendChild(bodyRow);
+  }
+
+  // Add a new row for the VistA Menu Name at the bottom of the table
+  const itemRow = document.createElement('tr');
+  const itemCell = document.createElement('td');
+  itemCell.textContent = "VistA Menu Name: " + selectedData.Name;
+  itemRow.appendChild(itemCell);
+  tbody.appendChild(itemRow);
+
+  table.appendChild(tbody);
+  const resultContainer = document.getElementById('resultContainer');
+  resultContainer.innerHTML = '';
+  if (selectedData) {
+    resultContainer.appendChild(table);
+  }
 }
 
 
