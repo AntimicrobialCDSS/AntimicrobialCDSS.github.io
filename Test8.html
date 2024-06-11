@@ -741,7 +741,8 @@ function createOMTable(selectedData) {
             });
             cellContentElement.textContent = cellContent;
           } 
-          else if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+          
+          if !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix)) {
             const clickableSymbol = document.createElement('span');
             clickableSymbol.textContent = '^ ';
             clickableSymbol.classList.add('clickable');
