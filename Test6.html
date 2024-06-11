@@ -752,6 +752,7 @@ function createOMTable(selectedData) {
               cellContentElement.appendChild(clickableSymbol);
               cellContentElement.appendChild(document.createTextNode(cellContent));
             }
+          } else {
             if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('div');
               const matchingURLs = abxLinkData.filter(item =>
