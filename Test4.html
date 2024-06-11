@@ -748,18 +748,25 @@ function createOMTable(selectedData) {
               handleRowClick(matchingItem);
             });
             cellContentElement.textContent = cellContent;
-          } else {
-            // Add the clickable symbol '^'
-            const clickableSymbol = document.createElement('span');
-            clickableSymbol.textContent = '^ ';
-            clickableSymbol.classList.add('clickable');
-            clickableSymbol.addEventListener('click', () => {
+          } 
+          else {
+          // Check if there is any non-empty cellContent
+          if (cellContent.trim() !== '') {
+          // Add the clickable symbol '^'
+          const clickableSymbol = document.createElement('span');
+          clickableSymbol.textContent = '^ ';
+          clickableSymbol.classList.add('clickable');
+          clickableSymbol.addEventListener('click', () => {
               handleRowClick(matchingItem);
-            });
-            cellContentElement.appendChild(clickableSymbol);
-            cellContentElement.appendChild(document.createTextNode(cellContent));
-          }
-          
+          });
+          cellContentElement.appendChild(clickableSymbol);
+        }
+          // Append the cell content if it's not empty
+        if (cellContent.trim() !== '') {
+        cellContentElement.appendChild(document.createTextNode(cellContent));
+        }
+        }
+         
           // Check if there are partial string matches with links in a row
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
