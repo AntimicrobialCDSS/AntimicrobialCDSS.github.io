@@ -732,6 +732,7 @@ function createOMTable(selectedData) {
           let cellContent = Text || DisplayText || Item || '';
           const cellContentElement = document.createElement('div');
           const contentText = cellContent;
+          const clickableSymbol = ''
           let currentIndex = 0;
 
           if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
@@ -741,7 +742,7 @@ function createOMTable(selectedData) {
               });
               cellContentElement.textContent = cellContent;
           } 
-          
+
           if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
               const clickableSymbol = document.createElement('span');
               clickableSymbol.textContent = '^ ';
@@ -749,9 +750,9 @@ function createOMTable(selectedData) {
               clickableSymbol.addEventListener('click', () => {
                   handleRowClick(matchingItem);
               });
-              cellContentElement.appendChild(clickableSymbol);
+              /*cellContentElement.appendChild(clickableSymbol);*/
           }
-
+          
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('div');
@@ -801,9 +802,9 @@ function createOMTable(selectedData) {
                 const remainingTextNode = document.createTextNode(remainingText);
                 linkContainer.appendChild(remainingTextNode);
               }
-              cellContentElement.appendChild(linkContainer);
+              cellContentElement.appendChild(clickablesymbol & linkContainer);
             } else {
-              cellContentElement.textContent = contentText;
+              cellContentElement.textContent = clickablesymbol & contentText;
             }
           }
           
