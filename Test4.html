@@ -715,9 +715,9 @@ function createOMTable(selectedData) {
 
   for (let row = 1; row <= maxRow; row++) {
     const matchedTexts = new Set();
-    let allUpperCase = true;
-    let isInTop5Rows = row <= 5;
-    let trimmedValueNotBlank = false;
+    let allUpperCase = true; // Flag to check if all text in the row is in uppercase
+    let isInTop5Rows = row <= 5; // Check if row is in the top 5 rows
+    let trimmedValueNotBlank = false; // Flag to check if trimmed value is not blank
     const bodyRow = document.createElement('tr');
 
     for (let column = 1; column <= columns; column++) {
@@ -731,11 +731,11 @@ function createOMTable(selectedData) {
           const { Text, Item, Header, DisplayText } = matchingItem;
           let cellContent = Text || DisplayText || Item || '';
           const cellContentElement = document.createElement('div');
-          const contentText = cellContent;
+          const contentText = cellContent; // Preserve original case-sensitive text
           let currentIndex = 0;
 
           if (Item) {
-            if (Item.startsWith('MenuLink') || Item.startsWith('ItemLink')) {
+            if (Item.startsWith('MenuPrefix') || Item.startsWith('LinkPrefix')) {
               cellContentElement.classList.add('clickable');
               cellContentElement.addEventListener('click', () => {
                 handleRowClick(matchingItem);
@@ -775,7 +775,7 @@ function createOMTable(selectedData) {
                     continue;
                   }
                   const nonLinkText = contentText.substring(currentIndex, match.index);
-                  const linkText = match[0].toLowerCase();
+                  const linkText = match[0].toLowerCase(); // Convert linkText to lowercase for case-insensitive comparison
                   if (matchedTexts.has(linkText)) {
                     const remainingText = contentText.substring(lastMatchedIndexes[row - 1], match.index);
                     const remainingTextNode = document.createTextNode(remainingText);
@@ -787,7 +787,7 @@ function createOMTable(selectedData) {
                   linkElement.href = URL;
                   linkElement.classList.add('AbxLink');
                   linkElement.target = '_blank';
-                  linkElement.textContent = match[0];
+                  linkElement.textContent = match[0]; // Use the original case for the link text
                   const nonLinkTextNode = document.createTextNode(nonLinkText);
                   linkContainer.appendChild(nonLinkTextNode);
                   linkContainer.appendChild(linkElement);
@@ -845,7 +845,6 @@ function createOMTable(selectedData) {
     resultContainer.appendChild(table);
   }
 }
-
 
 // Function to create the table with ODJSON data
 function createODTable(selectedData) {
