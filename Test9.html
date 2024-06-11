@@ -742,16 +742,6 @@ function createOMTable(selectedData) {
               });
               cellContentElement.textContent = cellContent;
           } 
-
-          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              const clickableSymbol = document.createElement('span');
-              clickableSymbol.textContent = '^ ';
-              clickableSymbol.classList.add('clickable');
-              clickableSymbol.addEventListener('click', () => {
-                  handleRowClick(matchingItem);
-              });
-              /*cellContentElement.appendChild(clickableSymbol);*/
-          }
           
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
     const cellContentElement = document.createElement('div');
