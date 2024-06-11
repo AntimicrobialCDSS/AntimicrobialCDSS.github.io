@@ -752,6 +752,7 @@ function createOMTable(selectedData) {
               cellContentElement.appendChild(clickableSymbol);
             } 
           }
+          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('div');
               const matchingURLs = abxLinkData.filter(item =>
@@ -804,7 +805,7 @@ function createOMTable(selectedData) {
             } else {
               cellContentElement.textContent = contentText;
             }
-          
+          }
         
           if (Header === 1) {
             cellContentElement.classList.add('bold');
