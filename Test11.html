@@ -746,14 +746,14 @@ function handleRowClick(item) {
           }
 
           if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-            clickableSymbol.textContent = '^ ';
-            clickableSymbol.classList.add('clickable');
-            clickableSymbol.addEventListener('click', () => {
-              handleRowClick(matchingItem);
-            });
-            cellContentElement.appendChild(clickableSymbol);
+              const clickableSymbol = document.createElement('span');
+              clickableSymbol.textContent = '^ ';
+              clickableSymbol.classList.add('clickable');
+              clickableSymbol.addEventListener('click', () => {
+                  handleRowClick(matchingItem);
+              });
+              cellContentElement.appendChild(clickableSymbol);
           }
-
           if (!Item || (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix)))){
             if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('div');
