@@ -735,25 +735,25 @@ function createOMTable(selectedData) {
           const contentText = cellContent;
           let currentIndex = 0;
 
-          if (Item) {
-            if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+         if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
               cellContentElement.classList.add('clickable');
               cellContentElement.addEventListener('click', () => {
                 handleRowClick(matchingItem);
               });
               cellContentElement.textContent = cellContent;
-            } else {
+            } 
+         
+          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
               const clickableSymbol = document.createElement('span');
               clickableSymbol.textContent = '^ ';
               clickableSymbol.classList.add('clickable');
               clickableSymbol.addEventListener('click', () => {
                 handleRowClick(matchingItem);
               });
-
               cellContentElement.appendChild(clickableSymbol);
             } 
           }
-          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+          if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('div');
               const matchingURLs = abxLinkData.filter(item =>
