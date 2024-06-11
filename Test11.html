@@ -706,7 +706,7 @@ function handleRowClick(item) {
   function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
-  const clickableSymbol = ''; // You may need to define the clickable symbol here
+  const clickableSymbol = document.createElement('span');
   const tbody = document.createElement('tbody');
   const { Contents } = selectedData;
   const maxRow = Math.max(...Contents.map(item => item.Row));
@@ -746,7 +746,6 @@ function handleRowClick(item) {
           }
 
           if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-            const clickableSymbol = document.createElement('span');
             clickableSymbol.textContent = '^ ';
             clickableSymbol.classList.add('clickable');
             clickableSymbol.addEventListener('click', () => {
