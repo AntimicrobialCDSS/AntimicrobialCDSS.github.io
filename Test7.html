@@ -801,9 +801,11 @@ function createOMTable(selectedData) {
                 const remainingTextNode = document.createTextNode(remainingText);
                 linkContainer.appendChild(remainingTextNode);
               }
-              cellContentElement.appendChild(linkContainer);
+              /*cellContentElement.appendChild(linkContainer);*/
+              cellContentElement.appendChild(document.createTextNode(linkContainer))
             } else {
-              cellContentElement.textContent = contentText;
+               cellContentElement.textContent = cellContent;
+              /*cellContentElement.textContent = contentText;*/
             }
           }
         
