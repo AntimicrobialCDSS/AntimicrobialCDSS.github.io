@@ -858,16 +858,24 @@ function createODTable(selectedData) {
 
   const tbody = document.createElement('tbody');
 
-  // Create rows for each key-value pair in the selectedData
-  for (const [key, value] of Object.entries(selectedData)) {
-    const tr = document.createElement('tr');
-    const valueTd = document.createElement('td');
-    valueTd.textContent = value; // Display the corresponding value
-    valueTd.style.padding = '2px 5px'; // Adjust padding as needed
-    valueTd.style.margin = '0';
-    tr.appendChild(valueTd);
-    tbody.appendChild(tr);
-  }
+  // List of keys to include in the specified order
+  const keysToInclude = [
+    "OrderableItem1", "Dose1", "Route1", "Schedule1",
+    "OrderableItem2", "Dose2", "Route2", "Schedule2"
+  ];
+
+  // Create rows for each key-value pair in the specified order
+  keysToInclude.forEach(key => {
+    if (selectedData.hasOwnProperty(key)) {
+      const tr = document.createElement('tr');
+      const valueTd = document.createElement('td');
+      valueTd.textContent = selectedData[key]; // Display the corresponding value
+      valueTd.style.padding = '2px 5px'; // Adjust padding as needed
+      valueTd.style.margin = '0';
+      tr.appendChild(valueTd);
+      tbody.appendChild(tr);
+    }
+  });
 
   table.appendChild(tbody);
 
