@@ -679,10 +679,14 @@ function handleRowClick(item) {
       odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
     );
 
-    if (!((matchingItemIndex !== -1) && !matchingItemIndex.Name.startsWith(LinkPrefix))) {
-      selectedData = odData[matchingItemIndex];
-      createODTable(selectedData);
-      pushHistory(selectedData);
+    if (matchingItemIndex !== -1) {
+      const matchedItem = odData[matchingItemIndex];
+
+      if (!matchedItem.Name.startsWith(LinkPrefix)) {
+        selectedData = matchedItem;
+        createODTable(selectedData);
+        pushHistory(selectedData);
+      }
     } else {
       const matchingLink = itemLinkData.find(
         linkItem => linkItem.Item.trim().toLowerCase() === item.Item.trim().toLowerCase()
@@ -704,6 +708,7 @@ function handleRowClick(item) {
   scrollToTop();
   adjustFontSize();
 }
+
   
 function createOMTable(selectedData) {
   const table = document.createElement('table');
