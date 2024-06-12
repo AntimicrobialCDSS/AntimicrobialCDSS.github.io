@@ -935,9 +935,8 @@ function handleGoBack() {
   if (historyIndex > 0) {
     historyIndex--;
     const selectedItem = history[historyIndex];
-    const matchingItem = omData.find(
-    omItem => omItem.Name.trim().toLowerCase());
-    if (matchingItem) {
+    const matchingData = omData.find(item => item.Name === selectedItem)
+    if (matchingData) {
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
     document.getElementById('searchInput').placeholder = "\u{1F50D}";
@@ -946,8 +945,8 @@ function handleGoBack() {
     filterData({ target: dropdown });
     }
     else {
-      const selectedData = selectedItem
-      createODTable(selectedData)
+      /*const selectedData = selectedItem*/
+      createODTable(selectedItem)
     }
   }
   scrollToTop();
