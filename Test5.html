@@ -402,18 +402,21 @@ async function fetchAbxLink() {
   const data = await response.json();
   return data;
   }
-// Fetch txmlFile Data  
-async function fetchAndParseXML() {
-  try {
-          const response = await fetch(txmlFile);
-          if (!response.ok) {
-              throw new Error('Network response was not ok ' + response.statusText);
-          }
-          const xmlText = await response.text();
-          const parser = new DOMParser();
-          const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+// Fetch txmlFile Data
+async function fetchAndParseXML(txmlFile) {
+    try {
+        const response = await fetch(txmlFile);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
         }
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+    } catch (error) {
+        console.error("Error fetching or parsing the XML file:", error);
+    }
 }
+
 // Global variables
 let omData = []; // OMJSON data
 let odData = []; // ODJSON data
