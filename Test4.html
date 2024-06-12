@@ -856,6 +856,7 @@ function createODTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
   const tbody = document.createElement('tbody');
+  const tr = document.createElement('tr'); // Create a single row
 
   // List of keys to include in the table
   const keysToInclude = [
@@ -865,14 +866,13 @@ function createODTable(selectedData) {
 
   keysToInclude.forEach(key => {
     if (selectedData.hasOwnProperty(key)) {
-      const tr = document.createElement('tr');
       const td = document.createElement('td');
-      td.textContent = `${key}: ${selectedData[key]}`;
+      td.textContent = selectedData[key]; // Only display the value
       tr.appendChild(td);
-      tbody.appendChild(tr);
     }
   });
 
+  tbody.appendChild(tr);
   table.appendChild(tbody);
   const resultContainer = document.getElementById('resultContainer');
   resultContainer.innerHTML = '';
@@ -880,7 +880,7 @@ function createODTable(selectedData) {
     resultContainer.appendChild(table);
   }
 }
-  
+
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
