@@ -917,18 +917,19 @@ function createODTable(selectedData, txmlData) {
         resultContainer.appendChild(table);
     }
 
-    // Display txml data below the ODJSON table
-    const txmlContainer = document.createElement('div');
-    txmlContainer.classList.add('txml-container');
+   // Display txml data below the ODJSON table
+const txmlContainer = document.createElement('div');
+txmlContainer.classList.add('txml-container');
 
-    for (const item of txmlData) {
-        const txmlItem = document.createElement('div');
-        txmlItem.classList.add('txml-item');
-        txmlItem.textContent = item.textContent; // Display the txml content
-        txmlContainer.appendChild(txmlItem);
-    }
+for (const item of txmlData) {
+    const txmlItem = document.createElement('div');
+    txmlItem.classList.add('txml-item');
+    txmlItem.textContent = item; // Display the txml content
+    txmlContainer.appendChild(txmlItem);
+}
 
-    resultContainer.appendChild(txmlContainer);
+resultContainer.appendChild(txmlContainer);
+
 }
   
 // Function to filter data based on the selected option
