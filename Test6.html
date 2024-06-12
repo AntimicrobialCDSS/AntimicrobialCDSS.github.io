@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +23,8 @@
   const txmlFile = 'Minneapolis.txml'; /*Name of txml file*/
   const ItemLinkjson = 'MinneapolisItemLinks.json'; /*Name of ItemLinks file*/
   const AbxLinkjson = 'AbxLinks.json'; /*Name of AbxLinks file*/
-  const MenuPrefix = 'ORZID2'; /*Order menu prefix*/
+  const SearchMenuPrefix = 'ORZID2'; /*Order menu prefix to be used in search bar*/
+  const MenuPrefix = 'ORZID'; /*Order menu prefix*/
   const LinkPrefix = 'ORZ GTX'; /*Generic Order prefix for links*/
   var hideButtonsDownloads = 'False'; /*buttons to allow user to download json and txml files*/
   var hideButtonsVersions = 'False';/*mark as true for non-CDSS systems*/
@@ -389,7 +391,7 @@ async function fetchODData() {
   }
 
 // Fetch ItemLink Data
-  async function fetchItemLink() {
+async function fetchItemLink() {
     const response = await fetch(ItemLinkjson);
     const data = await response.json();
     return data;
@@ -465,7 +467,7 @@ function populateDropdown(omData) {
       }
     }
     // If there are no terms for item and item.name starts with MenuPrefix
-    if (terms.length === 0 && item.Name.startsWith(MenuPrefix)) {
+    if (terms.length === 0 && item.Name.startsWith(SearchMenuPrefix)) {
       // Use displayText if not blank, else use item.name
       const displayText = item.DisplayText || item.Name;
       const option = document.createElement('option');
@@ -673,14 +675,16 @@ function handleRowClick(item) {
     pushHistory(matchingItem.Name);
     createOMTable(matchingItem);
   } else {
-    const matchingItemIndex = odData.findIndex(
+    const matchingItem = odData.find(
       odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
     );
-
-    if (matchingItemIndex !== -1) {
-      selectedData = odData[matchingItemIndex];
-      createODTable(selectedData);
-    } else {
+   
+    if  (!((matchingItem) && matchingItem.Name.startsWith(LinkPrefix))) {
+        selectedData = matchingItem;
+        createODTable(selectedData);
+        pushHistory(selectedData);
+      }
+     else {
       const matchingLink = itemLinkData.find(
         linkItem => linkItem.Item.trim().toLowerCase() === item.Item.trim().toLowerCase()
       );
@@ -702,6 +706,7 @@ function handleRowClick(item) {
   adjustFontSize();
 }
 
+  
 function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
@@ -734,27 +739,27 @@ function createOMTable(selectedData) {
           const contentText = cellContent;
           let currentIndex = 0;
 
-          if (Item) {
-            if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+          if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
               cellContentElement.classList.add('clickable');
               cellContentElement.addEventListener('click', () => {
-                handleRowClick(matchingItem);
+                  handleRowClick(matchingItem);
               });
               cellContentElement.textContent = cellContent;
-            } else {
+          } 
+          
+          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
               const clickableSymbol = document.createElement('span');
-              clickableSymbol.textContent = '^ ';
+              clickableSymbol.textContent = "\u24d8";
               clickableSymbol.classList.add('clickable');
               clickableSymbol.addEventListener('click', () => {
-                handleRowClick(matchingItem);
+                  handleRowClick(matchingItem);
               });
-
               cellContentElement.appendChild(clickableSymbol);
-              cellContentElement.appendChild(document.createTextNode(cellContent));
-            }
-          } else {
+          }
+
+          if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
-              const linkContainer = document.createElement('div');
+              const linkContainer = document.createElement('span');
               const matchingURLs = abxLinkData.filter(item =>
                 contentText.toLowerCase().includes(item.Name.toLowerCase())
               );
@@ -806,7 +811,7 @@ function createOMTable(selectedData) {
               cellContentElement.textContent = contentText;
             }
           }
-
+          
           if (Header === 1) {
             cellContentElement.classList.add('bold');
             displayCell.classList.add('bold');
@@ -846,41 +851,78 @@ function createOMTable(selectedData) {
   }
 }
 
-
 // Function to create the table with ODJSON data
-function createODTable(selectedData) {
-  const table = document.createElement('table');
-  table.classList.add('table');
+function createODTable(selectedData, txmlData) {
+    const table = document.createElement('table');
+    table.classList.add('table');
+    const tbody = document.createElement('tbody');
 
-  const tbody = document.createElement('tbody');
+    // List of keys to include in the specified order
+    const keysToInclude = [
+        "DisplayText",
+        "OrderableItem1", "Instructions1", "Route1", "Schedule1", "AndThen1",
+        "OrderableItem2", "Instrusctions2", "Route2", "Schedule2", "AndThen2",
+        "OrderableItem3", "Instrusctions3", "Route3", "Schedule3", "AndThen3",
+        "OrderableItem4", "Instrusctions4", "Route4", "Schedule4",
+        "WordProcessing1", "WordProcessing2", "WordProcessing3",
+        "WordProcessing4","WordProcessing5","WordProcessing6",
+        "Urgency", "DisplayGroup"
+    ];
 
-  for (const [key, value] of Object.entries(selectedData)) {
-    const tr = document.createElement('tr');
-    const td = document.createElement('td');
-    td.textContent = `${key}: ${value}`;
-    tr.appendChild(td);
-    tbody.appendChild(tr);
-  }
+    // Create rows for each key-value pair in the specified order
+    for (const key of keysToInclude) {
+        if (selectedData.hasOwnProperty(key)) {
+            const tr = document.createElement('tr');
+            const valueTd = document.createElement('td');
+            valueTd.textContent = selectedData[key]; // Display the corresponding value
+            valueTd.style.padding = '2px 5px'; // Adjust padding as needed
+            valueTd.style.margin = '0';
+            tr.appendChild(valueTd);
+            tbody.appendChild(tr);
+        }
+    }
 
-  table.appendChild(tbody);
+    table.appendChild(tbody);
 
-  if (selectedData.LinkURL1) {
-    // Open the link if "LinkURL1" field is present
-    window.open(selectedData.LinkURL1, "Order Dialog Information");
-  } else {
-    const popup = window.open("", "Order Dialog Information", "width=600,height=400");
-    const popupContent = document.createElement('div');
-    popupContent.innerHTML = '<h2>Order Dialog Information</h2>';
-    popupContent.appendChild(table);
+    const resultContainer = document.getElementById('resultContainer');
+    resultContainer.innerHTML = '';
+    if (selectedData) {
+        resultContainer.appendChild(table);
+    }
 
-    // Clear existing content in the popup
-    popup.document.body.innerHTML = "";
-    popup.document.title = "Order Dialog Information";
+    // Display txml data below the ODJSON table
+    const txmlContainer = document.createElement('div');
+    txmlContainer.classList.add('txml-container');
 
-    popup.document.body.appendChild(popupContent);
-  }
+    for (const item of txmlData) {
+        const txmlItem = document.createElement('div');
+        txmlItem.classList.add('txml-item');
+        txmlItem.textContent = item.textContent; // Display the txml content
+        txmlContainer.appendChild(txmlItem);
+    }
+
+    resultContainer.appendChild(txmlContainer);
 }
-  
+
+// Fetch txmlFile Data
+async function fetchAndParseXML(txmlFile) {
+    try {
+        const response = await fetch(txmlFile);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+        // Extract and return txml data
+        const txmlData = Array.from(xmlDoc.querySelectorAll("Item"));
+        return txmlData;
+    } catch (error) {
+        console.error("Error fetching or parsing the XML file:", error);
+        return []; // Return empty array if error occurs
+    }
+}
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
@@ -934,14 +976,19 @@ function handleGoBack() {
   if (historyIndex > 0) {
     historyIndex--;
     const selectedItem = history[historyIndex];
+    const matchingData = omData.find(item => item.Name === selectedItem)
+    if (matchingData) {
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
     document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
+    }
+    else {
+      createODTable(selectedItem)
+    }
   }
-  
   scrollToTop();
   adjustFontSize();
 }
@@ -952,12 +999,18 @@ function handleGoForward() {
   if (historyIndex < history.length - 1) {
     historyIndex++;
     const selectedItem = history[historyIndex];
+    const matchingData = omData.find(item => item.Name === selectedItem)
+    if (matchingData) {
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
     document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
+    }
+    else {
+      createODTable(selectedItem)
+    }
   }
       scrollToTop()
       adjustFontSize();
