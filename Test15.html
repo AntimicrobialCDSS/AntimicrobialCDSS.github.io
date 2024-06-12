@@ -749,13 +749,12 @@ function createOMTable(selectedData) {
               clickableSymbol.addEventListener('click', () => {
                   handleRowClick(matchingItem);
               });
-              /*cellContentElement.appendChild(clickableSymbol);*/
-              cellContentElement.clickableSymbol
+              cellContentElement.appendChild(clickableSymbol);
           }
 
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
-              const linkContainer = document.createElement('div');
+              const linkContainer = document.createElement('span');
               const matchingURLs = abxLinkData.filter(item =>
                 contentText.toLowerCase().includes(item.Name.toLowerCase())
               );
