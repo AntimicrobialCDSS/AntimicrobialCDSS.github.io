@@ -675,14 +675,12 @@ function handleRowClick(item) {
     pushHistory(matchingItem.Name);
     createOMTable(matchingItem);
   } else {
-    const matchingItemIndex = odData.findIndex(
+    const matchingItem = odData.find(
       odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
     );
-
-    const matchedItem = odData[matchingItemIndex];
-    
-    if  (!((matchingItemIndex == -1) && matchedItem.Name.startsWith(LinkPrefix))) {
-        selectedData = matchedItem;
+   
+    if  (!((matchingItem) && matchingItem.startsWith(LinkPrefix))) {
+        selectedData = matchingItem;
         createODTable(selectedData);
         pushHistory(selectedData);
       }
