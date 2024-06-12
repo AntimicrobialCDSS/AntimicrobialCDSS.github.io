@@ -23,7 +23,8 @@
   const txmlFile = 'Minneapolis.txml'; /*Name of txml file*/
   const ItemLinkjson = 'MinneapolisItemLinks.json'; /*Name of ItemLinks file*/
   const AbxLinkjson = 'AbxLinks.json'; /*Name of AbxLinks file*/
-  const MenuPrefix = 'ORZID2'; /*Order menu prefix*/
+  const SearchMenuPrefix = 'ORZID2'; /*Order menu prefix*/
+  const MenuPrefix = 'ORZID'; /*Order menu prefix*/
   const LinkPrefix = 'ORZ GTX'; /*Generic Order prefix for links*/
   var hideButtonsDownloads = 'False'; /*buttons to allow user to download json and txml files*/
   var hideButtonsVersions = 'False';/*mark as true for non-CDSS systems*/
@@ -466,7 +467,7 @@ function populateDropdown(omData) {
       }
     }
     // If there are no terms for item and item.name starts with MenuPrefix
-    if (terms.length === 0 && item.Name.startsWith(MenuPrefix)) {
+    if (terms.length === 0 && item.Name.startsWith(SearchMenuPrefix)) {
       // Use displayText if not blank, else use item.name
       const displayText = item.DisplayText || item.Name;
       const option = document.createElement('option');
