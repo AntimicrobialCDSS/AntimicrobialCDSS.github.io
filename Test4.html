@@ -857,41 +857,14 @@ function createODTable(selectedData) {
   table.classList.add('table');
 
   const tbody = document.createElement('tbody');
-  
-  // List of keys to concatenate in the first row
-  const keysToConcatenate = [
-    "OrderableItem1", "Dose1", "Route1", "Schedule1",
-    "OrderableItem2", "Dose2", "Route2", "Schedule2"
-  ];
 
-  // Concatenate the values of the specified keys
-  const concatenatedText = keysToConcatenate
-    .filter(key => selectedData.hasOwnProperty(key))
-    .map(key => selectedData[key])
-    .join(' '); // You can change the delimiter if needed
-
-  // Create a row with the concatenated text
-  const concatTr = document.createElement('tr');
-  const concatTd = document.createElement('td');
-  concatTd.textContent = concatenatedText; // Set the concatenated text as the cell content
-  concatTd.style.padding = '2px 5px'; // Adjust padding as needed
-  concatTd.style.margin = '0';
-  concatTd.colSpan = 2; // Span across two columns to match the detail rows
-  concatTr.appendChild(concatTd);
-  tbody.appendChild(concatTr);
-
-  // Create rows for each key and value in the selectedData
+  // Create rows for each key-value pair in the selectedData
   for (const [key, value] of Object.entries(selectedData)) {
     const tr = document.createElement('tr');
-    const keyTd = document.createElement('td');
     const valueTd = document.createElement('td');
-    keyTd.textContent = key; // Display the key title
     valueTd.textContent = value; // Display the corresponding value
-    keyTd.style.padding = '2px 5px'; // Adjust padding as needed
     valueTd.style.padding = '2px 5px'; // Adjust padding as needed
-    keyTd.style.margin = '0';
     valueTd.style.margin = '0';
-    tr.appendChild(keyTd);
     tr.appendChild(valueTd);
     tbody.appendChild(tr);
   }
