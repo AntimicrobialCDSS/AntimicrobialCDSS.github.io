@@ -855,8 +855,10 @@ function createOMTable(selectedData) {
 function createODTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
+
   const tbody = document.createElement('tbody');
   const tr = document.createElement('tr'); // Create a single row
+  const td = document.createElement('td'); // Create a single cell
 
   // List of keys to include in the table
   const keysToInclude = [
@@ -864,22 +866,27 @@ function createODTable(selectedData) {
     "OrderableItem2", "Dose2", "Route2", "Schedule2"
   ];
 
-  keysToInclude.forEach(key => {
-    if (selectedData.hasOwnProperty(key)) {
-      const td = document.createElement('td');
-      td.textContent = selectedData[key]; // Only display the value
-      tr.appendChild(td);
-    }
-  });
+  // Concatenate the values of the specified keys
+  const concatenatedText = keysToInclude
+    .filter(key => selectedData.hasOwnProperty(key))
+    .map(key => selectedData[key])
+    .join(' '); // You can change the delimiter if needed
 
+  td.textContent = concatenatedText; // Set the concatenated text as the cell content
+  td.style.padding = '2px 5px'; // Adjust padding as needed
+  td.style.margin = '0';
+
+  tr.appendChild(td);
   tbody.appendChild(tr);
   table.appendChild(tbody);
+
   const resultContainer = document.getElementById('resultContainer');
   resultContainer.innerHTML = '';
   if (selectedData) {
     resultContainer.appendChild(table);
   }
 }
+
 
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
