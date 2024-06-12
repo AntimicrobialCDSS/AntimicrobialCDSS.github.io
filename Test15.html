@@ -719,8 +719,7 @@ function createOMTable(selectedData) {
     let isInTop5Rows = row <= 5;
     let trimmedValueNotBlank = false;
     const bodyRow = document.createElement('tr');
-    const clickableSymbol = '';
-    
+
     for (let column = 1; column <= columns; column++) {
       const matchingItems = Contents.filter(
         item => item.Row === row && item.Column === column
@@ -744,13 +743,14 @@ function createOMTable(selectedData) {
           } 
           
           if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              /*const clickableSymbol = document.createElement('span');*/
-              clickableSymbol = '^ ';
+              const clickableSymbol = document.createElement('span');
+              clickableSymbol.textContent = '^ ';
               clickableSymbol.classList.add('clickable');
               clickableSymbol.addEventListener('click', () => {
                   handleRowClick(matchingItem);
               });
               /*cellContentElement.appendChild(clickableSymbol);*/
+              cellContentElement.clickableSymbol
           }
 
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
@@ -804,7 +804,7 @@ function createOMTable(selectedData) {
               }
               cellContentElement.appendChild(linkContainer);
             } else {
-              cellContentElement.textContent = clickableSymbol + contentText;
+              cellContentElement.textContent = contentText;
             }
           }
           
