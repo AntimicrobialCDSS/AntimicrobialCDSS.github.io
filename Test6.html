@@ -402,7 +402,29 @@ async function fetchAbxLink() {
   const data = await response.json();
   return data;
   }
+  
+async function fetchAndParseXML(txmlFile) {
+    try {
+        const response = await fetch(txmlFile);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
 
+        // Extract txml items from the XML document
+        const txmlItems = xmlDoc.querySelectorAll("Item");
+
+        // Convert txml items to an array
+        const txmlData = Array.from(txmlItems, item => item.textContent);
+
+        return txmlData;
+    } catch (error) {
+        console.error("Error fetching or parsing the XML file:", error);
+        return []; // Return empty array if error occurs
+    }
+}
 // Global variables
 let omData = []; // OMJSON data
 let odData = []; // ODJSON data
@@ -903,30 +925,6 @@ function createODTable(selectedData, txmlData) {
 
     resultContainer.appendChild(txmlContainer);
 }
-
-async function fetchAndParseXML(txmlFile) {
-    try {
-        const response = await fetch(txmlFile);
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        const xmlText = await response.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-
-        // Extract txml items from the XML document
-        const txmlItems = xmlDoc.querySelectorAll("Item");
-
-        // Convert txml items to an array
-        const txmlData = Array.from(txmlItems, item => item.textContent);
-
-        return txmlData;
-    } catch (error) {
-        console.error("Error fetching or parsing the XML file:", error);
-        return []; // Return empty array if error occurs
-    }
-}
-
   
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
