@@ -945,7 +945,6 @@ function handleGoBack() {
     filterData({ target: dropdown });
     }
     else {
-      /*const selectedData = selectedItem*/
       createODTable(selectedItem)
     }
   }
@@ -959,12 +958,18 @@ function handleGoForward() {
   if (historyIndex < history.length - 1) {
     historyIndex++;
     const selectedItem = history[historyIndex];
+    const matchingData = omData.find(item => item.Name === selectedItem)
+    if (matchingData) {
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
     document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
+    }
+    else {
+      createODTable(selectedItem)
+    }
   }
       scrollToTop()
       adjustFontSize();
