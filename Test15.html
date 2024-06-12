@@ -864,10 +864,6 @@ function createODTable(selectedData) {
 
   table.appendChild(tbody);
 
-  if (selectedData.LinkURL1) {
-    // Open the link if "LinkURL1" field is present
-    window.open(selectedData.LinkURL1, "Order Dialog Information");
-  } else {
     const popup = window.open("", "Order Dialog Information", "width=600,height=400");
     const popupContent = document.createElement('div');
     popupContent.innerHTML = '<h2>Order Dialog Information</h2>';
@@ -879,7 +875,6 @@ function createODTable(selectedData) {
 
     popup.document.body.appendChild(popupContent);
   }
-}
   
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
