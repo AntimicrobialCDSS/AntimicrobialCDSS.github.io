@@ -681,7 +681,7 @@ function handleRowClick(item) {
 
     const matchedItem = odData[matchingItemIndex];
     
-    if  (!((matchingItemIndex !== -1) && !matchingItemIndex.Name.startsWith(LinkPrefix))) {
+    if  (!((matchingItemIndex !== -1) && !matchedItem.Name.startsWith(LinkPrefix))) {
         selectedData = matchedItem;
         createODTable(selectedData);
         pushHistory(selectedData);
