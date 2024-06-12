@@ -858,14 +858,14 @@ function createODTable(selectedData) {
 
   const tbody = document.createElement('tbody');
   
-  // List of keys to include in the table
-  const keysToInclude = [
+  // List of keys to concatenate in the first row
+  const keysToConcatenate = [
     "OrderableItem1", "Dose1", "Route1", "Schedule1",
     "OrderableItem2", "Dose2", "Route2", "Schedule2"
   ];
 
   // Concatenate the values of the specified keys
-  const concatenatedText = keysToInclude
+  const concatenatedText = keysToConcatenate
     .filter(key => selectedData.hasOwnProperty(key))
     .map(key => selectedData[key])
     .join(' '); // You can change the delimiter if needed
@@ -880,23 +880,21 @@ function createODTable(selectedData) {
   concatTr.appendChild(concatTd);
   tbody.appendChild(concatTr);
 
-  // Create rows for each key and value
-  keysToInclude.forEach(key => {
-    if (selectedData.hasOwnProperty(key)) {
-      const tr = document.createElement('tr');
-      const keyTd = document.createElement('td');
-      const valueTd = document.createElement('td');
-      keyTd.textContent = key; // Display the key title
-      valueTd.textContent = selectedData[key]; // Display the corresponding value
-      keyTd.style.padding = '2px 5px'; // Adjust padding as needed
-      valueTd.style.padding = '2px 5px'; // Adjust padding as needed
-      keyTd.style.margin = '0';
-      valueTd.style.margin = '0';
-      tr.appendChild(keyTd);
-      tr.appendChild(valueTd);
-      tbody.appendChild(tr);
-    }
-  });
+  // Create rows for each key and value in the selectedData
+  for (const [key, value] of Object.entries(selectedData)) {
+    const tr = document.createElement('tr');
+    const keyTd = document.createElement('td');
+    const valueTd = document.createElement('td');
+    keyTd.textContent = key; // Display the key title
+    valueTd.textContent = value; // Display the corresponding value
+    keyTd.style.padding = '2px 5px'; // Adjust padding as needed
+    valueTd.style.padding = '2px 5px'; // Adjust padding as needed
+    keyTd.style.margin = '0';
+    valueTd.style.margin = '0';
+    tr.appendChild(keyTd);
+    tr.appendChild(valueTd);
+    tbody.appendChild(tr);
+  }
 
   table.appendChild(tbody);
 
