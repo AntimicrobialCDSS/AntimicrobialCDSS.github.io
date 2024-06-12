@@ -391,7 +391,7 @@ async function fetchODData() {
   }
 
 // Fetch ItemLink Data
-  async function fetchItemLink() {
+async function fetchItemLink() {
     const response = await fetch(ItemLinkjson);
     const data = await response.json();
     return data;
@@ -403,35 +403,17 @@ async function fetchAbxLink() {
   return data;
   }
 // Fetch txmlFile Data  
-  async function fetchAndParseXML(fileName) {
-            try {
-                const response = await fetch(fileName);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                const xmlText = await response.text();
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-
-                // Store fields information in an array of objects
-                const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD")).map(field => {
-                    const name = field.getAttribute("NAME");
-                    const type = field.querySelector("TYPE").textContent;
-                    const url = field.querySelector("URL") ? field.querySelector("URL").textContent : "N/A";
-                    const items = field.querySelector("ITEMS") ? Array.from(field.querySelectorAll("ITEMS p")).map(p => p.textContent) : ["N/A"];
-                    return { name, type, url, items };
-                });
-
-                // Log the extracted fields data for further processing
-                console.log("Fields Information:", fields);
-            } catch (error) {
-                console.error("Error fetching or parsing the XML file:", error);
-            }
+async function fetchAndParseXML() {
+  try {
+          const response = await fetch(txmlFile);
+          if (!response.ok) {
+              throw new Error('Network response was not ok ' + response.statusText);
+          }
+          const xmlText = await response.text();
+          const parser = new DOMParser();
+          const xmlDoc = parser.parseFromString(xmlText, "text/xml");
         }
-
- // Call the function with the name of your .txml file
- fetchAndParseXML('Minneapolis.txml');
-  
+}
 // Global variables
 let omData = []; // OMJSON data
 let odData = []; // ODJSON data
