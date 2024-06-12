@@ -744,7 +744,7 @@ function createOMTable(selectedData) {
           
           if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
               const clickableSymbol = document.createElement('span');
-              clickableSymbol.textContent = '^ ';
+              clickableSymbol.textContent = &#9432;
               clickableSymbol.classList.add('clickable');
               clickableSymbol.addEventListener('click', () => {
                   handleRowClick(matchingItem);
