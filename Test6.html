@@ -416,8 +416,13 @@ async function fetchAndParseXML(txmlFile) {
         // Extract txml items from the XML document
         const txmlItems = xmlDoc.querySelectorAll("Item");
 
-        // Convert txml items to an array
-        const txmlData = Array.from(txmlItems, item => item.textContent);
+        // Create an array to store txml data
+        const txmlData = [];
+
+        // Iterate over txml items and push their text content to the array
+        txmlItems.forEach(item => {
+            txmlData.push(item.textContent);
+        });
 
         return txmlData;
     } catch (error) {
@@ -425,6 +430,7 @@ async function fetchAndParseXML(txmlFile) {
         return []; // Return empty array if error occurs
     }
 }
+
 // Global variables
 let omData = []; // OMJSON data
 let odData = []; // ODJSON data
