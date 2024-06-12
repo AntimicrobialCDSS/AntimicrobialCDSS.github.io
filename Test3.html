@@ -679,15 +679,14 @@ function handleRowClick(item) {
       odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
     );
 
-    if (matchingItemIndex !== -1) {
-      const matchedItem = odData[matchingItemIndex];
-
-      if (!matchedItem.Name.startsWith(LinkPrefix)) {
+    const matchedItem = odData[matchingItemIndex];
+    
+    if  (!((matchingItemIndex !== -1) && !matchingItemIndex.Name.startsWith(LinkPrefix))) {
         selectedData = matchedItem;
         createODTable(selectedData);
         pushHistory(selectedData);
       }
-    } else {
+     else {
       const matchingLink = itemLinkData.find(
         linkItem => linkItem.Item.trim().toLowerCase() === item.Item.trim().toLowerCase()
       );
