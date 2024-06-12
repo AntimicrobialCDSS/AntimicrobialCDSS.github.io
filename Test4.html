@@ -857,9 +857,7 @@ function createODTable(selectedData) {
   table.classList.add('table');
 
   const tbody = document.createElement('tbody');
-  const tr = document.createElement('tr'); // Create a single row
-  const td = document.createElement('td'); // Create a single cell
-
+  
   // List of keys to include in the table
   const keysToInclude = [
     "OrderableItem1", "Dose1", "Route1", "Schedule1",
@@ -872,12 +870,34 @@ function createODTable(selectedData) {
     .map(key => selectedData[key])
     .join(' '); // You can change the delimiter if needed
 
-  td.textContent = concatenatedText; // Set the concatenated text as the cell content
-  td.style.padding = '2px 5px'; // Adjust padding as needed
-  td.style.margin = '0';
+  // Create a row with the concatenated text
+  const concatTr = document.createElement('tr');
+  const concatTd = document.createElement('td');
+  concatTd.textContent = concatenatedText; // Set the concatenated text as the cell content
+  concatTd.style.padding = '2px 5px'; // Adjust padding as needed
+  concatTd.style.margin = '0';
+  concatTd.colSpan = 2; // Span across two columns to match the detail rows
+  concatTr.appendChild(concatTd);
+  tbody.appendChild(concatTr);
 
-  tr.appendChild(td);
-  tbody.appendChild(tr);
+  // Create rows for each key and value
+  keysToInclude.forEach(key => {
+    if (selectedData.hasOwnProperty(key)) {
+      const tr = document.createElement('tr');
+      const keyTd = document.createElement('td');
+      const valueTd = document.createElement('td');
+      keyTd.textContent = key; // Display the key title
+      valueTd.textContent = selectedData[key]; // Display the corresponding value
+      keyTd.style.padding = '2px 5px'; // Adjust padding as needed
+      valueTd.style.padding = '2px 5px'; // Adjust padding as needed
+      keyTd.style.margin = '0';
+      valueTd.style.margin = '0';
+      tr.appendChild(keyTd);
+      tr.appendChild(valueTd);
+      tbody.appendChild(tr);
+    }
+  });
+
   table.appendChild(tbody);
 
   const resultContainer = document.getElementById('resultContainer');
@@ -886,7 +906,6 @@ function createODTable(selectedData) {
     resultContainer.appendChild(table);
   }
 }
-
 
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
