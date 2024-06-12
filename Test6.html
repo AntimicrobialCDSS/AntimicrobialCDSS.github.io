@@ -918,21 +918,21 @@ function createODTable(selectedData, txmlData) {
         resultContainer.appendChild(table);
     }
 
-    // Display txml data below the ODJSON table
+    // Display txml data below the ODJSON table if there's a match
     const txmlContainer = document.createElement('div');
     txmlContainer.classList.add('txml-container');
 
-    if (txmlData && txmlData.length > 0) {
-        for (const item of txmlData) {
+    for (const field of txmlData.fields) {
+        if (selectedData[field.name]) {
             const txmlItem = document.createElement('div');
             txmlItem.classList.add('txml-item');
-            txmlItem.textContent = item; // Display the txml content
+            txmlItem.textContent = `Field Name: ${field.name}, URL: ${field.url}`; // Display the field name and URL
             txmlContainer.appendChild(txmlItem);
         }
-        resultContainer.appendChild(txmlContainer);
     }
-}
 
+    resultContainer.appendChild(txmlContainer);
+}
   
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
