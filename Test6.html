@@ -413,21 +413,20 @@ async function fetchAndParseXML(txmlFile) {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlText, "text/xml");
 
-        // Extract txml items from the XML document
-        const txmlItems = xmlDoc.querySelectorAll("Item");
+        // Extract boilerplate text from the XML document
+        const boilerplateTexts = Array.from(xmlDoc.querySelectorAll("BOILERPLATE_TEXT p"), p => p.textContent);
 
-        // Create an array to store txml data
-        const txmlData = [];
-        
-        // Iterate over txml items and push their text content to the array
-        txmlItems.forEach(item => {
-            txmlData.push(item.textContent);
+        // Extract field names and URLs from the XML document
+        const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD"), field => {
+            const name = field.getAttribute("NAME");
+            const url = field.querySelector("URL") ? field.querySelector("URL").textContent : null;
+            return { name, url };
         });
 
-        return txmlData;
+        return { boilerplateTexts, fields };
     } catch (error) {
         console.error("Error fetching or parsing the XML file:", error);
-        return []; // Return empty array if error occurs
+        return { boilerplateTexts: [], fields: [] }; // Return empty arrays if error occurs
     }
 }
 
