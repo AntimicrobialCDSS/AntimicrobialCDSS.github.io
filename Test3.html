@@ -679,7 +679,7 @@ function handleRowClick(item) {
       odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
     );
 
-    if (matchingItemIndex !== -1) {
+    if (matchingItemIndex !== -1 || !selectedData.startsWith(LinkPrefix)) {
       selectedData = odData[matchingItemIndex];
       createODTable(selectedData);
       pushHistory(selectedData);
