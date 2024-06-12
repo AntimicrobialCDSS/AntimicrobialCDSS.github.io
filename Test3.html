@@ -936,7 +936,7 @@ function handleGoBack() {
     historyIndex--;
     const selectedItem = history[historyIndex];
     const matchingItem = omData.find(
-    omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+    omItem => omItem.Name.trim().toLowerCase() === selectedItem.Item.trim().toLowerCase()
   );
     if (matchingItem) {
     const dropdown = document.getElementById('filterDropdown');
