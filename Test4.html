@@ -851,40 +851,35 @@ function createOMTable(selectedData) {
   }
 }
 
-
 // Function to create the table with ODJSON data
 function createODTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
   const tbody = document.createElement('tbody');
 
-  for (const [key, value] of Object.entries(selectedData)) {
-    const tr = document.createElement('tr');
-    const td = document.createElement('td');
-    td.textContent = `${key}: ${value}`;
-    tr.appendChild(td);
-    tbody.appendChild(tr);
-  }
+  // List of keys to include in the table
+  const keysToInclude = [
+    "OrderableItem1", "Dose1", "Route1", "Schedule1",
+    "OrderableItem2", "Dose2", "Route2", "Schedule2"
+  ];
+
+  keysToInclude.forEach(key => {
+    if (selectedData.hasOwnProperty(key)) {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.textContent = `${key}: ${selectedData[key]}`;
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    }
+  });
 
   table.appendChild(tbody);
-
-    /*const popup = window.open("", "Order Dialog Information", "width=600,height=400");
-    const popupContent = document.createElement('div');
-    popupContent.innerHTML = '<h2>Order Dialog Information</h2>';
-    popupContent.appendChild(table);
-
-    // Clear existing content in the popup
-    popup.document.body.innerHTML = "";
-    popup.document.title = "Order Dialog Information";
-
-    popup.document.body.appendChild(popupContent);*/
-    const resultContainer = document.getElementById('resultContainer');
+  const resultContainer = document.getElementById('resultContainer');
   resultContainer.innerHTML = '';
   if (selectedData) {
     resultContainer.appendChild(table);
   }
-  
-  }
+}
   
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
