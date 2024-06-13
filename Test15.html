@@ -884,7 +884,7 @@ async function fetchAndParseXML(txmlFile) {
 }
 
 // Function to find matches between txml names and ODJSON text fields
-async function findMatches() {
+async function findMatches(matchingItem) {
     try {
         const txmlData = await fetchAndParseXML(txmlFile);
         const odData = await fetchODData();
