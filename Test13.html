@@ -686,9 +686,9 @@ async function handleRowClick(item) {
             createODTable(selectedData);
             pushHistory(selectedData);
         } else {
-            // Filter the ODJSON data for the current item
+            // Find the matching item in the ODJSON data
             const filteredODData = odData.filter(
-                odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+                odItem => odItem.Name.trim().toLowerCase() === matchingItem.Name.trim().toLowerCase()
             );
 
             // Find matches between .txml names and ODJSON text fields for the filtered data
