@@ -834,10 +834,6 @@ async function fetchTxmlNames(txmlFile) {
     }
 }
 
-// Call fetchTxmlNames before calling handleRowClick
-const txmlNames = await fetchTxmlNames(txmlFile);
-handleRowClick(item, txmlNames);
-
 async function handleRowClick(item, txmlNames) {
     const matchingItem = omData.find(
         omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
@@ -853,7 +849,7 @@ async function handleRowClick(item, txmlNames) {
         const matchingItem = odData.find(
             odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
         );
- console.log("Matching item:", matchingItem);
+        console.log("Matching item:", matchingItem);
         if (!((matchingItem) && matchingItem.Name.startsWith(LinkPrefix))) {
             selectedData = matchingItem;
             createODTable(selectedData);
@@ -909,6 +905,13 @@ async function findMatches(matchingItem, txmlNames) {
 
     return matches;
 }
+
+async function initialize() {
+    const txmlNames = await fetchTxmlNames(txmlFile);
+    handleRowClick(item, txmlNames);
+}
+
+initialize();
 
 function createODTable(selectedData) {
   // Create a table element
