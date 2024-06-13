@@ -686,26 +686,25 @@ async function handleRowClick(item) {
             createODTable(selectedData);
             pushHistory(selectedData);
         } else {
-          if (matchingItem.Name.startsWith(LinkPrefix))) {
-          
-            // Find matches between .txml names and ODJSON text fields for the filtered data
-            const matches = await findMatches(matchingItem);
+            if (matchingItem.Name.startsWith(LinkPrefix)) {
+                // Find matches between .txml names and ODJSON text fields for the matching item
+                const matches = await findMatches(matchingItem);
 
-            if (matches.length > 0) {
-                // Handle each match individually
-                matches.forEach(match => {
-                    const { txmlName, txmlURL, odItem } = match;
-                    // Handle each match here
-                    console.log("Matching .txml Name:", txmlName);
-                    console.log("Matching .txml URL:", txmlURL);
-                    console.log("Matching ODJSON Item:", odItem);
-                });
-              }
-            }
-            } else {
-                console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
+                if (matches.length > 0) {
+                    // Handle each match individually
+                    matches.forEach(match => {
+                        const { txmlName, txmlURL, odItem } = match;
+                        // Handle each match here
+                        console.log("Matching .txml Name:", txmlName);
+                        console.log("Matching .txml URL:", txmlURL);
+                        console.log("Matching ODJSON Item:", odItem);
+                    });
+                } else {
+                    console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
+                }
             }
         }
+    }
     scrollToTop();
     adjustFontSize();
 }
