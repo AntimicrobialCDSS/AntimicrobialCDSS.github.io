@@ -855,6 +855,27 @@ function createOMTable(selectedData) {
 
     tbody.appendChild(bodyRow);
   }
+  
+// Function to filter data based on the selected option
+function filterData(event, sortByTerm = false) {
+  const selectedOption = event.target.value;
+  const matchingData = omData.find(item => item.Name === selectedOption);
+  if (matchingData) {
+    selectedData = matchingData;
+    createOMTable(matchingData);
+    pushHistory(matchingData.Name);
+  } else {
+    // Handle the case when selectedData is not found
+    // For example, display an error message or clear the result container
+    const resultContainer = document.getElementById('resultContainer');
+    resultContainer.innerHTML = 'Selected data not found.';
+  }
+  scrollToTop();
+  adjustFontSize();
+  if (sortByTerm) {
+    sortDropdownByTerm();
+  }
+}
 
   // Add a new row for the VistA Menu Name at the bottom of the table
   const itemRow = document.createElement('tr');
