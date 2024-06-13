@@ -23,7 +23,8 @@
   const txmlFile = 'Minneapolis.txml'; /*Name of txml file*/
   const ItemLinkjson = 'MinneapolisItemLinks.json'; /*Name of ItemLinks file*/
   const AbxLinkjson = 'AbxLinks.json'; /*Name of AbxLinks file*/
-  const MenuPrefix = 'ORZID2'; /*Order menu prefix*/
+  const SearchMenuPrefix = 'ORZID2'; /*Order menu prefix to be used in search bar*/
+  const MenuPrefix = 'ORZID'; /*Order menu prefix*/
   const LinkPrefix = 'ORZ GTX'; /*Generic Order prefix for links*/
   var hideButtonsDownloads = 'False'; /*buttons to allow user to download json and txml files*/
   var hideButtonsVersions = 'False';/*mark as true for non-CDSS systems*/
@@ -390,7 +391,7 @@ async function fetchODData() {
   }
 
 // Fetch ItemLink Data
-  async function fetchItemLink() {
+async function fetchItemLink() {
     const response = await fetch(ItemLinkjson);
     const data = await response.json();
     return data;
@@ -401,6 +402,8 @@ async function fetchAbxLink() {
   const data = await response.json();
   return data;
   }
+  
+
 
 // Global variables
 let omData = []; // OMJSON data
@@ -466,7 +469,7 @@ function populateDropdown(omData) {
       }
     }
     // If there are no terms for item and item.name starts with MenuPrefix
-    if (terms.length === 0 && item.Name.startsWith(MenuPrefix)) {
+    if (terms.length === 0 && item.Name.startsWith(SearchMenuPrefix)) {
       // Use displayText if not blank, else use item.name
       const displayText = item.DisplayText || item.Name;
       const option = document.createElement('option');
@@ -674,14 +677,16 @@ function handleRowClick(item) {
     pushHistory(matchingItem.Name);
     createOMTable(matchingItem);
   } else {
-    const matchingItemIndex = odData.findIndex(
+    const matchingItem = odData.find(
       odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
     );
-
-    if (matchingItemIndex !== -1) {
-      selectedData = odData[matchingItemIndex];
-      createODTable(selectedData);
-    } else {
+   
+    if  (!((matchingItem) && matchingItem.Name.startsWith(LinkPrefix))) {
+        selectedData = matchingItem;
+        createODTable(selectedData);
+        pushHistory(selectedData);
+      }
+     else {
       const matchingLink = itemLinkData.find(
         linkItem => linkItem.Item.trim().toLowerCase() === item.Item.trim().toLowerCase()
       );
@@ -702,161 +707,193 @@ function handleRowClick(item) {
   scrollToTop();
   adjustFontSize();
 }
+
+// Function to create table from OMJson Data  
 function createOMTable(selectedData) {
-    const table = document.createElement('table');
-    table.classList.add('table');
-    const tbody = document.createElement('tbody');
-    const { Contents } = selectedData;
-    const maxRow = Math.max(...Contents.map(item => item.Row));
-    const columns = Math.max(...Contents.map(item => item.Column));
+  const table = document.createElement('table');
+  table.classList.add('table');
+  const tbody = document.createElement('tbody');
+  const { Contents } = selectedData;
+  const maxRow = Math.max(...Contents.map(item => item.Row));
+  const columns = Math.max(...Contents.map(item => item.Column));
 
-    // Array to store the last matched index for each row
-    const lastMatchedIndexes = new Array(maxRow).fill(0);
+  // Array to store the last matched index for each row
+  const lastMatchedIndexes = new Array(maxRow).fill(0);
 
-    for (let row = 1; row <= maxRow; row++) {
-        const matchedTexts = new Set();
-        let allUpperCase = true;
-        let isInTop5Rows = row <= 5;
-        let trimmedValueNotBlank = false;
-        const bodyRow = document.createElement('tr');
+  for (let row = 1; row <= maxRow; row++) {
+    const matchedTexts = new Set();
+    let allUpperCase = true;
+    let isInTop5Rows = row <= 5;
+    let trimmedValueNotBlank = false;
+    const bodyRow = document.createElement('tr');
 
-        for (let column = 1; column <= columns; column++) {
-            const matchingItems = Contents.filter(
-                item => item.Row === row && item.Column === column
-            );
-            const displayCell = document.createElement('td');
+    for (let column = 1; column <= columns; column++) {
+      const matchingItems = Contents.filter(
+        item => item.Row === row && item.Column === column
+      );
+      const displayCell = document.createElement('td');
 
-            if (matchingItems.length > 0) {
-                matchingItems.forEach(matchingItem => {
-                    const { Text, Item, Header, DisplayText } = matchingItem;
-                    let cellContent = Text || DisplayText || Item || '';
-                    const cellContentElement = document.createElement('div');
-                    const contentText = cellContent;
-                    const clickableSymbol = ''
-                    let currentIndex = 0;
+      if (matchingItems.length > 0) {
+        matchingItems.forEach(matchingItem => {
+          const { Text, Item, Header, DisplayText } = matchingItem;
+          let cellContent = Text || DisplayText || Item || '';
+          const cellContentElement = document.createElement('div');
+          const contentText = cellContent;
+          let currentIndex = 0;
 
-                    if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-                        cellContentElement.classList.add('clickable');
-                        cellContentElement.addEventListener('click', () => {
-                            handleRowClick(matchingItem);
-                        });
-                        cellContentElement.textContent = cellContent;
-                    }
+          if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+              cellContentElement.classList.add('clickable');
+              cellContentElement.addEventListener('click', () => {
+                  handleRowClick(matchingItem);
+              });
+              cellContentElement.textContent = cellContent;
+          } 
+          
+          if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+            if (abxLinkData.length > 0) {
+              const linkContainer = document.createElement('span');
+              const matchingURLs = abxLinkData.filter(item =>
+                contentText.toLowerCase().includes(item.Name.toLowerCase())
+              );
+              const sortedMatchingURLs = matchingURLs.sort((a, b) => {
+                const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
+                const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
+                return aIndex - bIndex;
+              });
 
-                    if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-                        const cellContentElement = document.createElement('div');
-
-                        if (abxLinkData.length > 0) {
-                            const linkContainer = document.createElement('div');
-                            const matchingURLs = abxLinkData.filter(item =>
-                                contentText.toLowerCase().includes(item.Name.toLowerCase())
-                            );
-                            const sortedMatchingURLs = matchingURLs.sort((a, b) => {
-                                const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
-                                const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
-                                return aIndex - bIndex;
-                            });
-
-                            let currentIndex = 0;
-                            sortedMatchingURLs.forEach(matchingURL => {
-                                const { Name, URL } = matchingURL;
-                                const nameRegex = new RegExp(`\\b${Name}\\b`, 'gi');
-                                let match;
-                                while ((match = nameRegex.exec(contentText)) !== null) {
-                                    if (currentIndex > match.index) {
-                                        currentIndex = match.index + match[0].length;
-                                        continue;
-                                    }
-                                    const nonLinkText = contentText.substring(currentIndex, match.index);
-                                    const linkText = match[0].toLowerCase();
-                                    if (matchedTexts.has(linkText)) {
-                                        const remainingText = contentText.substring(lastMatchedIndexes[row - 1], match.index);
-                                        const remainingTextNode = document.createTextNode(remainingText);
-                                        linkContainer.appendChild(remainingTextNode);
-                                        currentIndex = match.index + match[0].length;
-                                        continue;
-                                    }
-                                    const linkElement = document.createElement('a');
-                                    linkElement.href = URL;
-                                    linkElement.classList.add('AbxLink');
-                                    linkElement.target = '_blank';
-                                    linkElement.textContent = match[0];
-                                    const nonLinkTextNode = document.createTextNode(nonLinkText);
-                                    linkContainer.appendChild(nonLinkTextNode);
-                                    linkContainer.appendChild(linkElement);
-                                    matchedTexts.add(linkText);
-                                    lastMatchedIndexes[row - 1] = match.index + match[0].length;
-                                    currentIndex = match.index + match[0].length;
-                                }
-                            });
-                            if (currentIndex < contentText.length) {
-                                const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
-                                const remainingTextNode = document.createTextNode(remainingText);
-                                linkContainer.appendChild(remainingTextNode);
-                            }
-
-                            cellContentElement.appendChild(linkContainer);
-                        } else {
-                            cellContentElement.textContent = contentText;
-                        }
-
-                        if (!(Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix)))) {
-                            const clickableSymbol = document.createElement('span');
-                            clickableSymbol.textContent = '^ ';
-                            clickableSymbol.classList.add('clickable');
-                            clickableSymbol.addEventListener('click', () => {
-                                handleRowClick(matchingItem);
-                            });
-                            cellContentElement.insertBefore(clickableSymbol, cellContentElement.firstChild);
-                        }
-
-                        if (Header === 1) {
-                            cellContentElement.classList.add('bold');
-                            displayCell.classList.add('bold');
-                        }
-                        displayCell.appendChild(cellContentElement);
-                        if (cellContent !== cellContent.toUpperCase()) {
-                            allUpperCase = false;
-                        }
-                    }
-                });
-
-                const trimmedValue = bodyRow.innerText.trim();
-                if (trimmedValue !== '') {
-                    trimmedValueNotBlank = true;
+              currentIndex = 0;
+              sortedMatchingURLs.forEach(matchingURL => {
+                const { Name, URL } = matchingURL;
+                const nameRegex = new RegExp(`\\b${Name}\\b`, 'gi');
+                let match;
+                while ((match = nameRegex.exec(contentText)) !== null) {
+                  if (currentIndex > match.index) {
+                    currentIndex = match.index + match[0].length;
+                    continue;
+                  }
+                  const nonLinkText = contentText.substring(currentIndex, match.index);
+                  const linkText = match[0].toLowerCase();
+                  if (matchedTexts.has(linkText)) {
+                    const remainingText = contentText.substring(lastMatchedIndexes[row - 1], match.index);
+                    const remainingTextNode = document.createTextNode(remainingText);
+                    linkContainer.appendChild(remainingTextNode);
+                    currentIndex = match.index + match[0].length;
+                    continue;
+                  }
+                  const linkElement = document.createElement('a');
+                  linkElement.href = URL;
+                  linkElement.classList.add('AbxLink');
+                  linkElement.target = '_blank';
+                  linkElement.textContent = match[0];
+                  const nonLinkTextNode = document.createTextNode(nonLinkText);
+                  linkContainer.appendChild(nonLinkTextNode);
+                  linkContainer.appendChild(linkElement);
+                  matchedTexts.add(linkText);
+                  lastMatchedIndexes[row - 1] = match.index + match[0].length;
+                  currentIndex = match.index + match[0].length;
                 }
-                if (allUpperCase && isInTop5Rows && trimmedValueNotBlank) {
-                    bodyRow.style.backgroundColor = 'lightblue';
-                }
-
-                tbody.appendChild(bodyRow);
+              });
+              if (currentIndex < contentText.length) {
+                const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
+                const remainingTextNode = document.createTextNode(remainingText);
+                linkContainer.appendChild(remainingTextNode);
+              }
+              cellContentElement.appendChild(linkContainer);
+            } else {
+              cellContentElement.textContent = contentText;
             }
-        }
+          }
+
+          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+              const clickableSymbol = document.createElement('span');
+              clickableSymbol.textContent = " \u24d8";
+              clickableSymbol.classList.add('clickable');
+              clickableSymbol.addEventListener('click', () => {
+                  handleRowClick(matchingItem);
+              });
+              cellContentElement.appendChild(clickableSymbol);
+          }
+
+          
+          if (Header === 1) {
+            cellContentElement.classList.add('bold');
+            displayCell.classList.add('bold');
+          }
+          displayCell.appendChild(cellContentElement);
+          if (cellContent !== cellContent.toUpperCase()) {
+            allUpperCase = false;
+          }
+        });
+      }
+      bodyRow.appendChild(displayCell);
     }
 
-    // Add a new row for the VistA Menu Name at the bottom of the table
-    const itemRow = document.createElement('tr');
-    const itemCell = document.createElement('td');
-    itemCell.textContent = "VistA Menu Name: " + selectedData.Name;
-    itemRow.appendChild(itemCell);
-    tbody.appendChild(itemRow);
-
-    table.appendChild(tbody);
-    const resultContainer = document.getElementById('resultContainer');
-    resultContainer.innerHTML = '';
-    if (selectedData) {
-        resultContainer.appendChild(table);
+    const trimmedValue = bodyRow.innerText.trim();
+    if (trimmedValue !== '') {
+      trimmedValueNotBlank = true;
     }
+    if (allUpperCase && isInTop5Rows && trimmedValueNotBlank) {
+      bodyRow.style.backgroundColor = 'lightblue';
+    }
+
+    tbody.appendChild(bodyRow);
+  }
+
+  // Add a new row for the VistA Menu Name at the bottom of the table
+  const itemRow = document.createElement('tr');
+  const itemCell = document.createElement('td');
+  itemCell.textContent = "VistA Menu Name: " + selectedData.Name;
+  itemRow.appendChild(itemCell);
+  tbody.appendChild(itemRow);
+
+  table.appendChild(tbody);
+  const resultContainer = document.getElementById('resultContainer');
+  resultContainer.innerHTML = '';
+  if (selectedData) {
+    resultContainer.appendChild(table);
+  }
 }
+
+// Function to fetch data from txml file  
+async function fetchAndParseXML(txmlFile) {
+    try {
+        const response = await fetch(txmlFile);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+        // Extract boilerplate text from the XML document
+        const boilerplateTexts = Array.from(xmlDoc.querySelectorAll("BOILERPLATE_TEXT p"), p => p.textContent);
+
+        // Extract field names and URLs from the XML document
+        const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD"), field => {
+            const name = field.getAttribute("NAME");
+            const url = field.querySelector("URL") ? field.querySelector("URL").textContent : null;
+            return { name, url };
+        });
+
+        return { boilerplateTexts, fields };
+    } catch (error) {
+        console.error("Error fetching or parsing the XML file:", error);
+        return { boilerplateTexts: [], fields: [] }; // Return empty arrays if error occurs
+    }
+}  
 
 
 // Function to create the table with ODJSON data
 function createODTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
-
   const tbody = document.createElement('tbody');
-
+  const tr = document.createElement('tr');
+  const td = document.createElement('td');
+  td.textContent = 'Order Dialog Information';
+  tr.appendChild(td);
+  tbody.appendChild(tr);
+  
   for (const [key, value] of Object.entries(selectedData)) {
     const tr = document.createElement('tr');
     const td = document.createElement('td');
@@ -867,11 +904,7 @@ function createODTable(selectedData) {
 
   table.appendChild(tbody);
 
-  if (selectedData.LinkURL1) {
-    // Open the link if "LinkURL1" field is present
-    window.open(selectedData.LinkURL1, "Order Dialog Information");
-  } else {
-    const popup = window.open("", "Order Dialog Information", "width=600,height=400");
+    /*const popup = window.open("", "Order Dialog Information", "width=600,height=400");
     const popupContent = document.createElement('div');
     popupContent.innerHTML = '<h2>Order Dialog Information</h2>';
     popupContent.appendChild(table);
@@ -880,9 +913,15 @@ function createODTable(selectedData) {
     popup.document.body.innerHTML = "";
     popup.document.title = "Order Dialog Information";
 
-    popup.document.body.appendChild(popupContent);
+    popup.document.body.appendChild(popupContent);*/
+    const resultContainer = document.getElementById('resultContainer');
+  resultContainer.innerHTML = '';
+  if (selectedData) {
+    resultContainer.appendChild(table);
   }
-}
+  
+  }
+    
   
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
@@ -937,14 +976,19 @@ function handleGoBack() {
   if (historyIndex > 0) {
     historyIndex--;
     const selectedItem = history[historyIndex];
+    const matchingData = omData.find(item => item.Name === selectedItem)
+    if (matchingData) {
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
     document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
+    }
+    else {
+      createODTable(selectedItem)
+    }
   }
-  
   scrollToTop();
   adjustFontSize();
 }
@@ -955,12 +999,18 @@ function handleGoForward() {
   if (historyIndex < history.length - 1) {
     historyIndex++;
     const selectedItem = history[historyIndex];
+    const matchingData = omData.find(item => item.Name === selectedItem)
+    if (matchingData) {
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
     document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
+    }
+    else {
+      createODTable(selectedItem)
+    }
   }
       scrollToTop()
       adjustFontSize();
