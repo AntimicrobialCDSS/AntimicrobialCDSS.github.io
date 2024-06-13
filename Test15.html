@@ -899,9 +899,10 @@ async function findMatches(matchingItem) {
 
         // Loop through each filtered item in the ODJSON data
         for (const item of filteredODData) {
-            // Initialize an array to store matches for the current ODJSON item
+            // Initialize arrays to store matches and URLs for the current ODJSON item
             const itemMatches = [];
-            
+            const urls = [];
+
             // Loop through each field to search for matches
             for (let i = 1; i <= 6; i++) {
                 const wordProcessingField = item[`WordProcessing${i}`];
@@ -915,8 +916,13 @@ async function findMatches(matchingItem) {
                             itemMatches.push({
                                 txmlName: match.name,
                                 txmlURL: match.url,
+                                txmlDefaultText: match.defaultText,
                                 odItem: item
                             });
+                            // If the match has a URL, add it to the URLs array
+                            if (match.url) {
+                                urls.push(match.url);
+                            }
                         });
                     }
                 }
@@ -924,6 +930,17 @@ async function findMatches(matchingItem) {
             
             // Add all matches for the current ODJSON item to the main matches array
             matches.push(...itemMatches);
+
+            // Handle opening URLs based on the number of URLs found
+            if (urls.length === 1) {
+                // If only one URL is found, open it in a new window
+                window.open(urls[0]);
+            } else if (urls.length > 1) {
+                // If multiple URLs are found, create a popup
+                const popupContent = itemMatches.map(match => `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText}</a>`).join('<br>');
+                // You can customize the popup appearance and behavior as needed
+                alert(popupContent);
+            }
         }
 
         return matches;
