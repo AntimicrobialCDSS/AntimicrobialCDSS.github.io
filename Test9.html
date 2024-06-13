@@ -885,44 +885,43 @@ async function fetchAndParseXML(txmlFile) {
 
 // Function to create the table with ODJSON data
 function createODTable(selectedData) {
+  // Create a table element
   const table = document.createElement('table');
   table.classList.add('table');
+
+  // Create a tbody element
   const tbody = document.createElement('tbody');
-  const tr = document.createElement('tr');
-  const td = document.createElement('td');
-  td.textContent = 'ORDER DIALOG INFORMATION';
-  td.classList.add('bold');
-  tr.appendChild(td);
-  tbody.appendChild(tr);
-  
+
+  // Create the first row with a bold header
+  const headerRow = document.createElement('tr');
+  const headerCell = document.createElement('td');
+  headerCell.textContent = 'ORDER DIALOG INFORMATION';
+  headerCell.classList.add('bold');
+  headerRow.appendChild(headerCell);
+  tbody.appendChild(headerRow);
+
+  // Iterate over the selectedData object to create rows for each key-value pair
   for (const [key, value] of Object.entries(selectedData)) {
-    const tr = document.createElement('tr');
-    const td = document.createElement('td');
-    td.textContent = `${key}: ${value}`;
-    tr.appendChild(td);
-    tbody.appendChild(tr);
+    const row = document.createElement('tr');
+    const cell = document.createElement('td');
+    cell.textContent = `${key}: ${value}`;
+    row.appendChild(cell);
+    tbody.appendChild(row);
   }
 
+  // Append the tbody to the table
   table.appendChild(tbody);
 
-    /*const popup = window.open("", "Order Dialog Information", "width=600,height=400");
-    const popupContent = document.createElement('div');
-    popupContent.innerHTML = '<h2>Order Dialog Information</h2>';
-    popupContent.appendChild(table);
-
-    // Clear existing content in the popup
-    popup.document.body.innerHTML = "";
-    popup.document.title = "Order Dialog Information";
-
-    popup.document.body.appendChild(popupContent);*/
-    const resultContainer = document.getElementById('resultContainer');
+  // Get the result container element and clear its contents
+  const resultContainer = document.getElementById('resultContainer');
   resultContainer.innerHTML = '';
-  if (selectedData) {
+
+  // Append the table to the result container if selectedData is not empty
+  if (Object.keys(selectedData).length > 0) {
     resultContainer.appendChild(table);
   }
-  
-  }
-    
+}
+
   
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
