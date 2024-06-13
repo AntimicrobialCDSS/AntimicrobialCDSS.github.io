@@ -708,7 +708,7 @@ function handleRowClick(item) {
   adjustFontSize();
 }
 
-  
+// Function to create table from OMJson Data  
 function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
@@ -853,7 +853,7 @@ function createOMTable(selectedData) {
   }
 }
 
-
+// Function to fetch data from txml file  
 async function fetchAndParseXML(txmlFile) {
     try {
         const response = await fetch(txmlFile);
