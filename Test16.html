@@ -927,7 +927,7 @@ async function findMatches(matchingItem) {
                     }
                 }
             }
-            
+
             // Add all matches for the current ODJSON item to the main matches array
             matches.push(...itemMatches);
 
@@ -942,6 +942,7 @@ async function findMatches(matchingItem) {
                         return `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText}</a>`;
                     }
                 }).filter(Boolean).join('<br>');
+                console.log("Popup Content:", popupContent); // Log the popup content
                 // You can customize the popup appearance and behavior as needed
                 alert(popupContent);
             }
@@ -953,6 +954,7 @@ async function findMatches(matchingItem) {
         return []; // Return an empty array if an error occurs
     }
 }
+
 
 function createODTable(selectedData) {
   // Create a table element
