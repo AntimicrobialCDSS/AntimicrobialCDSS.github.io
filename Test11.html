@@ -884,7 +884,7 @@ async function fetchAndParseXML(txmlFile) {
 
 
 // Function to create the table with ODJSON data
-  function createODTable(selectedData) {
+function createODTable(selectedData) {
   // Create a table element
   const table = document.createElement('table');
   table.classList.add('table');
@@ -930,10 +930,10 @@ async function fetchAndParseXML(txmlFile) {
   if (Object.keys(selectedData).length > 0) {
     resultContainer.appendChild(table);
   }
-  scrollToTop();
+
+  // Call adjustFontSize after the table is appended
   adjustFontSize();
 }
-
     
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
