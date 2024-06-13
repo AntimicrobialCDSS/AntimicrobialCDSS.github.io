@@ -899,6 +899,9 @@ async function findMatches(matchingItem) {
 
         // Loop through each filtered item in the ODJSON data
         for (const item of filteredODData) {
+            // Initialize an array to store matches for the current ODJSON item
+            const itemMatches = [];
+            
             // Loop through each field to search for matches
             for (let i = 1; i <= 6; i++) {
                 const wordProcessingField = item[`WordProcessing${i}`];
@@ -907,17 +910,20 @@ async function findMatches(matchingItem) {
                     // Check for matches with txml names using wildcards
                     const matchesInTxml = txmlData.fields.filter(field => new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(wordProcessingField));
                     if (matchesInTxml.length > 0) {
-                        // If matches are found, add them to the matches array
-                        matches.push({
-                            txmlName: matchesInTxml[0].name,
-                            txmlURL: matchesInTxml[0].url,
-                            odItem: item
+                        // If matches are found, add them to the itemMatches array
+                        matchesInTxml.forEach(match => {
+                            itemMatches.push({
+                                txmlName: match.name,
+                                txmlURL: match.url,
+                                odItem: item
+                            });
                         });
-                        // Break the loop to prevent duplicate matches
-                        break;
                     }
                 }
             }
+            
+            // Add all matches for the current ODJSON item to the main matches array
+            matches.push(...itemMatches);
         }
 
         return matches;
@@ -925,8 +931,8 @@ async function findMatches(matchingItem) {
         console.error("Error finding matches:", error);
         return []; // Return an empty array if an error occurs
     }
-} 
-  
+}
+
 function createODTable(selectedData) {
   // Create a table element
   const table = document.createElement('table');
