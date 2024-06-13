@@ -880,59 +880,42 @@ async function fetchAndParseXML(txmlFile) {
         return { boilerplateTexts: [], fields: [] }; // Return empty arrays if error occurs
     }
 }  
-function createODTable(selectedData, txmlData) {
-    const table = document.createElement('table');
-    table.classList.add('table');
-    const tbody = document.createElement('tbody');
 
-    // List of keys to include in the specified order
-    const keysToInclude = [
-        "DisplayText",
-        "OrderableItem1", "Instructions1", "Route1", "Schedule1", "AndThen1",
-        "OrderableItem2", "Instrusctions2", "Route2", "Schedule2", "AndThen2",
-        "OrderableItem3", "Instrusctions3", "Route3", "Schedule3", "AndThen3",
-        "OrderableItem4", "Instrusctions4", "Route4", "Schedule4",
-        "WordProcessing1", "WordProcessing2", "WordProcessing3",
-        "WordProcessing4","WordProcessing5","WordProcessing6",
-        "Urgency", "DisplayGroup"
-    ];
 
-    // Create rows for each key-value pair in the specified order
-    for (const key of keysToInclude) {
-        if (selectedData.hasOwnProperty(key)) {
-            const tr = document.createElement('tr');
-            const valueTd = document.createElement('td');
-            valueTd.textContent = selectedData[key]; // Display the corresponding value
-            valueTd.style.padding = '2px 5px'; // Adjust padding as needed
-            valueTd.style.margin = '0';
-            tr.appendChild(valueTd);
-            tbody.appendChild(tr);
-        }
-    }
+// Function to create the table with ODJSON data
+function createODTable(selectedData) {
+  const table = document.createElement('table');
+  table.classList.add('table');
+  const tbody = document.createElement('tbody');
 
-    table.appendChild(tbody);
+  for (const [key, value] of Object.entries(selectedData)) {
+    const tr = document.createElement('tr');
+    const td = document.createElement('td');
+    td.textContent = `${key}: ${value}`;
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+  }
 
+  table.appendChild(tbody);
+
+    /*const popup = window.open("", "Order Dialog Information", "width=600,height=400");
+    const popupContent = document.createElement('div');
+    popupContent.innerHTML = '<h2>Order Dialog Information</h2>';
+    popupContent.appendChild(table);
+
+    // Clear existing content in the popup
+    popup.document.body.innerHTML = "";
+    popup.document.title = "Order Dialog Information";
+
+    popup.document.body.appendChild(popupContent);*/
     const resultContainer = document.getElementById('resultContainer');
-    resultContainer.innerHTML = '';
-    if (selectedData) {
-        resultContainer.appendChild(table);
-    }
-
-    // Display txml data below the ODJSON table if there's a match
-    const txmlContainer = document.createElement('div');
-    txmlContainer.classList.add('txml-container');
-
-    for (const field of txmlData.fields) {
-        if (selectedData[field.name]) {
-            const txmlItem = document.createElement('div');
-            txmlItem.classList.add('txml-item');
-            txmlItem.textContent = `Field Name: ${field.name}, URL: ${field.url}`; // Display the field name and URL
-            txmlContainer.appendChild(txmlItem);
-        }
-    }
-
-    resultContainer.appendChild(txmlContainer);
-}
+  resultContainer.innerHTML = '';
+  if (selectedData) {
+    resultContainer.appendChild(table);
+  }
+  
+  }
+    
   
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
