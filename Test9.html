@@ -890,8 +890,10 @@ function createODTable(selectedData) {
   const tbody = document.createElement('tbody');
   const tr = document.createElement('tr');
   const td = document.createElement('td');
+  const ODTitle = document.createElement('div');
   td.textContent = 'ORDER DIALOG INFORMATION';
-  tr.classList.add('bold');
+  td.classList.add('bold');
+  ODTitle.classList.add('bold');
   tr.appendChild(td);
   tbody.appendChild(tr);
   
