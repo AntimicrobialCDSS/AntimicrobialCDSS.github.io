@@ -759,18 +759,6 @@ function createOMTable(selectedData) {
               cellContentElement.appendChild(clickableSymbol);
           }
 
-          if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-            if (abxLinkData.length > 0) {
-              const linkContainer = document.createElement('span');
-              const matchingURLs = abxLinkData.filter(item =>
-                contentText.toLowerCase().includes(item.Name.toLowerCase())
-              );
-              const sortedMatchingURLs = matchingURLs.sort((a, b) => {
-                const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
-                const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
-                return aIndex - bIndex;
-              });
-
               currentIndex = 0;
               sortedMatchingURLs.forEach(matchingURL => {
                 const { Name, URL } = matchingURL;
@@ -807,13 +795,26 @@ function createOMTable(selectedData) {
                 const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
                 const remainingTextNode = document.createTextNode(remainingText);
                 linkContainer.appendChild(remainingTextNode);
-              }
+              
               cellContentElement.appendChild(linkContainer);
             } else {
               cellContentElement.textContent = contentText;
             }
+            
+          if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+            if (abxLinkData.length > 0) {
+              const linkContainer = document.createElement('span');
+              const matchingURLs = abxLinkData.filter(item =>
+                contentText.toLowerCase().includes(item.Name.toLowerCase())
+              );
+              const sortedMatchingURLs = matchingURLs.sort((a, b) => {
+                const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
+                const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
+                return aIndex - bIndex;
+              });
+            }
           }
-          
+        
           if (Header === 1) {
             cellContentElement.classList.add('bold');
             displayCell.classList.add('bold');
