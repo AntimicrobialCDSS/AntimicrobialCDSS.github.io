@@ -680,7 +680,7 @@ async function handleRowClick(item) {
         const matchingItem = odData.find(
             odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
         );
-
+ console.log("Matching item:", matchingItem);
         if (!((matchingItem) && matchingItem.Name.startsWith(LinkPrefix))) {
             selectedData = matchingItem;
             createODTable(selectedData);
