@@ -686,7 +686,7 @@ async function handleRowClick(item) {
             createODTable(selectedData);
             pushHistory(selectedData);
         } else {
-            // Filter ODJSON data for the current item
+            // Filter the ODJSON data for the current item
             const filteredODData = odData.filter(
                 odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
             );
@@ -711,7 +711,7 @@ async function handleRowClick(item) {
     scrollToTop();
     adjustFontSize();
 }
-  
+
 // Function to create table from OMJson Data  
 function createOMTable(selectedData) {
   const table = document.createElement('table');
