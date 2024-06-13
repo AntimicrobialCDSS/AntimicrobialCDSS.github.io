@@ -887,6 +887,7 @@ async function fetchAndParseXML(txmlFile) {
 async function findMatches(matchingItem) {
     try {
         const txmlData = await fetchAndParseXML(txmlFile);
+        console.log("TXML Data:", txmlData);
 
         // Initialize an array to store matches
         const matches = [];
@@ -894,6 +895,7 @@ async function findMatches(matchingItem) {
         // Loop through each field in the matching item
         for (let i = 1; i <= 6; i++) {
             const wordProcessingField = matchingItem[`WordProcessing${i}`];
+            console.log("Word Processing Field:", wordProcessingField);
             // Check if the field exists and contains text
             if (wordProcessingField && wordProcessingField.trim() !== '') {
                 // Check for matches with txml names using wildcards
@@ -903,6 +905,7 @@ async function findMatches(matchingItem) {
                     }
                     return false;
                 });
+                console.log("Matches in TXML:", matchesInTxml);
                 if (matchesInTxml.length > 0) {
                     // If matches are found, add them to the matches array
                     matchesInTxml.forEach(match => {
@@ -916,13 +919,13 @@ async function findMatches(matchingItem) {
             }
         }
 
+        console.log("Matches:", matches);
         return matches;
     } catch (error) {
         console.error("Error finding matches:", error);
         return []; // Return an empty array if an error occurs
     }
 }
-
 
 function createODTable(selectedData) {
   // Create a table element
