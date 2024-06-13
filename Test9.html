@@ -36,7 +36,6 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
   <style>
-  /* Common styles */
 @font-face {
   font-family: 'PT Serif Bold';
   src: url('Fonts/PTSerif-Bold.eot');
@@ -135,7 +134,7 @@ table {
 th,
 td {
   border: none;
-  padding: 4px; /* Reduce cell padding */
+  padding: 2px; /* Reduce cell padding */
 }
 
 .clickable {
@@ -156,6 +155,15 @@ td {
   white-space: pre-wrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* Custom column styles */
+.key-cell {
+  width: 30%; /* Adjust the width for key column */
+}
+
+.value-cell {
+  width: 70%; /* Adjust the width for value column */
 }
 
 #header {
@@ -903,8 +911,8 @@ function createODTable(selectedData) {
   const headerRow = document.createElement('tr');
   const headerCell = document.createElement('td');
   headerCell.textContent = 'ORDER DIALOG INFORMATION';
-  headerCell.classList.add('bold');
   headerCell.colSpan = 2; // Span across both columns
+  headerCell.classList.add('bold');
   headerRow.style.backgroundColor = 'lightblue';
   headerRow.appendChild(headerCell);
   tbody.appendChild(headerRow);
@@ -916,9 +924,11 @@ function createODTable(selectedData) {
     const keyCell = document.createElement('td');
     keyCell.textContent = key;
     keyCell.classList.add('bold');
+    keyCell.classList.add('key-cell'); // Add class for key column styling
 
     const valueCell = document.createElement('td');
     valueCell.textContent = value;
+    valueCell.classList.add('value-cell'); // Add class for value column styling
 
     row.appendChild(keyCell);
     row.appendChild(valueCell);
@@ -937,28 +947,6 @@ function createODTable(selectedData) {
     resultContainer.appendChild(table);
   }
 }
-    
-// Function to filter data based on the selected option
-function filterData(event, sortByTerm = false) {
-  const selectedOption = event.target.value;
-  const matchingData = omData.find(item => item.Name === selectedOption);
-  if (matchingData) {
-    selectedData = matchingData;
-    createOMTable(matchingData);
-    pushHistory(matchingData.Name);
-  } else {
-    // Handle the case when selectedData is not found
-    // For example, display an error message or clear the result container
-    const resultContainer = document.getElementById('resultContainer');
-    resultContainer.innerHTML = 'Selected data not found.';
-  }
-  scrollToTop();
-  adjustFontSize();
-  if (sortByTerm) {
-    sortDropdownByTerm();
-  }
-}
-
 // Function to sort the dropdown options alphabetically by term
 function sortDropdownByTerm() {
   const dropdown = document.getElementById('filterDropdown');
