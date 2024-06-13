@@ -884,33 +884,29 @@ async function fetchAndParseXML(txmlFile) {
 }
 
 // Function to find matches between txml names and ODJSON text fields
-async function findMatches() {
+async function findMatches(matchingItem) {
     try {
         const txmlData = await fetchAndParseXML(txmlFile);
-        const odData = await fetchODData();
 
         // Initialize an array to store matches
         const matches = [];
 
-        // Loop through each item in the ODJSON data
-        for (const item of odData) {
-            // Loop through each field to search for matches
-            for (let i = 1; i <= 6; i++) {
-                const wordProcessingField = item[`WordProcessing${i}`];
-                // Check if the field exists and contains text
-                if (wordProcessingField && wordProcessingField.trim() !== '') {
-                    // Check for matches with txml names using wildcards
-                    const matchesInTxml = txmlData.fields.filter(field => new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(wordProcessingField));
-                    if (matchesInTxml.length > 0) {
-                        // If matches are found, add them to the matches array
+        // Loop through each field in the matching item
+        for (let i = 1; i <= 6; i++) {
+            const wordProcessingField = matchingItem[`WordProcessing${i}`];
+            // Check if the field exists and contains text
+            if (wordProcessingField && wordProcessingField.trim() !== '') {
+                // Check for matches with txml names using wildcards
+                const matchesInTxml = txmlData.fields.filter(field => new RegExp(field.replace(/\*/g, '.*'), 'i').test(wordProcessingField));
+                if (matchesInTxml.length > 0) {
+                    // If matches are found, add them to the matches array
+                    matchesInTxml.forEach(match => {
                         matches.push({
-                            txmlName: matchesInTxml[0].name,
-                            txmlURL: matchesInTxml[0].url,
-                            odItem: item
+                            txmlName: match,
+                            txmlURL: null, // You can add URL logic here if needed
+                            odItem: matchingItem
                         });
-                        // Break the loop to prevent duplicate matches
-                        break;
-                    }
+                    });
                 }
             }
         }
@@ -921,6 +917,7 @@ async function findMatches() {
         return []; // Return an empty array if an error occurs
     }
 }
+
 function createODTable(selectedData) {
   // Create a table element
   const table = document.createElement('table');
