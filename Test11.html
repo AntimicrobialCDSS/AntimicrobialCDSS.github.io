@@ -835,8 +835,9 @@ function createOMTable(selectedData) {
     if (allUpperCase && isInTop5Rows && trimmedValueNotBlank) {
       bodyRow.style.backgroundColor = 'lightblue';
     }
-
     tbody.appendChild(bodyRow);
+  scrollToTop();
+  adjustFontSize();
   }
 
   // Add a new row for the VistA Menu Name at the bottom of the table
