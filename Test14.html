@@ -23,7 +23,8 @@
   const txmlFile = 'Minneapolis.txml'; /*Name of txml file*/
   const ItemLinkjson = 'MinneapolisItemLinks.json'; /*Name of ItemLinks file*/
   const AbxLinkjson = 'AbxLinks.json'; /*Name of AbxLinks file*/
-  const MenuPrefix = 'ORZID2'; /*Order menu prefix*/
+  const SearchMenuPrefix = 'ORZID2'; /*Order menu prefix to be used in search bar*/
+  const MenuPrefix = 'ORZID'; /*Order menu prefix*/
   const LinkPrefix = 'ORZ GTX'; /*Generic Order prefix for links*/
   var hideButtonsDownloads = 'False'; /*buttons to allow user to download json and txml files*/
   var hideButtonsVersions = 'False';/*mark as true for non-CDSS systems*/
@@ -390,7 +391,7 @@ async function fetchODData() {
   }
 
 // Fetch ItemLink Data
-  async function fetchItemLink() {
+async function fetchItemLink() {
     const response = await fetch(ItemLinkjson);
     const data = await response.json();
     return data;
@@ -401,6 +402,8 @@ async function fetchAbxLink() {
   const data = await response.json();
   return data;
   }
+  
+
 
 // Global variables
 let omData = []; // OMJSON data
@@ -466,7 +469,7 @@ function populateDropdown(omData) {
       }
     }
     // If there are no terms for item and item.name starts with MenuPrefix
-    if (terms.length === 0 && item.Name.startsWith(MenuPrefix)) {
+    if (terms.length === 0 && item.Name.startsWith(SearchMenuPrefix)) {
       // Use displayText if not blank, else use item.name
       const displayText = item.DisplayText || item.Name;
       const option = document.createElement('option');
@@ -662,52 +665,55 @@ function scrollToTop() { // Add opening curly brace here
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
   
-function handleRowClick(item) {
-  const matchingItem = omData.find(
-    omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
-  );
-  const dropdown = document.getElementById('filterDropdown');
-
-  if (matchingItem) {
-    selectedData = matchingItem;
-    dropdown.value = matchingItem.Name;
-    pushHistory(matchingItem.Name);
-    createOMTable(matchingItem);
-  } else {
-    const matchingItemIndex = odData.findIndex(
-      odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+async function handleRowClick(item) {
+    const matchingItem = omData.find(
+        omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
     );
+    const dropdown = document.getElementById('filterDropdown');
 
-    if (matchingItemIndex !== -1) {
-      selectedData = odData[matchingItemIndex];
-      createODTable(selectedData);
+    if (matchingItem) {
+        selectedData = matchingItem;
+        dropdown.value = matchingItem.Name;
+        pushHistory(matchingItem.Name);
+        createOMTable(matchingItem);
     } else {
-      const matchingLink = itemLinkData.find(
-        linkItem => linkItem.Item.trim().toLowerCase() === item.Item.trim().toLowerCase()
-      );
-
-      if (matchingLink) {
-        const { URL } = matchingLink;
-
-        if (isValidURL(URL)) {
-          window.open(URL, '_blank');
+        const matchingItem = odData.find(
+            odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+        );
+ console.log("Matching item:", matchingItem);
+        if (!((matchingItem) && matchingItem.Name.startsWith(LinkPrefix))) {
+            selectedData = matchingItem;
+            createODTable(selectedData);
+            pushHistory(selectedData);
         } else {
-          console.log('Invalid URL:', URL);
+            if (matchingItem.Name.startsWith(LinkPrefix)) {
+                // Find matches between .txml names and ODJSON text fields for the matching item
+                const matches = await findMatches(matchingItem);
+
+                if (matches.length > 0) {
+                    // Handle each match individually
+                    matches.forEach(match => {
+                        const { txmlName, txmlURL, odItem } = match;
+                        // Handle each match here
+                        console.log("Matching .txml Name:", txmlName);
+                        console.log("Matching .txml URL:", txmlURL);
+                        console.log("Matching ODJSON Item:", odItem);
+                    });
+                } else {
+                    console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
+                }
+            }
         }
-      } else {
-        console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
-      }
     }
-  }
-  scrollToTop();
-  adjustFontSize();
+    scrollToTop();
+    adjustFontSize();
 }
 
+// Function to create table from OMJson Data  
 function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
   const tbody = document.createElement('tbody');
-  const clickableSymbol = '';
   const { Contents } = selectedData;
   const maxRow = Math.max(...Contents.map(item => item.Row));
   const columns = Math.max(...Contents.map(item => item.Column));
@@ -744,20 +750,9 @@ function createOMTable(selectedData) {
               cellContentElement.textContent = cellContent;
           } 
           
-          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              const clickableSymbol = '^';
-              const clickableSymbolNode = document.createElement('span');
-              clickableSymbolNode.classList.add('clickable');
-              clickableSymbolNode.textContent = clickableSymbol;
-              clickableSymbolNode.addEventListener('click', () => {
-                  handleRowClick(matchingItem);
-              });
-              cellContentElement.appendChild(clickableSymbolNode);
-          }
-
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
-              const linkContainer = document.createElement('div');
+              const linkContainer = document.createElement('span');
               const matchingURLs = abxLinkData.filter(item =>
                 contentText.toLowerCase().includes(item.Name.toLowerCase())
               );
@@ -805,28 +800,21 @@ function createOMTable(selectedData) {
                 linkContainer.appendChild(remainingTextNode);
               }
               cellContentElement.appendChild(linkContainer);
-              if (clickableSymbol) {
-                const clickableSymbolNode = document.createElement('span');
-                clickableSymbolNode.classList.add('clickable');
-                clickableSymbolNode.textContent = clickableSymbol;
-                clickableSymbolNode.addEventListener('click', () => {
-                    handleRowClick(matchingItem);
-                });
-                cellContentElement.appendChild(clickableSymbolNode);
-              }
             } else {
               cellContentElement.textContent = contentText;
-              if (clickableSymbol) {
-                const clickableSymbolNode = document.createElement('span');
-                clickableSymbolNode.classList.add('clickable');
-                clickableSymbolNode.textContent = clickableSymbol;
-                clickableSymbolNode.addEventListener('click', () => {
-                    handleRowClick(matchingItem);
-                });
-                cellContentElement.appendChild(clickableSymbolNode);
-              }
             }
           }
+
+          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+              const clickableSymbol = document.createElement('span');
+              clickableSymbol.textContent = " \u24d8";
+              clickableSymbol.classList.add('clickable');
+              clickableSymbol.addEventListener('click', () => {
+                  handleRowClick(matchingItem);
+              });
+              cellContentElement.appendChild(clickableSymbol);
+          }
+
           
           if (Header === 1) {
             cellContentElement.classList.add('bold');
@@ -867,41 +855,120 @@ function createOMTable(selectedData) {
   }
 }
 
+// Function to fetch data from txml file
+async function fetchAndParseXML(txmlFile) {
+    try {
+        const response = await fetch(txmlFile);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
 
-// Function to create the table with ODJSON data
+        // Extract boilerplate text from the XML document
+        const boilerplateTexts = Array.from(xmlDoc.querySelectorAll("BOILERPLATE_TEXT p"), p => p.textContent);
+
+        // Extract field names and URLs from the XML document
+        const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD"), field => {
+            const name = field.getAttribute("NAME");
+            const url = field.querySelector("URL") ? field.querySelector("URL").textContent : null;
+            return { name, url };
+        });
+
+        return { boilerplateTexts, fields };
+    } catch (error) {
+        console.error("Error fetching or parsing the XML file:", error);
+        return { boilerplateTexts: [], fields: [] }; // Return empty arrays if error occurs
+    }
+}
+
+// Function to find matches between txml names and ODJSON text fields
+async function findMatches() {
+    try {
+        const txmlData = await fetchAndParseXML(txmlFile);
+        const odData = await fetchODData();
+
+        // Initialize an array to store matches
+        const matches = [];
+
+        // Loop through each item in the ODJSON data
+        for (const item of odData) {
+            // Loop through each field to search for matches
+            for (let i = 1; i <= 6; i++) {
+                const wordProcessingField = item[`WordProcessing${i}`];
+                // Check if the field exists and contains text
+                if (wordProcessingField && wordProcessingField.trim() !== '') {
+                    // Check for matches with txml names using wildcards
+                    const matchesInTxml = txmlData.fields.filter(field => new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(wordProcessingField));
+                    if (matchesInTxml.length > 0) {
+                        // If matches are found, add them to the matches array
+                        matches.push({
+                            txmlName: matchesInTxml[0].name,
+                            txmlURL: matchesInTxml[0].url,
+                            odItem: item
+                        });
+                        // Break the loop to prevent duplicate matches
+                        break;
+                    }
+                }
+            }
+        }
+
+        return matches;
+    } catch (error) {
+        console.error("Error finding matches:", error);
+        return []; // Return an empty array if an error occurs
+    }
+}
 function createODTable(selectedData) {
+  // Create a table element
   const table = document.createElement('table');
   table.classList.add('table');
 
+  // Create a tbody element
   const tbody = document.createElement('tbody');
 
+  // Create the header row with a bold header and a background color
+  const headerRow = document.createElement('tr');
+  const headerCell = document.createElement('td');
+  headerCell.textContent = 'ORDER DIALOG INFORMATION';
+  headerCell.colSpan = 1; // Span across one column
+  headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+  headerCell.style.fontWeight = 'bold';
+  headerCell.style.backgroundColor = 'lightblue'; // Set background color
+  headerRow.appendChild(headerCell);
+  tbody.appendChild(headerRow);
+
+  // Iterate over the selectedData object to create rows for each key-value pair
   for (const [key, value] of Object.entries(selectedData)) {
-    const tr = document.createElement('tr');
-    const td = document.createElement('td');
-    td.textContent = `${key}: ${value}`;
-    tr.appendChild(td);
-    tbody.appendChild(tr);
+    // Create a row
+    const row = document.createElement('tr');
+    
+    // Create a cell for the key title and field value
+    const cell = document.createElement('td');
+    // Set key title as bold
+    cell.innerHTML = `<b>${key}:</b> ${value}`;
+    row.appendChild(cell);
+
+    // Append the row to the tbody
+    tbody.appendChild(row);
   }
 
+  // Append the tbody to the table
   table.appendChild(tbody);
 
-  if (selectedData.LinkURL1) {
-    // Open the link if "LinkURL1" field is present
-    window.open(selectedData.LinkURL1, "Order Dialog Information");
-  } else {
-    const popup = window.open("", "Order Dialog Information", "width=600,height=400");
-    const popupContent = document.createElement('div');
-    popupContent.innerHTML = '<h2>Order Dialog Information</h2>';
-    popupContent.appendChild(table);
+  // Get the result container element and clear its contents
+  const resultContainer = document.getElementById('resultContainer');
+  resultContainer.innerHTML = '';
 
-    // Clear existing content in the popup
-    popup.document.body.innerHTML = "";
-    popup.document.title = "Order Dialog Information";
-
-    popup.document.body.appendChild(popupContent);
+  // Append the table to the result container if selectedData is not empty
+  if (Object.keys(selectedData).length > 0) {
+    resultContainer.appendChild(table);
   }
 }
-  
+
+    
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
@@ -955,14 +1022,19 @@ function handleGoBack() {
   if (historyIndex > 0) {
     historyIndex--;
     const selectedItem = history[historyIndex];
+    const matchingData = omData.find(item => item.Name === selectedItem)
+    if (matchingData) {
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
     document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
+    }
+    else {
+      createODTable(selectedItem)
+    }
   }
-  
   scrollToTop();
   adjustFontSize();
 }
@@ -973,12 +1045,18 @@ function handleGoForward() {
   if (historyIndex < history.length - 1) {
     historyIndex++;
     const selectedItem = history[historyIndex];
+    const matchingData = omData.find(item => item.Name === selectedItem)
+    if (matchingData) {
     const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
     document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
+    }
+    else {
+      createODTable(selectedItem)
+    }
   }
       scrollToTop()
       adjustFontSize();
