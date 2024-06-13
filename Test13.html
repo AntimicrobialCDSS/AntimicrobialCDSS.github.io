@@ -686,8 +686,13 @@ async function handleRowClick(item) {
             createODTable(selectedData);
             pushHistory(selectedData);
         } else {
-            // Find matches between .txml names and ODJSON text fields
-            const matches = await findMatches(item.Item.trim());
+            // Filter ODJSON data for the current item
+            const filteredODData = odData.filter(
+                odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+            );
+
+            // Find matches between .txml names and ODJSON text fields for the filtered data
+            const matches = await findMatches(filteredODData);
 
             if (matches.length > 0) {
                 // Handle each match individually
@@ -706,7 +711,7 @@ async function handleRowClick(item) {
     scrollToTop();
     adjustFontSize();
 }
-
+  
 // Function to create table from OMJson Data  
 function createOMTable(selectedData) {
   const table = document.createElement('table');
