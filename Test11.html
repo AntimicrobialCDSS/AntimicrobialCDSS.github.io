@@ -882,9 +882,7 @@ async function fetchAndParseXML(txmlFile) {
     }
 }  
 
-
-// Function to create the table with ODJSON data
-  function createODTable(selectedData) {
+function createODTable(selectedData) {
   // Create a table element
   const table = document.createElement('table');
   table.classList.add('table');
@@ -894,13 +892,20 @@ async function fetchAndParseXML(txmlFile) {
 
   // Create the first row with a bold header and a background color
   const headerRow = document.createElement('tr');
+
+  // Create the header cell for the header text
   const headerCell = document.createElement('td');
   headerCell.textContent = 'ORDER DIALOG INFORMATION';
   headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
   headerCell.style.fontWeight = 'bold';
-  headerCell.colSpan = 1; // Span across both columns
-  headerRow.style.backgroundColor = 'lightblue';
+  headerCell.style.backgroundColor = 'lightblue'; // Set background color
   headerRow.appendChild(headerCell);
+
+  // Create an empty cell for the second column
+  const emptyCell = document.createElement('td');
+  headerRow.appendChild(emptyCell);
+
+  // Append the header row to the table body
   tbody.appendChild(headerRow);
 
   // Iterate over the selectedData object to create rows for each key-value pair
@@ -910,10 +915,10 @@ async function fetchAndParseXML(txmlFile) {
     keyCell.textContent = key;
     keyCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
     keyCell.style.fontWeight = 'bold';
-    
+
     const valueCell = document.createElement('td');
     valueCell.textContent = value;
-    
+
     row.appendChild(keyCell);
     row.appendChild(valueCell);
     tbody.appendChild(row);
@@ -931,7 +936,6 @@ async function fetchAndParseXML(txmlFile) {
     resultContainer.appendChild(table);
   }
 }
-
     
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
