@@ -665,50 +665,6 @@ function scrollToTop() { // Add opening curly brace here
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
   
-async function handleRowClick(item) {
-    const matchingItem = omData.find(
-        omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
-    );
-    const dropdown = document.getElementById('filterDropdown');
-
-    if (matchingItem) {
-        selectedData = matchingItem;
-        dropdown.value = matchingItem.Name;
-        pushHistory(matchingItem.Name);
-        createOMTable(matchingItem);
-    } else {
-        const matchingItem = odData.find(
-            odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
-        );
- console.log("Matching item:", matchingItem);
-        if (!((matchingItem) && matchingItem.Name.startsWith(LinkPrefix))) {
-            selectedData = matchingItem;
-            createODTable(selectedData);
-            pushHistory(selectedData);
-        } else {
-            if (matchingItem.Name.startsWith(LinkPrefix)) {
-                // Find matches between .txml names and ODJSON text fields for the matching item
-                const matches = await findMatches(matchingItem);
-
-                if (matches.length > 0) {
-                    // Handle each match individually
-                    matches.forEach(match => {
-                        const { txmlName, txmlURL, odItem } = match;
-                        // Handle each match here
-                        console.log("Matching .txml Name:", txmlName);
-                        console.log("Matching .txml URL:", txmlURL);
-                        console.log("Matching ODJSON Item:", odItem);
-                    });
-                } else {
-                    console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
-                }
-            }
-        }
-    }
-    scrollToTop();
-    adjustFontSize();
-}
-
 // Function to create table from OMJson Data  
 function createOMTable(selectedData) {
   const table = document.createElement('table');
@@ -883,8 +839,51 @@ async function fetchAndParseXML(txmlFile) {
     }
 }
 
-// Function to find matches between txml names and ODJSON text fields
-async function findMatches(matchingItem) {
+async function handleRowClick(item) {
+    const matchingItem = omData.find(
+        omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+    );
+    const dropdown = document.getElementById('filterDropdown');
+
+    if (matchingItem) {
+        selectedData = matchingItem;
+        dropdown.value = matchingItem.Name;
+        pushHistory(matchingItem.Name);
+        createOMTable(matchingItem);
+    } else {
+        const matchingItem = odData.find(
+            odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+        );
+ console.log("Matching item:", matchingItem);
+        if (!((matchingItem) && matchingItem.Name.startsWith(LinkPrefix))) {
+            selectedData = matchingItem;
+            createODTable(selectedData);
+            pushHistory(selectedData);
+        } else {
+            if (matchingItem.Name.startsWith(LinkPrefix)) {
+                // Find matches between .txml names and ODJSON text fields for the matching item
+                const matches = await findMatches(matchingItem, txmlNames);
+
+                if (matches.length > 0) {
+                    // Handle each match individually
+                    matches.forEach(match => {
+                        const { txmlName, txmlURL, odItem } = match;
+                        // Handle each match here
+                        console.log("Matching .txml Name:", txmlName);
+                        console.log("Matching .txml URL:", txmlURL);
+                        console.log("Matching ODJSON Item:", odItem);
+                    });
+                } else {
+                    console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
+                }
+            }
+        }
+    }
+    scrollToTop();
+    adjustFontSize();
+}
+
+async function findMatches(matchingItem, txmlNames) {
     const matches = [];
 
     // Iterate over each ODJSON item
