@@ -901,7 +901,6 @@ async function findMatches(matchingItem) {
         for (const item of filteredODData) {
             // Initialize arrays to store matches and URLs for the current ODJSON item
             const itemMatches = [];
-            const urls = [];
 
             // Loop through each field to search for matches
             for (let i = 1; i <= 6; i++) {
@@ -919,10 +918,6 @@ async function findMatches(matchingItem) {
                                 txmlDefaultText: match.defaultText,
                                 odItem: item
                             });
-                            // If the match has a URL, add it to the URLs array
-                            if (match.url) {
-                                urls.push(match);
-                            }
                         });
                     }
                 }
@@ -932,18 +927,18 @@ async function findMatches(matchingItem) {
             matches.push(...itemMatches);
 
             // Handle opening URLs based on the number of URLs found
-            if (urls.length === 1) {
-                // If only one URL is found, open it in a new window
-                window.open(urls[0].url);
-            } else if (urls.length > 1) {
-                // If multiple URLs are found, create a popup
-                const popupContent = urls.map(match => {
-                    if (match.txmlURL && match.txmlDefaultText) {
-                        return `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText}</a>`;
-                    }
-                }).filter(Boolean).join('<br>');
-                console.log("Popup Content:", popupContent); // Log the popup content
-                console.log("URLs:", urls); // Log the URLs array
+            if (itemMatches.length === 1) {
+                // If only one match is found, open its URL in a new window
+                const url = itemMatches[0].txmlURL;
+                if (url) {
+                    window.open(url);
+                }
+            } else if (itemMatches.length > 1) {
+                // If multiple matches are found, create a popup
+                const popupContent = itemMatches
+                    .filter(match => match.txmlURL && match.txmlDefaultText)
+                    .map(match => `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText}</a>`)
+                    .join('<br>');
                 // You can customize the popup appearance and behavior as needed
                 alert(popupContent);
             }
