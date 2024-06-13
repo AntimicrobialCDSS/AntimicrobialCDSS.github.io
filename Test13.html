@@ -884,43 +884,34 @@ async function fetchAndParseXML(txmlFile) {
 }
 
 // Function to find matches between txml names and ODJSON text fields
-async function findMatches() {
-    try {
-        const txmlData = await fetchAndParseXML(txmlFile);
-        const odData = await fetchODData();
+async function findMatches(matchingItem) {
+    const matches = [];
 
-        // Initialize an array to store matches
-        const matches = [];
-
-        // Loop through each item in the ODJSON data
-        for (const item of odData) {
-            // Loop through each field to search for matches
+    // Iterate over each ODJSON item
+    for (const odItem of odData) {
+        // Check if the ODJSON item starts with the link prefix
+        if (odItem.Name.startsWith(LinkPrefix)) {
+            // Iterate over the WordProcessing fields in the ODJSON item
             for (let i = 1; i <= 6; i++) {
-                const wordProcessingField = item[`WordProcessing${i}`];
-                // Check if the field exists and contains text
-                if (wordProcessingField && wordProcessingField.trim() !== '') {
-                    // Check for matches with txml names using wildcards
-                    const matchesInTxml = txmlData.fields.filter(field => new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(wordProcessingField));
-                    if (matchesInTxml.length > 0) {
-                        // If matches are found, add them to the matches array
-                        matches.push({
-                            txmlName: matchesInTxml[0].name,
-                            txmlURL: matchesInTxml[0].url,
-                            odItem: item
-                        });
-                        // Break the loop to prevent duplicate matches
-                        break;
+                const wordProcessingField = odItem[`WordProcessing${i}`];
+                // If the WordProcessing field contains text, check for matches with .txml names
+                if (wordProcessingField) {
+                    // Iterate over each .txml name
+                    for (const txml of txmlNames) {
+                        // Check if the .txml name is found in the WordProcessing field
+                        if (wordProcessingField.includes(txml)) {
+                            // If a match is found, push the relevant information to the matches array
+                            matches.push({ txmlName: txml, txmlURL: null, odItem });
+                        }
                     }
                 }
             }
         }
-
-        return matches;
-    } catch (error) {
-        console.error("Error finding matches:", error);
-        return []; // Return an empty array if an error occurs
     }
+
+    return matches;
 }
+
 function createODTable(selectedData) {
   // Create a table element
   const table = document.createElement('table');
