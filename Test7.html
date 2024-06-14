@@ -961,6 +961,7 @@ async function findMatches(matchingItem) {
         return []; // Return an empty array if an error occurs
     }
 }
+  
 function createODTable(selectedItem) {
     // Check if selectedItem is already an object or a string
     const itemData = typeof selectedItem === 'string' 
@@ -975,20 +976,32 @@ function createODTable(selectedItem) {
     const table = document.createElement('table');
     table.classList.add('table');
     const tbody = document.createElement('tbody');
-
+   
+  // Create the header row with a bold header and a background color
+    const headerRow = document.createElement('tr');
+    const headerCell = document.createElement('td');
+    headerCell.textContent = 'ORDER DIALOG INFORMATION';
+    headerCell.colSpan = 1; // Span across one column
+    headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+    headerCell.style.fontWeight = 'bold';
+    headerCell.style.backgroundColor = 'lightblue'; // Set background color
+    headerRow.appendChild(headerCell);
+    tbody.appendChild(headerRow);
+    
     // Iterate over the entries of itemData
     Object.entries(itemData).forEach(([key, value]) => {
         const row = document.createElement('tr');
         
         // Create cells for key and value
-        const keyCell = document.createElement('td');
-        keyCell.textContent = key;
-        const valueCell = document.createElement('td');
-        valueCell.textContent = JSON.stringify(value, null, 2);
-
+        const Cell = document.createElement('td');
+        /*keyCell.textContent = key;*/
+        /*const valueCell = document.createElement('td');*/
+        /*valueCell.textContent = JSON.stringify(value, null, 2);*/
+        cell.innerHTML = `<b>${key}:</b> ${value}`;
+        row.appendChild(cell);
         // Append cells to the row
-        row.appendChild(keyCell);
-        row.appendChild(valueCell);
+       /* row.appendChild(keyCell);*/
+       /* row.appendChild(valueCell);*/
 
         // Append row to the tbody
         tbody.appendChild(row);
