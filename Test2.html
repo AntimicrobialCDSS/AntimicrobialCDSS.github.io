@@ -824,20 +824,20 @@ async function handleRowClick(item, ClickSymbol) {
         pushHistory(matchingItem.Name);
         createOMTable(matchingItem);
     } else {
-        const matchingItem = odData.find(
+        const matchingODItem = odData.find(
             odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
         );
-        console.log("Matching item:", matchingItem);
+        console.log("Matching item:", matchingODItem);
 
-        if (matchingItem) {
+        if (matchingODItem) {
             if (ClickSymbol) {
                 // If ClickSymbol is true, call createODTable
-                selectedData = matchingItem;
+                selectedData = matchingODItem;
                 createODTable(selectedData);
                 pushHistory(selectedData.Name);
-            } else if (matchingItem.Name.startsWith(LinkPrefix)) {
-                // If ClickSymbol is false and matchingItem's name starts with LinkPrefix, call findMatches
-                const matches = await findMatches(matchingItem);
+            } else if (matchingODItem.Name.startsWith(LinkPrefix)) {
+                // If ClickSymbol is false and matchingODItem's name starts with LinkPrefix, call findMatches
+                const matches = await findMatches(matchingODItem);
 
                 if (matches.length > 0) {
                     // Handle each match individually
@@ -852,9 +852,11 @@ async function handleRowClick(item, ClickSymbol) {
                     console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
                 }
             } else {
-                // Handle case when matchingItem does not meet any specific condition
+                // Handle other cases
                 console.log('Matching item does not meet any specific condition');
             }
+        } else {
+            console.log('No matching item found in OD data');
         }
     }
     scrollToTop();
