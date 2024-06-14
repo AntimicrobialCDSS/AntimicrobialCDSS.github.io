@@ -961,12 +961,13 @@ async function findMatches(matchingItem) {
         return []; // Return an empty array if an error occurs
     }
 }
-
 function createODTable(selectedItem) {
-    // Find the matching data in odData using the selected item name
-    const matchingData = odData.find(item => item.Name === selectedItem);
+    // Check if selectedItem is already an object or a string
+    const itemData = typeof selectedItem === 'string' 
+        ? odData.find(item => item.Name === selectedItem)
+        : selectedItem;
 
-    if (!matchingData) {
+    if (!itemData) {
         console.error('No matching data found for selected item:', selectedItem);
         return;
     }
@@ -975,8 +976,8 @@ function createODTable(selectedItem) {
     table.classList.add('table');
     const tbody = document.createElement('tbody');
 
-    // Iterate over the entries of matchingData.Contents
-    Object.entries(matchingData).forEach(([key, value]) => {
+    // Iterate over the entries of itemData
+    Object.entries(itemData).forEach(([key, value]) => {
         const row = document.createElement('tr');
         
         // Create cells for key and value
