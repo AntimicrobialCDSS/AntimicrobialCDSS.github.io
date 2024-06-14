@@ -762,7 +762,7 @@ function createOMTable(selectedData) {
           }
 
           if (Item && !Item.startsWith(MenuPrefix)) {
-          /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
+              const cellContentElement = document.createElement('div');
               const clickableSymbol = document.createElement('span');
               clickableSymbol.textContent = " \u24d8";
               clickableSymbol.classList.add('clickable');
@@ -770,9 +770,14 @@ function createOMTable(selectedData) {
                   handleRowClick(matchingItem, true);
               });
               cellContentElement.appendChild(clickableSymbol);
+          
+              // Append the text content after the clickable symbol
+              const textContent = document.createTextNode(cellContent);
+              cellContentElement.appendChild(textContent);
+          
+              displayCell.appendChild(cellContentElement);
           }
 
-          
           if (Header === 1) {
             cellContentElement.classList.add('bold');
             displayCell.classList.add('bold');
