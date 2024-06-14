@@ -698,12 +698,13 @@ function createOMTable(selectedData) {
           let currentIndex = 0;
 
           if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              const cellContentElement = document.createElement('a');
-              cellContentElement.classList.add('clickable');
-              cellContentElement.addEventListener('click', () => {
+              const RowClickElement = document.createElement('a');
+              RowClickElement.classList.add('clickable');
+              RowClickElement.addEventListener('click', () => {
                   handleRowClick(matchingItem, false);
               });
-              cellContentElement.textContent = cellContent;
+              RowClickElement.textContent = cellContent;
+              cellContentElement.appendChild(RowClickElement);
           } 
           
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
