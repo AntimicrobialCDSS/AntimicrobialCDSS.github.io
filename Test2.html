@@ -761,18 +761,18 @@ function createOMTable(selectedData) {
             }
           }
 
-          if (Item && !Item.startsWith(MenuPrefix)) {
-          /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
-              const clickableSymbol = document.createElement('span');
-              clickableSymbol.textContent = " \u24d8";
-              clickableSymbol.classList.add('clickable');
-              clickableSymbol.addEventListener('click', () => {
-                  handleRowClick(matchingItem, true);
-              });
-              cellContentElement.appendChild(clickableSymbol);
+          // Separate clickableSymbol for triggering createODTable
+          if (Item && !Item.startsWith(MenuPrefix) && !Item.startsWith(LinkPrefix)) {
+            const clickableSymbol = document.createElement('span');
+            clickableSymbol.textContent = " \u24d8";
+            clickableSymbol.classList.add('clickable');
+            clickableSymbol.addEventListener('click', (event) => {
+                event.stopPropagation();  // Prevents triggering the other click event
+                handleRowClick(matchingItem, true);
+            });
+            cellContentElement.appendChild(clickableSymbol);
           }
 
-          
           if (Header === 1) {
             cellContentElement.classList.add('bold');
             displayCell.classList.add('bold');
@@ -811,6 +811,7 @@ function createOMTable(selectedData) {
     resultContainer.appendChild(table);
   }
 }
+
   
 async function handleRowClick(item, ClickSymbol) {
     const matchingItem = omData.find(
