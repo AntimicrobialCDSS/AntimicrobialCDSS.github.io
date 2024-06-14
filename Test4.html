@@ -832,6 +832,7 @@ async function handleRowClick(item, ClickSymbol) {
         if (matchingODItem) {
             if (ClickSymbol) {
                 // If ClickSymbol is true, call createODTable
+               console.log(ClickSymbol);
                 selectedData = matchingODItem;
                 createODTable(selectedData);
                 pushHistory(selectedData.Name);
