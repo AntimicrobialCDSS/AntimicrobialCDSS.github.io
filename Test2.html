@@ -828,7 +828,7 @@ async function handleRowClick(item, ClickSymbol) {
             odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
         );
  console.log("Matching item:", matchingItem);
-        if ((matchingItem) && ClickSymbol)) {
+        if ((matchingItem) && ClickSymbol) {
             selectedData = matchingItem;
             createODTable(selectedData);
             pushHistory(selectedData);
