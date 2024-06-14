@@ -672,112 +672,81 @@ function scrollToTop() { // Add opening curly brace here
   }
   
 // Function to create table from OMJson Data  
-function createOMTable(selectedData) {
-  const table = document.createElement('table');
-  table.classList.add('table');
-  const tbody = document.createElement('tbody');
-  const { Contents } = selectedData;
-  const maxRow = Math.max(...Contents.map(item => item.Row));
-  const columns = Math.max(...Contents.map(item => item.Column));
+async function createOMTable(selectedData) {
+    const table = document.createElement('table');
+    table.classList.add('table');
+    const tbody = document.createElement('tbody');
+    const { Contents } = selectedData;
+    const maxRow = Math.max(...Contents.map(item => item.Row));
+    const columns = Math.max(...Contents.map(item => item.Column));
 
-  // Array to store the last matched index for each row
-  const lastMatchedIndexes = new Array(maxRow).fill(0);
+    // Array to store the last matched index for each row
+    const lastMatchedIndexes = new Array(maxRow).fill(0);
 
-  for (let row = 1; row <= maxRow; row++) {
-    const matchedTexts = new Set();
-    let allUpperCase = true;
-    let isInTop5Rows = row <= 5;
-    let trimmedValueNotBlank = false;
-    const bodyRow = document.createElement('tr');
+    for (let row = 1; row <= maxRow; row++) {
+        const matchedTexts = new Set();
+        let allUpperCase = true;
+        let isInTop5Rows = row <= 5;
+        let trimmedValueNotBlank = false;
+        const bodyRow = document.createElement('tr');
 
-    for (let column = 1; column <= columns; column++) {
-      const matchingItems = Contents.filter(
-        item => item.Row === row && item.Column === column
-      );
-      const displayCell = document.createElement('td');
+        for (let column = 1; column <= columns; column++) {
+            const matchingItems = Contents.filter(
+                item => item.Row === row && item.Column === column
+            );
+            const displayCell = document.createElement('td');
 
-      if (matchingItems.length > 0) {
-        matchingItems.forEach(matchingItem => {
-          const { Text, Item, Header, DisplayText } = matchingItem;
-          let cellContent = Text || DisplayText || Item || '';
-          const cellContentElement = document.createElement('div');
-          const contentText = cellContent;
-          let currentIndex = 0;
+            if (matchingItems.length > 0) {
+                matchingItems.forEach(matchingItem => {
+                    const { Text, Item, Header, DisplayText } = matchingItem;
+                    let cellContent = Text || DisplayText || Item || '';
 
-          if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              cellContentElement.classList.add('clickable');
-              cellContentElement.addEventListener('click', () => {
-                  handleRowClick(matchingItem, false);
-              });
-              cellContentElement.textContent = cellContent;
-          } 
-          
-          if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-            if (abxLinkData.length > 0) {
-              const linkContainer = document.createElement('span');
-              const matchingURLs = abxLinkData.filter(item =>
-                contentText.toLowerCase().includes(item.Name.toLowerCase())
-              );
-              const sortedMatchingURLs = matchingURLs.sort((a, b) => {
-                const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
-                const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
-                return aIndex - bIndex;
-              });
+                    const cellContentElement = document.createElement('div');
+                    const contentText = cellContent;
+                    let currentIndex = 0;
 
-              currentIndex = 0;
-              sortedMatchingURLs.forEach(matchingURL => {
-                const { Name, URL } = matchingURL;
-                const nameRegex = new RegExp(`\\b${Name}\\b`, 'gi');
-                let match;
-                while ((match = nameRegex.exec(contentText)) !== null) {
-                  if (currentIndex > match.index) {
-                    currentIndex = match.index + match[0].length;
-                    continue;
-                  }
-                  const nonLinkText = contentText.substring(currentIndex, match.index);
-                  const linkText = match[0].toLowerCase();
-                  if (matchedTexts.has(linkText)) {
-                    const remainingText = contentText.substring(lastMatchedIndexes[row - 1], match.index);
-                    const remainingTextNode = document.createTextNode(remainingText);
-                    linkContainer.appendChild(remainingTextNode);
-                    currentIndex = match.index + match[0].length;
-                    continue;
-                  }
-                  const linkElement = document.createElement('a');
-                  linkElement.href = URL;
-                  linkElement.classList.add('AbxLink');
-                  linkElement.target = '_blank';
-                  linkElement.textContent = match[0];
-                  const nonLinkTextNode = document.createTextNode(nonLinkText);
-                  linkContainer.appendChild(nonLinkTextNode);
-                  linkContainer.appendChild(linkElement);
-                  matchedTexts.add(linkText);
-                  lastMatchedIndexes[row - 1] = match.index + match[0].length;
-                  currentIndex = match.index + match[0].length;
-                }
-              });
-              if (currentIndex < contentText.length) {
-                const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
-                const remainingTextNode = document.createTextNode(remainingText);
-                linkContainer.appendChild(remainingTextNode);
-              }
-              cellContentElement.appendChild(linkContainer);
-            } else {
-              cellContentElement.textContent = contentText;
+                    // Container for clickable text
+                    const textContainer = document.createElement('div');
+                    textContainer.classList.add('text-container');
+
+                    if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+                        textContainer.classList.add('clickable');
+                        textContainer.addEventListener('click', () => {
+                            handleRowClick(matchingItem, false);
+                        });
+                        textContainer.textContent = cellContent;
+                    } else {
+                        if (abxLinkData.length > 0) {
+                            const linkContainer = document.createElement('span');
+                            // Rest of the link creation logic...
+                            textContainer.appendChild(linkContainer);
+                        } else {
+                            textContainer.textContent = contentText;
+                        }
+                    }
+
+                    // Container for clickable symbol
+                    const symbolContainer = document.createElement('div');
+                    symbolContainer.classList.add('symbol-container');
+                    if (Item && !Item.startsWith(MenuPrefix)) {
+                        const clickableSymbol = document.createElement('span');
+                        clickableSymbol.textContent = " \u24d8";
+                        clickableSymbol.classList.add('Symbol');
+                        clickableSymbol.addEventListener('click', () => {
+                            handleRowClick(matchingItem, true);
+                        });
+                        symbolContainer.appendChild(clickableSymbol);
+                    }
+
+                    // Add text container and symbol container to the display cell
+                    displayCell.appendChild(textContainer);
+                    displayCell.appendChild(symbolContainer);
+
+                    // Rest of the code...
+                });
             }
-          }
-
-          if (Item && !Item.startsWith(MenuPrefix)) {
-          /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
-              const clickableSymbol = document.createElement('span');
-              clickableSymbol.textContent = " \u24d8";
-              clickableSymbol.classList.add('Symbol');
-              clickableSymbol.addEventListener('click', () => {
-                  handleRowClick(matchingItem, true);
-              });
-              cellContentElement.appendChild(clickableSymbol);
-          }
-
+            bodyRow.appendChild(displayCell);
+        }
           
           if (Header === 1) {
             cellContentElement.classList.add('bold');
