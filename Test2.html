@@ -701,7 +701,7 @@ function createOMTable(selectedData) {
           if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
               cellContentElement.classList.add('clickable');
               cellContentElement.addEventListener('click', () => {
-                  handleRowClick(matchingItem);
+                  handleRowClick(matchingItem, false);
               });
               cellContentElement.textContent = cellContent;
           } 
@@ -767,7 +767,7 @@ function createOMTable(selectedData) {
               clickableSymbol.textContent = " \u24d8";
               clickableSymbol.classList.add('clickable');
               clickableSymbol.addEventListener('click', () => {
-                  handleRowClick(matchingItem);
+                  handleRowClick(matchingItem, true);
               });
               cellContentElement.appendChild(clickableSymbol);
           }
@@ -812,7 +812,7 @@ function createOMTable(selectedData) {
   }
 }
   
-async function handleRowClick(item) {
+async function handleRowClick(item, ClickSymbol) {
     const matchingItem = omData.find(
         omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
     );
@@ -828,12 +828,12 @@ async function handleRowClick(item) {
             odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
         );
  console.log("Matching item:", matchingItem);
-        if (!((matchingItem) && matchingItem.Name.startsWith(LinkPrefix))) {
+        if ((matchingItem) && ClickSymbol)) {
             selectedData = matchingItem;
             createODTable(selectedData);
             pushHistory(selectedData);
         } else {
-            if (matchingItem.Name.startsWith(LinkPrefix)) {
+            if (matchingItem.Name.startsWith(LinkPrefix) && !ClickSymbol) {
                 // Find matches between .txml names and ODJSON text fields for the matching item
                 const matches = await findMatches(matchingItem);
 
