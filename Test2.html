@@ -665,7 +665,7 @@ function scrollToTop() { // Add opening curly brace here
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
   
-// Function to create table from OMJson Data  
+// Function to create table from OMJson Data
 function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
@@ -698,14 +698,16 @@ function createOMTable(selectedData) {
           const contentText = cellContent;
           let currentIndex = 0;
 
+          // Add event listener for item click
           if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
               cellContentElement.classList.add('clickable');
               cellContentElement.addEventListener('click', () => {
                   handleRowClick(matchingItem, false);
               });
               cellContentElement.textContent = cellContent;
-          } 
-          
+          }
+
+          // Handle links separately
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
               const linkContainer = document.createElement('span');
@@ -761,8 +763,8 @@ function createOMTable(selectedData) {
             }
           }
 
-          // Separate clickableSymbol for triggering createODTable
-          if (Item && !Item.startsWith(MenuPrefix) && !Item.startsWith(LinkPrefix)) {
+          // Add clickable symbol for creating OD table
+          if (Item && Item.startsWith(LinkPrefix)) {
             const clickableSymbol = document.createElement('span');
             clickableSymbol.textContent = " \u24d8";
             clickableSymbol.classList.add('clickable');
@@ -811,7 +813,6 @@ function createOMTable(selectedData) {
     resultContainer.appendChild(table);
   }
 }
-
   
 async function handleRowClick(item, ClickSymbol) {
     const matchingItem = omData.find(
