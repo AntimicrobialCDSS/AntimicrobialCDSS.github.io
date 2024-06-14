@@ -961,49 +961,60 @@ async function findMatches(matchingItem) {
         return []; // Return an empty array if an error occurs
     }
 }
-function createODTable(selectedItem) {
-    // Check if selectedItem is already an object or a string
-    const itemData = typeof selectedItem === 'string' 
-        ? odData.find(item => item.Name === selectedItem)
-        : selectedItem;
 
-    if (!itemData) {
-        console.error('No matching data found for selected item:', selectedItem);
-        return;
-    }
+function createODTable(selectedData) {
+  // Create a table element
+  const table = document.createElement('table');
+  table.classList.add('table');
 
-    const table = document.createElement('table');
-    table.classList.add('table');
-    const tbody = document.createElement('tbody');
+  // Create a tbody element
+  const tbody = document.createElement('tbody');
 
-    // Iterate over the entries of itemData
-    Object.entries(itemData).forEach(([key, value]) => {
-        const row = document.createElement('tr');
-        
-        // Create cells for key and value
-        const keyCell = document.createElement('td');
-        keyCell.textContent = key;
-        const valueCell = document.createElement('td');
-        valueCell.textContent = JSON.stringify(value, null, 2);
+  // Create the header row with a bold header and a background color
+  const headerRow = document.createElement('tr');
+  const headerCell = document.createElement('td');
+  headerCell.textContent = 'ORDER DIALOG INFORMATION';
+  headerCell.colSpan = 2; // Span across two columns
+  headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+  headerCell.style.fontWeight = 'bold';
+  headerCell.style.backgroundColor = 'lightblue'; // Set background color
+  headerRow.appendChild(headerCell);
+  tbody.appendChild(headerRow);
 
-        // Append cells to the row
-        row.appendChild(keyCell);
-        row.appendChild(valueCell);
+  // Iterate over the selectedData object to create rows for each key-value pair
+  for (const [key, value] of Object.entries(selectedData)) {
+    // Create a row
+    const row = document.createElement('tr');
+    
+    // Create a cell for the key title
+    const keyCell = document.createElement('td');
+    keyCell.innerHTML = `<b>${key}:</b>`;
+    
+    // Create a cell for the value
+    const valueCell = document.createElement('td');
+    valueCell.textContent = value;
 
-        // Append row to the tbody
-        tbody.appendChild(row);
-    });
+    // Append the cells to the row
+    row.appendChild(keyCell);
+    row.appendChild(valueCell);
 
-    // Append tbody to the table
-    table.appendChild(tbody);
+    // Append the row to the tbody
+    tbody.appendChild(row);
+  }
 
-    // Display the table in the result container
-    const resultContainer = document.getElementById('resultContainer');
-    resultContainer.innerHTML = '';
+  // Append the tbody to the table
+  table.appendChild(tbody);
+
+  // Get the result container element and clear its contents
+  const resultContainer = document.getElementById('resultContainer');
+  resultContainer.innerHTML = '';
+
+  // Append the table to the result container if selectedData is not empty
+  if (Object.keys(selectedData).length > 0) {
     resultContainer.appendChild(table);
+  }
 }
 
-    
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
