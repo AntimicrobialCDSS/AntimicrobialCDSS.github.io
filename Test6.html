@@ -703,6 +703,7 @@ function createOMTable(selectedData) {
                   handleRowClick(matchingItem, false);
               });
               cellContentElement.textContent = cellContent;
+             console.log("RowClick");
           } 
           
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
@@ -769,6 +770,7 @@ function createOMTable(selectedData) {
                   handleRowClick(matchingItem, true);
               });
               cellContentElement.appendChild(clickableSymbol);
+            console.log("SymbolClick")
           }
 
           
