@@ -693,17 +693,17 @@ function createOMTable(selectedData) {
         matchingItems.forEach(matchingItem => {
           const { Text, Item, Header, DisplayText } = matchingItem;
           let cellContent = Text || DisplayText || Item || '';
-          const cellContentElement = document.createElement('a');
+          const cellContentElement = document.createElement('Div');
           const contentText = cellContent;
           let currentIndex = 0;
 
           if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+              const cellContentElement = document.createElement('a');
               cellContentElement.classList.add('clickable');
               cellContentElement.addEventListener('click', () => {
                   handleRowClick(matchingItem, false);
               });
               cellContentElement.textContent = cellContent;
-             console.log("RowClick");
           } 
           
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
@@ -770,7 +770,6 @@ function createOMTable(selectedData) {
                   handleRowClick(matchingItem, true);
               });
               cellContentElement.appendChild(clickableSymbol);
-            console.log("SymbolClick")
           }
 
           
