@@ -827,14 +827,16 @@ async function handleRowClick(item, ClickSymbol) {
         const matchingItem = odData.find(
             odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
         );
- console.log("Matching item:", matchingItem);
-        if ((matchingItem) && ClickSymbol) {
-            selectedData = matchingItem;
-            createODTable(selectedData);
-            pushHistory(selectedData);
-        } else {
-            if (matchingItem.Name.startsWith(LinkPrefix) && !ClickSymbol) {
-                // Find matches between .txml names and ODJSON text fields for the matching item
+        console.log("Matching item:", matchingItem);
+
+        if (matchingItem) {
+            if (ClickSymbol) {
+                // If ClickSymbol is true, call createODTable
+                selectedData = matchingItem;
+                createODTable(selectedData);
+                pushHistory(selectedData.Name);
+            } else if (matchingItem.Name.startsWith(LinkPrefix)) {
+                // If ClickSymbol is false and matchingItem's name starts with LinkPrefix, call findMatches
                 const matches = await findMatches(matchingItem);
 
                 if (matches.length > 0) {
@@ -849,12 +851,16 @@ async function handleRowClick(item, ClickSymbol) {
                 } else {
                     console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
                 }
+            } else {
+                // Handle case when matchingItem does not meet any specific condition
+                console.log('Matching item does not meet any specific condition');
             }
         }
     }
     scrollToTop();
     adjustFontSize();
 }
+
 
 // Function to fetch data from txml file
 async function fetchAndParseXML(txmlFile) {
