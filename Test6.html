@@ -1084,26 +1084,30 @@ function handleGoBack() {
 
 // Function to handle the Go Forward button click event
 function handleGoForward() {
-  if (historyIndex < history.length - 1) {
-    historyIndex++;
-    const selectedItem = history[historyIndex];
-    const matchingData = omData.find(item => item.Name === selectedItem)
-    if (matchingData) {
-    const dropdown = document.getElementById('filterDropdown');
-    document.getElementById('searchInput').value = null;
-    document.getElementById('searchInput').placeholder = "\u{1F50D}";
-    populateDropdown(omData);
-    dropdown.value = selectedItem;
-    filterData({ target: dropdown });
+    if (historyIndex < history.length - 1) {
+        historyIndex++;
+        const selectedItem = history[historyIndex];
+        const matchingData = omData.find(item => item.Name === selectedItem);
+        if (matchingData) {
+            const dropdown = document.getElementById('filterDropdown');
+            document.getElementById('searchInput').value = null;
+            document.getElementById('searchInput').placeholder = "\u{1F50D}";
+            populateDropdown(omData);
+            dropdown.value = selectedItem;
+            filterData({ target: dropdown });
+        } else {
+            createODTable(selectedItem);
+        }
+    } else {
+        // Handle the case when the historyIndex is at the end
+        // This could be redirecting somewhere or showing a message
+        // For now, let's just log a message
+        console.log("End of history reached");
     }
-    else {
-      createODTable(selectedItem)
-    }
-  }
-      scrollToTop()
-      adjustFontSize();
+    scrollToTop();
+    adjustFontSize();
 }
-  
+
 // Function to handle the Main Menu button click event
 function handleMainMenu() {
   const dropdown = document.getElementById('filterDropdown');
