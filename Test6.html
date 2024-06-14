@@ -694,14 +694,14 @@ function createOMTable(selectedData) {
         matchingItems.forEach(matchingItem => {
           const { Text, Item, Header, DisplayText } = matchingItem;
           let cellContent = Text || DisplayText || Item || '';
-          const cellContentElement = document.createElement('div');
+          const cellContentElement = document.createElement('span');
           const contentText = cellContent;
           let currentIndex = 0;
 
           if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
               cellContentElement.classList.add('clickable');
               cellContentElement.addEventListener('click', () => {
-                  handleRowClick(matchingItem, true, );
+                  handleRowClick(matchingItem, false);
               });
               cellContentElement.textContent = cellContent;
           } 
@@ -767,7 +767,7 @@ function createOMTable(selectedData) {
               clickableSymbol.textContent = " \u24d8";
               clickableSymbol.classList.add('clickable');
               clickableSymbol.addEventListener('click', () => {
-                  handleRowClick(matchingItem, , true);
+                  handleRowClick(matchingItem, true);
               });
               cellContentElement.appendChild(clickableSymbol);
           }
@@ -812,7 +812,7 @@ function createOMTable(selectedData) {
   }
 }
   
-async function handleRowClick(item, ClickRow, ClickSymbol) {
+async function handleRowClick(item, ClickSymbol) {
     const matchingItem = omData.find(
         omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
     );
@@ -831,12 +831,12 @@ async function handleRowClick(item, ClickRow, ClickSymbol) {
 
         if (matchingODItem) {
             if (ClickSymbol) {
-                // If ClickRow is true, call createODTable
+                // If ClickSymbol is true, call createODTable
                 selectedData = matchingODItem;
                 createODTable(selectedData);
                 pushHistory(selectedData.Name);
-            } else if (ClickRow) {
-                // If ClickRow is true
+            } else if (matchingODItem.Name.startsWith(LinkPrefix) && !ClickSymbol) {
+                // If ClickSymbol is false and matchingODItem's name starts with LinkPrefix, call findMatches
                 const matches = await findMatches(matchingODItem);
 
                 if (matches.length > 0) {
