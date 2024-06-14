@@ -762,14 +762,15 @@ function createOMTable(selectedData) {
           }
 
           if (Item && !Item.startsWith(MenuPrefix)) {
-              const cellContentElement = document.createElement('div');
+              const SymbolContentElement = document.createElement('div');
               const clickableSymbol = document.createElement('span');
               clickableSymbol.textContent = " \u24d8";
               clickableSymbol.classList.add('clickable');
               clickableSymbol.addEventListener('click', () => {
                   handleRowClick(matchingItem, true);
               });
-              cellContentElement.appendChild(clickableSymbol);
+              SymbolContentElement.appendChild(clickableSymbol);
+            cellContentElement.appendChild(SymbolContentElement);
           }
 
           if (Header === 1) {
