@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -694,7 +693,7 @@ function createOMTable(selectedData) {
         matchingItems.forEach(matchingItem => {
           const { Text, Item, Header, DisplayText } = matchingItem;
           let cellContent = Text || DisplayText || Item || '';
-          const cellContentElement = document.createElement('span');
+          const cellContentElement = document.createElement('a');
           const contentText = cellContent;
           let currentIndex = 0;
 
@@ -708,7 +707,7 @@ function createOMTable(selectedData) {
           
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
-              const linkContainer = document.createElement('span');
+              const linkContainer = document.createElement('a');
               const matchingURLs = abxLinkData.filter(item =>
                 contentText.toLowerCase().includes(item.Name.toLowerCase())
               );
@@ -763,7 +762,7 @@ function createOMTable(selectedData) {
 
           if (Item && !Item.startsWith(MenuPrefix)) {
           /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
-              const clickableSymbol = document.createElement('span');
+              const clickableSymbol = document.createElement('a');
               clickableSymbol.textContent = " \u24d8";
               clickableSymbol.classList.add('clickable');
               clickableSymbol.addEventListener('click', () => {
