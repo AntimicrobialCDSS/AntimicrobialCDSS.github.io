@@ -770,12 +770,6 @@ function createOMTable(selectedData) {
                   handleRowClick(matchingItem, true);
               });
               cellContentElement.appendChild(clickableSymbol);
-          
-              // Append the text content after the clickable symbol
-              const textContent = document.createTextNode(cellContent);
-              cellContentElement.appendChild(textContent);
-          
-              displayCell.appendChild(cellContentElement);
           }
 
           if (Header === 1) {
