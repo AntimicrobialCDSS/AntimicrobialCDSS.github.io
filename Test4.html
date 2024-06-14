@@ -139,6 +139,12 @@
       color: blue;
       cursor: pointer;
     }
+
+    .Symbol {
+      color: blue;
+      cursor: pointer;
+    }
+    
     .bold {
       font-family: 'PT Serif Bold', Arial, sans-serif;
      /*  background-color: lightblue; /* Set your desired background color here */
@@ -765,7 +771,7 @@ function createOMTable(selectedData) {
           /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
               const clickableSymbol = document.createElement('span');
               clickableSymbol.textContent = " \u24d8";
-              clickableSymbol.classList.add('clickable');
+              clickableSymbol.classList.add('Symbol');
               clickableSymbol.addEventListener('click', () => {
                   handleRowClick(matchingItem, true);
               });
