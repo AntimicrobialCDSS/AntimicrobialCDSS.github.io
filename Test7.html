@@ -832,9 +832,9 @@ async function handleRowClick(item, ClickSymbol) {
 
         if (matchingODItem) {
             if (ClickSymbol) {
-                // If ClickSymbol is true, call createODTable
+                // If ClickSymbol is true, call Table
                 selectedData = matchingODItem;
-                createODTable(selectedData);
+                Table(selectedData);
                 pushHistory(selectedData.Name);
             } else if (matchingODItem.Name.startsWith(LinkPrefix) && !ClickSymbol) {
                 // If ClickSymbol is false and matchingODItem's name starts with LinkPrefix, call findMatches
@@ -962,7 +962,7 @@ async function findMatches(matchingItem) {
     }
 }
   
-function createODTable(selectedItem) {
+function Table(selectedItem) {
     // Check if selectedItem is already an object or a string
     const itemData = typeof selectedItem === 'string' 
         ? odData.find(item => item.Name === selectedItem)
@@ -993,7 +993,7 @@ function createODTable(selectedItem) {
         const row = document.createElement('tr');
         
         // Create cells for key and value
-        const Cell = document.createElement('td');
+        const cell = document.createElement('td');
         /*keyCell.textContent = key;*/
         /*const valueCell = document.createElement('td');*/
         /*valueCell.textContent = JSON.stringify(value, null, 2);*/
@@ -1080,7 +1080,7 @@ function handleGoBack() {
     filterData({ target: dropdown });
     }
     else {
-      createODTable(selectedItem)
+      Table(selectedItem)
     }
   }
   scrollToTop();
@@ -1102,7 +1102,7 @@ function handleGoForward() {
             dropdown.value = selectedItem;
             filterData({ target: dropdown });
         } else {
-            createODTable(selectedItem);
+            Table(selectedItem);
         }
     } else {
         // Handle the case when the historyIndex is at the end
