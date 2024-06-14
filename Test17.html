@@ -927,21 +927,26 @@ async function findMatches(matchingItem) {
                     }
                 }
             }
-            
+
             // Add all matches for the current ODJSON item to the main matches array
             matches.push(...itemMatches);
 
             // Handle opening URLs based on the number of URLs found
-            /*if (urls.length === 1) {*/
-                // If only one URL is found, open it in a new window
-                window.open(urls[0]);
-                window.open(urls[1]);
-            /*} else if (urls.length > 1) {*/
-                // If multiple URLs are found, create a popup
-                /*const popupContent = itemMatches.map(match => `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText}</a>`).join('<br>');*/
-                // You can customize the popup appearance and behavior as needed
-                /*alert(popupContent);*/
-            /*}*/
+            urls.forEach(url => {
+                window.open(url);
+            });
+
+            // If multiple URLs are found, create a popup
+            if (urls.length > 1) {
+                const popupContent = itemMatches
+                    .filter(match => match.txmlURL && match.txmlDefaultText)
+                    .map(match => `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText}</a>`)
+                    .join('<br>');
+
+                // Create a popup window
+                const popupWindow = window.open("", "popupWindow", "width=600,height=400,scrollbars=yes");
+                popupWindow.document.write(`<html><head><title>Multiple Links</title></head><body>${popupContent}</body></html>`);
+            }
         }
 
         return matches;
@@ -950,6 +955,7 @@ async function findMatches(matchingItem) {
         return []; // Return an empty array if an error occurs
     }
 }
+
 
 function createODTable(selectedData) {
   // Create a table element
