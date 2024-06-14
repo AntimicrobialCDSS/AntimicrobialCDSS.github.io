@@ -838,7 +838,7 @@ async function handleRowClick(item, ClickSymbol) {
             } else if (matchingODItem.Name.startsWith(LinkPrefix) && !ClickSymbol) {
                 // If ClickSymbol is false and matchingODItem's name starts with LinkPrefix, call findMatches
                 const matches = await findMatches(matchingODItem);
-
+                 console.log(ClickSymbol);
                 if (matches.length > 0) {
                     // Handle each match individually
                     matches.forEach(match => {
