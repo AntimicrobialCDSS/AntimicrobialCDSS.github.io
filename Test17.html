@@ -942,10 +942,6 @@ async function findMatches(matchingItem) {
                     .filter(match => match.txmlURL && match.txmlDefaultText)
                     .map(match => `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText}</a>`)
                     .join('<br>');
-
-                // Create a popup window
-                const popupWindow = window.open("", "popupWindow", "width=600,height=400,scrollbars=yes");
-                popupWindow.document.write(`<html><head><title>Multiple Links</title></head><body>${popupContent}</body></html>`);
             }
         }
 
