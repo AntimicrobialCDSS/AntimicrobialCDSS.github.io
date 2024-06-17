@@ -10,12 +10,12 @@
   gtag('config', 'G-RZT6D0E0DS');
   </script>
   <script>
-  var Version = 'V1.05' /*Text at the bottom of the menu, change to whatever you want*/
-  var CDSSlocation = 'Minneapolis' /*Only important to CDSS program functions, can be left as it for other systems*/
-  var Title = 'Minneapolis Antimicrobial CDSS' /*Name of the tab on the website*/
-  var MainMenuButton = 'Minneapolis Home' /*Main menu button name*/
+  var Version = 'V1.05'; /*Text at the bottom of the menu, change to whatever you want*/
+  var CDSSlocation = 'Minneapolis'; /*Only important to CDSS program functions, can be left as it for other systems*/
+  var Title = 'Minneapolis Antimicrobial CDSS'; /*Name of the tab on the website*/
+  var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
-  var IndexButton = 'Index' /*Only important to CDSS program functions, can be left as it for other systems*/
+  var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
   const OMjson = 'MinneapolisOMJSON.json'; /*Name of OMJSON file*/
   const ODjson = 'MinneapolisODJSON.json'; /*Name of ODJSOM file*/
@@ -834,7 +834,7 @@ async function handleRowClick(item, ClickSymbol) {
             if (ClickSymbol) {
                 // If ClickSymbol is true, call Table
                 selectedData = matchingODItem;
-                Table(selectedData);
+                createODTable(selectedData);
                 pushHistory(selectedData.Name);
             } else if (matchingODItem.Name.startsWith(LinkPrefix) && !ClickSymbol) {
                 // If ClickSymbol is false and matchingODItem's name starts with LinkPrefix, call findMatches
@@ -962,7 +962,7 @@ async function findMatches(matchingItem) {
     }
 }
   
-function Table(selectedItem) {
+function createODTable(selectedItem) {
     // Check if selectedItem is already an object or a string
     const itemData = typeof selectedItem === 'string' 
         ? odData.find(item => item.Name === selectedItem)
@@ -1025,12 +1025,12 @@ function filterData(event, sortByTerm = false) {
     selectedData = matchingData;
     createOMTable(matchingData);
     pushHistory(matchingData.Name);
-  } else {
+  } /*else {
     // Handle the case when selectedData is not found
     // For example, display an error message or clear the result container
     const resultContainer = document.getElementById('resultContainer');
     resultContainer.innerHTML = 'Selected data not found.';
-  }
+  }*/
   scrollToTop();
   adjustFontSize();
   if (sortByTerm) {
@@ -1078,9 +1078,10 @@ function handleGoBack() {
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
+    createOMTable(matchingData)
     }
     else {
-      Table(selectedItem)
+      createODTable(selectedItem)
     }
   }
   scrollToTop();
@@ -1095,14 +1096,15 @@ function handleGoForward() {
         const selectedItem = history[historyIndex];
         const matchingData = omData.find(item => item.Name === selectedItem);
         if (matchingData) {
-            const dropdown = document.getElementById('filterDropdown');
+           const dropdown = document.getElementById('filterDropdown');
             document.getElementById('searchInput').value = null;
             document.getElementById('searchInput').placeholder = "\u{1F50D}";
             populateDropdown(omData);
             dropdown.value = selectedItem;
             filterData({ target: dropdown });
+          createOMTable(matchingData)
         } else {
-            Table(selectedItem);
+            createODTable(selectedItem);
         }
     } else {
         // Handle the case when the historyIndex is at the end
