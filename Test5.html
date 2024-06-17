@@ -567,6 +567,7 @@ function searchData() {
   }
   // Scroll to the top of the dropdown
   dropdown.scrollTop = 0;
+  console.log("SearchDataFunction");
 }
     
 function searchAndOpenDropdown() {
@@ -624,7 +625,7 @@ function handleOutsideClick(event) {
 }
 
 // Call the searchAndOpenDropdown function initially
-/*searchAndOpenDropdown();*/
+searchAndOpenDropdown();
 
 // Add event listener to sort the dropdown alphabetically when the search box is clicked but no text has been entered
 const searchInput = document.getElementById('searchInput');
@@ -1225,12 +1226,14 @@ document.getElementById('searchInput').addEventListener('input', searchData);
 document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
 document.addEventListener('DOMContentLoaded', () => {
-document.getElementById('menusLink').setAttribute('href', OMjson);
-document.getElementById('menusLink').setAttribute('download', OMjson);
-document.getElementById('ordersLink').setAttribute('href', ODjson);
-document.getElementById('ordersLink').setAttribute('download', ODjson);
-document.getElementById('templateFieldsLink').setAttribute('href', txmlFile);
-document.getElementById('templateFieldsLink').setAttribute('download', txmlFile);
+      document.getElementById('menusLink').setAttribute('href', OMjson);
+      document.getElementById('menusLink').setAttribute('download', OMjson);
+
+      document.getElementById('ordersLink').setAttribute('href', ODjson);
+      document.getElementById('ordersLink').setAttribute('download', ODjson);
+
+      document.getElementById('templateFieldsLink').setAttribute('href', txmlFile);
+      document.getElementById('templateFieldsLink').setAttribute('download', txmlFile);
     });
   
 // Call the adjustFontSize function when the window is resized
