@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +10,12 @@
   gtag('config', 'G-RZT6D0E0DS');
   </script>
   <script>
-  var Version = 'V1.05' /*Text at the bottom of the menu, change to whatever you want*/
-  var CDSSlocation = 'Minneapolis' /*Only important to CDSS program functions, can be left as it for other systems*/
-  var Title = 'Minneapolis Antimicrobial CDSS' /*Name of the tab on the website*/
-  var MainMenuButton = 'Minneapolis Home' /*Main menu button name*/
+  var Version = 'V1.05'; /*Text at the bottom of the menu, change to whatever you want*/
+  var CDSSlocation = 'Minneapolis'; /*Only important to CDSS program functions, can be left as it for other systems*/
+  var Title = 'Minneapolis Antimicrobial CDSS'; /*Name of the tab on the website*/
+  var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
-  var IndexButton = 'Index' /*Only important to CDSS program functions, can be left as it for other systems*/
+  var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
   const OMjson = 'MinneapolisOMJSON.json'; /*Name of OMJSON file*/
   const ODjson = 'MinneapolisODJSON.json'; /*Name of ODJSOM file*/
@@ -694,21 +693,23 @@ function createOMTable(selectedData) {
         matchingItems.forEach(matchingItem => {
           const { Text, Item, Header, DisplayText } = matchingItem;
           let cellContent = Text || DisplayText || Item || '';
-          const cellContentElement = document.createElement('div');
+          const cellContentElement = document.createElement('Div');
           const contentText = cellContent;
           let currentIndex = 0;
 
           if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              cellContentElement.classList.add('clickable');
-              cellContentElement.addEventListener('click', () => {
+              const RowClickElement = document.createElement('a');
+              RowClickElement.classList.add('clickable');
+              RowClickElement.addEventListener('click', () => {
                   handleRowClick(matchingItem, false);
               });
-              cellContentElement.textContent = cellContent;
+              RowClickElement.textContent = cellContent;
+              cellContentElement.appendChild(RowClickElement);
           } 
           
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
-              const linkContainer = document.createElement('span');
+              const linkContainer = document.createElement('a');
               const matchingURLs = abxLinkData.filter(item =>
                 contentText.toLowerCase().includes(item.Name.toLowerCase())
               );
@@ -762,17 +763,17 @@ function createOMTable(selectedData) {
           }
 
           if (Item && !Item.startsWith(MenuPrefix)) {
-              const SymbolContentElement = document.createElement('div');
-              const clickableSymbol = document.createElement('span');
+          /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
+              const clickableSymbol = document.createElement('a');
               clickableSymbol.textContent = " \u24d8";
               clickableSymbol.classList.add('clickable');
               clickableSymbol.addEventListener('click', () => {
                   handleRowClick(matchingItem, true);
               });
-              SymbolContentElement.appendChild(clickableSymbol);
-            cellContentElement.appendChild(SymbolContentElement);
+              cellContentElement.appendChild(clickableSymbol);
           }
 
+          
           if (Header === 1) {
             cellContentElement.classList.add('bold');
             displayCell.classList.add('bold');
@@ -831,11 +832,11 @@ async function handleRowClick(item, ClickSymbol) {
 
         if (matchingODItem) {
             if (ClickSymbol) {
-                // If ClickSymbol is true, call createODTable
+                // If ClickSymbol is true, call Table
                 selectedData = matchingODItem;
-                createODTable(selectedData);
+                Table(selectedData);
                 pushHistory(selectedData.Name);
-            } else if (!ClickSymbol) {
+            } else if (matchingODItem.Name.startsWith(LinkPrefix) && !ClickSymbol) {
                 // If ClickSymbol is false and matchingODItem's name starts with LinkPrefix, call findMatches
                 const matches = await findMatches(matchingODItem);
 
@@ -960,53 +961,59 @@ async function findMatches(matchingItem) {
         return []; // Return an empty array if an error occurs
     }
 }
+  
+function Table(selectedItem) {
+    // Check if selectedItem is already an object or a string
+    const itemData = typeof selectedItem === 'string' 
+        ? odData.find(item => item.Name === selectedItem)
+        : selectedItem;
 
+    if (!itemData) {
+        console.error('No matching data found for selected item:', selectedItem);
+        return;
+    }
 
-function createODTable(selectedData) {
-  // Create a table element
-  const table = document.createElement('table');
-  table.classList.add('table');
-
-  // Create a tbody element
-  const tbody = document.createElement('tbody');
-
+    const table = document.createElement('table');
+    table.classList.add('table');
+    const tbody = document.createElement('tbody');
+   
   // Create the header row with a bold header and a background color
-  const headerRow = document.createElement('tr');
-  const headerCell = document.createElement('td');
-  headerCell.textContent = 'ORDER DIALOG INFORMATION';
-  headerCell.colSpan = 1; // Span across one column
-  headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
-  headerCell.style.fontWeight = 'bold';
-  headerCell.style.backgroundColor = 'lightblue'; // Set background color
-  headerRow.appendChild(headerCell);
-  tbody.appendChild(headerRow);
-
-  // Iterate over the selectedData object to create rows for each key-value pair
-  for (const [key, value] of Object.entries(selectedData)) {
-    // Create a row
-    const row = document.createElement('tr');
+    const headerRow = document.createElement('tr');
+    const headerCell = document.createElement('td');
+    headerCell.textContent = 'ORDER DIALOG INFORMATION';
+    headerCell.colSpan = 1; // Span across one column
+    headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+    headerCell.style.fontWeight = 'bold';
+    headerCell.style.backgroundColor = 'lightblue'; // Set background color
+    headerRow.appendChild(headerCell);
+    tbody.appendChild(headerRow);
     
-    // Create a cell for the key title and field value
-    const cell = document.createElement('td');
-    // Set key title as bold
-    cell.innerHTML = `<b>${key}:</b> ${value}`;
-    row.appendChild(cell);
+    // Iterate over the entries of itemData
+    Object.entries(itemData).forEach(([key, value]) => {
+        const row = document.createElement('tr');
+        
+        // Create cells for key and value
+        const cell = document.createElement('td');
+        /*keyCell.textContent = key;*/
+        /*const valueCell = document.createElement('td');*/
+        /*valueCell.textContent = JSON.stringify(value, null, 2);*/
+        cell.innerHTML = `<b>${key}:</b> ${value}`;
+        row.appendChild(cell);
+        // Append cells to the row
+       /* row.appendChild(keyCell);*/
+       /* row.appendChild(valueCell);*/
 
-    // Append the row to the tbody
-    tbody.appendChild(row);
-  }
+        // Append row to the tbody
+        tbody.appendChild(row);
+    });
 
-  // Append the tbody to the table
-  table.appendChild(tbody);
+    // Append tbody to the table
+    table.appendChild(tbody);
 
-  // Get the result container element and clear its contents
-  const resultContainer = document.getElementById('resultContainer');
-  resultContainer.innerHTML = '';
-
-  // Append the table to the result container if selectedData is not empty
-  if (Object.keys(selectedData).length > 0) {
+    // Display the table in the result container
+    const resultContainer = document.getElementById('resultContainer');
+    resultContainer.innerHTML = '';
     resultContainer.appendChild(table);
-  }
 }
 
     
@@ -1065,15 +1072,16 @@ function handleGoBack() {
     const selectedItem = history[historyIndex];
     const matchingData = omData.find(item => item.Name === selectedItem)
     if (matchingData) {
-    const dropdown = document.getElementById('filterDropdown');
+    /*const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
     document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
-    filterData({ target: dropdown });
+    filterData({ target: dropdown });*/
+    createOMtable(matchingData)
     }
     else {
-      createODTable(selectedItem)
+      Table(selectedItem)
     }
   }
   scrollToTop();
@@ -1083,26 +1091,31 @@ function handleGoBack() {
 
 // Function to handle the Go Forward button click event
 function handleGoForward() {
-  if (historyIndex < history.length - 1) {
-    historyIndex++;
-    const selectedItem = history[historyIndex];
-    const matchingData = omData.find(item => item.Name === selectedItem)
-    if (matchingData) {
-    const dropdown = document.getElementById('filterDropdown');
-    document.getElementById('searchInput').value = null;
-    document.getElementById('searchInput').placeholder = "\u{1F50D}";
-    populateDropdown(omData);
-    dropdown.value = selectedItem;
-    filterData({ target: dropdown });
+    if (historyIndex < history.length - 1) {
+        historyIndex++;
+        const selectedItem = history[historyIndex];
+        const matchingData = omData.find(item => item.Name === selectedItem);
+        if (matchingData) {
+           /*const dropdown = document.getElementById('filterDropdown');
+            document.getElementById('searchInput').value = null;
+            document.getElementById('searchInput').placeholder = "\u{1F50D}";
+            populateDropdown(omData);
+            dropdown.value = selectedItem;
+            filterData({ target: dropdown });*/
+          createOMtable(matchingData)
+        } else {
+            Table(selectedItem);
+        }
+    } else {
+        // Handle the case when the historyIndex is at the end
+        // This could be redirecting somewhere or showing a message
+        // For now, let's just log a message
+        console.log("End of history reached");
     }
-    else {
-      createODTable(selectedItem)
-    }
-  }
-      scrollToTop()
-      adjustFontSize();
+    scrollToTop();
+    adjustFontSize();
 }
-  
+
 // Function to handle the Main Menu button click event
 function handleMainMenu() {
   const dropdown = document.getElementById('filterDropdown');
