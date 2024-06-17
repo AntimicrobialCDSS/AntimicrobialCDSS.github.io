@@ -631,6 +631,7 @@ const searchInput = document.getElementById('searchInput');
 searchInput.addEventListener('click', function () {
   if (searchInput.value.trim() === '') {
     filterData({ target: document.getElementById('filterDropdown') }, true);
+    console.log('FilterData6');
   }
 });
 
@@ -1078,6 +1079,7 @@ function handleGoBack() {
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
+    console.log('FilterData1');
     createOMTable(matchingData)
     }
     else {
@@ -1102,6 +1104,7 @@ function handleGoForward() {
             populateDropdown(omData);
             dropdown.value = selectedItem;
             filterData({ target: dropdown });
+            console.log('FilterData2');
           createOMTable(matchingData)
         } else {
             createODTable(selectedItem);
@@ -1124,6 +1127,7 @@ function handleMainMenu() {
   populateDropdown(omData);
   dropdown.value = MainMenu;
   filterData({ target: dropdown });
+  console.log('FilterData3');
   createOMTable(MainMenu)
   scrollToTop()    
   adjustFontSize();
@@ -1137,6 +1141,7 @@ function handleIndex() {
   populateDropdown(omData);
   dropdown.value = Index;
   filterData({ target: dropdown });
+  console.log('FilterData4');
   createOMTable(Index)
   scrollToTop();    
   adjustFontSize();
@@ -1282,6 +1287,7 @@ Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // 
   }
     pushHistory(dropdown.value);
     filterData({ target: dropdown });
+    console.log('FilterData5');
     scrollToTop()    
     adjustFontSize();
   })
