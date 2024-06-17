@@ -1026,12 +1026,12 @@ function filterData(event, sortByTerm = false) {
     selectedData = matchingData;
     createOMTable(matchingData);
     pushHistory(matchingData.Name);
-  } else {
+  } /*else {
     // Handle the case when selectedData is not found
     // For example, display an error message or clear the result container
     const resultContainer = document.getElementById('resultContainer');
     resultContainer.innerHTML = 'Selected data not found.';
-  }
+  }*/
   scrollToTop();
   adjustFontSize();
   if (sortByTerm) {
