@@ -1,5 +1,5 @@
 <CPRS_TEMPLATE>
-  <TEMPLATE NAME="CDSSImport">
+  <TEMPLATE NAME="CDSSFull6172024">
     <TYPE>T</TYPE>
     <STATUS>A</STATUS>
     <BOILERPLATE_TEXT>
@@ -29,7 +29,6 @@
       <p>{FLD:VHA HIGH CONSEQUENCE INFECTION PREPAREDNESS PROGRAM}</p>
       <p>{FLD:ABX MONOCLONAL ANTIBODY ALLOCATION SOP}</p>
       <p>{FLD:ABX COVID-19 INPT TREATMENT}</p>
-      <p>{FLD:ABX DENTAL ABX PPX SOP}</p>
       <p>{FLD:ABX HEPATITIS B ONCOLOGY SHAREPOINT URL}</p>
       <p>{FLD:ABX IDP FLUOROQUINOLONE ADVERSE REACTIONS}</p>
       <p>{FLD:ABX ISOLATION SIGNS}</p>
@@ -191,6 +190,7 @@
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>ALBC Document</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>0</SEPARATE_LINES>
@@ -200,7 +200,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\ALBC.pdf</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/ALBC.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX GENERIC CLICK LINK BELOW">
       <TYPE>T</TYPE>
@@ -285,7 +285,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Antimicrobial%20Formulary.pdf?csf=1&amp;web=1&amp;e=E9wLjo</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Antimicrobial Formulary.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX UROLOGIC SURGERY PROPHYLAXIS GUIDELINES">
       <TYPE>H</TYPE>
@@ -317,7 +317,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Beta-lactam%20Allergies%20CDSS.pdf?csf=1&amp;web=1&amp;e=gsFtjT</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Beta-lactam Allergies CDSS.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CAP CALCULATOR">
       <TYPE>H</TYPE>
@@ -381,7 +381,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/CDC%20Immunization%20Schedule%20Full.pdf?csf=1&amp;web=1&amp;e=B3H7st</URL>
+      <URL>https://www.cdc.gov/vaccines/schedules/downloads/adult/adult-combined-schedule.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CDC ADULT IMMMUNIZATION SCHEDULE LIST">
       <TYPE>T</TYPE>
@@ -527,7 +527,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Antimicrobial%20CDSS%20Frequently%20Asked%20Questions.pdf?csf=1&amp;web=1&amp;e=dJyUHD</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Antimicrobial CDSS Frequently Asked Questions.pdf</URL>
     </FIELD>
     <FIELD NAME="EB 25/240*">
       <TYPE>E</TYPE>
@@ -605,7 +605,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/04%20COVID19%20Antiviral%20and%20Monoclonal%20Antibody%20Treatment%20SOP%20.pdf?csf=1&amp;web=1&amp;e=7UazWz</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/COVID19 Antiviral and Monoclonal Antibody Treatment SOP.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX COVID-19 INPT TREATMENT">
       <TYPE>H</TYPE>
@@ -621,23 +621,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/COVID-19%20inpatient%20treatment%2012-1-22.pdf?csf=1&amp;web=1&amp;e=OedMA6</URL>
-    </FIELD>
-    <FIELD NAME="ABX DENTAL ABX PPX SOP">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>DENTAL ABX PPX SOP</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:w:/r/sites/vhav23/CDSS/CDSS%20Resources/DENTAL%20ABX%20PPX%20SOP.docx?d=w352a443499834e6d90c23057dac3d10a&amp;csf=1&amp;web=1&amp;e=w3aPxA</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/COVID-19 inpatient treatment.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX HEPATITIS B ONCOLOGY SHAREPOINT URL">
       <TYPE>H</TYPE>
@@ -847,7 +831,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/AntibiogramMinneapolis.pdf?csf=1&amp;web=1&amp;e=ekCvWE</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/AntibiogramMinneapolis.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX SENSITIVITIES CLICK LINK BELOW">
       <TYPE>T</TYPE>
@@ -931,7 +915,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:x:/r/sites/vhav23/CDSS/CDSS%20Resources/Pharmacy%20coverage%20by%20team%20v.4.xlsx?d=w5de5c350df7d49f7b4e6bbeef53b5d33&amp;csf=1&amp;web=1&amp;e=XMcPB8</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Pharmacy coverage by team.xlsx</URL>
     </FIELD>
     <FIELD NAME="ABX PORT FINISHED CLICK OK BELOW">
       <TYPE>T</TYPE>
@@ -964,7 +948,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/nPEP.pdf?csf=1&amp;web=1&amp;e=0BGkBY</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/nPEP.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX POST EXPOSURE PROPHYLAXIS">
       <TYPE>H</TYPE>
@@ -980,7 +964,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/PEP.pdf?csf=1&amp;web=1&amp;e=ceK8lv</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/PEP.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX SURGICAL PROPHYLAXIS INDICATION EDIT">
       <TYPE>E</TYPE>
@@ -1279,7 +1263,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/SPLENECTOMY%20VACCINES.pdf?csf=1&amp;web=1&amp;e=htPSnR</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/SplenectomyVaccines.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CDC ANTIBIOTICS AREN'T ALWAYS THE ANSWER">
       <TYPE>H</TYPE>
@@ -2719,7 +2703,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Outpatient%20Flu%20vaccine%20guidelines%2023-24.pdf?csf=1&amp;web=1&amp;e=Mwba91</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Outpatient Flu vaccine guidelines.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX VACCINE RTC">
       <TYPE>T</TYPE>
