@@ -1072,12 +1072,12 @@ function handleGoBack() {
     const selectedItem = history[historyIndex];
     const matchingData = omData.find(item => item.Name === selectedItem)
     if (matchingData) {
-    /*const dropdown = document.getElementById('filterDropdown');
+    const dropdown = document.getElementById('filterDropdown');
     document.getElementById('searchInput').value = null;
     document.getElementById('searchInput').placeholder = "\u{1F50D}";
     populateDropdown(omData);
     dropdown.value = selectedItem;
-    filterData({ target: dropdown });*/
+    filterData({ target: dropdown });
     createOMTable(matchingData)
     }
     else {
@@ -1096,12 +1096,12 @@ function handleGoForward() {
         const selectedItem = history[historyIndex];
         const matchingData = omData.find(item => item.Name === selectedItem);
         if (matchingData) {
-           /*const dropdown = document.getElementById('filterDropdown');
+           const dropdown = document.getElementById('filterDropdown');
             document.getElementById('searchInput').value = null;
             document.getElementById('searchInput').placeholder = "\u{1F50D}";
             populateDropdown(omData);
             dropdown.value = selectedItem;
-            filterData({ target: dropdown });*/
+            filterData({ target: dropdown });
           createOMTable(matchingData)
         } else {
             createODTable(selectedItem);
@@ -1121,9 +1121,9 @@ function handleMainMenu() {
   const dropdown = document.getElementById('filterDropdown');
   document.getElementById('searchInput').value = null;
   document.getElementById('searchInput').placeholder = "\u{1F50D}";
-  /*populateDropdown(omData);
+  populateDropdown(omData);
   dropdown.value = MainMenu;
-  filterData({ target: dropdown });*/
+  filterData({ target: dropdown });
   createOMTable(MainMenu)
   scrollToTop()    
   adjustFontSize();
@@ -1134,9 +1134,9 @@ function handleIndex() {
   const dropdown = document.getElementById('filterDropdown');
   document.getElementById('searchInput').value = null;
   document.getElementById('searchInput').placeholder = "\u{1F50D}";
-  /*populateDropdown(omData);
+  populateDropdown(omData);
   dropdown.value = Index;
-  filterData({ target: dropdown });*/
+  filterData({ target: dropdown });
   createOMTable(Index)
   scrollToTop();    
   adjustFontSize();
