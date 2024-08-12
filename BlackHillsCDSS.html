@@ -388,12 +388,6 @@ async function fetchODData() {
   return data;
   }
 
-// Fetch ItemLink Data
-async function fetchItemLink() {
-    const response = await fetch(ItemLinkjson);
-    const data = await response.json();
-    return data;
-  }
   // Fetch AbxLink Data
 async function fetchAbxLink() {
   const response = await fetch(AbxLinkjson);
@@ -410,7 +404,6 @@ let selectedData = null; // Currently selected data
 let history = []; // History of selected items
 let forwardHistory = []; // History of forward selections
 let historyIndex = -1; // Index of the current selection in the history
-let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
 // Function to hide location buttons
@@ -849,7 +842,7 @@ async function handleRowClick(item, ClickSymbol) {
                         console.log("Matching ODJSON Item:", odItem);
                     });
                 } else {
-                    console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
+                    console.log('No matching item found in OMJSON.json, ODJSON.json, or txml file');
                 }
             } else {
                 // Handle other cases
@@ -1260,11 +1253,10 @@ function openPageInNewWindow(pageURL, replacements) {
   }
   
 // Fetch data and initialize the dropdown
-Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
-  .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
+Promise.all([fetchOMData(), fetchODData(), fetchAbxLink()]) // Add fetchIndex()
+  .then(([omjsonData, odjsonData, abxlinkjsonData]) => { 
     omData = omjsonData;
     odData = odjsonData;
-    itemLinkData = itemlinkjsonData;
     abxLinkData = abxlinkjsonData;
     populateDropdown(omData); 
       const urlParams = new URLSearchParams(window.location.search);
