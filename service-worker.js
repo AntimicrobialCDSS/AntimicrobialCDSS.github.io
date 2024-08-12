@@ -23,6 +23,11 @@ const URLS = [
   '/MinneapolisItemLinks.json',
   '/MinneapolisOMJSON.json',
   '/MinneapolisODJSON.json',
+
+  '/BlackHills.txml',
+  '/BlackHillsCDSS.html',
+  '/BlackHillsOMJSON.json',
+  '/BlackHillsODJSON.json',
     
   '/DesMoinesCDSS.html',
   '/DesMoinesItemLinks.json',
