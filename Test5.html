@@ -987,12 +987,15 @@ function createODTable(selectedItem) {
             
             if (componentItem) {
                 const row = document.createElement('tr');
-                const nameCell = document.createElement('td');
-                nameCell.textContent = `${key}: ${componentName}`;
                 
+                // Bold component name
+                const nameCell = document.createElement('td');
+                nameCell.innerHTML = `<b>${key}:</b> ${componentName}`;
+                
+                // Clickable symbol
                 const infoCell = document.createElement('td');
                 const clickableSymbol = document.createElement('a');
-                clickableSymbol.textContent = " \u2139"; // Unicode character for information symbol
+                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
                 clickableSymbol.classList.add('clickable');
                 clickableSymbol.title = 'Click for more information';
                 clickableSymbol.addEventListener('click', (event) => {
@@ -1027,6 +1030,12 @@ function createODTable(selectedItem) {
         resultContainer.appendChild(table);
     }
 }
+
+// Example usage of createODTable
+document.getElementById('someElement').addEventListener('click', () => {
+    const selectedItem = 'someItemName'; // or an object with the Name key
+    createODTable(selectedItem);
+});
 
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
