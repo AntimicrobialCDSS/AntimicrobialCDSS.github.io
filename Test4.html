@@ -10,20 +10,19 @@
   gtag('config', 'G-RZT6D0E0DS');
   </script>
   <script>
-  var Version = 'V1.05'; /*Text at the bottom of the menu, change to whatever you want*/
-  var CDSSlocation = 'Minneapolis'; /*Only important to CDSS program functions, can be left as it for other systems*/
-  var Title = 'Minneapolis Antimicrobial CDSS'; /*Name of the tab on the website*/
-  var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
+  var Version = 'V1.06' /*Text at the bottom of the menu, change to whatever you want*/
+  var CDSSlocation = 'Minneapolis' /*Only important to CDSS program functions, can be left as it for other systems*/
+  var Title = 'Minneapolis Antimicrobial CDSS' /*Name of the tab on the website*/
+  var MainMenuButton = 'Minneapolis Home' /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
-  var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
+  var IndexButton = 'Index' /*Only important to CDSS program functions, can be left as it for other systems*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
   const OMjson = 'MinneapolisOMJSON.json'; /*Name of OMJSON file*/
   const ODjson = 'MinneapolisODJSON.json'; /*Name of ODJSOM file*/
   const txmlFile = 'Minneapolis.txml'; /*Name of txml file*/
-  const ItemLinkjson = 'MinneapolisItemLinks.json'; /*Name of ItemLinks file*/
   const AbxLinkjson = 'AbxLinks.json'; /*Name of AbxLinks file*/
   const SearchMenuPrefix = 'ORZID2'; /*Order menu prefix to be used in search bar*/
-  const MenuPrefix = 'ORZID'; /*Order menu prefix*/
+  const MenuPrefix = 'ORZID2'; /*Order menu prefix*/
   const LinkPrefix = 'ORZ GTX'; /*Generic Order prefix for links*/
   var hideButtonsDownloads = 'False'; /*buttons to allow user to download json and txml files*/
   var hideButtonsVersions = 'False';/*mark as true for non-CDSS systems*/
@@ -389,12 +388,6 @@ async function fetchODData() {
   return data;
   }
 
-// Fetch ItemLink Data
-async function fetchItemLink() {
-    const response = await fetch(ItemLinkjson);
-    const data = await response.json();
-    return data;
-  }
   // Fetch AbxLink Data
 async function fetchAbxLink() {
   const response = await fetch(AbxLinkjson);
@@ -411,7 +404,6 @@ let selectedData = null; // Currently selected data
 let history = []; // History of selected items
 let forwardHistory = []; // History of forward selections
 let historyIndex = -1; // Index of the current selection in the history
-let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
 // Function to hide location buttons
@@ -850,7 +842,7 @@ async function handleRowClick(item, ClickSymbol) {
                         console.log("Matching ODJSON Item:", odItem);
                     });
                 } else {
-                    console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
+                    console.log('No matching item found in OMJSON.json, ODJSON.json, or txml file');
                 }
             } else {
                 // Handle other cases
@@ -977,45 +969,75 @@ function createODTable(selectedItem) {
     table.classList.add('table');
     const tbody = document.createElement('tbody');
    
-  // Create the header row with a bold header and a background color
+    // Create the header row with a bold header and a background color
     const headerRow = document.createElement('tr');
     const headerCell = document.createElement('td');
     headerCell.textContent = 'ORDER DIALOG INFORMATION';
-    headerCell.colSpan = 1; // Span across one column
+    headerCell.colSpan = 2; // Span across two columns
     headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
     headerCell.style.fontWeight = 'bold';
     headerCell.style.backgroundColor = 'lightblue'; // Set background color
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
-    
-    // Iterate over the entries of itemData
-    Object.entries(itemData).forEach(([key, value]) => {
-        const row = document.createElement('tr');
-        
-        // Create cells for key and value
-        const cell = document.createElement('td');
-        /*keyCell.textContent = key;*/
-        /*const valueCell = document.createElement('td');*/
-        /*valueCell.textContent = JSON.stringify(value, null, 2);*/
-        cell.innerHTML = `<b>${key}:</b> ${value}`;
-        row.appendChild(cell);
-        // Append cells to the row
-       /* row.appendChild(keyCell);*/
-       /* row.appendChild(valueCell);*/
 
-        // Append row to the tbody
-        tbody.appendChild(row);
+    // Function to create a clickable "i" information symbol
+    function createInfoSymbol(componentItem) {
+        const cell = document.createElement('td');
+        const infoSymbol = document.createElement('a');
+        infoSymbol.href = '#'; // Prevent default action
+        infoSymbol.classList.add('clickable');
+        infoSymbol.textContent = ' \u2139'; // Unicode character for information symbol
+        infoSymbol.title = 'Click for more information';
+        infoSymbol.addEventListener('click', (event) => {
+            event.preventDefault();
+            createODTable(componentItem); // Create new table for the component
+            pushHistory(componentItem.Name); // Add to history
+        });
+        cell.appendChild(infoSymbol);
+        return cell;
+    }
+
+    // Create a row for each component with a clickable "i" symbol
+    Object.keys(itemData).forEach(key => {
+        if (/^Component\d+$/.test(key)) {
+            const componentName = itemData[key];
+            const componentItem = odData.find(item => item.Name === componentName);
+            
+            if (componentItem) {
+                const row = document.createElement('tr');
+                const nameCell = document.createElement('td');
+                nameCell.textContent = `${key}: ${componentName}`;
+                row.appendChild(nameCell);
+                row.appendChild(createInfoSymbol(componentItem));
+                tbody.appendChild(row);
+            }
+        }
     });
 
-    // Append tbody to the table
-    table.appendChild(tbody);
+    // Create rows for other key-value pairs
+    Object.entries(itemData).forEach(([key, value]) => {
+        if (!/^Component\d+$/.test(key)) {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.innerHTML = `<b>${key}:</b> ${value}`;
+            row.appendChild(cell);
+            tbody.appendChild(row);
+        }
+    });
 
-    // Display the table in the result container
+    table.appendChild(tbody);
     const resultContainer = document.getElementById('resultContainer');
     resultContainer.innerHTML = '';
-    resultContainer.appendChild(table);
+    if (selectedItem) {
+        resultContainer.appendChild(table);
+    }
 }
 
+// Example usage of createODTable
+document.getElementById('someElement').addEventListener('click', () => {
+    const selectedItem = 'someItemName'; // or an object with the Name key
+    createODTable(selectedItem);
+});
     
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
@@ -1025,12 +1047,12 @@ function filterData(event, sortByTerm = false) {
     selectedData = matchingData;
     createOMTable(matchingData);
     pushHistory(matchingData.Name);
-  } else {
+  } /*else {
     // Handle the case when selectedData is not found
     // For example, display an error message or clear the result container
     const resultContainer = document.getElementById('resultContainer');
     resultContainer.innerHTML = 'Selected data not found.';
-  }
+  }*/
   scrollToTop();
   adjustFontSize();
   if (sortByTerm) {
@@ -1124,7 +1146,6 @@ function handleMainMenu() {
   populateDropdown(omData);
   dropdown.value = MainMenu;
   filterData({ target: dropdown });
-  createOMTable(MainMenu)
   scrollToTop()    
   adjustFontSize();
   }
@@ -1137,7 +1158,6 @@ function handleIndex() {
   populateDropdown(omData);
   dropdown.value = Index;
   filterData({ target: dropdown });
-  createOMTable(Index)
   scrollToTop();    
   adjustFontSize();
   }
@@ -1263,11 +1283,10 @@ function openPageInNewWindow(pageURL, replacements) {
   }
   
 // Fetch data and initialize the dropdown
-Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
-  .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
+Promise.all([fetchOMData(), fetchODData(), fetchAbxLink()]) // Add fetchIndex()
+  .then(([omjsonData, odjsonData, abxlinkjsonData]) => { 
     omData = omjsonData;
     odData = odjsonData;
-    itemLinkData = itemlinkjsonData;
     abxLinkData = abxlinkjsonData;
     populateDropdown(omData); 
       const urlParams = new URLSearchParams(window.location.search);
