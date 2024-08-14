@@ -755,7 +755,6 @@ function createOMTable(selectedData) {
           }
 
           if (Item && !Item.startsWith(MenuPrefix)) {
-          /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
               const clickableSymbol = document.createElement('a');
               clickableSymbol.textContent = " \u24d8";
               clickableSymbol.classList.add('clickable');
@@ -980,24 +979,7 @@ function createODTable(selectedItem) {
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
 
-    // Function to create a clickable "i" information symbol
-    function createInfoSymbol(componentItem) {
-        const cell = document.createElement('td');
-        const infoSymbol = document.createElement('a');
-        infoSymbol.href = '#'; // Prevent default action
-        infoSymbol.classList.add('clickable');
-        infoSymbol.textContent = ' \u2139'; // Unicode character for information symbol
-        infoSymbol.title = 'Click for more information';
-        infoSymbol.addEventListener('click', (event) => {
-            event.preventDefault();
-            createODTable(componentItem); // Create new table for the component
-            pushHistory(componentItem.Name); // Add to history
-        });
-        cell.appendChild(infoSymbol);
-        return cell;
-    }
-
-    // Create a row for each component with a clickable "i" symbol
+    // Create rows for components with a clickable "i" symbol
     Object.keys(itemData).forEach(key => {
         if (/^Component\d+$/.test(key)) {
             const componentName = itemData[key];
@@ -1007,8 +989,21 @@ function createODTable(selectedItem) {
                 const row = document.createElement('tr');
                 const nameCell = document.createElement('td');
                 nameCell.textContent = `${key}: ${componentName}`;
+                
+                const infoCell = document.createElement('td');
+                const clickableSymbol = document.createElement('a');
+                clickableSymbol.textContent = " \u2139"; // Unicode character for information symbol
+                clickableSymbol.classList.add('clickable');
+                clickableSymbol.title = 'Click for more information';
+                clickableSymbol.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    createODTable(componentItem); // Create new table for the component
+                    pushHistory(componentItem.Name); // Add to history
+                });
+                infoCell.appendChild(clickableSymbol);
+                
                 row.appendChild(nameCell);
-                row.appendChild(createInfoSymbol(componentItem));
+                row.appendChild(infoCell);
                 tbody.appendChild(row);
             }
         }
@@ -1032,6 +1027,13 @@ function createODTable(selectedItem) {
         resultContainer.appendChild(table);
     }
 }
+
+// Example usage of createODTable
+document.getElementById('someElement').addEventListener('click', () => {
+    const selectedItem = 'someItemName'; // or an object with the Name key
+    createODTable(selectedItem);
+});
+
 
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
