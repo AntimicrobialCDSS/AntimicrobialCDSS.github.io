@@ -973,50 +973,69 @@ function createODTable(selectedItem) {
     const headerRow = document.createElement('tr');
     const headerCell = document.createElement('td');
     headerCell.textContent = 'ORDER DIALOG INFORMATION';
-    headerCell.colSpan = 1; // Span across one column
+    headerCell.colSpan = 2; // Span across two columns
     headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
     headerCell.style.fontWeight = 'bold';
     headerCell.style.backgroundColor = 'lightblue'; // Set background color
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
-    
-    // Iterate over the entries of itemData
-    Object.entries(itemData).forEach(([key, value]) => {
-        const row = document.createElement('tr');
-        
-        // Create cells for key and value
-        const cell = document.createElement('td');
 
-        if (key.startsWith('Component')) {
-            // Check if there's a matching item in odData for the value
-            const matchingItem = odData.find(item => item.Name.trim().toLowerCase() === value.trim().toLowerCase());
-            if (matchingItem) {
-                // Make the value clickable
-                const linkElement = document.createElement('a');
-                linkElement.classList.add('clickable');
-                linkElement.textContent = value;
-                linkElement.href = '#'; // Prevent default link behavior
-                linkElement.addEventListener('click', () => {
-                    createODTable(matchingItem); // Call createODTable for the matching item
-                });
-                cell.innerHTML = `<b>${key}:</b> `;
-                cell.appendChild(linkElement);
-            } else {
-                cell.innerHTML = `<b>${key}:</b> ${value}`; // No match found, just display the value
+    // Function to create a clickable cell
+    function createClickableCell(text, clickHandler) {
+        const cell = document.createElement('td');
+        const link = document.createElement('a');
+        link.href = '#'; // Prevent default action
+        link.classList.add('clickable');
+        link.textContent = text;
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            clickHandler();
+        });
+        cell.appendChild(link);
+        return cell;
+    }
+
+    // Create a row for each component
+    ['Component1', 'Component2', 'Component3'].forEach(componentKey => {
+        if (itemData[componentKey]) {
+            const componentName = itemData[componentKey];
+            const componentItem = odData.find(item => item.Name === componentName);
+            
+            if (componentItem) {
+                const row = document.createElement('tr');
+                row.appendChild(createClickableCell(componentName, () => {
+                    createODTable(componentItem);
+                }));
+                tbody.appendChild(row);
             }
-        } else {
-            cell.innerHTML = `<b>${key}:</b> ${value}`; // For other fields
         }
-        
-        row.appendChild(cell);
-        tbody.appendChild(row);
     });
 
-    // Append tbody to the table
+    // Create rows for other key-value pairs
+    Object.entries(itemData).forEach(([key, value]) => {
+        if (!['Component1', 'Component2', 'Component3'].includes(key)) {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.innerHTML = `<b>${key}:</b> ${value}`;
+            row.appendChild(cell);
+            tbody.appendChild(row);
+        }
+    });
+
     table.appendChild(tbody);
-    // Assuming there's a DOM element with id 'table-container' to hold the table
-    document.getElementById('table-container').appendChild(table);
+    const resultContainer = document.getElementById('resultContainer');
+    resultContainer.innerHTML = '';
+    if (selectedItem) {
+        resultContainer.appendChild(table);
+    }
 }
+
+// Example usage of createODTable
+document.getElementById('someElement').addEventListener('click', () => {
+    const selectedItem = 'someItemName'; // or an object with the Name key
+    createODTable(selectedItem);
+});
+
 
     
 // Function to filter data based on the selected option
