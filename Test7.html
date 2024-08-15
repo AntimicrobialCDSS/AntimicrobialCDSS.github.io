@@ -933,12 +933,12 @@ async function findMatches(matchingItem) {
     }
 }
   
-// Function to fetch data from XML file
+// Function to fetch data from txml file
 async function fetchAndParseXML(txmlFile) {
     try {
         const response = await fetch(txmlFile);
         if (!response.ok) {
-            throw new Error(`Network response was not ok: ${response.statusText} (${response.status})`);
+            throw new Error('Network response was not ok ' + response.statusText);
         }
         const xmlText = await response.text();
         const parser = new DOMParser();
@@ -948,7 +948,7 @@ async function fetchAndParseXML(txmlFile) {
         const boilerplateTexts = Array.from(xmlDoc.querySelectorAll("BOILERPLATE_TEXT p"), p => p.textContent);
 
         // Extract field names and URLs from the XML document
-        const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD")).map(field => {
+        const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD"), field => {
             const name = field.getAttribute("NAME");
             const url = field.querySelector("URL") ? field.querySelector("URL").textContent : null;
             return { name, url };
@@ -956,7 +956,7 @@ async function fetchAndParseXML(txmlFile) {
 
         return { boilerplateTexts, fields };
     } catch (error) {
-        console.error("Error fetching or parsing the XML file:", error.message);
+        console.error("Error fetching or parsing the XML file:", error);
         return { boilerplateTexts: [], fields: [] }; // Return empty arrays if error occurs
     }
 }
