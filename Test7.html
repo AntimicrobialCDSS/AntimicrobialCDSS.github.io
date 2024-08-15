@@ -938,7 +938,7 @@ async function fetchAndParseXML(txmlFile) {
     try {
         const response = await fetch(txmlFile);
         if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
+            throw new Error(`Network response was not ok: ${response.statusText}`);
         }
         const xmlText = await response.text();
         const parser = new DOMParser();
@@ -957,7 +957,6 @@ async function fetchAndParseXML(txmlFile) {
         return { fields: [] }; // Return empty array if error occurs
     }
 }
-
 // Function to create the table and integrate clickable symbols
 async function createODTable(selectedItem, txmlFile) {
     // Fetch XML data
