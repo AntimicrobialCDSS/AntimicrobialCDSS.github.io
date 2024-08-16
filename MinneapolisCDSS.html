@@ -10,7 +10,7 @@
   gtag('config', 'G-RZT6D0E0DS');
   </script>
   <script>
-  var Version = 'V1.05'; /*Text at the bottom of the menu, change to whatever you want*/
+  var Version = 'V1.06'; /*Text at the bottom of the menu, change to whatever you want*/
   var CDSSlocation = 'Minneapolis'; /*Only important to CDSS program functions, can be left as it for other systems*/
   var Title = 'Minneapolis Antimicrobial CDSS'; /*Name of the tab on the website*/
   var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
@@ -20,7 +20,6 @@
   const OMjson = 'MinneapolisOMJSON.json'; /*Name of OMJSON file*/
   const ODjson = 'MinneapolisODJSON.json'; /*Name of ODJSOM file*/
   const txmlFile = 'Minneapolis.txml'; /*Name of txml file*/
-  const ItemLinkjson = 'MinneapolisItemLinks.json'; /*Name of ItemLinks file*/
   const AbxLinkjson = 'AbxLinks.json'; /*Name of AbxLinks file*/
   const SearchMenuPrefix = 'ORZID2'; /*Order menu prefix to be used in search bar*/
   const MenuPrefix = 'ORZID'; /*Order menu prefix*/
@@ -83,7 +82,7 @@
       text-decoration: none; /* Remove underline from links */
       border-radius: 0; /* Square corners */
       display: inline-block; /* Make links behave like buttons */
-      width: 19%; /* Take up 75% of the screen */
+      width: 16%; /* Take up 75% of the screen */
     }
     
     .button:hover {
@@ -301,6 +300,7 @@
 </table>
     <div class="buttons-containerVersions">
       <button id="desMoinesButton" class="button">Des Moines</button>
+      <button id="blackHillsButton" class="button">TestBlackHills</button>
       <button id="fargoButton" class="button">Fargo</button>
       <button id="minneapolisButton" class="button">Minneapolis</button>
       <button id="omahaButton" class="button">Omaha</button>
@@ -389,12 +389,6 @@ async function fetchODData() {
   return data;
   }
 
-// Fetch ItemLink Data
-async function fetchItemLink() {
-    const response = await fetch(ItemLinkjson);
-    const data = await response.json();
-    return data;
-  }
   // Fetch AbxLink Data
 async function fetchAbxLink() {
   const response = await fetch(AbxLinkjson);
@@ -411,12 +405,14 @@ let selectedData = null; // Currently selected data
 let history = []; // History of selected items
 let forwardHistory = []; // History of forward selections
 let historyIndex = -1; // Index of the current selection in the history
-let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
 // Function to hide location buttons
 if (CDSSlocation === 'Des Moines') {
   {document.getElementById("desMoinesButton").style.display="none";};
+}
+if (CDSSlocation === 'Black Hills') {
+  {document.getElementById("blackHillsButton").style.display="none";};
 }
 if (CDSSlocation === 'Fargo') {
   {document.getElementById("fargoButton").style.display="none";};
@@ -850,7 +846,7 @@ async function handleRowClick(item, ClickSymbol) {
                         console.log("Matching ODJSON Item:", odItem);
                     });
                 } else {
-                    console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
+                    console.log('No matching item found in OMJSON.json, ODJSON.json, or txml');
                 }
             } else {
                 // Handle other cases
@@ -1325,6 +1321,9 @@ function openDropdown() {
 document.getElementById('desMoinesButton').addEventListener('click', function () {
 openPageInNewWindow("DesMoinesCDSS.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
 });
+document.getElementById('minneapolisButton').addEventListener('click', function () {
+  openPageInNewWindow("BlackHillsCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
+});
 document.getElementById('fargoButton').addEventListener('click', function () {
   openPageInNewWindow("FargoCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
 });
@@ -1392,11 +1391,10 @@ function openPageInNewWindow(pageURL, replacements) {
   }
   
 // Fetch data and initialize the dropdown
-Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
-  .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
+Promise.all([fetchOMData(), fetchODData(), fetchAbxLink()]) // Add fetchIndex()
+  .then(([omjsonData, odjsonData, abxlinkjsonData]) => { 
     omData = omjsonData;
     odData = odjsonData;
-    itemLinkData = itemlinkjsonData;
     abxLinkData = abxlinkjsonData;
     populateDropdown(omData); 
       const urlParams = new URLSearchParams(window.location.search);
