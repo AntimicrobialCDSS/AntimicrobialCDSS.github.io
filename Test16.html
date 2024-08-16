@@ -999,7 +999,7 @@ async function createODTable(selectedItem) {
     headerCell.style.fontWeight = 'bold';
     headerCell.style.backgroundColor = 'lightblue'; // Set background color
     headerCell.style.textAlign = 'center'; // Center align the header
-    headerCell.colSpan = 1; // Span across one columns
+    headerCell.colSpan = 1; // Span across one column
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
 
@@ -1066,8 +1066,8 @@ async function createODTable(selectedItem) {
                             event.preventDefault();
 
                             // Create a new ODTable for the txml data
-                            const txmlDataTable = document.createElement('table');
-                            txmlDataTable.classList.add('table');
+                            const txmlTable = document.createElement('table');
+                            txmlTable.classList.add('table');
                             const txmlTbody = document.createElement('tbody');
 
                             // Create header for txml table
@@ -1082,7 +1082,7 @@ async function createODTable(selectedItem) {
                             txmlHeaderRow.appendChild(txmlHeaderCell);
                             txmlTbody.appendChild(txmlHeaderRow);
 
-                            // Add rows for each field in the txml data
+                            // Add rows for matching texts
                             matchingTexts.forEach(text => {
                                 const fields = [
                                     { label: 'Name', value: text.name },
@@ -1106,25 +1106,20 @@ async function createODTable(selectedItem) {
                                 fields.forEach(field => {
                                     if (field.value) {
                                         const row = document.createElement('tr');
-                                        const labelCell = document.createElement('td');
-                                        const valueCell = document.createElement('td');
+                                        const cell = document.createElement('td');
 
-                                        labelCell.textContent = field.label;
-                                        labelCell.style.fontWeight = 'bold';
-                                        valueCell.innerHTML = field.value;
-
-                                        row.appendChild(labelCell);
-                                        row.appendChild(valueCell);
+                                        cell.innerHTML = `<b>${field.label}:</b> ${field.value}`;
+                                        row.appendChild(cell);
                                         txmlTbody.appendChild(row);
                                     }
                                 });
                             });
 
-                            txmlDataTable.appendChild(txmlTbody);
+                            txmlTable.appendChild(txmlTbody);
 
                             // Append txml table to the result container
                             const resultContainer = document.getElementById('resultContainer');
-                            resultContainer.appendChild(txmlDataTable);
+                            resultContainer.appendChild(txmlTable);
                         });
 
                         cell.innerHTML = `<b>${key}:</b> ${value}`;
@@ -1152,6 +1147,7 @@ async function createODTable(selectedItem) {
     // Adjust font size if needed
     adjustFontSize();
 }
+
 
     
 // Function to filter data based on the selected option
