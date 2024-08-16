@@ -985,11 +985,11 @@ async function createODTable(selectedItem) {
     headerCell.style.fontWeight = 'bold';
     headerCell.style.backgroundColor = 'lightblue'; // Set background color
     headerCell.style.textAlign = 'center'; // Center align the header
-    headerCell.colSpan = 2; // Span across two columns
+    headerCell.colSpan = 1; // Span across one column
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
 
-    // Add rows for components with clickable symbols
+    // Create rows for components with clickable symbols
     Object.keys(itemData).forEach(key => {
         if (/^Component\d+$/.test(key)) {
             const componentName = itemData[key];
@@ -999,12 +999,12 @@ async function createODTable(selectedItem) {
                 const row = document.createElement('tr');
                 const cell = document.createElement('td');
                 const nameAndSymbol = document.createElement('div');
-
+                
                 // Bold component name
                 const nameText = document.createElement('span');
                 nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
                 nameText.style.display = 'inline-block'; // Display inline for better alignment
-
+                
                 // Clickable symbol
                 const clickableSymbol = document.createElement('a');
                 clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
@@ -1016,7 +1016,7 @@ async function createODTable(selectedItem) {
                     createODTable(componentItem); // Create new table for the component
                     pushHistory(componentItem.Name); // Add to history
                 });
-
+                
                 nameAndSymbol.appendChild(nameText);
                 nameAndSymbol.appendChild(clickableSymbol);
                 cell.appendChild(nameAndSymbol);
@@ -1032,68 +1032,62 @@ async function createODTable(selectedItem) {
             const row = document.createElement('tr');
             const cell = document.createElement('td');
 
-            // Check if the field corresponds to a txml item
+            // Check if the field corresponds to a txml item and if clickable symbol should be shown
             if (/^WordProcessing\d+$/.test(key)) {
-                // Fetch txml data
-                fetchAndParseXML(txmlFile).then(txmlData => {
+                const clickableSymbol = document.createElement('a');
+                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+                clickableSymbol.classList.add('clickable');
+                clickableSymbol.title = 'Click for more information';
+                clickableSymbol.style.marginLeft = '10px'; // Space between value and symbol
+                clickableSymbol.addEventListener('click', async (event) => {
+                    event.preventDefault();
+                    
+                    // Fetch txml data
+                    const txmlData = await fetchAndParseXML(txmlFile);
+
                     // Find matching texts
                     const matchingTexts = txmlData.fields.filter(field =>
                         new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(value)
                     );
 
-                    // Only add clickable symbol if there are matching texts
-                    if (matchingTexts.length > 0) {
-                        const clickableSymbol = document.createElement('a');
-                        clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
-                        clickableSymbol.classList.add('clickable');
-                        clickableSymbol.title = 'Click for more information';
-                        clickableSymbol.style.marginLeft = '10px'; // Space between value and symbol
-                        clickableSymbol.addEventListener('click', async (event) => {
-                            event.preventDefault();
+                    // Display the matching txml data in a new table
+                    const txmlTable = document.createElement('table');
+                    txmlTable.classList.add('table');
+                    const txmlTbody = document.createElement('tbody');
 
-                            // Create a new ODTable for the txml data
-                            const txmlTable = document.createElement('table');
-                            txmlTable.classList.add('table');
-                            const txmlTbody = document.createElement('tbody');
+                    // Create header for txml table
+                    const txmlHeaderRow = document.createElement('tr');
+                    const txmlHeaderCell = document.createElement('td');
+                    txmlHeaderCell.textContent = `TXML Information for ${key}`;
+                    txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+                    txmlHeaderCell.style.fontWeight = 'bold';
+                    txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
+                    txmlHeaderCell.style.textAlign = 'center'; // Center align the header
+                    txmlHeaderCell.colSpan = 2; // Span across two columns
+                    txmlHeaderRow.appendChild(txmlHeaderCell);
+                    txmlTbody.appendChild(txmlHeaderRow);
 
-                            // Create header for txml table
-                            const txmlHeaderRow = document.createElement('tr');
-                            const txmlHeaderCell = document.createElement('td');
-                            txmlHeaderCell.textContent = `TXML Information for ${key}`;
-                            txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
-                            txmlHeaderCell.style.fontWeight = 'bold';
-                            txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
-                            txmlHeaderCell.style.textAlign = 'center'; // Center align the header
-                            txmlHeaderCell.colSpan = 2; // Span across two columns
-                            txmlHeaderRow.appendChild(txmlHeaderCell);
-                            txmlTbody.appendChild(txmlHeaderRow);
+                    // Add rows for matching texts
+                    matchingTexts.forEach(text => {
+                        const txmlRow = document.createElement('tr');
+                        const txmlCell = document.createElement('td');
+                        txmlCell.colSpan = 2; // Span across two columns
+                        txmlCell.innerHTML = `<div>
+                            <strong>${text.name}:</strong> ${text.url ? `<a href="${text.url}" target="_blank">${text.name}</a>` : text.name}
+                        </div>`;
+                        txmlRow.appendChild(txmlCell);
+                        txmlTbody.appendChild(txmlRow);
+                    });
 
-                            // Add rows for matching texts
-                            matchingTexts.forEach(text => {
-                                const txmlRow = document.createElement('tr');
-                                const txmlCell = document.createElement('td');
-                                txmlCell.colSpan = 2; // Span across two columns
-                                txmlCell.innerHTML = `<div>
-                                    <strong>${text.name}:</strong> ${text.url ? `<a href="${text.url}" target="_blank">${text.name}</a>` : text.name}
-                                </div>`;
-                                txmlRow.appendChild(txmlCell);
-                                txmlTbody.appendChild(txmlRow);
-                            });
+                    txmlTable.appendChild(txmlTbody);
 
-                            txmlTable.appendChild(txmlTbody);
-
-                            // Append txml table to the result container
-                            const resultContainer = document.getElementById('resultContainer');
-                            resultContainer.innerHTML = ''; // Clear current table
-                            resultContainer.appendChild(txmlTable);
-                        });
-
-                        cell.innerHTML = `<b>${key}:</b> ${value}`;
-                        cell.appendChild(clickableSymbol);
-                    } else {
-                        cell.innerHTML = `<b>${key}:</b> ${value}`;
-                    }
+                    // Display the txml table below the current table
+                    const resultContainer = document.getElementById('resultContainer');
+                    resultContainer.appendChild(txmlTable);
                 });
+
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
+                cell.appendChild(clickableSymbol);
             } else {
                 cell.innerHTML = `<b>${key}:</b> ${value}`;
             }
@@ -1102,18 +1096,6 @@ async function createODTable(selectedItem) {
             tbody.appendChild(row);
         }
     });
-
-    table.appendChild(tbody);
-    const resultContainer = document.getElementById('resultContainer');
-    resultContainer.innerHTML = '';
-    if (selectedItem) {
-        resultContainer.appendChild(table);
-    }
-
-    // Adjust font size if needed
-    adjustFontSize();
-}
-
 
     table.appendChild(tbody);
     const resultContainer = document.getElementById('resultContainer');
