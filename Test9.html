@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +10,12 @@
   gtag('config', 'G-RZT6D0E0DS');
   </script>
   <script>
-  var Version = 'V1.05' /*Text at the bottom of the menu, change to whatever you want*/
-  var CDSSlocation = 'Minneapolis' /*Only important to CDSS program functions, can be left as it for other systems*/
-  var Title = 'Minneapolis Antimicrobial CDSS' /*Name of the tab on the website*/
-  var MainMenuButton = 'Minneapolis Home' /*Main menu button name*/
+  var Version = 'V1.05'; /*Text at the bottom of the menu, change to whatever you want*/
+  var CDSSlocation = 'Minneapolis'; /*Only important to CDSS program functions, can be left as it for other systems*/
+  var Title = 'Minneapolis Antimicrobial CDSS'; /*Name of the tab on the website*/
+  var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
-  var IndexButton = 'Index' /*Only important to CDSS program functions, can be left as it for other systems*/
+  var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
   const OMjson = 'MinneapolisOMJSON.json'; /*Name of OMJSON file*/
   const ODjson = 'MinneapolisODJSON.json'; /*Name of ODJSOM file*/
@@ -36,7 +35,8 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
   <style>
-@font-face {
+  /* Common styles */
+  @font-face {
   font-family: 'PT Serif Bold';
   src: url('Fonts/PTSerif-Bold.eot');
   src: url('Fonts/PTSerif-Bold.eot?#iefix') format('embedded-opentype'),
@@ -68,104 +68,93 @@
   font-weight: normal;
   font-style: normal;
 }
-
-.button {
-  font-family: 'PT Serif Regular', Arial, sans-serif;
-  font-size: 12px;
-  white-space: nowrap;
-  flex: 1;
-  background-color: #00aedb; /* Blue color */
-  color: white;
-  padding: 5px; /* Increased padding for square buttons */
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none; /* Remove underline from links */
-  border-radius: 0; /* Square corners */
-  display: inline-block; /* Make links behave like buttons */
-  width: 19%; /* Take up 75% of the screen */
-}
-
-.button:hover {
-  background-color: #4db8ff; /* Light Blue color */
-}
-
-.button2 {
-  font-family: 'PT Serif Regular', Arial, sans-serif;
-  font-size: 12px;
-  white-space: nowrap;
-  flex: 1;
-  background-color: #00aedb; /* Blue color */
-  color: white;
-  padding: 5px; /* Increased padding for square buttons */
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none; /* Remove underline from links */
-  border-radius: 0; /* Square corners */
-  display: inline-block; /* Make links behave like buttons */
-  width: 22%; /* Take up 75% of the screen */
-}
-
-.button2:hover {
-  background-color: #4db8ff; /* Light Blue color */
-}
-
-.no-term {
-  display: none;
-}
-
-.not-clickable-cell {
-  background-color: transparent;
-  color: black;
-}
-
-.AbxLink {
-  color: green;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-table {
-  border-collapse: collapse;
-  padding: 0; /* Reduce table padding */
-}
-
-th,
-td {
-  border: none;
-  padding: 2px; /* Reduce cell padding */
-}
-
-.clickable {
-  color: blue;
-  cursor: pointer;
-}
-
-.bold {
-  font-family: 'PT Serif Bold', Arial, sans-serif;
-}
-
-.table {
-  table-layout: fixed;
-}
-
-.table td {
-  font-family: 'PT Serif Regular', Arial, sans-serif;
-  white-space: pre-wrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Custom column styles */
-.key-cell {
-  width: 30%; /* Adjust the width for key column */
-}
-
-.value-cell {
-  width: 70%; /* Adjust the width for value column */
-}
-
+    .button {
+      font-family: 'PT Serif Regular', Arial, sans-serif;
+  	  font-size: 12px;
+  	  /*padding: 5px 5px;  Adjust the values to your desired padding */
+      white-space: nowrap;
+      flex: 1;
+      background-color: #00aedb; /* Blue color */
+      color: white;
+      padding: 5px; /* Increased padding for square buttons */
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none; /* Remove underline from links */
+      border-radius: 0; /* Square corners */
+      display: inline-block; /* Make links behave like buttons */
+      width: 19%; /* Take up 75% of the screen */
+    }
+    
+    .button:hover {
+      background-color: #4db8ff; /* Light Blue color */
+    }
+    
+    .button2 {
+      font-family: 'PT Serif Regular', Arial, sans-serif;
+  	  font-size: 12px;
+  	  /*padding: 5px 5px;  Adjust the values to your desired padding */
+      white-space: nowrap;
+      flex: 1;
+      background-color: #00aedb; /* Blue color */
+      color: white;
+      padding: 5px; /* Increased padding for square buttons */
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none; /* Remove underline from links */
+      border-radius: 0; /* Square corners */
+      display: inline-block; /* Make links behave like buttons */
+      width: 22%; /* Take up 75% of the screen */
+    }
+    
+    .button2:hover {
+      background-color: #4db8ff; /* Light Blue color */
+    }
+    
+    .no-term {
+      display: none;
+    }
+    .not-clickable-cell {
+      background-color: transparent;
+      color: black;
+    }
+    .AbxLink {
+      color: green;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    table {
+      border-collapse: collapse;
+      padding: 0; /* Reduce table padding */
+     /* font-size: 16px;*/
+    }
+    th,
+    td {
+      border: none;
+      padding: 4px; /* Reduce cell padding */
+    }
+    .clickable {
+      color: blue;
+      cursor: pointer;
+    }
+    .bold {
+      font-family: 'PT Serif Bold', Arial, sans-serif;
+     /*  background-color: lightblue; /* Set your desired background color here */
+    }
+        /* Table styles */
+    .table {
+      table-layout: fixed;
+      /*width: 100%;*/
+    }
+    .table td {
+      font-family: 'PT Serif Regular', Arial, sans-serif;
+      white-space: pre-wrap; 
+      overflow: hidden;
+      text-overflow: ellipsis;
+    } /* Disable text wrapping within a cell */
+    
+/* Header styles */
 #header {
   position: sticky;
   top: 0;
@@ -175,8 +164,9 @@ td {
   flex-wrap: wrap;
   justify-content: flex-start;
   flex-direction: column;
+  /* Set a width to limit the header */
   min-width: 900px;
-  width: 100%;
+  width: 100%
   box-sizing: border-box; /* Include padding and borders in the width calculation */
 }
 
@@ -191,59 +181,55 @@ td {
   width: 900px;
   box-sizing: border-box; /* Include padding and borders in the width calculation */
 }
-
+    
 .buttons-container {
   margin: 10px; /* Add the desired margin value */
   display: flex;
-  align-items: flex-start;
+  align-items: flex-start; 
   gap: 15px;
   justify-content: flex-start;
 }
-
+    
 .buttons-containerDownloads,
 .buttons-containerVersions,
 .buttons-containerMenuJson {
   width: 500px;
   margin-left: 0px; /* Add the desired margin value */
-  margin-top: 5px;
-  align-items: flex-start;
+  margin-top: 5px; 
+  align-items: flex-start; 
   justify-content: flex-start;
 }
 
 .picture-container {
   margin: 10px; /* Add the desired margin value */
   display: flex;
-  align-items: flex-start;
+  align-items: flex-start; 
+  /*gap: 15px;*/
   justify-content: flex-start;
 }
-
-.search-container {
-  flex-basis: 100%;
-  align-items: Left;
-  max-width: 330px;
-  margin-bottom: 10px;
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
-.dropbox-container {
-  display: flex;
-  align-items: Left;
-  max-width: 300px;
-}
-
+  .search-container{
+    flex-basis: 100%;
+    align-items: Left;
+    max-width: 330px; 
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .dropbox-container{
+    display: flex;
+    align-items: Left;
+    max-width: 300px; 
+  } 
 .CDSSLogo {
   width: 200px; /* Set the maximum width for the image */
   height: auto;
   float: Left; /* Float the image to the right */
 }
-
-.VASeal {
+ .VASeal {
   width: 300px; /* Set the maximum width for the image */
   height: auto;
   float: Left; /* Float the image to the right */
 }
-
 #goBackButton,
 #mainMenuButton,
 #indexButton,
@@ -269,33 +255,29 @@ td {
 #install-button:hover {
   background-color: #4db8ff; /* lighter shade of blue */
 }
-
-#filterDropdown {
-  font-family: 'PT Serif Regular', Arial, sans-serif;
-  margin-right: 20px;
-  width: 100%;
-  z-index: 1;
-  position: absolute;
-  top: 100%;
-  display: none;
-  max-height: 300px;
-  max-width: 300px;
-  overflow-y: auto;
+  #filterDropdown {
+    font-family: 'PT Serif Regular', Arial, sans-serif;
+    margin-right: 20px;
+    width: 100%;
+    z-index: 1;
+    position: absolute;
+    top: 100%;
+    display: none; 
+    max-height: 300px;  
+    max-width: 300px;
+    overflow-y: auto; 
+    }
+  #searchInput {
+    font-family: 'PT Serif Regular', Arial, sans-serif;
+    width: 100%;
+    text-align: left;
+    max-width: 300px;
+    font-size: 14px;
+    font-family: "Times New Roman", serif;
+  }
+  .blankSpace {
+   padding: 20px 30px; // blank div(or blank space) height and width. Depends on you.
 }
-
-#searchInput {
-  font-family: 'PT Serif Regular', Arial, sans-serif;
-  width: 100%;
-  text-align: left;
-  max-width: 300px;
-  font-size: 14px;
-  font-family: "Times New Roman", serif;
-}
-
-.blankSpace {
-  padding: 20px 30px; /* Blank div height and width */
-}
-
   </style>
 </head>
 <body>
@@ -682,49 +664,6 @@ function scrollToTop() { // Add opening curly brace here
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
   
-function handleRowClick(item) {
-  const matchingItem = omData.find(
-    omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
-  );
-  const dropdown = document.getElementById('filterDropdown');
-
-  if (matchingItem) {
-    selectedData = matchingItem;
-    dropdown.value = matchingItem.Name;
-    pushHistory(matchingItem.Name);
-    createOMTable(matchingItem);
-  } else {
-    const matchingItem = odData.find(
-      odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
-    );
-   
-    if  (!((matchingItem) && matchingItem.Name.startsWith(LinkPrefix))) {
-        selectedData = matchingItem;
-        createODTable(selectedData);
-        pushHistory(selectedData);
-      }
-     else {
-      const matchingLink = itemLinkData.find(
-        linkItem => linkItem.Item.trim().toLowerCase() === item.Item.trim().toLowerCase()
-      );
-
-      if (matchingLink) {
-        const { URL } = matchingLink;
-
-        if (isValidURL(URL)) {
-          window.open(URL, '_blank');
-        } else {
-          console.log('Invalid URL:', URL);
-        }
-      } else {
-        console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
-      }
-    }
-  }
-  scrollToTop();
-  adjustFontSize();
-}
-
 // Function to create table from OMJson Data  
 function createOMTable(selectedData) {
   const table = document.createElement('table');
@@ -754,21 +693,23 @@ function createOMTable(selectedData) {
         matchingItems.forEach(matchingItem => {
           const { Text, Item, Header, DisplayText } = matchingItem;
           let cellContent = Text || DisplayText || Item || '';
-          const cellContentElement = document.createElement('div');
+          const cellContentElement = document.createElement('Div');
           const contentText = cellContent;
           let currentIndex = 0;
 
           if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              cellContentElement.classList.add('clickable');
-              cellContentElement.addEventListener('click', () => {
-                  handleRowClick(matchingItem);
+              const RowClickElement = document.createElement('a');
+              RowClickElement.classList.add('clickable');
+              RowClickElement.addEventListener('click', () => {
+                  handleRowClick(matchingItem, false);
               });
-              cellContentElement.textContent = cellContent;
+              RowClickElement.textContent = cellContent;
+              cellContentElement.appendChild(RowClickElement);
           } 
           
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
-              const linkContainer = document.createElement('span');
+              const linkContainer = document.createElement('a');
               const matchingURLs = abxLinkData.filter(item =>
                 contentText.toLowerCase().includes(item.Name.toLowerCase())
               );
@@ -821,12 +762,13 @@ function createOMTable(selectedData) {
             }
           }
 
-          if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              const clickableSymbol = document.createElement('span');
+          if (Item && !Item.startsWith(MenuPrefix)) {
+          /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
+              const clickableSymbol = document.createElement('a');
               clickableSymbol.textContent = " \u24d8";
               clickableSymbol.classList.add('clickable');
               clickableSymbol.addEventListener('click', () => {
-                  handleRowClick(matchingItem);
+                  handleRowClick(matchingItem, true);
               });
               cellContentElement.appendChild(clickableSymbol);
           }
@@ -855,27 +797,6 @@ function createOMTable(selectedData) {
 
     tbody.appendChild(bodyRow);
   }
-  
-// Function to filter data based on the selected option
-function filterData(event, sortByTerm = false) {
-  const selectedOption = event.target.value;
-  const matchingData = omData.find(item => item.Name === selectedOption);
-  if (matchingData) {
-    selectedData = matchingData;
-    createOMTable(matchingData);
-    pushHistory(matchingData.Name);
-  } else {
-    // Handle the case when selectedData is not found
-    // For example, display an error message or clear the result container
-    const resultContainer = document.getElementById('resultContainer');
-    resultContainer.innerHTML = 'Selected data not found.';
-  }
-  scrollToTop();
-  adjustFontSize();
-  if (sortByTerm) {
-    sortDropdownByTerm();
-  }
-}
 
   // Add a new row for the VistA Menu Name at the bottom of the table
   const itemRow = document.createElement('tr');
@@ -891,8 +812,60 @@ function filterData(event, sortByTerm = false) {
     resultContainer.appendChild(table);
   }
 }
+  
+async function handleRowClick(item, ClickSymbol) {
+    const matchingItem = omData.find(
+        omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+    );
+    const dropdown = document.getElementById('filterDropdown');
 
-// Function to fetch data from txml file  
+    if (matchingItem) {
+        selectedData = matchingItem;
+        dropdown.value = matchingItem.Name;
+        pushHistory(matchingItem.Name);
+        createOMTable(matchingItem);
+    } else {
+        const matchingODItem = odData.find(
+            odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+        );
+        console.log("Matching item:", matchingODItem);
+
+        if (matchingODItem) {
+            if (ClickSymbol) {
+                // If ClickSymbol is true, call Table
+                selectedData = matchingODItem;
+                createODTable(selectedData);
+                pushHistory(selectedData.Name);
+            } else if (matchingODItem.Name.startsWith(LinkPrefix) && !ClickSymbol) {
+                // If ClickSymbol is false and matchingODItem's name starts with LinkPrefix, call findMatches
+                const matches = await findMatches(matchingODItem);
+
+                if (matches.length > 0) {
+                    // Handle each match individually
+                    matches.forEach(match => {
+                        const { txmlName, txmlURL, odItem } = match;
+                        // Handle each match here
+                        console.log("Matching .txml Name:", txmlName);
+                        console.log("Matching .txml URL:", txmlURL);
+                        console.log("Matching ODJSON Item:", odItem);
+                    });
+                } else {
+                    console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
+                }
+            } else {
+                // Handle other cases
+                console.log('Matching item does not meet any specific condition');
+            }
+        } else {
+            console.log('No matching item found in OD data');
+        }
+    }
+    scrollToTop();
+    adjustFontSize();
+}
+
+
+// Function to fetch data from txml file
 async function fetchAndParseXML(txmlFile) {
     try {
         const response = await fetch(txmlFile);
@@ -918,56 +891,246 @@ async function fetchAndParseXML(txmlFile) {
         console.error("Error fetching or parsing the XML file:", error);
         return { boilerplateTexts: [], fields: [] }; // Return empty arrays if error occurs
     }
-}  
+}
 
-function createODTable(selectedData) {
-  // Create a table element
-  const table = document.createElement('table');
-  table.classList.add('table');
+// Function to find matches between txml names and ODJSON text fields
+async function findMatches(matchingItem) {
+    try {
+        const txmlData = await fetchAndParseXML(txmlFile);
+        const odData = await fetchODData();
 
-  // Create a tbody element
-  const tbody = document.createElement('tbody');
+        // Initialize an array to store matches
+        const matches = [];
 
-  // Create the first row with a bold header and a background color
-  const headerRow = document.createElement('tr');
-  const headerCell = document.createElement('td');
-  headerCell.textContent = 'ORDER DIALOG INFORMATION';
-  headerCell.colSpan = 2; // Span across both columns
-  headerCell.classList.add('bold');
-  headerRow.style.backgroundColor = 'lightblue';
-  headerRow.appendChild(headerCell);
-  tbody.appendChild(headerRow);
+        // Filter ODJSON data to include only items with matching names
+        const filteredODData = odData.filter(odItem =>
+            odItem.Name.trim().toLowerCase() === matchingItem.Name.trim().toLowerCase()
+        );
 
-  // Iterate over the selectedData object to create rows for each key-value pair
-  for (const [key, value] of Object.entries(selectedData)) {
-    const row = document.createElement('tr');
+        // Loop through each filtered item in the ODJSON data
+        for (const item of filteredODData) {
+            // Initialize arrays to store matches and URLs for the current ODJSON item
+            const itemMatches = [];
+            const urls = [];
+
+            // Loop through each field to search for matches
+            for (let i = 1; i <= 6; i++) {
+                const wordProcessingField = item[`WordProcessing${i}`];
+                // Check if the field exists and contains text
+                if (wordProcessingField && wordProcessingField.trim() !== '') {
+                    // Check for matches with txml names using wildcards
+                    const matchesInTxml = txmlData.fields.filter(field => new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(wordProcessingField));
+                    if (matchesInTxml.length > 0) {
+                        // If matches are found, add them to the itemMatches array
+                        matchesInTxml.forEach(match => {
+                            itemMatches.push({
+                                txmlName: match.name,
+                                txmlURL: match.url,
+                                txmlDefaultText: match.defaultText,
+                                odItem: item
+                            });
+                            // If the match has a URL, add it to the URLs array
+                            if (match.url) {
+                                urls.push(match.url);
+                            }
+                        });
+                    }
+                }
+            }
+
+            // Add all matches for the current ODJSON item to the main matches array
+            matches.push(...itemMatches);
+
+            // Handle opening URLs based on the number of URLs found
+            urls.forEach(url => {
+                window.open(url);
+            });
+
+            // If multiple URLs are found, create a popup
+            if (urls.length > 1) {
+                const popupContent = itemMatches
+                    .filter(match => match.txmlURL && match.txmlDefaultText)
+                    .map(match => `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText}</a>`)
+                    .join('<br>');
+            }
+        }
+
+        return matches;
+    } catch (error) {
+        console.error("Error finding matches:", error);
+        return []; // Return an empty array if an error occurs
+    }
+}
+  
+async function createODTable(selectedItem) {
+    // Check if selectedItem is already an object or a string
+    const itemData = typeof selectedItem === 'string'
+        ? odData.find(item => item.Name === selectedItem)
+        : selectedItem;
+
+    if (!itemData) {
+        console.error('No matching data found for selected item:', selectedItem);
+        return;
+    }
+
+    const table = document.createElement('table');
+    table.classList.add('table');
+    const tbody = document.createElement('tbody');
+
+    // Create the header row with a bold header and a background color
+    const headerRow = document.createElement('tr');
+    const headerCell = document.createElement('td');
+    headerCell.textContent = 'ORDER DIALOG INFORMATION';
+    headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+    headerCell.style.fontWeight = 'bold';
+    headerCell.style.backgroundColor = 'lightblue'; // Set background color
+    headerCell.style.textAlign = 'center'; // Center align the header
+    headerCell.colSpan = 1; // Span across one column
+    headerRow.appendChild(headerCell);
+    tbody.appendChild(headerRow);
+
+    // Create rows for components with clickable symbols
+    Object.keys(itemData).forEach(key => {
+        if (/^Component\d+$/.test(key)) {
+            const componentName = itemData[key];
+            const componentItem = odData.find(item => item.Name === componentName);
+
+            if (componentItem) {
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                const nameAndSymbol = document.createElement('div');
+                
+                // Bold component name
+                const nameText = document.createElement('span');
+                nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
+                nameText.style.display = 'inline-block'; // Display inline for better alignment
+                
+                // Clickable symbol
+                const clickableSymbol = document.createElement('a');
+                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+                clickableSymbol.classList.add('clickable');
+                clickableSymbol.title = 'Click for more information';
+                clickableSymbol.style.marginLeft = '10px'; // Space between name and symbol
+                clickableSymbol.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    createODTable(componentItem); // Create new table for the component
+                    pushHistory(componentItem.Name); // Add to history
+                });
+                
+                nameAndSymbol.appendChild(nameText);
+                nameAndSymbol.appendChild(clickableSymbol);
+                cell.appendChild(nameAndSymbol);
+                row.appendChild(cell);
+                tbody.appendChild(row);
+            }
+        }
+    });
+
+    // Create rows for other key-value pairs
+    Object.entries(itemData).forEach(([key, value]) => {
+        if (!/^Component\d+$/.test(key)) {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+
+            // Check if the field corresponds to a txml item and if clickable symbol should be shown
+            if (/^WordProcessing\d+$/.test(key)) {
+                const clickableSymbol = document.createElement('a');
+                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+                clickableSymbol.classList.add('clickable');
+                clickableSymbol.title = 'Click for more information';
+                clickableSymbol.style.marginLeft = '10px'; // Space between value and symbol
+                clickableSymbol.addEventListener('click', async (event) => {
+                    event.preventDefault();
+                    
+                    // Fetch txml data
+                    const txmlData = await fetchAndParseXML(txmlFile);
+
+                    // Find matching texts
+                    const matchingTexts = txmlData.fields.filter(field =>
+                        new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(value)
+                    );
+
+                    // Display the matching txml data in a new table
+                    const txmlTable = document.createElement('table');
+                    txmlTable.classList.add('table');
+                    const txmlTbody = document.createElement('tbody');
+
+                    // Create header for txml table
+                    const txmlHeaderRow = document.createElement('tr');
+                    const txmlHeaderCell = document.createElement('td');
+                    txmlHeaderCell.textContent = `TXML Information for ${key}`;
+                    txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+                    txmlHeaderCell.style.fontWeight = 'bold';
+                    txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
+                    txmlHeaderCell.style.textAlign = 'center'; // Center align the header
+                    txmlHeaderCell.colSpan = 2; // Span across two columns
+                    txmlHeaderRow.appendChild(txmlHeaderCell);
+                    txmlTbody.appendChild(txmlHeaderRow);
+
+                    // Add rows for matching texts
+                    matchingTexts.forEach(text => {
+                        const txmlRow = document.createElement('tr');
+                        const txmlCell = document.createElement('td');
+                        txmlCell.colSpan = 2; // Span across two columns
+                        txmlCell.innerHTML = `<div>
+                            <strong>${text.name}:</strong> ${text.url ? `<a href="${text.url}" target="_blank">${text.name}</a>` : text.name}
+                        </div>`;
+                        txmlRow.appendChild(txmlCell);
+                        txmlTbody.appendChild(txmlRow);
+                    });
+
+                    txmlTable.appendChild(txmlTbody);
+
+                    // Display the txml table below the current table
+                    const resultContainer = document.getElementById('resultContainer');
+                    resultContainer.appendChild(txmlTable);
+                });
+
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
+                cell.appendChild(clickableSymbol);
+            } else {
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
+            }
+
+            row.appendChild(cell);
+            tbody.appendChild(row);
+        }
+    });
+
+    table.appendChild(tbody);
+    const resultContainer = document.getElementById('resultContainer');
+    resultContainer.innerHTML = '';
+    if (selectedItem) {
+        resultContainer.appendChild(table);
+    }
+
+    // Adjust font size if needed
+    adjustFontSize();
+}
+
+
     
-    const keyCell = document.createElement('td');
-    keyCell.textContent = key;
-    keyCell.classList.add('bold');
-    keyCell.classList.add('key-cell'); // Add class for key column styling
-
-    const valueCell = document.createElement('td');
-    valueCell.textContent = value;
-    valueCell.classList.add('value-cell'); // Add class for value column styling
-
-    row.appendChild(keyCell);
-    row.appendChild(valueCell);
-    tbody.appendChild(row);
-  }
-
-  // Append the tbody to the table
-  table.appendChild(tbody);
-
-  // Get the result container element and clear its contents
-  const resultContainer = document.getElementById('resultContainer');
-  resultContainer.innerHTML = '';
-
-  // Append the table to the result container if selectedData is not empty
-  if (Object.keys(selectedData).length > 0) {
-    resultContainer.appendChild(table);
+// Function to filter data based on the selected option
+function filterData(event, sortByTerm = false) {
+  const selectedOption = event.target.value;
+  const matchingData = omData.find(item => item.Name === selectedOption);
+  if (matchingData) {
+    selectedData = matchingData;
+    createOMTable(matchingData);
+    pushHistory(matchingData.Name);
+  } /*else {
+    // Handle the case when selectedData is not found
+    // For example, display an error message or clear the result container
+    const resultContainer = document.getElementById('resultContainer');
+    resultContainer.innerHTML = 'Selected data not found.';
+  }*/
+  scrollToTop();
+  adjustFontSize();
+  if (sortByTerm) {
+    sortDropdownByTerm();
   }
 }
+
 // Function to sort the dropdown options alphabetically by term
 function sortDropdownByTerm() {
   const dropdown = document.getElementById('filterDropdown');
@@ -1008,6 +1171,7 @@ function handleGoBack() {
     populateDropdown(omData);
     dropdown.value = selectedItem;
     filterData({ target: dropdown });
+    createOMTable(matchingData)
     }
     else {
       createODTable(selectedItem)
@@ -1020,26 +1184,31 @@ function handleGoBack() {
 
 // Function to handle the Go Forward button click event
 function handleGoForward() {
-  if (historyIndex < history.length - 1) {
-    historyIndex++;
-    const selectedItem = history[historyIndex];
-    const matchingData = omData.find(item => item.Name === selectedItem)
-    if (matchingData) {
-    const dropdown = document.getElementById('filterDropdown');
-    document.getElementById('searchInput').value = null;
-    document.getElementById('searchInput').placeholder = "\u{1F50D}";
-    populateDropdown(omData);
-    dropdown.value = selectedItem;
-    filterData({ target: dropdown });
+    if (historyIndex < history.length - 1) {
+        historyIndex++;
+        const selectedItem = history[historyIndex];
+        const matchingData = omData.find(item => item.Name === selectedItem);
+        if (matchingData) {
+           const dropdown = document.getElementById('filterDropdown');
+            document.getElementById('searchInput').value = null;
+            document.getElementById('searchInput').placeholder = "\u{1F50D}";
+            populateDropdown(omData);
+            dropdown.value = selectedItem;
+            filterData({ target: dropdown });
+          createOMTable(matchingData)
+        } else {
+            createODTable(selectedItem);
+        }
+    } else {
+        // Handle the case when the historyIndex is at the end
+        // This could be redirecting somewhere or showing a message
+        // For now, let's just log a message
+        console.log("End of history reached");
     }
-    else {
-      createODTable(selectedItem)
-    }
-  }
-      scrollToTop()
-      adjustFontSize();
+    scrollToTop();
+    adjustFontSize();
 }
-  
+
 // Function to handle the Main Menu button click event
 function handleMainMenu() {
   const dropdown = document.getElementById('filterDropdown');
