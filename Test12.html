@@ -1082,17 +1082,38 @@ async function createODTable(selectedItem) {
                             txmlHeaderRow.appendChild(txmlHeaderCell);
                             txmlTbody.appendChild(txmlHeaderRow);
 
-                            // Add rows for matching texts
-                            matchingTexts.forEach(text => {
-                                const txmlRow = document.createElement('tr');
-                                const txmlCell = document.createElement('td');
-                                txmlCell.colSpan = 2; // Span across two columns
-                                txmlCell.innerHTML = `<div>
-                                    <strong>${text.name}:</strong> ${text.url ? `<a href="${text.url}" target="_blank">${text.name}</a>` : text.name}
-                                </div>`;
-                                txmlRow.appendChild(txmlCell);
-                                txmlTbody.appendChild(txmlRow);
-                            });
+                              // Add rows for matching texts
+                              matchingTexts.forEach(text => {
+                                  const txmlRow = document.createElement('tr');
+                                  const txmlCell = document.createElement('td');
+                                  txmlCell.colSpan = 2; // Span across two columns
+                              
+                                  // Updated innerHTML with all fields
+                                  txmlCell.innerHTML = `<div>
+                                      <strong>${text.name}:</strong>
+                                      <ul>
+                                          ${text.url ? `<li><strong>URL:</strong> <a href="${text.url}" target="_blank">${text.url}</a></li>` : ''}
+                                          ${text.type ? `<li><strong>Type:</strong> ${text.type}</li>` : ''}
+                                          ${text.inactive ? `<li><strong>Inactive:</strong> ${text.inactive}</li>` : ''}
+                                          ${text.length ? `<li><strong>Length:</strong> ${text.length}</li>` : ''}
+                                          ${text.defaultText ? `<li><strong>Default Text:</strong> ${text.defaultText}</li>` : ''}
+                                          ${text.defaultIndex ? `<li><strong>Default Index:</strong> ${text.defaultIndex}</li>` : ''}
+                                          ${text.required ? `<li><strong>Required:</strong> ${text.required}</li>` : ''}
+                                          ${text.separateLines ? `<li><strong>Separate Lines:</strong> ${text.separateLines}</li>` : ''}
+                                          ${text.maxLength ? `<li><strong>Max Length:</strong> ${text.maxLength}</li>` : ''}
+                                          ${text.indent ? `<li><strong>Indent:</strong> ${text.indent}</li>` : ''}
+                                          ${text.pad ? `<li><strong>Pad:</strong> ${text.pad}</li>` : ''}
+                                          ${text.minValue ? `<li><strong>Min Value:</strong> ${text.minValue}</li>` : ''}
+                                          ${text.maxValue ? `<li><strong>Max Value:</strong> ${text.maxValue}</li>` : ''}
+                                          ${text.increment ? `<li><strong>Increment:</strong> ${text.increment}</li>` : ''}
+                                          ${text.items ? `<li><strong>Items:</strong> ${text.items}</li>` : ''}
+                                      </ul>
+                                  </div>`;
+                              
+                                  txmlRow.appendChild(txmlCell);
+                                  txmlTbody.appendChild(txmlRow);
+                              });
+
 
                             txmlTable.appendChild(txmlTbody);
 
