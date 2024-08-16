@@ -1045,7 +1045,8 @@ async function createODTable(selectedItem) {
         if (!/^Component\d+$/.test(key) && value.trim() !== '') { // Exclude blank fields
             const row = document.createElement('tr');
             const cell = document.createElement('td');
-
+            adjustFontSize();
+          
             if (/^WordProcessing\d+$/.test(key)) {
                 fetchAndParseXML(txmlFile).then(txmlData => {
                     const matchingTexts = txmlData.fields.filter(field =>
