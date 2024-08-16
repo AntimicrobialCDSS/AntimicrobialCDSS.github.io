@@ -1120,6 +1120,7 @@ async function createODTable(selectedItem) {
                             // Append txml table to the result container
                             const resultContainer = document.getElementById('resultContainer');
                             resultContainer.appendChild(txmlTable);
+                          adjustFontSize();
                         });
 
                         cell.innerHTML = `<b>${key}:</b> ${value}`;
@@ -1135,7 +1136,6 @@ async function createODTable(selectedItem) {
             row.appendChild(cell);
             tbody.appendChild(row);
         }
-                  adjustFontSize();
     });
 
     table.appendChild(tbody);
