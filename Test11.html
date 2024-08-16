@@ -948,18 +948,11 @@ async function fetchAndParseXML(txmlFile) {
         // Extract boilerplate text from the XML document
         const boilerplateTexts = Array.from(xmlDoc.querySelectorAll("BOILERPLATE_TEXT p"), p => p.textContent);
 
-        // Extract field data from the XML document
+        // Extract field names and URLs from the XML document
         const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD"), field => {
-            const fieldData = { name: field.getAttribute("NAME") };
-            
-            // Iterate over child elements and add their text content to the fieldData object
-            field.querySelectorAll("*").forEach(child => {
-                if (child.nodeType === Node.ELEMENT_NODE) {
-                    fieldData[child.nodeName.toLowerCase()] = child.textContent.trim();
-                }
-            });
-            
-            return fieldData;
+            const name = field.getAttribute("NAME");
+            const url = field.querySelector("URL") ? field.querySelector("URL").textContent : null;
+            return { name, url };
         });
 
         return { boilerplateTexts, fields };
@@ -1044,7 +1037,6 @@ async function createODTableForTXML(txmlFile, key) {
     // Adjust font size if needed
     adjustFontSize();
 }
-
 
     
 // Function to filter data based on the selected option
