@@ -1125,6 +1125,7 @@ async function createODTable(selectedItem) {
                           // Append txml table to the result container
                           const resultContainer = document.getElementById('resultContainer');
                           resultContainer.innerHTML = ''; // Clear current table
+                          pushHistory(componentItem.Name)
                           resultContainer.appendChild(txmlTable);
                       });
   
