@@ -994,23 +994,42 @@ async function createODTableForTXML(txmlFile, key) {
     txmlHeaderRow.appendChild(txmlHeaderCell);
     txmlTbody.appendChild(txmlHeaderRow);
 
+    // Define field labels
+    const fieldLabels = {
+        name: 'Name',
+        type: 'Type',
+        inactive: 'Inactive',
+        length: 'Length',
+        defaultText: 'Default Text',
+        defaultIndex: 'Default Index',
+        required: 'Required',
+        separateLines: 'Separate Lines',
+        maxLength: 'Max Length',
+        indent: 'Indent',
+        pad: 'Pad',
+        minValue: 'Min Value',
+        maxValue: 'Max Value',
+        increment: 'Increment',
+        url: 'URL'
+    };
+
     // Function to create a row for each field
-    function createFieldRow(field, value) {
+    function createFieldRow(name, value) {
         const row = document.createElement('tr');
         const cell = document.createElement('td');
-        cell.innerHTML = `<b>${field}:</b> ${value}`;
+        cell.innerHTML = `<b>${name}:</b> ${value}`;
         row.appendChild(cell);
         txmlTbody.appendChild(row);
     }
 
     // Add rows for each field in the matching texts
     matchingTexts.forEach(text => {
-        Object.keys(text).forEach(field => {
+        Object.keys(fieldLabels).forEach(field => {
             const value = text[field] || 'N/A';
             if (field === 'url' && value !== 'N/A') {
-                createFieldRow(field, `<a href="${value}" target="_blank">${value}</a>`);
+                createFieldRow(fieldLabels[field], `<a href="${value}" target="_blank">${value}</a>`);
             } else {
-                createFieldRow(field, value);
+                createFieldRow(fieldLabels[field], value);
             }
         });
     });
@@ -1025,6 +1044,7 @@ async function createODTableForTXML(txmlFile, key) {
     // Adjust font size if needed
     adjustFontSize();
 }
+
 
     
 // Function to filter data based on the selected option
