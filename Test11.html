@@ -969,159 +969,62 @@ async function fetchAndParseXML(txmlFile) {
     }
 }
   
-async function createODTable(selectedItem) {
-    // Check if selectedItem is already an object or a string
-    const itemData = typeof selectedItem === 'string'
-        ? odData.find(item => item.Name === selectedItem)
-        : selectedItem;
+async function createODTableForTXML(txmlFile, key) {
+    const txmlData = await fetchAndParseXML(txmlFile);
 
-    if (!itemData) {
-        console.error('No matching data found for selected item:', selectedItem);
-        return;
+    // Find matching texts
+    const matchingTexts = txmlData.fields.filter(field =>
+        new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(key)
+    );
+
+    // Create the TXML table
+    const txmlTable = document.createElement('table');
+    txmlTable.classList.add('table');
+    const txmlTbody = document.createElement('tbody');
+
+    // Create header for txml table
+    const txmlHeaderRow = document.createElement('tr');
+    const txmlHeaderCell = document.createElement('td');
+    txmlHeaderCell.textContent = `TXML Information for ${key}`;
+    txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+    txmlHeaderCell.style.fontWeight = 'bold';
+    txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
+    txmlHeaderCell.style.textAlign = 'center'; // Center align the header
+    txmlHeaderCell.colSpan = 2; // Span across two columns
+    txmlHeaderRow.appendChild(txmlHeaderCell);
+    txmlTbody.appendChild(txmlHeaderRow);
+
+    // Function to create a row for each field
+    function createFieldRow(field, value) {
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
+        cell.innerHTML = `<b>${field}:</b> ${value}`;
+        row.appendChild(cell);
+        txmlTbody.appendChild(row);
     }
 
-    const table = document.createElement('table');
-    table.classList.add('table');
-    const tbody = document.createElement('tbody');
-
-    // Create the header row with a bold header and a background color
-    const headerRow = document.createElement('tr');
-    const headerCell = document.createElement('td');
-    headerCell.textContent = 'ORDER DIALOG INFORMATION';
-    headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
-    headerCell.style.fontWeight = 'bold';
-    headerCell.style.backgroundColor = 'lightblue'; // Set background color
-    headerCell.style.textAlign = 'center'; // Center align the header
-    headerCell.colSpan = 2; // Span across two columns
-    headerRow.appendChild(headerCell);
-    tbody.appendChild(headerRow);
-
-    // Add rows for components with clickable symbols
-    Object.keys(itemData).forEach(key => {
-        if (/^Component\d+$/.test(key)) {
-            const componentName = itemData[key];
-            const componentItem = odData.find(item => item.Name === componentName);
-
-            if (componentItem) {
-                const row = document.createElement('tr');
-                const cell = document.createElement('td');
-                const nameAndSymbol = document.createElement('div');
-
-                // Bold component name
-                const nameText = document.createElement('span');
-                nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
-                nameText.style.display = 'inline-block'; // Display inline for better alignment
-
-                // Clickable symbol
-                const clickableSymbol = document.createElement('a');
-                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
-                clickableSymbol.classList.add('clickable');
-                clickableSymbol.title = 'Click for more information';
-                clickableSymbol.style.marginLeft = '10px'; // Space between name and symbol
-                clickableSymbol.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    createODTable(componentItem); // Create new table for the component
-                    pushHistory(componentItem.Name); // Add to history
-                });
-
-                nameAndSymbol.appendChild(nameText);
-                nameAndSymbol.appendChild(clickableSymbol);
-                cell.appendChild(nameAndSymbol);
-                row.appendChild(cell);
-                tbody.appendChild(row);
-            }
-        }
-    });
-
-    // Create rows for other key-value pairs
-    Object.entries(itemData).forEach(([key, value]) => {
-        if (!/^Component\d+$/.test(key)) {
-            const row = document.createElement('tr');
-            const cell = document.createElement('td');
-
-            // Check if the field corresponds to a txml item
-            if (/^WordProcessing\d+$/.test(key)) {
-                // Fetch txml data
-                fetchAndParseXML(txmlFile).then(txmlData => {
-                    // Find matching texts
-                    const matchingTexts = txmlData.fields.filter(field =>
-                        new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(value)
-                    );
-
-                    // Only add clickable symbol if there are matching texts
-                    if (matchingTexts.length > 0) {
-                        const clickableSymbol = document.createElement('a');
-                        clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
-                        clickableSymbol.classList.add('clickable');
-                        clickableSymbol.title = 'Click for more information';
-                        clickableSymbol.style.marginLeft = '10px'; // Space between value and symbol
-                        clickableSymbol.addEventListener('click', async (event) => {
-                            event.preventDefault();
-
-                            // Create a new ODTable for the txml data
-                            const txmlTable = document.createElement('table');
-                            txmlTable.classList.add('table');
-                            const txmlTbody = document.createElement('tbody');
-
-                            // Create header for txml table
-                            const txmlHeaderRow = document.createElement('tr');
-                            const txmlHeaderCell = document.createElement('td');
-                            txmlHeaderCell.textContent = `TXML Information for ${key}`;
-                            txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
-                            txmlHeaderCell.style.fontWeight = 'bold';
-                            txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
-                            txmlHeaderCell.style.textAlign = 'center'; // Center align the header
-                            txmlHeaderCell.colSpan = 2; // Span across two columns
-                            txmlHeaderRow.appendChild(txmlHeaderCell);
-                            txmlTbody.appendChild(txmlHeaderRow);
-
-                            // Add rows for matching texts
-                            matchingTexts.forEach(text => {
-                                const txmlRow = document.createElement('tr');
-                                const txmlCell = document.createElement('td');
-                                txmlCell.colSpan = 2; // Span across two columns
-                                txmlCell.innerHTML = `<div>
-                                    <strong>${text.name}:</strong> ${text.url ? `<a href="${text.url}" target="_blank">${text.name}</a>` : text.name}
-                                </div>`;
-                                txmlRow.appendChild(txmlCell);
-                                txmlTbody.appendChild(txmlRow);
-                            });
-
-                            txmlTable.appendChild(txmlTbody);
-
-                            // Append txml table to the result container
-                            const resultContainer = document.getElementById('resultContainer');
-                            resultContainer.innerHTML = ''; // Clear current table
-                            resultContainer.appendChild(txmlTable);
-                        });
-
-                        cell.innerHTML = `<b>${key}:</b> ${value}`;
-                        cell.appendChild(clickableSymbol);
-                    } else {
-                        cell.innerHTML = `<b>${key}:</b> ${value}`;
-                    }
-                });
+    // Add rows for each field in the matching texts
+    matchingTexts.forEach(text => {
+        Object.keys(text).forEach(field => {
+            const value = text[field] || 'N/A';
+            if (field === 'url' && value !== 'N/A') {
+                createFieldRow(field, `<a href="${value}" target="_blank">${value}</a>`);
             } else {
-                cell.innerHTML = `<b>${key}:</b> ${value}`;
+                createFieldRow(field, value);
             }
-
-            row.appendChild(cell);
-            tbody.appendChild(row);
-        }
+        });
     });
 
-    table.appendChild(tbody);
+    txmlTable.appendChild(txmlTbody);
+
+    // Append txml table to the result container
     const resultContainer = document.getElementById('resultContainer');
-    resultContainer.innerHTML = '';
-    if (selectedItem) {
-        resultContainer.appendChild(table);
-    }
+    resultContainer.innerHTML = ''; // Clear current table
+    resultContainer.appendChild(txmlTable);
 
     // Adjust font size if needed
     adjustFontSize();
 }
-
-
 
     
 // Function to filter data based on the selected option
