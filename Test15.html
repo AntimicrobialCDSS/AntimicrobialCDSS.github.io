@@ -1125,7 +1125,6 @@ async function createODTable(selectedItem) {
                           // Append txml table to the result container
                           const resultContainer = document.getElementById('resultContainer');
                           resultContainer.innerHTML = ''; // Clear current table
-                          pushHistory(selectedItem.Name)
                           resultContainer.appendChild(txmlTable);
                       });
   
@@ -1142,6 +1141,7 @@ async function createODTable(selectedItem) {
   
               row.appendChild(cell);
               tbody.appendChild(row);
+              pushHistory(selectedItem.Name)
           }
       });
 
