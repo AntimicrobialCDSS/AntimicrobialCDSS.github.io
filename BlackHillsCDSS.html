@@ -388,6 +388,12 @@ async function fetchODData() {
   return data;
   }
 
+// Fetch ItemLink Data
+async function fetchItemLink() {
+    const response = await fetch(ItemLinkjson);
+    const data = await response.json();
+    return data;
+  }
   // Fetch AbxLink Data
 async function fetchAbxLink() {
   const response = await fetch(AbxLinkjson);
@@ -404,6 +410,7 @@ let selectedData = null; // Currently selected data
 let history = []; // History of selected items
 let forwardHistory = []; // History of forward selections
 let historyIndex = -1; // Index of the current selection in the history
+let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
 // Function to hide location buttons
@@ -842,7 +849,7 @@ async function handleRowClick(item, ClickSymbol) {
                         console.log("Matching ODJSON Item:", odItem);
                     });
                 } else {
-                    console.log('No matching item found in OMJSON.json, ODJSON.json, or txml file');
+                    console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
                 }
             } else {
                 // Handle other cases
@@ -856,34 +863,6 @@ async function handleRowClick(item, ClickSymbol) {
     adjustFontSize();
 }
 
-
-// Function to fetch data from txml file
-async function fetchAndParseXML(txmlFile) {
-    try {
-        const response = await fetch(txmlFile);
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        const xmlText = await response.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-
-        // Extract boilerplate text from the XML document
-        const boilerplateTexts = Array.from(xmlDoc.querySelectorAll("BOILERPLATE_TEXT p"), p => p.textContent);
-
-        // Extract field names and URLs from the XML document
-        const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD"), field => {
-            const name = field.getAttribute("NAME");
-            const url = field.querySelector("URL") ? field.querySelector("URL").textContent : null;
-            return { name, url };
-        });
-
-        return { boilerplateTexts, fields };
-    } catch (error) {
-        console.error("Error fetching or parsing the XML file:", error);
-        return { boilerplateTexts: [], fields: [] }; // Return empty arrays if error occurs
-    }
-}
 
 // Function to find matches between txml names and ODJSON text fields
 async function findMatches(matchingItem) {
@@ -953,10 +932,52 @@ async function findMatches(matchingItem) {
         return []; // Return an empty array if an error occurs
     }
 }
-  
-function createODTable(selectedItem) {
+
+async function fetchAndParseXML(txmlFile) {
+    try {
+        const response = await fetch(txmlFile);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+        // Extract boilerplate text from the XML document
+        const boilerplateTexts = Array.from(xmlDoc.querySelectorAll("BOILERPLATE_TEXT p"), p => p.textContent);
+
+        // Extract field names and their attributes from the XML document
+        const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD")).map(field => {
+            const name = field.getAttribute("NAME");
+            const type = field.querySelector("TYPE") ? field.querySelector("TYPE").textContent : null;
+            const inactive = field.querySelector("INACTIVE") ? field.querySelector("INACTIVE").textContent : null;
+            const length = field.querySelector("LENGTH") ? field.querySelector("LENGTH").textContent : null;
+            const defaultText = field.querySelector("DEFAULT_TEXT") ? field.querySelector("DEFAULT_TEXT").textContent : null;
+            const defaultIndex = field.querySelector("DEFAULT_INDEX") ? field.querySelector("DEFAULT_INDEX").textContent : null;
+            const required = field.querySelector("REQUIRED") ? field.querySelector("REQUIRED").textContent : null;
+            const separateLines = field.querySelector("SEPARATE_LINES") ? field.querySelector("SEPARATE_LINES").textContent : null;
+            const maxLength = field.querySelector("MAX_LENGTH") ? field.querySelector("MAX_LENGTH").textContent : null;
+            const indent = field.querySelector("INDENT") ? field.querySelector("INDENT").textContent : null;
+            const pad = field.querySelector("PAD") ? field.querySelector("PAD").textContent : null;
+            const minValue = field.querySelector("MIN_VALUE") ? field.querySelector("MIN_VALUE").textContent : null;
+            const maxValue = field.querySelector("MAX_VALUE") ? field.querySelector("MAX_VALUE").textContent : null;
+            const increment = field.querySelector("INCREMENT") ? field.querySelector("INCREMENT").textContent : null;
+            const url = field.querySelector("URL") ? field.querySelector("URL").textContent : null;
+            const items = field.querySelector("ITEMS") ? field.querySelector("ITEMS").textContent : null;
+
+            return { name, type, inactive, length, defaultText, defaultIndex, required, separateLines, maxLength, indent, pad, minValue, maxValue, increment, url, items };
+        });
+
+        return { boilerplateTexts, fields };
+    } catch (error) {
+        console.error("Error fetching or parsing the XML file:", error);
+        return { boilerplateTexts: [], fields: [] }; // Return empty arrays if error occurs
+    }
+}
+
+async function createODTable(selectedItem) {
     // Check if selectedItem is already an object or a string
-    const itemData = typeof selectedItem === 'string' 
+    const itemData = typeof selectedItem === 'string'
         ? odData.find(item => item.Name === selectedItem)
         : selectedItem;
 
@@ -968,47 +989,164 @@ function createODTable(selectedItem) {
     const table = document.createElement('table');
     table.classList.add('table');
     const tbody = document.createElement('tbody');
-   
-  // Create the header row with a bold header and a background color
+
+    // Create the header row with a bold header and a background color
     const headerRow = document.createElement('tr');
     const headerCell = document.createElement('td');
     headerCell.textContent = 'ORDER DIALOG INFORMATION';
-    headerCell.colSpan = 1; // Span across one column
     headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
     headerCell.style.fontWeight = 'bold';
     headerCell.style.backgroundColor = 'lightblue'; // Set background color
+    headerCell.style.textAlign = 'left'; // Center align the header
+    headerCell.colSpan = 1; // Span across one column
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
-    
-    // Iterate over the entries of itemData
-    Object.entries(itemData).forEach(([key, value]) => {
-        const row = document.createElement('tr');
-        
-        // Create cells for key and value
-        const cell = document.createElement('td');
-        /*keyCell.textContent = key;*/
-        /*const valueCell = document.createElement('td');*/
-        /*valueCell.textContent = JSON.stringify(value, null, 2);*/
-        cell.innerHTML = `<b>${key}:</b> ${value}`;
-        row.appendChild(cell);
-        // Append cells to the row
-       /* row.appendChild(keyCell);*/
-       /* row.appendChild(valueCell);*/
 
-        // Append row to the tbody
-        tbody.appendChild(row);
+    // Add rows for components with clickable symbols
+    Object.keys(itemData).forEach(key => {
+        if (/^Component\d+$/.test(key)) {
+            const componentName = itemData[key];
+            const componentItem = odData.find(item => item.Name === componentName);
+
+            if (componentItem) {
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                const nameAndSymbol = document.createElement('div');
+
+                // Bold component name
+                const nameText = document.createElement('span');
+                nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
+                nameText.style.display = 'inline-block'; // Display inline for better alignment
+
+                // Clickable symbol
+                const clickableSymbol = document.createElement('a');
+                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+                clickableSymbol.classList.add('clickable');
+                clickableSymbol.title = 'Click for more information';
+                clickableSymbol.style.marginLeft = '10px'; // Space between name and symbol
+                clickableSymbol.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    createODTable(componentItem); // Create new table for the component
+                    pushHistory(componentItem.Name); // Add to history
+                });
+
+                nameAndSymbol.appendChild(nameText);
+                nameAndSymbol.appendChild(clickableSymbol);
+                cell.appendChild(nameAndSymbol);
+                row.appendChild(cell);
+                tbody.appendChild(row);
+            }
+        }
     });
 
-    // Append tbody to the table
-    table.appendChild(tbody);
+    // Create rows for other key-value pairs
+    const wordProcessingFields = []; // To keep track of `WordProcessing` fields
+    await Promise.all(Object.entries(itemData).map(async ([key, value]) => {
+        if (!/^Component\d+$/.test(key) && value.trim() !== '') { // Exclude blank fields
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
 
-    // Display the table in the result container
+            if (/^WordProcessing\d+$/.test(key)) {
+                wordProcessingFields.push({ key, value }); // Store for later processing
+            } else {
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
+                row.appendChild(cell);
+                tbody.appendChild(row);
+            }
+        }
+    }));
+
+    // Process `WordProcessing` fields separately
+    for (const { key, value } of wordProcessingFields) {
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
+
+        if (/^WordProcessing\d+$/.test(key)) {
+            const txmlData = await fetchAndParseXML(txmlFile);
+            const matchingTexts = txmlData.fields.filter(field =>
+                new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(value)
+            );
+
+            if (matchingTexts.length > 0) {
+                const clickableSymbol = document.createElement('a');
+                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+                clickableSymbol.classList.add('clickable');
+                clickableSymbol.title = 'Click for more information';
+                clickableSymbol.style.marginLeft = '10px'; // Space between value and symbol
+                clickableSymbol.addEventListener('click', async (event) => {
+                    event.preventDefault();
+
+                    // Add txml rows to the existing table
+                    const txmlItem = matchingTexts[0]; // Assume at least one item exists to use for the header
+                    const txmlHeaderRow = document.createElement('tr');
+                    const txmlHeaderCell = document.createElement('td');
+                    txmlHeaderCell.textContent = `${txmlItem.name} Template Field Information`;
+                    txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+                    txmlHeaderCell.style.fontWeight = 'bold';
+                    txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
+                    txmlHeaderCell.style.textAlign = 'left'; // Center align the header
+                    txmlHeaderCell.colSpan = 1; // Span across one column
+                    txmlHeaderRow.appendChild(txmlHeaderCell);
+                    tbody.appendChild(txmlHeaderRow);
+
+                    matchingTexts.forEach(text => {
+                        const fields = [
+                            { label: 'Name', value: text.name },
+                            { label: 'URL', value: text.url ? `<a href="${text.url}" target="_blank">${text.url}</a>` : 'N/A' },
+                            { label: 'Type', value: text.type },
+                            { label: 'Inactive', value: text.inactive },
+                            { label: 'Length', value: text.length },
+                            { label: 'Default Text', value: text.defaultText },
+                            { label: 'Default Index', value: text.defaultIndex },
+                            { label: 'Required', value: text.required },
+                            { label: 'Separate Lines', value: text.separateLines },
+                            { label: 'Max Length', value: text.maxLength },
+                            { label: 'Indent', value: text.indent },
+                            { label: 'Pad', value: text.pad },
+                            { label: 'Min Value', value: text.minValue },
+                            { label: 'Max Value', value: text.maxValue },
+                            { label: 'Increment', value: text.increment },
+                            { label: 'Items', value: text.items }
+                        ];
+
+                        fields.forEach(field => {
+                            if (field.value) {
+                                const row = document.createElement('tr');
+                                const cell = document.createElement('td');
+
+                                cell.innerHTML = `<b>${field.label}:</b> ${field.value}`;
+                                row.appendChild(cell);
+                                tbody.appendChild(row);
+                            }
+                        });
+                    });
+
+                    // Adjust font size for the newly added rows
+                    adjustFontSize();
+                });
+
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
+                cell.appendChild(clickableSymbol);
+            } else {
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
+            }
+
+            row.appendChild(cell);
+            tbody.appendChild(row);
+        }
+    }
+
+    table.appendChild(tbody);
     const resultContainer = document.getElementById('resultContainer');
     resultContainer.innerHTML = '';
-    resultContainer.appendChild(table);
+    if (selectedItem) {
+        resultContainer.appendChild(table);
+    }
+
+    // Adjust font size after table is fully appended
+    adjustFontSize();
 }
 
-    
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
@@ -1253,10 +1391,11 @@ function openPageInNewWindow(pageURL, replacements) {
   }
   
 // Fetch data and initialize the dropdown
-Promise.all([fetchOMData(), fetchODData(), fetchAbxLink()]) // Add fetchIndex()
-  .then(([omjsonData, odjsonData, abxlinkjsonData]) => { 
+Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
+  .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
     omData = omjsonData;
     odData = odjsonData;
+    itemLinkData = itemlinkjsonData;
     abxLinkData = abxlinkjsonData;
     populateDropdown(omData); 
       const urlParams = new URLSearchParams(window.location.search);
