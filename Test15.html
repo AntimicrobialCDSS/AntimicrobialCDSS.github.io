@@ -1141,7 +1141,6 @@ async function createODTable(selectedItem) {
   
               row.appendChild(cell);
               tbody.appendChild(row);
-              pushHistory(selectedItem.Name)
           }
       });
 
@@ -1154,6 +1153,7 @@ async function createODTable(selectedItem) {
 
     // Adjust font size if needed
     adjustFontSize();
+    pushHistory(selectedItem.Name)
 }
 
 
