@@ -948,11 +948,26 @@ async function fetchAndParseXML(txmlFile) {
         // Extract boilerplate text from the XML document
         const boilerplateTexts = Array.from(xmlDoc.querySelectorAll("BOILERPLATE_TEXT p"), p => p.textContent);
 
-        // Extract field names and URLs from the XML document
-        const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD"), field => {
+        // Extract field names and their attributes from the XML document
+        const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD")).map(field => {
             const name = field.getAttribute("NAME");
+            const type = field.querySelector("TYPE") ? field.querySelector("TYPE").textContent : null;
+            const inactive = field.querySelector("INACTIVE") ? field.querySelector("INACTIVE").textContent : null;
+            const length = field.querySelector("LENGTH") ? field.querySelector("LENGTH").textContent : null;
+            const defaultText = field.querySelector("DEFAULT_TEXT") ? field.querySelector("DEFAULT_TEXT").textContent : null;
+            const defaultIndex = field.querySelector("DEFAULT_INDEX") ? field.querySelector("DEFAULT_INDEX").textContent : null;
+            const required = field.querySelector("REQUIRED") ? field.querySelector("REQUIRED").textContent : null;
+            const separateLines = field.querySelector("SEPARATE_LINES") ? field.querySelector("SEPARATE_LINES").textContent : null;
+            const maxLength = field.querySelector("MAX_LENGTH") ? field.querySelector("MAX_LENGTH").textContent : null;
+            const indent = field.querySelector("INDENT") ? field.querySelector("INDENT").textContent : null;
+            const pad = field.querySelector("PAD") ? field.querySelector("PAD").textContent : null;
+            const minValue = field.querySelector("MIN_VALUE") ? field.querySelector("MIN_VALUE").textContent : null;
+            const maxValue = field.querySelector("MAX_VALUE") ? field.querySelector("MAX_VALUE").textContent : null;
+            const increment = field.querySelector("INCREMENT") ? field.querySelector("INCREMENT").textContent : null;
             const url = field.querySelector("URL") ? field.querySelector("URL").textContent : null;
-            return { name, url };
+            const items = field.querySelector("ITEMS") ? field.querySelector("ITEMS").textContent : null;
+
+            return { name, type, inactive, length, defaultText, defaultIndex, required, separateLines, maxLength, indent, pad, minValue, maxValue, increment, url, items };
         });
 
         return { boilerplateTexts, fields };
@@ -961,6 +976,7 @@ async function fetchAndParseXML(txmlFile) {
         return { boilerplateTexts: [], fields: [] }; // Return empty arrays if error occurs
     }
 }
+
   
 async function createODTable(selectedItem) {
     // Check if selectedItem is already an object or a string
