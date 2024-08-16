@@ -962,12 +962,9 @@ async function findMatches(matchingItem) {
     }
 }
   
-async function createODTable(selectedItem, txmlFile) {
-    // Fetch XML data
-    const { fields } = await fetchAndParseXML(txmlFile);
-
+async function createODTable(selectedItem) {
     // Check if selectedItem is already an object or a string
-    const itemData = typeof selectedItem === 'string' 
+    const itemData = typeof selectedItem === 'string'
         ? odData.find(item => item.Name === selectedItem)
         : selectedItem;
 
@@ -976,11 +973,14 @@ async function createODTable(selectedItem, txmlFile) {
         return;
     }
 
+    // Fetch the txml data
+    const txmlData = await fetchAndParseXML(txmlFile);
+
     const table = document.createElement('table');
     table.classList.add('table');
     const tbody = document.createElement('tbody');
 
-    // Create the header row
+    // Create the header row with a bold header and a background color
     const headerRow = document.createElement('tr');
     const headerCell = document.createElement('td');
     headerCell.textContent = 'ORDER DIALOG INFORMATION';
@@ -992,22 +992,25 @@ async function createODTable(selectedItem, txmlFile) {
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
 
-    // Create rows for components and WordProcessing fields with clickable symbols
+    // Create rows for components with a clickable "i" symbol
     Object.keys(itemData).forEach(key => {
         if (/^Component\d+$/.test(key)) {
             const componentName = itemData[key];
             const componentItem = odData.find(item => item.Name === componentName);
-            
+
             if (componentItem) {
                 const row = document.createElement('tr');
                 
+                // Combine component name and clickable symbol into one cell
                 const cell = document.createElement('td');
                 const nameAndSymbol = document.createElement('div');
                 
+                // Bold component name
                 const nameText = document.createElement('span');
                 nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
                 nameText.style.display = 'inline-block'; // Display inline for better alignment
                 
+                // Clickable symbol
                 const clickableSymbol = document.createElement('a');
                 clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
                 clickableSymbol.classList.add('clickable');
@@ -1025,47 +1028,68 @@ async function createODTable(selectedItem, txmlFile) {
                 row.appendChild(cell);
                 tbody.appendChild(row);
             }
-        } else if (/^WordProcessing\d+$/.test(key)) {
-            const fieldReferences = itemData[key].match(/\{FLD:[^}]*\}/g);
-            if (fieldReferences) {
-                const row = document.createElement('tr');
-                const cell = document.createElement('td');
-                const nameAndSymbol = document.createElement('div');
+        }
+    });
 
-                const nameText = document.createElement('span');
-                nameText.innerHTML = `<b>${key}:</b> ${itemData[key]}`;
-                nameText.style.display = 'inline-block';
+    // Create rows for other key-value pairs
+    Object.entries(itemData).forEach(([key, value]) => {
+        if (!/^Component\d+$/.test(key)) {
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
 
-                const clickableSymbol = document.createElement('a');
-                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
-                clickableSymbol.classList.add('clickable');
-                clickableSymbol.title = 'Click for field names';
-                clickableSymbol.style.marginLeft = '10px'; // Space between name and symbol
-                clickableSymbol.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    // Display matching field names
-                    const fieldNames = fieldReferences.map(ref => ref.replace(/{FLD:/, '').replace(/}/, ''));
-                    const matchingFields = fields.filter(field => fieldNames.includes(field.name)).map(field => field.name);
-                    if (matchingFields.length > 0) {
-                        alert('Matching Field Names:\n' + matchingFields.join('\n'));
-                    } else {
-                        alert('No matching field names found.');
-                    }
-                });
+            // Check for matches in WordProcessing fields
+            if (/^WordProcessing\d+$/.test(key)) {
+                const matchingTexts = txmlData.fields.filter(field =>
+                    new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(value)
+                );
 
-                nameAndSymbol.appendChild(nameText);
-                nameAndSymbol.appendChild(clickableSymbol);
-                cell.appendChild(nameAndSymbol);
-                row.appendChild(cell);
-                tbody.appendChild(row);
+                // If there are matching texts, add clickable symbol
+                if (matchingTexts.length > 0) {
+                    const clickableSymbol = document.createElement('a');
+                    clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+                    clickableSymbol.classList.add('clickable');
+                    clickableSymbol.title = 'Click for more information';
+                    clickableSymbol.style.marginLeft = '10px'; // Space between value and symbol
+                    clickableSymbol.addEventListener('click', async (event) => {
+                        event.preventDefault();
+                        // Display the matching txml data
+                        const matchingDetails = matchingTexts.map(text => `
+                            <div>
+                                <strong>${text.name}:</strong> ${text.url ? `<a href="${text.url}" target="_blank">${text.name}</a>` : text.name}
+                            </div>
+                        `).join('<br>');
+                        const popupWindow = window.open("", "_blank", "width=600,height=400");
+                        popupWindow.document.write(`
+                            <html><head><title>Matching Texts</title></head>
+                            <body>${matchingDetails}</body></html>
+                        `);
+                        popupWindow.document.close();
+                    });
+
+                    cell.innerHTML = `<b>${key}:</b> ${value}`;
+                    cell.appendChild(clickableSymbol);
+                } else {
+                    cell.innerHTML = `<b>${key}:</b> ${value}`;
+                }
+            } else {
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
             }
+
+            row.appendChild(cell);
+            tbody.appendChild(row);
         }
     });
 
     table.appendChild(tbody);
-    document.body.appendChild(table); // Append table to the body or appropriate container
-}
+    const resultContainer = document.getElementById('resultContainer');
+    resultContainer.innerHTML = '';
+    if (selectedItem) {
+        resultContainer.appendChild(table);
+    }
 
+    // Adjust font size if needed
+    adjustFontSize();
+}
     
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
