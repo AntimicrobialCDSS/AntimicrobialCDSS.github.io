@@ -330,7 +330,7 @@ function adjustFontSize() {
    table.style.width = '900px'
    }
   else if (screenWidth<400){
-     table.style.width = '450px'
+     table.style.width = '500px'
    }
   else if ((screenWidth>399)&&(screenWidth<800)&&(maxColumns===1)){
     table.style.width = '1000px'
@@ -352,7 +352,7 @@ function adjustFontSize() {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
          if(screenWidth<400){
-      column.style.fontSize = '11px';
+      column.style.fontSize = '10px';
       }
         else if ((screenWidth>399)&&(screenWidth<800)){
        column.style.fontSize = '14px';
