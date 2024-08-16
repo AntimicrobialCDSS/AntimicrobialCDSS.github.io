@@ -975,7 +975,7 @@ async function fetchAndParseXML(txmlFile) {
         return { boilerplateTexts: [], fields: [] }; // Return empty arrays if error occurs
     }
 }
-  
+
 async function createODTable(selectedItem) {
     // Check if selectedItem is already an object or a string
     const itemData = typeof selectedItem === 'string'
@@ -999,7 +999,7 @@ async function createODTable(selectedItem) {
     headerCell.style.fontWeight = 'bold';
     headerCell.style.backgroundColor = 'lightblue'; // Set background color
     headerCell.style.textAlign = 'center'; // Center align the header
-    headerCell.colSpan = 1; // Span across two columns
+    headerCell.colSpan = 2; // Span across two columns
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
 
@@ -1063,86 +1063,84 @@ async function createODTable(selectedItem) {
                         clickableSymbol.title = 'Click for more information';
                         clickableSymbol.style.marginLeft = '10px'; // Space between value and symbol
                         clickableSymbol.addEventListener('click', async (event) => {
-                          event.preventDefault();
-                      
-                          // Create a new table for txml data
-                          const txmlTable = document.createElement('table');
-                          txmlTable.classList.add('table');
-                          const txmlTbody = document.createElement('tbody');
-                      
-                          // Create header for txml table
-                          const txmlHeaderRow = document.createElement('tr');
-                          const txmlHeaderCell = document.createElement('td');
-                          txmlHeaderCell.textContent = `TXML Information for ${key}`;
-                          txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
-                          txmlHeaderCell.style.fontWeight = 'bold';
-                          txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
-                          txmlHeaderCell.style.textAlign = 'center'; // Center align the header
-                          txmlHeaderCell.colSpan = 1; // Span across two columns
-                          txmlHeaderRow.appendChild(txmlHeaderCell);
-                          txmlTbody.appendChild(txmlHeaderRow);
-                      
-                          // Add rows for each field in the txml data
-                          matchingTexts.forEach(text => {
-                              const fields = [
-                                  { label: 'Name', value: text.name },
-                                  { label: 'URL', value: text.url ? `<a href="${text.url}" target="_blank">${text.url}</a>` : 'N/A' },
-                                  { label: 'Type', value: text.type },
-                                  { label: 'Inactive', value: text.inactive },
-                                  { label: 'Length', value: text.length },
-                                  { label: 'Default Text', value: text.defaultText },
-                                  { label: 'Default Index', value: text.defaultIndex },
-                                  { label: 'Required', value: text.required },
-                                  { label: 'Separate Lines', value: text.separateLines },
-                                  { label: 'Max Length', value: text.maxLength },
-                                  { label: 'Indent', value: text.indent },
-                                  { label: 'Pad', value: text.pad },
-                                  { label: 'Min Value', value: text.minValue },
-                                  { label: 'Max Value', value: text.maxValue },
-                                  { label: 'Increment', value: text.increment },
-                                  { label: 'Items', value: text.items }
-                              ];
-                      
-                              fields.forEach(field => {
-                                  if (field.value) {
-                                      const row = document.createElement('tr');
-                                      const labelCell = document.createElement('td');
-                                      const valueCell = document.createElement('td');
-                      
-                                      labelCell.textContent = field.label;
-                                      labelCell.style.fontWeight = 'bold';
-                                      valueCell.innerHTML = field.value;
-                      
-                                      row.appendChild(labelCell);
-                                      row.appendChild(valueCell);
-                                      txmlTbody.appendChild(row);
-                                  }
-                              });
-                          });
-                      
-                          txmlTable.appendChild(txmlTbody);
-                      
-                          // Append txml table to the result container
-                          const resultContainer = document.getElementById('resultContainer');
-                          resultContainer.innerHTML = ''; // Clear current table
-                          resultContainer.appendChild(txmlTable);
-                      });
-  
-  
-                          cell.innerHTML = `<b>${key}:</b> ${value}`;
-                          cell.appendChild(clickableSymbol);
-                      } else {
-                          cell.innerHTML = `<b>${key}:</b> ${value}`;
-                      }
-                  });
-              } else {
-                  cell.innerHTML = `<b>${key}:</b> ${value}`;
-              }
-  
-              row.appendChild(cell);
-              tbody.appendChild(row);
-          }
-      });
+                            event.preventDefault();
+
+                            // Create a new ODTable for the txml data
+                            const txmlDataTable = document.createElement('table');
+                            txmlDataTable.classList.add('table');
+                            const txmlTbody = document.createElement('tbody');
+
+                            // Create header for txml table
+                            const txmlHeaderRow = document.createElement('tr');
+                            const txmlHeaderCell = document.createElement('td');
+                            txmlHeaderCell.textContent = `TXML Information for ${key}`;
+                            txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+                            txmlHeaderCell.style.fontWeight = 'bold';
+                            txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
+                            txmlHeaderCell.style.textAlign = 'center'; // Center align the header
+                            txmlHeaderCell.colSpan = 2; // Span across two columns
+                            txmlHeaderRow.appendChild(txmlHeaderCell);
+                            txmlTbody.appendChild(txmlHeaderRow);
+
+                            // Add rows for each field in the txml data
+                            matchingTexts.forEach(text => {
+                                const fields = [
+                                    { label: 'Name', value: text.name },
+                                    { label: 'URL', value: text.url ? `<a href="${text.url}" target="_blank">${text.url}</a>` : 'N/A' },
+                                    { label: 'Type', value: text.type },
+                                    { label: 'Inactive', value: text.inactive },
+                                    { label: 'Length', value: text.length },
+                                    { label: 'Default Text', value: text.defaultText },
+                                    { label: 'Default Index', value: text.defaultIndex },
+                                    { label: 'Required', value: text.required },
+                                    { label: 'Separate Lines', value: text.separateLines },
+                                    { label: 'Max Length', value: text.maxLength },
+                                    { label: 'Indent', value: text.indent },
+                                    { label: 'Pad', value: text.pad },
+                                    { label: 'Min Value', value: text.minValue },
+                                    { label: 'Max Value', value: text.maxValue },
+                                    { label: 'Increment', value: text.increment },
+                                    { label: 'Items', value: text.items }
+                                ];
+
+                                fields.forEach(field => {
+                                    if (field.value) {
+                                        const row = document.createElement('tr');
+                                        const labelCell = document.createElement('td');
+                                        const valueCell = document.createElement('td');
+
+                                        labelCell.textContent = field.label;
+                                        labelCell.style.fontWeight = 'bold';
+                                        valueCell.innerHTML = field.value;
+
+                                        row.appendChild(labelCell);
+                                        row.appendChild(valueCell);
+                                        txmlTbody.appendChild(row);
+                                    }
+                                });
+                            });
+
+                            txmlDataTable.appendChild(txmlTbody);
+
+                            // Append txml table to the result container
+                            const resultContainer = document.getElementById('resultContainer');
+                            resultContainer.appendChild(txmlDataTable);
+                        });
+
+                        cell.innerHTML = `<b>${key}:</b> ${value}`;
+                        cell.appendChild(clickableSymbol);
+                    } else {
+                        cell.innerHTML = `<b>${key}:</b> ${value}`;
+                    }
+                });
+            } else {
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
+            }
+
+            row.appendChild(cell);
+            tbody.appendChild(row);
+        }
+    });
 
     table.appendChild(tbody);
     const resultContainer = document.getElementById('resultContainer');
@@ -1153,9 +1151,7 @@ async function createODTable(selectedItem) {
 
     // Adjust font size if needed
     adjustFontSize();
-    pushHistory(selectedItem.Name)
 }
-
 
     
 // Function to filter data based on the selected option
