@@ -1041,98 +1041,86 @@ async function createODTable(selectedItem) {
     });
 
     // Create rows for other key-value pairs
+    const otherRows = []; // Store rows to be added later
+
     Object.entries(itemData).forEach(([key, value]) => {
-        if (!/^Component\d+$/.test(key)) {
-            const row = document.createElement('tr');
-            const cell = document.createElement('td');
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
 
-            // Check if the field corresponds to a txml item
-            if (/^WordProcessing\d+$/.test(key)) {
-                // Fetch txml data
-                fetchAndParseXML(txmlFile).then(txmlData => {
-                    // Find matching texts
-                    const matchingTexts = txmlData.fields.filter(field =>
-                        new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(value)
-                    );
+        if (/^WordProcessing\d+$/.test(key)) {
+            fetchAndParseXML(txmlFile).then(txmlData => {
+                const matchingTexts = txmlData.fields.filter(field =>
+                    new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(value)
+                );
 
-                    // Only add clickable symbol if there are matching texts
-                    if (matchingTexts.length > 0) {
-                        const clickableSymbol = document.createElement('a');
-                        clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
-                        clickableSymbol.classList.add('clickable');
-                        clickableSymbol.title = 'Click for more information';
-                        clickableSymbol.style.marginLeft = '10px'; // Space between value and symbol
-                        clickableSymbol.addEventListener('click', async (event) => {
-                            event.preventDefault();
+                if (matchingTexts.length > 0) {
+                    const clickableSymbol = document.createElement('a');
+                    clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+                    clickableSymbol.classList.add('clickable');
+                    clickableSymbol.title = 'Click for more information';
+                    clickableSymbol.style.marginLeft = '10px'; // Space between value and symbol
+                    clickableSymbol.addEventListener('click', async (event) => {
+                        event.preventDefault();
 
-                            // Create a new ODTable for the txml data
-                            const txmlTable = document.createElement('table');
-                            txmlTable.classList.add('table');
-                            const txmlTbody = document.createElement('tbody');
+                        // Add txml rows to the existing table
+                        const txmlHeaderRow = document.createElement('tr');
+                        const txmlHeaderCell = document.createElement('td');
+                        txmlHeaderCell.textContent = `TXML Information for ${key}`;
+                        txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+                        txmlHeaderCell.style.fontWeight = 'bold';
+                        txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
+                        txmlHeaderCell.style.textAlign = 'center'; // Center align the header
+                        txmlHeaderCell.colSpan = 1; // Span across one column
+                        txmlHeaderRow.appendChild(txmlHeaderCell);
+                        tbody.appendChild(txmlHeaderRow);
 
-                            // Create header for txml table
-                            const txmlHeaderRow = document.createElement('tr');
-                            const txmlHeaderCell = document.createElement('td');
-                            txmlHeaderCell.textContent = `TXML Information for ${key}`;
-                            txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
-                            txmlHeaderCell.style.fontWeight = 'bold';
-                            txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
-                            txmlHeaderCell.style.textAlign = 'center'; // Center align the header
-                            txmlHeaderCell.colSpan = 1; // Span across one column
-                            txmlHeaderRow.appendChild(txmlHeaderCell);
-                            txmlTbody.appendChild(txmlHeaderRow);
+                        matchingTexts.forEach(text => {
+                            const fields = [
+                                { label: 'Name', value: text.name },
+                                { label: 'URL', value: text.url ? `<a href="${text.url}" target="_blank">${text.url}</a>` : 'N/A' },
+                                { label: 'Type', value: text.type },
+                                { label: 'Inactive', value: text.inactive },
+                                { label: 'Length', value: text.length },
+                                { label: 'Default Text', value: text.defaultText },
+                                { label: 'Default Index', value: text.defaultIndex },
+                                { label: 'Required', value: text.required },
+                                { label: 'Separate Lines', value: text.separateLines },
+                                { label: 'Max Length', value: text.maxLength },
+                                { label: 'Indent', value: text.indent },
+                                { label: 'Pad', value: text.pad },
+                                { label: 'Min Value', value: text.minValue },
+                                { label: 'Max Value', value: text.maxValue },
+                                { label: 'Increment', value: text.increment },
+                                { label: 'Items', value: text.items }
+                            ];
 
-                            // Add rows for matching texts
-                            matchingTexts.forEach(text => {
-                                const fields = [
-                                    { label: 'Name', value: text.name },
-                                    { label: 'URL', value: text.url ? `<a href="${text.url}" target="_blank">${text.url}</a>` : 'N/A' },
-                                    { label: 'Type', value: text.type },
-                                    { label: 'Inactive', value: text.inactive },
-                                    { label: 'Length', value: text.length },
-                                    { label: 'Default Text', value: text.defaultText },
-                                    { label: 'Default Index', value: text.defaultIndex },
-                                    { label: 'Required', value: text.required },
-                                    { label: 'Separate Lines', value: text.separateLines },
-                                    { label: 'Max Length', value: text.maxLength },
-                                    { label: 'Indent', value: text.indent },
-                                    { label: 'Pad', value: text.pad },
-                                    { label: 'Min Value', value: text.minValue },
-                                    { label: 'Max Value', value: text.maxValue },
-                                    { label: 'Increment', value: text.increment },
-                                    { label: 'Items', value: text.items }
-                                ];
+                            fields.forEach(field => {
+                                if (field.value) {
+                                    const row = document.createElement('tr');
+                                    const cell = document.createElement('td');
 
-                                fields.forEach(field => {
-                                    if (field.value) {
-                                        const row = document.createElement('tr');
-                                        const cell = document.createElement('td');
-
-                                        cell.innerHTML = `<b>${field.label}:</b> ${field.value}`;
-                                        row.appendChild(cell);
-                                        txmlTbody.appendChild(row);
-                                    }
-                                });
+                                    cell.innerHTML = `<b>${field.label}:</b> ${field.value}`;
+                                    row.appendChild(cell);
+                                    tbody.appendChild(row);
+                                }
                             });
-
-                            txmlTable.appendChild(txmlTbody);
-
-                            // Append txml table to the result container
-                            const resultContainer = document.getElementById('resultContainer');
-                            resultContainer.appendChild(txmlTable);
-                          adjustFontSize();
                         });
 
-                        cell.innerHTML = `<b>${key}:</b> ${value}`;
-                        cell.appendChild(clickableSymbol);
-                    } else {
-                        cell.innerHTML = `<b>${key}:</b> ${value}`;
-                    }
-                });
-            } else {
-                cell.innerHTML = `<b>${key}:</b> ${value}`;
-            }
+                        // Adjust font size for the newly added rows
+                        adjustFontSize();
+                    });
 
+                    cell.innerHTML = `<b>${key}:</b> ${value}`;
+                    cell.appendChild(clickableSymbol);
+                } else {
+                    cell.innerHTML = `<b>${key}:</b> ${value}`;
+                }
+
+                row.appendChild(cell);
+                tbody.appendChild(row);
+            });
+        } else {
+            cell.innerHTML = `<b>${key}:</b> ${value}`;
             row.appendChild(cell);
             tbody.appendChild(row);
         }
@@ -1148,8 +1136,6 @@ async function createODTable(selectedItem) {
     // Adjust font size if needed
     adjustFontSize();
 }
-
-
     
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
