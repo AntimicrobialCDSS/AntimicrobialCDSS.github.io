@@ -992,42 +992,46 @@ async function createODTable(selectedItem) {
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
 
-    // Create rows for components with a clickable "i" symbol
+    // Add a row for the selected item details
+    const itemRow = document.createElement('tr');
+    const itemCell = document.createElement('td');
+    itemCell.colSpan = 2; // Span across two columns for item details
+    itemCell.innerHTML = `<h3>Details for ${itemData.Name}</h3>`;
+    itemRow.appendChild(itemCell);
+    tbody.appendChild(itemRow);
+
+    // Create rows for components with clickable symbols
     Object.keys(itemData).forEach(key => {
         if (/^Component\d+$/.test(key)) {
             const componentName = itemData[key];
             const componentItem = odData.find(item => item.Name === componentName);
 
-            if (componentItem) {
-                const row = document.createElement('tr');
-                
-                // Combine component name and clickable symbol into one cell
-                const cell = document.createElement('td');
-                const nameAndSymbol = document.createElement('div');
-                
-                // Bold component name
-                const nameText = document.createElement('span');
-                nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
-                nameText.style.display = 'inline-block'; // Display inline for better alignment
-                
-                // Clickable symbol
-                const clickableSymbol = document.createElement('a');
-                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
-                clickableSymbol.classList.add('clickable');
-                clickableSymbol.title = 'Click for more information';
-                clickableSymbol.style.marginLeft = '10px'; // Space between name and symbol
-                clickableSymbol.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    createODTable(componentItem); // Create new table for the component
-                    pushHistory(componentItem.Name); // Add to history
-                });
-                
-                nameAndSymbol.appendChild(nameText);
-                nameAndSymbol.appendChild(clickableSymbol);
-                cell.appendChild(nameAndSymbol);
-                row.appendChild(cell);
-                tbody.appendChild(row);
-            }
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            const nameAndSymbol = document.createElement('div');
+            
+            // Bold component name
+            const nameText = document.createElement('span');
+            nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
+            nameText.style.display = 'inline-block'; // Display inline for better alignment
+            
+            // Clickable symbol
+            const clickableSymbol = document.createElement('a');
+            clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+            clickableSymbol.classList.add('clickable');
+            clickableSymbol.title = 'Click for more information';
+            clickableSymbol.style.marginLeft = '10px'; // Space between name and symbol
+            clickableSymbol.addEventListener('click', (event) => {
+                event.preventDefault();
+                createODTable(componentItem); // Create new table for the component
+                pushHistory(componentItem.Name); // Add to history
+            });
+            
+            nameAndSymbol.appendChild(nameText);
+            nameAndSymbol.appendChild(clickableSymbol);
+            cell.appendChild(nameAndSymbol);
+            row.appendChild(cell);
+            tbody.appendChild(row);
         }
     });
 
@@ -1043,31 +1047,14 @@ async function createODTable(selectedItem) {
                     new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(value)
                 );
 
-                // If there are matching texts, add clickable symbol
+                // Add matching texts directly to the table
                 if (matchingTexts.length > 0) {
-                    const clickableSymbol = document.createElement('a');
-                    clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
-                    clickableSymbol.classList.add('clickable');
-                    clickableSymbol.title = 'Click for more information';
-                    clickableSymbol.style.marginLeft = '10px'; // Space between value and symbol
-                    clickableSymbol.addEventListener('click', async (event) => {
-                        event.preventDefault();
-                        // Display the matching txml data
-                        const matchingDetails = matchingTexts.map(text => `
-                            <div>
-                                <strong>${text.name}:</strong> ${text.url ? `<a href="${text.url}" target="_blank">${text.name}</a>` : text.name}
-                            </div>
-                        `).join('<br>');
-                        const popupWindow = window.open("", "_blank", "width=600,height=400");
-                        popupWindow.document.write(`
-                            <html><head><title>Matching Texts</title></head>
-                            <body>${matchingDetails}</body></html>
-                        `);
-                        popupWindow.document.close();
-                    });
-
-                    cell.innerHTML = `<b>${key}:</b> ${value}`;
-                    cell.appendChild(clickableSymbol);
+                    const details = matchingTexts.map(text => `
+                        <div>
+                            <strong>${text.name}:</strong> ${text.url ? `<a href="${text.url}" target="_blank">${text.name}</a>` : text.name}
+                        </div>
+                    `).join('<br>');
+                    cell.innerHTML = `<b>${key}:</b> ${value}<br>${details}`;
                 } else {
                     cell.innerHTML = `<b>${key}:</b> ${value}`;
                 }
