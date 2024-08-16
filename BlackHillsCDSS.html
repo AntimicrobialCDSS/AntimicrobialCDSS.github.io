@@ -82,7 +82,7 @@
       text-decoration: none; /* Remove underline from links */
       border-radius: 0; /* Square corners */
       display: inline-block; /* Make links behave like buttons */
-      width: 19%; /* Take up 75% of the screen */
+      width: 16%; /* Take up 75% of the screen */
     }
     
     .button:hover {
@@ -300,6 +300,7 @@
 </table>
     <div class="buttons-containerVersions">
       <button id="desMoinesButton" class="button">Des Moines</button>
+      <button id="blackHillsButton" class="button">TestBlackHills</button>
       <button id="fargoButton" class="button">Fargo</button>
       <button id="minneapolisButton" class="button">Minneapolis</button>
       <button id="omahaButton" class="button">Omaha</button>
@@ -416,6 +417,9 @@ let abxLinkData = []; // AbxLink data
 // Function to hide location buttons
 if (CDSSlocation === 'Des Moines') {
   {document.getElementById("desMoinesButton").style.display="none";};
+}
+if (CDSSlocation === 'Black Hills') {
+  {document.getElementById("blackHillsButton").style.display="none";};
 }
 if (CDSSlocation === 'Fargo') {
   {document.getElementById("fargoButton").style.display="none";};
@@ -1323,6 +1327,9 @@ function openDropdown() {
 // JavaScript code to handle button clicks
 document.getElementById('desMoinesButton').addEventListener('click', function () {
 openPageInNewWindow("DesMoinesCDSS.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
+});
+document.getElementById('minneapolisButton').addEventListener('click', function () {
+  openPageInNewWindow("BlackHillsCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
 });
 document.getElementById('fargoButton').addEventListener('click', function () {
   openPageInNewWindow("FargoCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
