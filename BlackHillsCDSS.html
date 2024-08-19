@@ -10,7 +10,6 @@
   gtag('config', 'G-RZT6D0E0DS');
   </script>
   <script>
-  var Version = 'V1.06'; /*Text at the bottom of the menu, change to whatever you want*/
   var CDSSlocation = 'Black Hills'; /*Only important to CDSS program functions, can be left as it for other systems*/
   var Title = 'Black Hills Antimicrobial CDSS'; /*Name of the tab on the website*/
   var MainMenuButton = 'Black Hills Home'; /*Main menu button name*/
@@ -27,6 +26,7 @@
   var hideButtonsDownloads = 'True'; /*buttons to allow user to download json and txml files*/
   var hideButtonsVersions = 'False';/*mark as true for non-CDSS systems*/
   var hideButtonsIndex = 'False';/*mark as true for non-CDSS systems*/
+  var Version = 'V1.07'; /*Text at the bottom of the menu, change to whatever you want*/
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -999,41 +999,46 @@ async function createODTable(selectedItem) {
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
 
-    // Add rows for components with clickable symbols
+      // Add rows for components with clickable symbols
     Object.keys(itemData).forEach(key => {
-        if (/^Component\d+$/.test(key)) {
-            const componentName = itemData[key];
-            const componentItem = odData.find(item => item.Name === componentName);
-
-            if (componentItem) {
-                const row = document.createElement('tr');
-                const cell = document.createElement('td');
-                const nameAndSymbol = document.createElement('div');
-
-                // Bold component name
-                const nameText = document.createElement('span');
-                nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
-                nameText.style.display = 'inline-block'; // Display inline for better alignment
-
-                // Clickable symbol
-                const clickableSymbol = document.createElement('a');
-                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
-                clickableSymbol.classList.add('clickable');
-                clickableSymbol.title = 'Click for more information';
-                clickableSymbol.style.marginLeft = '10px'; // Space between name and symbol
-                clickableSymbol.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    createODTable(componentItem); // Create new table for the component
-                    pushHistory(componentItem.Name); // Add to history
-                });
-
-                nameAndSymbol.appendChild(nameText);
-                nameAndSymbol.appendChild(clickableSymbol);
-                cell.appendChild(nameAndSymbol);
-                row.appendChild(cell);
-                tbody.appendChild(row);
-            }
-        }
+      if (/^Component\d+$/.test(key)) {
+          const componentName = itemData[key];
+          const componentItem = odData.find(item => item.Name === componentName);
+  
+          const row = document.createElement('tr');
+          const cell = document.createElement('td');
+          const nameAndSymbol = document.createElement('div');
+  
+          // Bold component name
+          const nameText = document.createElement('span');
+          nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
+          nameText.style.display = 'inline-block'; // Display inline for better alignment
+  
+          nameAndSymbol.appendChild(nameText);
+  
+          if (componentItem) {
+              // Clickable symbol
+              const clickableSymbol = document.createElement('a');
+              clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+              clickableSymbol.classList.add('clickable');
+              clickableSymbol.title = 'Click for more information';
+              clickableSymbol.style.marginLeft = '10px'; // Space between name and symbol
+              clickableSymbol.addEventListener('click', (event) => {
+                  event.preventDefault();
+                  createODTable(componentItem); // Create new table for the component
+                  pushHistory(componentItem.Name); // Add to history
+              });
+  
+              nameAndSymbol.appendChild(clickableSymbol);
+          } else {
+              // If there's no match, just display the component name
+              console.warn(`No matching component found for ${componentName}`);
+          }
+  
+          cell.appendChild(nameAndSymbol);
+          row.appendChild(cell);
+          tbody.appendChild(row);
+      }
     });
 
     // Create rows for other key-value pairs
@@ -1077,7 +1082,7 @@ async function createODTable(selectedItem) {
                     const txmlItem = matchingTexts[0]; // Assume at least one item exists to use for the header
                     const txmlHeaderRow = document.createElement('tr');
                     const txmlHeaderCell = document.createElement('td');
-                    txmlHeaderCell.textContent = `${txmlItem.name} Template Field Information`;
+                    txmlHeaderCell.textContent = `TEMPLATE FIELD INFORMATION`;
                     txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
                     txmlHeaderCell.style.fontWeight = 'bold';
                     txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
