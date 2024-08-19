@@ -995,7 +995,7 @@ async function createODTable(selectedItem) {
     headerCell.style.fontWeight = 'bold';
     headerCell.style.backgroundColor = 'lightblue'; // Set background color
     headerCell.style.textAlign = 'left';
-    headerCell.colSpan = 1; 
+    headerCell.colSpan = 1;
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
 
@@ -1049,7 +1049,7 @@ async function createODTable(selectedItem) {
 
     // Process other key-value pairs, skipping the "Name" key
     const wordProcessingFields = [];
-    await Promise.all(Object.entries(itemData).map(async ([key, value]) => {
+    Object.entries(itemData).forEach(([key, value]) => {
         if (key !== 'Name' && !/^Component\d+$/.test(key) && value.trim() !== '') {
             const row = document.createElement('tr');
             const cell = document.createElement('td');
@@ -1062,14 +1062,33 @@ async function createODTable(selectedItem) {
                 tbody.appendChild(row);
             }
         }
-    }));
+    });
 
-    // Process `WordProcessing` fields
-    for (const { key, value } of wordProcessingFields) {
+    // Add the table to the container
+    table.appendChild(tbody);
+    const resultContainer = document.getElementById('resultContainer');
+    resultContainer.innerHTML = '';
+    if (selectedItem) {
+        resultContainer.appendChild(table);
+    }
+
+    // Adjust font size after table is fully appended
+    adjustFontSize();
+
+    // Process `WordProcessing` fields only when the clickable item is clicked
+    wordProcessingFields.forEach(({ key, value }) => {
         const row = document.createElement('tr');
         const cell = document.createElement('td');
+        cell.innerHTML = `<b>${key}:</b> ${value}`;
 
-        if (/^WordProcessing\d+$/.test(key)) {
+        const clickableSymbol = document.createElement('a');
+        clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+        clickableSymbol.classList.add('clickable');
+        clickableSymbol.title = 'Click for more information';
+        clickableSymbol.style.marginLeft = '10px';
+        clickableSymbol.addEventListener('click', async (event) => {
+            event.preventDefault();
+
             const txmlData = await fetchAndParseXML(txmlFile);
             const matchingTexts = txmlData.fields.filter(field =>
                 new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(value)
@@ -1084,16 +1103,16 @@ async function createODTable(selectedItem) {
                 txmlHeaderCell.style.backgroundColor = 'lightyellow';
                 txmlHeaderCell.style.textAlign = 'left';
                 txmlHeaderCell.colSpan = 1;
-                txmlHeaderRow.appendChild(txmlHeaderCell);
                 tbody.appendChild(txmlHeaderRow);
 
-                matchingTexts.forEach(text => {
-                    const nameRow = document.createElement('tr');
-                    const nameCell = document.createElement('td');
-                    nameCell.innerHTML = `<b>Name:</b> ${text.name}`;
-                    nameRow.appendChild(nameCell);
-                    tbody.appendChild(nameRow);
+                // Add "Name" as the first row under the header
+                const nameRow = document.createElement('tr');
+                const nameCell = document.createElement('td');
+                nameCell.innerHTML = `<b>Name:</b> ${matchingTexts[0].name}`;
+                nameRow.appendChild(nameCell);
+                tbody.appendChild(nameRow);
 
+                matchingTexts.forEach(text => {
                     const fields = [
                         { label: 'URL', value: text.url ? `<a href="${text.url}" target="_blank">${text.url}</a>` : 'N/A' },
                         { label: 'Type', value: text.type },
@@ -1124,23 +1143,13 @@ async function createODTable(selectedItem) {
                 });
 
                 adjustFontSize();
-            } else {
-                cell.innerHTML = `<b>${key}:</b> ${value}`;
             }
+        });
 
-            row.appendChild(cell);
-            tbody.appendChild(row);
-        }
-    }
-
-    table.appendChild(tbody);
-    const resultContainer = document.getElementById('resultContainer');
-    resultContainer.innerHTML = '';
-    if (selectedItem) {
-        resultContainer.appendChild(table);
-    }
-
-    adjustFontSize();
+        cell.appendChild(clickableSymbol);
+        row.appendChild(cell);
+        tbody.appendChild(row);
+    });
 }
 
 
