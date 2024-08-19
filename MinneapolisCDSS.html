@@ -972,8 +972,8 @@ async function fetchAndParseXML(txmlFile) {
     }
 }
 
-// Function to create the table
 async function createODTable(selectedItem) {
+    // Check if selectedItem is already an object or a string
     const itemData = typeof selectedItem === 'string'
         ? odData.find(item => item.Name === selectedItem)
         : selectedItem;
@@ -994,77 +994,150 @@ async function createODTable(selectedItem) {
     headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
     headerCell.style.fontWeight = 'bold';
     headerCell.style.backgroundColor = 'lightblue'; // Set background color
-    headerCell.style.textAlign = 'left';
-    headerCell.colSpan = 1;
+    headerCell.style.textAlign = 'left'; // Center align the header
+    headerCell.colSpan = 1; // Span across one column
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
 
-    // Add the "Name" row first
-    if (itemData.Name) {
-        const nameRow = document.createElement('tr');
-        const nameCell = document.createElement('td');
-        nameCell.innerHTML = `<b>Name:</b> ${itemData.Name}`;
-        nameRow.appendChild(nameCell);
-        tbody.appendChild(nameRow);
-    }
-
-    // Add rows for components with clickable symbols
+      // Add rows for components with clickable symbols
     Object.keys(itemData).forEach(key => {
-        if (/^Component\d+$/.test(key)) {
-            const componentName = itemData[key];
-            const componentItem = odData.find(item => item.Name === componentName);
-
-            const row = document.createElement('tr');
-            const cell = document.createElement('td');
-            const nameAndSymbol = document.createElement('div');
-
-            const nameText = document.createElement('span');
-            nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
-            nameText.style.display = 'inline-block';
-
-            nameAndSymbol.appendChild(nameText);
-
-            if (componentItem) {
-                const clickableSymbol = document.createElement('a');
-                clickableSymbol.textContent = " \u24d8";
-                clickableSymbol.classList.add('clickable');
-                clickableSymbol.title = 'Click for more information';
-                clickableSymbol.style.marginLeft = '10px';
-                clickableSymbol.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    createODTable(componentItem);
-                    pushHistory(componentItem.Name);
-                });
-
-                nameAndSymbol.appendChild(clickableSymbol);
-            } else {
-                console.warn(`No matching component found for ${componentName}`);
-            }
-
-            cell.appendChild(nameAndSymbol);
-            row.appendChild(cell);
-            tbody.appendChild(row);
-        }
+      if (/^Component\d+$/.test(key)) {
+          const componentName = itemData[key];
+          const componentItem = odData.find(item => item.Name === componentName);
+  
+          const row = document.createElement('tr');
+          const cell = document.createElement('td');
+          const nameAndSymbol = document.createElement('div');
+  
+          // Bold component name
+          const nameText = document.createElement('span');
+          nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
+          nameText.style.display = 'inline-block'; // Display inline for better alignment
+  
+          nameAndSymbol.appendChild(nameText);
+  
+          if (componentItem) {
+              // Clickable symbol
+              const clickableSymbol = document.createElement('a');
+              clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+              clickableSymbol.classList.add('clickable');
+              clickableSymbol.title = 'Click for more information';
+              clickableSymbol.style.marginLeft = '10px'; // Space between name and symbol
+              clickableSymbol.addEventListener('click', (event) => {
+                  event.preventDefault();
+                  createODTable(componentItem); // Create new table for the component
+                  pushHistory(componentItem.Name); // Add to history
+              });
+  
+              nameAndSymbol.appendChild(clickableSymbol);
+          } else {
+              // If there's no match, just display the component name
+              console.warn(`No matching component found for ${componentName}`);
+          }
+  
+          cell.appendChild(nameAndSymbol);
+          row.appendChild(cell);
+          tbody.appendChild(row);
+      }
     });
 
-    // Process other key-value pairs, skipping the "Name" key
-    const wordProcessingFields = [];
-    Object.entries(itemData).forEach(([key, value]) => {
-        if (key !== 'Name' && !/^Component\d+$/.test(key) && value.trim() !== '') {
+    // Create rows for other key-value pairs
+    const wordProcessingFields = []; // To keep track of `WordProcessing` fields
+    await Promise.all(Object.entries(itemData).map(async ([key, value]) => {
+        if (!/^Component\d+$/.test(key) && value.trim() !== '') { // Exclude blank fields
             const row = document.createElement('tr');
             const cell = document.createElement('td');
 
             if (/^WordProcessing\d+$/.test(key)) {
-                wordProcessingFields.push({ key, value });
+                wordProcessingFields.push({ key, value }); // Store for later processing
             } else {
                 cell.innerHTML = `<b>${key}:</b> ${value}`;
                 row.appendChild(cell);
                 tbody.appendChild(row);
             }
         }
-    });
+    }));
 
-    // Add the table to the container
+    // Process `WordProcessing` fields separately
+    for (const { key, value } of wordProcessingFields) {
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
+
+        if (/^WordProcessing\d+$/.test(key)) {
+            const txmlData = await fetchAndParseXML(txmlFile);
+            const matchingTexts = txmlData.fields.filter(field =>
+                new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(value)
+            );
+
+            if (matchingTexts.length > 0) {
+                const clickableSymbol = document.createElement('a');
+                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+                clickableSymbol.classList.add('clickable');
+                clickableSymbol.title = 'Click for more information';
+                clickableSymbol.style.marginLeft = '10px'; // Space between value and symbol
+                clickableSymbol.addEventListener('click', async (event) => {
+                    event.preventDefault();
+
+                    // Add txml rows to the existing table
+                    const txmlItem = matchingTexts[0]; // Assume at least one item exists to use for the header
+                    const txmlHeaderRow = document.createElement('tr');
+                    const txmlHeaderCell = document.createElement('td');
+                    txmlHeaderCell.textContent = `TEMPLATE FIELD INFORMATION`;
+                    txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+                    txmlHeaderCell.style.fontWeight = 'bold';
+                    txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
+                    txmlHeaderCell.style.textAlign = 'left'; // Center align the header
+                    txmlHeaderCell.colSpan = 1; // Span across one column
+                    txmlHeaderRow.appendChild(txmlHeaderCell);
+                    tbody.appendChild(txmlHeaderRow);
+
+                    matchingTexts.forEach(text => {
+                        const fields = [
+                            { label: 'Name', value: text.name },
+                            { label: 'URL', value: text.url ? `<a href="${text.url}" target="_blank">${text.url}</a>` : 'N/A' },
+                            { label: 'Type', value: text.type },
+                            { label: 'Inactive', value: text.inactive },
+                            { label: 'Length', value: text.length },
+                            { label: 'Default Text', value: text.defaultText },
+                            { label: 'Default Index', value: text.defaultIndex },
+                            { label: 'Required', value: text.required },
+                            { label: 'Separate Lines', value: text.separateLines },
+                            { label: 'Max Length', value: text.maxLength },
+                            { label: 'Indent', value: text.indent },
+                            { label: 'Pad', value: text.pad },
+                            { label: 'Min Value', value: text.minValue },
+                            { label: 'Max Value', value: text.maxValue },
+                            { label: 'Increment', value: text.increment },
+                            { label: 'Items', value: text.items }
+                        ];
+
+                        fields.forEach(field => {
+                            if (field.value) {
+                                const row = document.createElement('tr');
+                                const cell = document.createElement('td');
+
+                                cell.innerHTML = `<b>${field.label}:</b> ${field.value}`;
+                                row.appendChild(cell);
+                                tbody.appendChild(row);
+                            }
+                        });
+                    });
+
+                    // Adjust font size for the newly added rows
+                    adjustFontSize();
+                });
+
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
+                cell.appendChild(clickableSymbol);
+            } else {
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
+            }
+
+            row.appendChild(cell);
+            tbody.appendChild(row);
+        }
+    }
+
     table.appendChild(tbody);
     const resultContainer = document.getElementById('resultContainer');
     resultContainer.innerHTML = '';
@@ -1074,84 +1147,7 @@ async function createODTable(selectedItem) {
 
     // Adjust font size after table is fully appended
     adjustFontSize();
-
-    // Process `WordProcessing` fields only when the clickable item is clicked
-    wordProcessingFields.forEach(({ key, value }) => {
-        const row = document.createElement('tr');
-        const cell = document.createElement('td');
-        cell.innerHTML = `<b>${key}:</b> ${value}`;
-
-        const clickableSymbol = document.createElement('a');
-        clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
-        clickableSymbol.classList.add('clickable');
-        clickableSymbol.title = 'Click for more information';
-        clickableSymbol.style.marginLeft = '10px';
-        clickableSymbol.addEventListener('click', async (event) => {
-            event.preventDefault();
-
-            const txmlData = await fetchAndParseXML(txmlFile);
-            const matchingTexts = txmlData.fields.filter(field =>
-                new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(value)
-            );
-
-            if (matchingTexts.length > 0) {
-                const txmlHeaderRow = document.createElement('tr');
-                const txmlHeaderCell = document.createElement('td');
-                txmlHeaderCell.textContent = 'TEMPLATE FIELD INFORMATION';
-                txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
-                txmlHeaderCell.style.fontWeight = 'bold';
-                txmlHeaderCell.style.backgroundColor = 'lightyellow';
-                txmlHeaderCell.style.textAlign = 'left';
-                txmlHeaderCell.colSpan = 1;
-                tbody.appendChild(txmlHeaderRow);
-
-                // Add "Name" as the first row under the header
-                const nameRow = document.createElement('tr');
-                const nameCell = document.createElement('td');
-                nameCell.innerHTML = `<b>Name:</b> ${matchingTexts[0].name}`;
-                nameRow.appendChild(nameCell);
-                tbody.appendChild(nameRow);
-
-                matchingTexts.forEach(text => {
-                    const fields = [
-                        { label: 'URL', value: text.url ? `<a href="${text.url}" target="_blank">${text.url}</a>` : 'N/A' },
-                        { label: 'Type', value: text.type },
-                        { label: 'Inactive', value: text.inactive },
-                        { label: 'Length', value: text.length },
-                        { label: 'Default Text', value: text.defaultText },
-                        { label: 'Default Index', value: text.defaultIndex },
-                        { label: 'Required', value: text.required },
-                        { label: 'Separate Lines', value: text.separateLines },
-                        { label: 'Max Length', value: text.maxLength },
-                        { label: 'Indent', value: text.indent },
-                        { label: 'Pad', value: text.pad },
-                        { label: 'Min Value', value: text.minValue },
-                        { label: 'Max Value', value: text.maxValue },
-                        { label: 'Increment', value: text.increment },
-                        { label: 'Items', value: text.items }
-                    ];
-
-                    fields.forEach(field => {
-                        if (field.value) {
-                            const row = document.createElement('tr');
-                            const cell = document.createElement('td');
-                            cell.innerHTML = `<b>${field.label}:</b> ${field.value}`;
-                            row.appendChild(cell);
-                            tbody.appendChild(row);
-                        }
-                    });
-                });
-
-                adjustFontSize();
-            }
-        });
-
-        cell.appendChild(clickableSymbol);
-        row.appendChild(cell);
-        tbody.appendChild(row);
-    });
 }
-
 
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
