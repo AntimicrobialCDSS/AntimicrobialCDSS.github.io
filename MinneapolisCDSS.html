@@ -999,41 +999,46 @@ async function createODTable(selectedItem) {
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
 
-    // Add rows for components with clickable symbols
+      // Add rows for components with clickable symbols
     Object.keys(itemData).forEach(key => {
-        if (/^Component\d+$/.test(key)) {
-            const componentName = itemData[key];
-            const componentItem = odData.find(item => item.Name === componentName);
-
-            if (componentItem) {
-                const row = document.createElement('tr');
-                const cell = document.createElement('td');
-                const nameAndSymbol = document.createElement('div');
-
-                // Bold component name
-                const nameText = document.createElement('span');
-                nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
-                nameText.style.display = 'inline-block'; // Display inline for better alignment
-
-                // Clickable symbol
-                const clickableSymbol = document.createElement('a');
-                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
-                clickableSymbol.classList.add('clickable');
-                clickableSymbol.title = 'Click for more information';
-                clickableSymbol.style.marginLeft = '10px'; // Space between name and symbol
-                clickableSymbol.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    createODTable(componentItem); // Create new table for the component
-                    pushHistory(componentItem.Name); // Add to history
-                });
-
-                nameAndSymbol.appendChild(nameText);
-                nameAndSymbol.appendChild(clickableSymbol);
-                cell.appendChild(nameAndSymbol);
-                row.appendChild(cell);
-                tbody.appendChild(row);
-            }
-        }
+      if (/^Component\d+$/.test(key)) {
+          const componentName = itemData[key];
+          const componentItem = odData.find(item => item.Name === componentName);
+  
+          const row = document.createElement('tr');
+          const cell = document.createElement('td');
+          const nameAndSymbol = document.createElement('div');
+  
+          // Bold component name
+          const nameText = document.createElement('span');
+          nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
+          nameText.style.display = 'inline-block'; // Display inline for better alignment
+  
+          nameAndSymbol.appendChild(nameText);
+  
+          if (componentItem) {
+              // Clickable symbol
+              const clickableSymbol = document.createElement('a');
+              clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+              clickableSymbol.classList.add('clickable');
+              clickableSymbol.title = 'Click for more information';
+              clickableSymbol.style.marginLeft = '10px'; // Space between name and symbol
+              clickableSymbol.addEventListener('click', (event) => {
+                  event.preventDefault();
+                  createODTable(componentItem); // Create new table for the component
+                  pushHistory(componentItem.Name); // Add to history
+              });
+  
+              nameAndSymbol.appendChild(clickableSymbol);
+          } else {
+              // If there's no match, just display the component name
+              console.warn(`No matching component found for ${componentName}`);
+          }
+  
+          cell.appendChild(nameAndSymbol);
+          row.appendChild(cell);
+          tbody.appendChild(row);
+      }
     });
 
     // Create rows for other key-value pairs
