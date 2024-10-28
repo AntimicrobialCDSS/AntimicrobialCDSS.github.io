@@ -19899,6 +19899,11 @@
 "DisplayText" : "CDSS PLACEHOLDER",
 "Version" : "Minneapolis"},
 {
+"Name" : "ORZID GMENU ABX CDSS TESTING MENU", 
+"DisplayGroup" : "MENU", 
+"DisplayText" : "CDSS Testing Menu",
+"Version" : "Minneapolis"},
+{
 "Name" : "ORZID GMENU ABX GENRL ALT AM LIST", 
 "DisplayGroup" : "MENU", 
 "DisplayText" : "List of antimicrobials ",
@@ -20871,7 +20876,7 @@
 {
 "Name" : "ORZID2 GMENU ABX INPT MAIN", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Inpatient Antimicrobial Computer Decision Support System (CDSS)",
+"DisplayText" : "Inpatient Antimicrobial Computer Decision Support System (CDSS) ",
 "Version" : "Minneapolis"},
 {
 "Name" : "ORZID2 GMENU ABX ISOSPORA", 
@@ -38137,5 +38142,50 @@
 "SecondaryDisplayText" : "", 
 "Verify" : "NO", 
 "GOType" : "DO NOT USE IN CAT SEQ PARAM", 
+"Version" : "Minneapolis"},
+{
+"Name" : "ORZ NURS HEMONC OK TO TREAT LAB PARAMETERS", 
+"DisplayGroup" : "NURSING                            0", 
+"DisplayText" : "Nursing ok to treat  orders for lab values", 
+"Verify" : "NO", 
+"Version" : "Minneapolis"},
+{
+"Name" : "ORZ SET AZITH TESTING ORDERS", 
+"DisplayGroup" : "ORDER SET",
+"Component1" : "ZZPSJZID AZITH 500MG TESTING", 
+"Component2" : "ZZPSJZID AZITH 250MG TESTING", 
+"DisplayText" : "AZITH TESTING ORDER SET", 
+"Version" : "Minneapolis"},
+{
+"Name" : "SD RTC", 
+"DisplayGroup" : "CLINIC SCHEDULING", 
+"Location" : "", 
+"ClinicallyIndicatedDate" : "", 
+"ApptNum" : "20.5", 
+"SchedInt" : "", 
+"Prereq" : "40.0", 
+"SDComment" : "OR GTX YES\/NO", 
+"DisplayText" : "Return To Clinic", 
+"Verify" : "YES", 
+"Version" : "Minneapolis"},
+{
+"Name" : "SDZ RTC 79 ID INJECTION CLINIC", 
+"DisplayGroup" : "CLINIC SCHEDULING", 
+"Location" : "MSP 79 ID INJECTION CLINIC", 
+"SchedInt" : "", 
+"ApptNum" : "1", 
+"DisplayText" : "79 ID Injection", 
+"Verify" : "YES", 
+"Version" : "Minneapolis"},
+{
+"Name" : "Testing Lab Order", 
+"DisplayGroup" : "MICROBIOLOGY", 
+"OrderableItem1" : "CULTURE & SUSCEPTIBILITY", 
+"CollectionType" : "Send patient to lab", 
+"CollectionSample" : "URINE", 
+"Specimen" : "URINE", 
+"DisplayText" : "Testing", 
+"Verify" : "NO", 
+"AutoAccept" : "YES",
 "Version" : "Minneapolis"}
 ]
