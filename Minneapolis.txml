@@ -381,7 +381,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://www.cdc.gov/vaccines/schedules/downloads/adult/adult-combined-schedule.pdf</URL>
+      <URL>https://www.cdc.gov/vaccines/hcp/imz-schedules/downloads/adult/adult-combined-schedule.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CDC ADULT IMMMUNIZATION SCHEDULE LIST">
       <TYPE>T</TYPE>
