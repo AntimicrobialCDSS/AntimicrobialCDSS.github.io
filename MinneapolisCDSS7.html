@@ -524,9 +524,9 @@ function searchData() {
         if (item[termKey]) {
           const termText = item[termKey].toLowerCase();
           terms.push(termText);
-          if (termText === searchTerms) {
+          if (termText === searchText) {
             relevanceScore += 1000; // Increase relevance score for exact term match significantly
-          } else if (termText.includes(searchTerms)) {
+          } else if (termText.includes(searchText)) {
             relevanceScore += 100; // Increase relevance score if search text is found in terms
           }
         }
@@ -544,7 +544,6 @@ function searchData() {
       });
       return {
         ...item,
-        term,
         relevanceScore, // Add relevance score to the item
       };
     })
