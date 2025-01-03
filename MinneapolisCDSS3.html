@@ -546,9 +546,22 @@ function searchData() {
       return (a.Term1 || '').localeCompare(b.Term1 || '', undefined, { sensitivity: 'base' });
     });
 
-    filteredData = filteredData.filter(item => !(item.Term1 || '').toLowerCase().includes('index'));
+    // Remove duplicates based on Term1
+    const uniqueFilteredData = [];
+    const seenTerms = new Set();
+
+    filteredData.forEach(item => {
+      if (item.Term1 && !seenTerms.has(item.Term1)) {
+        uniqueFilteredData.push(item);
+        seenTerms.add(item.Term1);
+      }
+    });
+
+    // Filter out items where Term1 includes 'index'
+    const finalFilteredData = uniqueFilteredData.filter(item => !(item.Term1 || '').toLowerCase().includes('index'));
+
     // Call the function to populate the dropdown with filtered and sorted data
-    populateDropdown(filteredData);
+    populateDropdown(finalFilteredData);
   }
   // Scroll to the top of the dropdown
   dropdown.scrollTop = 0;
