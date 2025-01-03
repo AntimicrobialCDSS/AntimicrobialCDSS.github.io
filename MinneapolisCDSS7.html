@@ -503,6 +503,7 @@ function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
   const searchText = searchInput.value.trim().toLowerCase();
+  
   // Check if the search text is empty
   if (searchText === '') {
     // Populate and sort the dropdown with the original data when the search text is blank
@@ -511,11 +512,13 @@ function searchData() {
   } else {
     // Split the search text by space to handle multiple search terms
     const searchTerms = searchText.split(' ');
+    
     // Filter data based on search text and prioritize items with matches in terms
     let filteredData = omData.map(item => {
       //const displayText = item.DisplayText || item.Name;
       const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
       const terms = [];
+      
       // Check for "Term1" through "Term99" in the item and calculate relevance score
       let relevanceScore = 0;
       for (let i = 1; i <= 99; i++) {
@@ -530,17 +533,19 @@ function searchData() {
           }
         }
       }
+      
       // Check if any of the search terms are present in the item's displayText or contentTexts
       searchTerms.forEach(term => {
-        if (displayText.toLowerCase().includes(term)) {
-          relevanceScore += 50; // Increase relevance score if search term is found in displayText
-        }
+        // if (displayText.toLowerCase().includes(term)) {
+        //   relevanceScore += 50; // Increase relevance score if search term is found in displayText
+        // }
         contentTexts.forEach(text => {
           if (text.includes(term)) {
             relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
           }
         });
       });
+      
       return {
         ...item,
         relevanceScore, // Add relevance score to the item
@@ -553,13 +558,16 @@ function searchData() {
         return b.relevanceScore - a.relevanceScore;
       }
       // If relevance score is the same, sort alphabetically by displayText
-      //const aDisplayText = a.DisplayText || a.Name;
-      //const bDisplayText = b.DisplayText || b.Name;
-      //return aDisplayText.localeCompare(bDisplayText, undefined, { sensitivity: 'base' });
-    //});
+      // const aDisplayText = a.DisplayText || a.Name;
+      // const bDisplayText = b.DisplayText || b.Name;
+      // return aDisplayText.localeCompare(bDisplayText, undefined, { sensitivity: 'base' });
+      const aTerm = a.Term || a.Name;
+      const bTerm = b.Term || b.Name;
+      return aTerm.localeCompare(bTerm, undefined, { sensitivity: 'base' });
+    });
+
     filteredData = filteredData.filter(item => !(item.Term || item.Name).toLowerCase().includes('index'));
-    // Call the function to populate the dropdown with filtered and sorted data
- 
+    
     // Debugging: Log the filtered data
     console.log('Filtered Data:', filteredData);
     
@@ -568,7 +576,7 @@ function searchData() {
     filteredData.forEach(item => {
       const option = document.createElement('option');
       option.value = item.Name;
-      option.textContent = item.Term;
+      option.textContent = item.Term || item.Name; // Fallback to item.Name if item.Term is empty
       dropdown.appendChild(option);
     });
     
@@ -599,7 +607,6 @@ function searchData() {
   // Scroll to the top of the dropdown
   dropdown.scrollTop = 0;
 }
-
   function searchAndOpenDropdown() {
   var searchInput = document.getElementById('searchInput');
   var dropdown = document.getElementById('filterDropdown');
