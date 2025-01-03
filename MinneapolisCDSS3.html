@@ -526,7 +526,7 @@ function searchData() {
           terms.push(termText);
           if (termText === searchTerms) {
             relevanceScore += 1000; // Increase relevance score for exact term match significantly
-          } else if (termText.includes(searchTerms) {
+          } else if (termText.includes(searchTerms)) {
             relevanceScore += 100; // Increase relevance score if search text is found in terms
           }
         }
@@ -537,7 +537,7 @@ function searchData() {
         //   relevanceScore += 50; // Increase relevance score if search term is found in displayText
         //}
         contentTexts.forEach(text => {
-          if (text.includes(searchTerms) {
+          if (text.includes(searchTerms)) {
             relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
           }
         });
