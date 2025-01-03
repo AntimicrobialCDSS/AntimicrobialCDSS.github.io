@@ -576,7 +576,7 @@ function searchData() {
     filteredData.forEach(item => {
       const option = document.createElement('option');
       option.value = item.Name;
-      option.textContent = item.Term || item.Name; // Fallback to item.Name if item.Term is empty
+      option.textContent = item.Term; // Fallback to item.Name if item.Term is empty
       dropdown.appendChild(option);
     });
     
