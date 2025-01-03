@@ -561,10 +561,34 @@ function searchData() {
       const bTerm1 = b.Term || b.Name;
       return aTerm.localeCompare(bTerm, undefined, { sensitivity: 'base' });
     });
-    filteredData = filteredData.filter(item => !(item.Term || item.Name).toLowerCase().includes('index'));
+    filteredData = filteredData.filter(item => !(item.Term1 || item.Name).toLowerCase().includes('index'));
+    
     // Call the function to populate the dropdown with filtered and sorted data
-    populateDropdown(filteredData);
+    dropdown.innerHTML = '';
+    filteredData.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.Name;
+      option.textContent = item.Term1;
+      dropdown.appendChild(option);
+    });
+    
+    // Count the number of matches after the dropdown is populated
+    const matchCount = dropdown.length;
+    const firstLine = document.createElement('option');
+    if (matchCount === 0) {
+      // If there are no matches, create an option with red text
+      firstLine.textContent = 'No Matches';
+      firstLine.style.color = 'red'; // Set the text color to red
+    } else {
+      // If there are matches, create an option for the match count with green text
+      firstLine.textContent = `Matches: ${matchCount}`;
+      firstLine.style.color = 'green'; // Set the text color to green
+    }
+    firstLine.disabled = true;
+    firstLine.selected = true;
+    dropdown.insertBefore(firstLine, dropdown.firstChild);
   }
+  
   // Scroll to the top of the dropdown
   dropdown.scrollTop = 0;
 }
