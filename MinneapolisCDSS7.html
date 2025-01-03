@@ -544,6 +544,7 @@ function searchData() {
       });
       return {
         ...item,
+        term,
         relevanceScore, // Add relevance score to the item
       };
     })
@@ -557,18 +558,18 @@ function searchData() {
       //const aDisplayText = a.DisplayText || a.Name;
       //const bDisplayText = b.DisplayText || b.Name;
       //return aDisplayText.localeCompare(bDisplayText, undefined, { sensitivity: 'base' });
-      const aTerm = a.Term || a.Name;
-      const bTerm = b.Term || b.Name;
+      const aTerm = a.term || a.Name;
+      const bTerm = b.term || b.Name;
       return aTerm.localeCompare(bTerm, undefined, { sensitivity: 'base' });
     });
-    filteredData = filteredData.filter(item => !(item.Term || item.Name).toLowerCase().includes('index'));
+    filteredData = filteredData.filter(item => !(item.term || item.Name).toLowerCase().includes('index'));
     
     // Call the function to populate the dropdown with filtered and sorted data
     dropdown.innerHTML = '';
     filteredData.forEach(item => {
       const option = document.createElement('option');
       option.value = item.Name;
-      option.textContent = item.Term;
+      option.textContent = item.term;
       dropdown.appendChild(option);
     });
     
