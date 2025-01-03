@@ -503,7 +503,6 @@ function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
   const searchText = searchInput.value.trim().toLowerCase();
-
   // Check if the search text is empty
   if (searchText === '') {
     // Populate and sort the dropdown with the original data when the search text is blank
@@ -512,15 +511,12 @@ function searchData() {
   } else {
     // Split the search text by space to handle multiple search terms
     const searchTerms = searchText.split(' ');
-
     // Filter data based on search text and prioritize items with matches in terms
     let filteredData = omData.map(item => {
       const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
       const terms = [];
-      let relevanceScore = 0;
-      let closestTerm = '';
-
       // Check for "Term1" through "Term99" in the item and calculate relevance score
+      let relevanceScore = 0;
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
         if (item[termKey]) {
@@ -528,29 +524,25 @@ function searchData() {
           terms.push(termText);
           if (termText === searchText) {
             relevanceScore += 1000; // Increase relevance score for exact term match significantly
-            closestTerm = termText;
           } else if (termText.includes(searchText)) {
             relevanceScore += 100; // Increase relevance score if search text is found in terms
-            if (!closestTerm || termText.length < closestTerm.length) {
-              closestTerm = termText;
-            }
           }
         }
       }
-
-      // Check if any of the search terms are present in the item's contentTexts
+      // Check if any of the search terms are present in the item's displayText or contentTexts
       searchTerms.forEach(term => {
+        if (displayText.toLowerCase().includes(term)) {
+          relevanceScore += 50; // Increase relevance score if search term is found in displayText
+        }
         contentTexts.forEach(text => {
           if (text.includes(term)) {
             relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
           }
         });
       });
-
       return {
         ...item,
         relevanceScore, // Add relevance score to the item
-        closestTerm // Add the closest matching term to the item
       };
     })
     .filter(item => item.relevanceScore > 0) // Filter out items with relevance score of 0
@@ -558,17 +550,12 @@ function searchData() {
       // Sort based on relevance score, descending
       if (a.relevanceScore !== b.relevanceScore) {
         return b.relevanceScore - a.relevanceScore;
-      }
-      // If relevance score is the same, sort alphabetically by closestTerm
-      return a.closestTerm.localeCompare(b.closestTerm, undefined, { sensitivity: 'base' });
+      }  
     });
-
-    filteredData = filteredData.filter(item => !item.closestTerm.toLowerCase().includes('index'));
-
+    filteredData = filteredData.filter(item => !(item.DisplayText || item.Name).toLowerCase().includes('index'));
     // Call the function to populate the dropdown with filtered and sorted data
-    populateDropdown(filteredData.map(item => ({ ...item, DisplayText: item.closestTerm })));
+    populateDropdown(filteredData);
   }
-
   // Scroll to the top of the dropdown
   dropdown.scrollTop = 0;
 }
