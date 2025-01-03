@@ -503,19 +503,24 @@ function searchData() {
     // Split the search text by space to handle multiple search terms
     const searchTerms = searchText.split(' ');
     
-    // Filter data based on search text and prioritize items with matches in Term1
+    // Filter data based on search text and prioritize items with matches in terms
     let filteredData = omData.map(item => {
-      const Term1 = item.Term1 || item.Name;
       const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
       let relevanceScore = 0;
+      let closestTerm = '';
       
-      // Check for "Term1" and calculate relevance score
-      if (Term1) {
-        const termText = Term1.toLowerCase();
-        if (searchTerms.includes(termText)) {
-          relevanceScore += 1000; // Increase relevance score for exact term match significantly
-        } else if (termText.includes(searchTerms)) {
-          relevanceScore += 100; // Increase relevance score if search text is found in Term1
+      // Check for "Term1" through "Term99" in the item and calculate relevance score
+      for (let i = 1; i <= 99; i++) {
+        const termKey = `Term${i}`;
+        if (item[termKey]) {
+          const termText = item[termKey].toLowerCase();
+          if (searchTerms.includes(termText)) {
+            relevanceScore += 1000; // Increase relevance score for exact term match significantly
+            closestTerm = item[termKey];
+          } else if (termText.includes(searchTerms)) {
+            relevanceScore += 100; // Increase relevance score if search text is found in terms
+            closestTerm = item[termKey];
+          }
         }
       }
       
@@ -531,6 +536,7 @@ function searchData() {
       return {
         ...item,
         relevanceScore, // Add relevance score to the item
+        closestTerm, // Add the closest matching term to the item
       };
     })
     .filter(item => item.relevanceScore > 0) // Filter out items with relevance score of 0
@@ -539,13 +545,13 @@ function searchData() {
       if (a.relevanceScore !== b.relevanceScore) {
         return b.relevanceScore - a.relevanceScore;
       }
-      // If relevance score is the same, sort alphabetically by Term1
-      const aTerm1 = a.Term1 || a.Name;
-      const bTerm1 = b.Term1 || b.Name;
-      return aTerm1.localeCompare(bTerm1, undefined, { sensitivity: 'base' });
+      // If relevance score is the same, sort alphabetically by closestTerm
+      const aTerm = a.closestTerm || a.Name;
+      const bTerm = b.closestTerm || b.Name;
+      return aTerm.localeCompare(bTerm, undefined, { sensitivity: 'base' });
     });
     
-    filteredData = filteredData.filter(item => !(item.Term1 || item.Name).toLowerCase().includes('index'));
+    filteredData = filteredData.filter(item => !(item.closestTerm || item.Name).toLowerCase().includes('index'));
     
     // Debugging: Log the filtered data
     console.log('Filtered Data:', filteredData);
@@ -555,7 +561,7 @@ function searchData() {
     filteredData.forEach(item => {
       const option = document.createElement('option');
       option.value = item.Name;
-      option.textContent = item.Term1;
+      option.textContent = item.closestTerm;
       dropdown.appendChild(option);
     });
     
