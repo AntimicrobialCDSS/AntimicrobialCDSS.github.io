@@ -463,6 +463,15 @@ function populateDropdown(omData) {
         terms.push(item[termKey]);
       }
     }
+    // If there are no terms for item and item.name starts with MenuPrefix
+    if (terms.length === 0 && item.Name.startsWith(SearchMenuPrefix)) {
+      // Use displayText if not blank, else use item.name
+      const displayText = item.DisplayText || item.Name;
+      const option = document.createElement('option');
+      option.value = item.Name;
+      option.textContent = displayText;
+      dropdown.appendChild(option);
+    } else {
       // Create separate dropdown options for each "Term" value
       terms.forEach(term => {
         const option = document.createElement('option');
@@ -470,6 +479,7 @@ function populateDropdown(omData) {
         option.textContent = term;
         dropdown.appendChild(option);
       });
+    }
   });
   // Count the number of matches after the dropdown is populated
   const matchCount = dropdown.length;
@@ -493,7 +503,6 @@ function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
   const searchText = searchInput.value.trim().toLowerCase();
-  
   // Check if the search text is empty
   if (searchText === '') {
     // Populate and sort the dropdown with the original data when the search text is blank
@@ -502,37 +511,37 @@ function searchData() {
   } else {
     // Split the search text by space to handle multiple search terms
     const searchTerms = searchText.split(' ');
-    
     // Filter data based on search text and prioritize items with matches in terms
     let filteredData = omData.map(item => {
-      //const Term1 = item.Term1 || item.Name;
+      //const displayText = item.DisplayText || item.Name;
+      const Term1 = item.Term1 || item.Name;
       const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
       const terms = [];
-      let relevanceScore = 0;
-      
       // Check for "Term1" through "Term99" in the item and calculate relevance score
+      let relevanceScore = 0;
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
         if (item[termKey]) {
           const termText = item[termKey].toLowerCase();
           terms.push(termText);
-          if (searchTerms.includes(termText)) {
+          if (termText === searchTerms) {
             relevanceScore += 1000; // Increase relevance score for exact term match significantly
           } else if (termText.includes(searchTerms)) {
             relevanceScore += 100; // Increase relevance score if search text is found in terms
           }
         }
       }
-      
-      // Check if any of the search terms are present in the item's contentTexts
+      // Check if any of the search terms are present in the item's displayText or contentTexts
       searchTerms.forEach(term => {
+        //if (displayText.toLowerCase().includes(term)) {
+        //   relevanceScore += 50; // Increase relevance score if search term is found in displayText
+        //}
         contentTexts.forEach(text => {
-          if (text.includes(term)) {
+          if (text.includes(searchTerms)) {
             relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
           }
         });
       });
-      
       return {
         ...item,
         relevanceScore, // Add relevance score to the item
@@ -544,44 +553,22 @@ function searchData() {
       if (a.relevanceScore !== b.relevanceScore) {
         return b.relevanceScore - a.relevanceScore;
       }
-      // If relevance score is the same, sort alphabetically by Term1
-      const aTerm1 = a.Term || a.Name;
-      const bTerm1 = b.Term || b.Name;
-      return aTerm.localeCompare(bTerm, undefined, { sensitivity: 'base' });
+      // If relevance score is the same, sort alphabetically by displayText
+      //const aDisplayText = a.DisplayText || a.Name;
+      //const bDisplayText = b.DisplayText || b.Name;
+      //return aDisplayText.localeCompare(bDisplayText, undefined, { sensitivity: 'base' });
+      const aTerm1 = a.Term1 || a.Name;
+      const bTerm1 = b.Term1 || b.Name;
+      return aTerm1.localeCompare(bTerm1, undefined, { sensitivity: 'base' });
     });
-    
-    filteredData = filteredData.filter(item => !(item.Term || item.Name).toLowerCase().includes('index'));
-    
+    filteredData = filteredData.filter(item => !(item.Term1 || item.Name).toLowerCase().includes('index'));
     // Call the function to populate the dropdown with filtered and sorted data
-    dropdown.innerHTML = '';
-    filteredData.forEach(item => {
-      const option = document.createElement('option');
-      option.value = item.Name;
-      option.textContent = item.Term;
-      dropdown.appendChild(option);
-    });
-    
-    // Count the number of matches after the dropdown is populated
-    const matchCount = dropdown.length;
-    const firstLine = document.createElement('option');
-    if (matchCount === 0) {
-      // If there are no matches, create an option with red text
-      firstLine.textContent = 'No Matches';
-      firstLine.style.color = 'red'; // Set the text color to red
-    } else {
-      // If there are matches, create an option for the match count with green text
-      firstLine.textContent = `Matches: ${matchCount}`;
-      firstLine.style.color = 'green'; // Set the text color to green
-    }
-    firstLine.disabled = true;
-    firstLine.selected = true;
-    dropdown.insertBefore(firstLine, dropdown.firstChild);
+    populateDropdown(filteredData);
   }
-  
   // Scroll to the top of the dropdown
   dropdown.scrollTop = 0;
 }
-  
+    
 function searchAndOpenDropdown() {
   var searchInput = document.getElementById('searchInput');
   var dropdown = document.getElementById('filterDropdown');
