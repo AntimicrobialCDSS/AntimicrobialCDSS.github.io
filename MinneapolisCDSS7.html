@@ -561,14 +561,14 @@ function searchData() {
       const bTerm1 = b.Term || b.Name;
       return aTerm.localeCompare(bTerm, undefined, { sensitivity: 'base' });
     });
-    filteredData = filteredData.filter(item => !(item.Term1 || item.Name).toLowerCase().includes('index'));
+    filteredData = filteredData.filter(item => !(item.Term || item.Name).toLowerCase().includes('index'));
     
     // Call the function to populate the dropdown with filtered and sorted data
     dropdown.innerHTML = '';
     filteredData.forEach(item => {
       const option = document.createElement('option');
       option.value = item.Name;
-      option.textContent = item.Term1;
+      option.textContent = item.Term;
       dropdown.appendChild(option);
     });
     
