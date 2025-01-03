@@ -513,6 +513,8 @@ function searchData() {
     const searchTerms = searchText.split(' ');
     // Filter data based on search text and prioritize items with matches in terms
     let filteredData = omData.map(item => {
+      //const displayText = item.DisplayText || item.Name;
+      const Term1 = item.Term1 || item.Name;
       const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
       const terms = [];
       // Check for "Term1" through "Term99" in the item and calculate relevance score
@@ -550,9 +552,16 @@ function searchData() {
       // Sort based on relevance score, descending
       if (a.relevanceScore !== b.relevanceScore) {
         return b.relevanceScore - a.relevanceScore;
-      }  
+      }
+      // If relevance score is the same, sort alphabetically by displayText
+      //const aDisplayText = a.DisplayText || a.Name;
+      //const bDisplayText = b.DisplayText || b.Name;
+      //return aDisplayText.localeCompare(bDisplayText, undefined, { sensitivity: 'base' });
+      const aTerm1 = a.Term1 || a.Name;
+      const bTerm1 = b.Term1 || b.Name;
+      return aTerm1.localeCompare(bTerm1, undefined, { sensitivity: 'base' });
     });
-    filteredData = filteredData.filter(item => !(item.DisplayText || item.Name).toLowerCase().includes('index'));
+    filteredData = filteredData.filter(item => !(item.Term1 || item.Name).toLowerCase().includes('index'));
     // Call the function to populate the dropdown with filtered and sorted data
     populateDropdown(filteredData);
   }
