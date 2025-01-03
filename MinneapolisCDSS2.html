@@ -533,11 +533,11 @@ function searchData() {
       }
       // Check if any of the search terms are present in the item's displayText or contentTexts
       searchTerms.forEach(term => {
-        if (displayText.toLowerCase().includes(term)) {
-          relevanceScore += 50; // Increase relevance score if search term is found in displayText
-        }
+        //if (displayText.toLowerCase().includes(term)) {
+        //   relevanceScore += 50; // Increase relevance score if search term is found in displayText
+        //}
         contentTexts.forEach(text => {
-          if (text.includes(term)) {
+          if (text.includes(searchText)) {
             relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
           }
         });
