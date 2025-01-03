@@ -559,6 +559,13 @@ function searchData() {
       dropdown.appendChild(option);
     });
     
+    // Remove options with blank text content
+    Array.from(dropdown.options).forEach(option => {
+      if (option.textContent.trim() === '') {
+        dropdown.removeChild(option);
+      }
+    });
+    
     // Count the number of matches after the dropdown is populated
     const matchCount = dropdown.length;
     const firstLine = document.createElement('option');
