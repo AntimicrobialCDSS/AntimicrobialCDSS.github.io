@@ -502,14 +502,14 @@ function populateDropdown(omData) {
 function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
-  const searchText = searchInput.value.trim().toLowerCase();
+  const searchText = searchInput.value.trim();
 
   if (searchText === '') {
     populateDropdown(omData);
     sortDropdownByTerm();
   } else {
-    const searchTerms = searchText.split(' ');
-
+    //const searchTerms = searchText.split(' ');
+   const searchTerms = searchText
     let filteredData = omData.map(item => {
       let relevanceScore = 0;
       let closestMatchingTerm = '';
@@ -521,7 +521,7 @@ function searchData() {
         const termKey = `Term${i}`;
         if (item[termKey]) {
           const termText = item[termKey];
-          const termTextLower = termText.toLowerCase();
+          const termTextLower = termText.trim();
 
           searchTerms.forEach(term => {
             if (termTextLower === term) {
