@@ -526,7 +526,7 @@ function searchData() {
           searchTerms.forEach(term => {
             if (termTextLower === term) {
               relevanceScore += 1000;
-            //  closestMatchingTerm = termText;
+               closestMatchingTerm = termText;
              } else 
             if (termTextLower.includes(term)) {
               relevanceScore += 10;
