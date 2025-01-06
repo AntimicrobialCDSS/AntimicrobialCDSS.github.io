@@ -499,6 +499,7 @@ function populateDropdown(omData) {
 }
 
 // Function to search and sort data based on the input
+// Function to search and sort data based on the input
 function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
@@ -527,18 +528,18 @@ function searchData() {
               closestMatchingTerm = termText;
             } else if (termTextLower.includes(term)) {
               relevanceScore += 100;
-
-              }
             }
-          
-          //contentTexts.forEach(text => {
-          if (contentTexts.includes(term)) {
-            relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
-          //} 
-            
           });
+
+          contentTexts.forEach(text => {
+            if (text.includes(term)) {
+              relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
+            }
+          });
+
           if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
-          closestMatchingTerm = termText;
+            closestMatchingTerm = termText;
+          }
         }
       }
 
@@ -553,28 +554,27 @@ function searchData() {
 
     filteredData = filteredData.filter(item => !(item.ClosestMatchingTerm || item.Name).toLowerCase().includes('index'));
    
-  const dropdown = document.getElementById('filterDropdown');
-  dropdown.innerHTML = '';
+    dropdown.innerHTML = '';
 
-  filteredData.forEach(item => {
-    const option = document.createElement('option');
-    option.value = item.Name;
-    option.textContent = item.ClosestMatchingTerm;
-    dropdown.appendChild(option);
-  });
+    filteredData.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.Name;
+      option.textContent = item.ClosestMatchingTerm;
+      dropdown.appendChild(option);
+    });
 
-  const matchCount = dropdown.length;
-  const firstLine = document.createElement('option');
-  if (matchCount === 0) {
-    firstLine.textContent = 'No Matches';
-    firstLine.style.color = 'red';
-  } else {
-    firstLine.textContent = `Matches: ${matchCount}`;
-    firstLine.style.color = 'green';
-  }
-  firstLine.disabled = true;
-  firstLine.selected = true;
-  dropdown.insertBefore(firstLine, dropdown.firstChild);
+    const matchCount = dropdown.length;
+    const firstLine = document.createElement('option');
+    if (matchCount === 0) {
+      firstLine.textContent = 'No Matches';
+      firstLine.style.color = 'red';
+    } else {
+      firstLine.textContent = `Matches: ${matchCount}`;
+      firstLine.style.color = 'green';
+    }
+    firstLine.disabled = true;
+    firstLine.selected = true;
+    dropdown.insertBefore(firstLine, dropdown.firstChild);
   }
   
   dropdown.scrollTop = 0;
