@@ -526,31 +526,29 @@ function searchData() {
           const termTextLower = termText.toLowerCase();
 
           
-          if (termTextLower == searchText) {
-           relevanceScore += 5000;
-           closestMatchingTerm = termText;
-           } else {
-          searchTerms.forEach(term => {
-            if (termTextLower == term) {
-              relevanceScore += 200;
-              closestMatchingTerm = termText;
-            } else if (termTextLower.includes(term)) {
-              relevanceScore += 100;
-              if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
-                closestMatchingTerm = termText;
-              }
-            }
+if (termTextLower == searchText) {
+  console.log(`Exact match found: termTextLower = "${termTextLower}", searchText = "${searchText}"`);
+  relevanceScore += 5000;
+  closestMatchingTerm = termText;
+} else {
+  searchTerms.forEach(term => {
+    if (termTextLower == term) {
+      relevanceScore += 200;
+      closestMatchingTerm = termText;
+    } else if (termTextLower.includes(term)) {
+      relevanceScore += 100;
+      if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
+        closestMatchingTerm = termText;
+      }
+    }
 
-            contentTexts.forEach(text => {
-              if (text.includes(term)) {
-                relevanceScore += 20; // Increase relevance score if search term is found in contentTexts
-              }
-            });
-          });
-        }
-          
-          }
-        }
+    contentTexts.forEach(text => {
+      if (text.includes(term)) {
+        relevanceScore += 20; // Increase relevance score if search term is found in contentTexts
+      }
+    });
+  });
+}
 
       
       if (closestMatchingTerm === "") {
