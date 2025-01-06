@@ -544,7 +544,33 @@ function searchData() {
     .sort((a, b) => b.relevanceScore - a.relevanceScore);
 
     filteredData = filteredData.filter(item => !(item.ClosestMatchingTerm || item.Name).toLowerCase().includes('index'));
+   
+  const dropdown = document.getElementById('filterDropdown');
+  dropdown.innerHTML = '';
 
+  filteredData.forEach(item => {
+    const option = document.createElement('option');
+    option.value = item.Name;
+    option.textContent = item.ClosestMatchingTerm;
+    dropdown.appendChild(option);
+  });
+
+  const matchCount = dropdown.length;
+  const firstLine = document.createElement('option');
+  if (matchCount === 0) {
+    firstLine.textContent = 'No Matches';
+    firstLine.style.color = 'red';
+  } else {
+    firstLine.textContent = `Matches: ${matchCount}`;
+    firstLine.style.color = 'green';
+  }
+  firstLine.disabled = true;
+  firstLine.selected = true;
+  dropdown.insertBefore(firstLine, dropdown.firstChild);
+  }
+  
+  dropdown.scrollTop = 0;
+}
     
 function searchAndOpenDropdown() {
   var searchInput = document.getElementById('searchInput');
