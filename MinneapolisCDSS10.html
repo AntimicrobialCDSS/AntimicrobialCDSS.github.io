@@ -535,13 +535,13 @@ function searchData() {
               }
             });
           });
-
+        }
+      }
+      
           if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
             closestMatchingTerm = termText;
           }
-        }
-      }
-
+      
       return {
         ...item,
         relevanceScore,
