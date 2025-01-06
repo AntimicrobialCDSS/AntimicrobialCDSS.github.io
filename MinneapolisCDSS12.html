@@ -526,10 +526,10 @@ function searchData() {
           const termTextLower = termText.toLowerCase();
 
           
-          if (termTextLower == searchText) {
-            relevanceScore += 1000;
-            closestMatchingTerm = termText;
-            } else {
+          //if (termTextLower == searchText) {
+           //relevanceScore += 1000;
+           //closestMatchingTerm = termText;
+           // } else {
           searchTerms.forEach(term => {
             if (termTextLower == term) {
               relevanceScore += 200;
@@ -547,7 +547,7 @@ function searchData() {
               }
             });
           });
-          }
+        //}
           
           }
         }
