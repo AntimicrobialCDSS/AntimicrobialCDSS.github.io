@@ -454,27 +454,50 @@ document.getElementById('indexButton').textContent = IndexButton;
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
-
   omData.forEach(item => {
-    const option = document.createElement('option');
-    option.value = item.Name;
-    option.textContent = item.ClosestMatchingTerm;
-    dropdown.appendChild(option);
+    const terms = [];
+    // Check for "Term1" through "Term99" in the item
+    for (let i = 1; i <= 99; i++) {
+      const termKey = `Term${i}`;
+      if (item[termKey]) {
+        terms.push(item[termKey]);
+      }
+    }
+    // If there are no terms for item and item.name starts with MenuPrefix
+    if (terms.length === 0 && item.Name.startsWith(SearchMenuPrefix)) {
+      // Use displayText if not blank, else use item.name
+      const displayText = item.DisplayText || item.Name;
+      const option = document.createElement('option');
+      option.value = item.Name;
+      option.textContent = displayText;
+      dropdown.appendChild(option);
+    } else {
+      // Create separate dropdown options for each "Term" value
+      terms.forEach(term => {
+        const option = document.createElement('option');
+        option.value = item.Name;
+        option.textContent = term;
+        dropdown.appendChild(option);
+      });
+    }
   });
-
+  // Count the number of matches after the dropdown is populated
   const matchCount = dropdown.length;
   const firstLine = document.createElement('option');
   if (matchCount === 0) {
+    // If there are no matches, create an option with red text
     firstLine.textContent = 'No Matches';
-    firstLine.style.color = 'red';
+    firstLine.style.color = 'red'; // Set the text color to red
   } else {
+    // If there are matches, create an option for the match count with green text
     firstLine.textContent = `Matches: ${matchCount}`;
-    firstLine.style.color = 'green';
+    firstLine.style.color = 'green'; // Set the text color to green
   }
   firstLine.disabled = true;
   firstLine.selected = true;
   dropdown.insertBefore(firstLine, dropdown.firstChild);
 }
+
 // Function to search and sort data based on the input
 function searchData() {
   const searchInput = document.getElementById('searchInput');
@@ -523,7 +546,60 @@ function searchData() {
 
     filteredData = filteredData.filter(item => !(item.ClosestMatchingTerm || item.Name).toLowerCase().includes('index'));
 
-    populateDropdown(filteredData);
+   
+  const dropdown = document.getElementById('filterDropdown');
+  dropdown.innerHTML = '';
+
+  filteredDate.forEach(item => {
+    const option = document.createElement('option');
+    option.value = item.Name;
+    option.textContent = item.ClosestMatchingTerm;
+    dropdown.appendChild(option);
+  });
+
+  const matchCount = dropdown.length;
+  const firstLine = document.createElement('option');
+  if (matchCount === 0) {
+    firstLine.textContent = 'No Matches';
+    firstLine.style.color = 'red';
+  } else {
+    firstLine.textContent = `Matches: ${matchCount}`;
+    firstLine.style.color = 'green';
+  }
+  firstLine.disabled = true;
+  firstLine.selected = true;
+  dropdown.insertBefore(firstLine, dropdown.firstChild);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
   }
 
   dropdown.scrollTop = 0;
