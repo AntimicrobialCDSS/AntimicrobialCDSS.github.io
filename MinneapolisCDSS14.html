@@ -521,7 +521,7 @@ function searchData() {
         const termKey = `Term${i}`;
         if (item[termKey]) {
           const termText = item[termKey];
-          const termTextLower = termText.toLowerCase();
+          const termTextLower = termText.trim();
 
           searchTerms.forEach(term => {
             if (termTextLower === term) {
