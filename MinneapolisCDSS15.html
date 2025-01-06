@@ -499,6 +499,13 @@ function populateDropdown(omData) {
 }
 
 // Function to search and sort data based on the input
+It looks like you're encountering a syntax error in your JavaScript code. This can be quite frustrating, but let's try to pinpoint the issue together.
+
+From the error message, it seems like there's an unexpected token 'for' in your code. This usually means there's a syntax issue around that line. Looking at your code, it seems like the problem might be due to a missing semicolon or an incomplete statement.
+
+Here's a revised version of your code with some added semicolons and a few minor adjustments:
+
+// Function to search and sort data based on the input
 function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
@@ -515,8 +522,8 @@ function searchData() {
       let closestMatchingTerm = '';
       let sortTerm = '';
       const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
-      const Term1 = item.Term1 ? item.Term1.trimmedValue 
-      
+      const Term1 = item.Term1 ? item.Term1.trimmedValue : '';
+
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
         if (item[termKey]) {
@@ -526,9 +533,8 @@ function searchData() {
           searchTerms.forEach(term => {
             if (termTextLower === term) {
               relevanceScore += 1000;
-               closestMatchingTerm = termText.trim();
-             } else 
-            if (termTextLower.includes(term)) {
+              closestMatchingTerm = termText.trim();
+            } else if (termTextLower.includes(term)) {
               relevanceScore += 10;
               if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
                 closestMatchingTerm = termText.trim();
@@ -541,13 +547,15 @@ function searchData() {
               }
             });
           });
-          }
         }
+      }
+
       if (closestMatchingTerm === "") {
-        sortTerm = Term1
-      } else {sortTerm = closestMatchingTerm 
-      }   
-      
+        sortTerm = Term1;
+      } else {
+        sortTerm = closestMatchingTerm;
+      }
+
       return {
         ...item,
         relevanceScore,
@@ -556,9 +564,9 @@ function searchData() {
     })
     .filter(item => item.relevanceScore > 0)
     .sort((a, b) => b.relevanceScore - a.relevanceScore);
-    
+
     filteredData = filteredData.filter(item => !(item.sortTerm).toLowerCase().includes('index'));
-   
+
     dropdown.innerHTML = '';
 
     filteredData.forEach(item => {
@@ -581,10 +589,9 @@ function searchData() {
     firstLine.selected = true;
     dropdown.insertBefore(firstLine, dropdown.firstChild);
   }
-  
+
   dropdown.scrollTop = 0;
 }
-    
 function searchAndOpenDropdown() {
   var searchInput = document.getElementById('searchInput');
   var dropdown = document.getElementById('filterDropdown');
