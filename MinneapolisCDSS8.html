@@ -550,7 +550,7 @@ function searchData() {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
 
-  filteredDate.forEach(item => {
+  filteredData.forEach(item => {
     const option = document.createElement('option');
     option.value = item.Name;
     option.textContent = item.ClosestMatchingTerm;
