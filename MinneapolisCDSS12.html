@@ -527,11 +527,12 @@ function searchData() {
 
           
           if (termText === searchText) {
+            relevanceScore += 1000;
             closestMatchingTerm = termText;
             } else {
           searchTerms.forEach(term => {
             if (termTextLower === term) {
-              relevanceScore += 1000;
+              relevanceScore += 200;
               closestMatchingTerm = termText;
             } else if (termTextLower.includes(term)) {
               relevanceScore += 100;
@@ -542,7 +543,7 @@ function searchData() {
 
             contentTexts.forEach(text => {
               if (text.includes(term)) {
-                relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
+                relevanceScore += 20; // Increase relevance score if search term is found in contentTexts
               }
             });
           });
