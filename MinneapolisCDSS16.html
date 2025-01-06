@@ -522,11 +522,7 @@ function searchData() {
         if (item[termKey]) {
           const termText = item[termKey];
           const termTextLower = termText.trim().toLowerCase();
-      
-      if (searchText == termTextLower) {
-         relevanceScore += 50;
-         closestMatchingTerm = termText;
-      } else {
+
           searchTerms.forEach(term => {
             if (termTextLower === term) {
               relevanceScore += 15;
