@@ -502,7 +502,7 @@ function populateDropdown(omData) {
 function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
-  const searchText = searchInput.value.trim();
+  const searchText = searchInput.value.trim().toLowerCase();
 
   if (searchText === '') {
     populateDropdown(omData);
@@ -514,14 +514,14 @@ function searchData() {
       let relevanceScore = 0;
       let closestMatchingTerm = '';
       let sortTerm = '';
-      const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text : '').filter(Boolean);
+      const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text().toLowerCase() : '').filter(Boolean);
       const Term1 = item.Term1;
       
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
         if (item[termKey]) {
           const termText = item[termKey];
-          const termTextLower = termText.trim();
+          const termTextLower = termText.trim().toLowerCase();
 
           searchTerms.forEach(term => {
             if (termTextLower === term) {
