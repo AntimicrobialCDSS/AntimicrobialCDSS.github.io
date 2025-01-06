@@ -509,7 +509,7 @@ function searchData() {
     sortDropdownByTerm();
   } else {
     //const searchTerms = searchText.split(' ');
-   const searchTerms = searchText
+   const searchTerms = searchText.value
     let filteredData = omData.map(item => {
       let relevanceScore = 0;
       let closestMatchingTerm = '';
