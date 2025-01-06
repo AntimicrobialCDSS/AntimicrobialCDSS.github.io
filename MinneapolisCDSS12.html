@@ -524,10 +524,10 @@ function searchData() {
           const termTextLower = termText.toLowerCase();
 
           searchTerms.forEach(term => {
-            //if (termTextLower === term) {
-            //  relevanceScore += 1000;
+            if (termTextLower === term) {
+              relevanceScore += 1000;
             //  closestMatchingTerm = termText;
-            // } else 
+             } else 
             if (termTextLower.includes(term)) {
               relevanceScore += 10;
               if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
