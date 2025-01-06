@@ -517,9 +517,7 @@ function searchData() {
       const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
       const Term1 = item.Term1;
 
-      if (termText === searchText) {
-        closestMatchingTerm = termText;
-        } else {
+
                   
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
@@ -527,6 +525,10 @@ function searchData() {
           const termText = item[termKey];
           const termTextLower = termText.toLowerCase();
 
+          
+          if (termText === searchText) {
+            closestMatchingTerm = termText;
+            } else {
           searchTerms.forEach(term => {
             if (termTextLower === term) {
               relevanceScore += 1000;
@@ -545,9 +547,11 @@ function searchData() {
             });
           });
           }
+          
+          }
         }
 
-      }
+      
       if (closestMatchingTerm === "") {
         sortTerm = Term1
       } else {sortTerm = closestMatchingTerm 
