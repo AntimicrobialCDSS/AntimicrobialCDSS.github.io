@@ -502,7 +502,7 @@ function populateDropdown(omData) {
 function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
-  const searchText = searchInput.value.trim();
+  const searchText = searchInput.value.trim().toLowerCase();
 
   if (searchText === '') {
     populateDropdown(omData);
@@ -521,7 +521,7 @@ function searchData() {
         const termKey = `Term${i}`;
         if (item[termKey]) {
           const termText = item[termKey];
-          const termTextLower = termText.trim;
+          const termTextLower = termText.toLowerCase();
 
           searchTerms.forEach(term => {
             if (termTextLower === term) {
