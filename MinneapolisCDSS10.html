@@ -513,7 +513,8 @@ function searchData() {
     let filteredData = omData.map(item => {
       let relevanceScore = 0;
       let closestMatchingTerm = '';
-
+      const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
+      
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
         if (item[termKey]) {
@@ -526,11 +527,18 @@ function searchData() {
               closestMatchingTerm = termText;
             } else if (termTextLower.includes(term)) {
               relevanceScore += 100;
-              if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
-                closestMatchingTerm = termText;
+
               }
             }
+          
+          //contentTexts.forEach(text => {
+          if (contentTexts.includes(term)) {
+            relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
+          //} 
+            
           });
+          if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
+          closestMatchingTerm = termText;
         }
       }
 
