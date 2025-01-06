@@ -507,6 +507,7 @@ function searchData() {
   if (searchText === '') {
     populateDropdown(omData);
     sortDropdownByTerm();
+    dropdown.scrollTop = 0;
   } else {
     const searchTerms = searchText.split(' ');
 
@@ -533,7 +534,16 @@ function searchData() {
           });
         }
       }
-
+      
+      // Check if any of the search terms are present in the item's displayText or contentTexts
+      searchTerms.forEach(term => {
+        contentTexts.forEach(text => {
+          if (text.includes(term)) {
+            relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
+          }
+        });
+      });
+      
       return {
         ...item,
         relevanceScore,
