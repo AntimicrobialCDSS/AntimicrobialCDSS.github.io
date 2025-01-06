@@ -516,7 +516,11 @@ function searchData() {
       let sortTerm = '';
       const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
       const Term1 = item.Term1;
-      
+
+      if (termText === searchText) {
+        closestMatchingTerm = termText;
+        } else {
+                  
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
         if (item[termKey]) {
@@ -542,6 +546,8 @@ function searchData() {
           });
           }
         }
+
+      }
       if (closestMatchingTerm === "") {
         sortTerm = Term1
       } else {sortTerm = closestMatchingTerm 
