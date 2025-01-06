@@ -499,7 +499,6 @@ function populateDropdown(omData) {
 }
 
 // Function to search and sort data based on the input
-// Function to search and sort data based on the input
 function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
@@ -529,12 +528,12 @@ function searchData() {
             } else if (termTextLower.includes(term)) {
               relevanceScore += 100;
             }
-          });
 
-          contentTexts.forEach(text => {
-            if (text.includes(term)) {
-              relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
-            }
+            contentTexts.forEach(text => {
+              if (text.includes(term)) {
+                relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
+              }
+            });
           });
 
           if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
