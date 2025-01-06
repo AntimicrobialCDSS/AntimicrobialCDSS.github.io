@@ -502,11 +502,12 @@ function populateDropdown(omData) {
 function searchData() {
   const searchInput = document.getElementById('searchInput');
   const searchText = searchInput.value.trim().toLowerCase();
-
+  const dropdown = document.getElementById('filterDropdown');
+  
   if (searchText === '') {
     populateDropdown(omData);
     sortDropdownByTerm();
-    document.getElementById('filterDropdown').scrollTop = 0;
+    dropdown.scrollTop = 0;
   } else {
     const searchTerms = searchText.split(' ');
 
@@ -538,7 +539,7 @@ function searchData() {
       // Check if any of the search terms are present in the item's contentTexts
       searchTerms.forEach(term => {
         contentTexts.forEach(text => {
-          if (text.includes(searchTerms)) {
+          if (text.includes(searchText)) {
             relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
             if (!closestMatchingTerm || text.length < closestMatchingTerm.length) {
               closestMatchingTerm = termtext;
@@ -557,9 +558,6 @@ function searchData() {
     .sort((a, b) => b.relevanceScore - a.relevanceScore);
 
     filteredData = filteredData.filter(item => !(item.ClosestMatchingTerm || item.Name).toLowerCase().includes('index'));
-
-   
-  const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
 
   filteredData.forEach(item => {
