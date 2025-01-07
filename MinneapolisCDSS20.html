@@ -526,17 +526,17 @@ function searchData() {
 
           // Check for exact match with the entire searchText
           if (termTextLower === searchText) {
-            relevanceScore += 50;
+            relevanceScore += 10000;
             closestMatchingTerm = termText;
           } else {
             searchTerms.forEach(term => {
               if (termTextLower === term) {
-                relevanceScore += 15;
+                relevanceScore += 1000;
                 if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
                   closestMatchingTerm = termText;
                 }
               } else if (termTextLower.includes(term)) {
-                relevanceScore += 10;
+                relevanceScore += 100;
                 if (!closestMatchingTerm || 
                     termTextLower.indexOf(term) < closestMatchingTerm.toLowerCase().indexOf(term) || 
                     (termTextLower.indexOf(term) === closestMatchingTerm.toLowerCase().indexOf(term) && termText.length < closestMatchingTerm.length) ||
