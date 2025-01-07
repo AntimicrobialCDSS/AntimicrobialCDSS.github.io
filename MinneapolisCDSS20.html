@@ -526,12 +526,12 @@ function searchData() {
 
           // Check for exact match with the entire searchText
           if (termTextLower === searchText) {
-            relevanceScore += 50;
+            relevanceScore += 100;
             closestMatchingTerm = termText;
           } else {
             searchTerms.forEach(term => {
               if (termTextLower === term) {
-                relevanceScore += 15;
+                relevanceScore += 25;
                 if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
                   closestMatchingTerm = termText;
                 }
