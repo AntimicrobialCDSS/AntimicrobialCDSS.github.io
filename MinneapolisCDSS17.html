@@ -464,14 +464,14 @@ function populateDropdown(omData) {
       }
     }
     // If there are no terms for item and item.name starts with MenuPrefix
-    if (terms.length === 0 && item.Name.startsWith(SearchMenuPrefix)) {
+    //if (terms.length === 0 && item.Name.startsWith(SearchMenuPrefix)) {
       // Use displayText if not blank, else use item.name
-      const displayText = item.DisplayText || item.Name;
-      const option = document.createElement('option');
-      option.value = item.Name;
-      option.textContent = displayText;
-      dropdown.appendChild(option);
-    } else {
+    //  const displayText = item.DisplayText || item.Name;
+    //  const option = document.createElement('option');
+    //  option.value = item.Name;
+    //  option.textContent = displayText;
+    //  dropdown.appendChild(option);
+    //} else {
       // Create separate dropdown options for each "Term" value
       terms.forEach(term => {
         const option = document.createElement('option');
@@ -479,7 +479,7 @@ function populateDropdown(omData) {
         option.textContent = term;
         dropdown.appendChild(option);
       });
-    }
+   // }
   });
   // Count the number of matches after the dropdown is populated
   const matchCount = dropdown.length;
@@ -496,6 +496,7 @@ function populateDropdown(omData) {
   firstLine.disabled = true;
   firstLine.selected = true;
   dropdown.insertBefore(firstLine, dropdown.firstChild);
+  dropdown.scrollTop = 0;
 }
 
 // Function to search and sort data based on the input
