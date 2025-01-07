@@ -537,7 +537,10 @@ function searchData() {
                 }
               } else if (termTextLower.includes(term)) {
                 relevanceScore += 10;
-                if (!closestMatchingTerm || termTextLower.indexOf(term) < closestMatchingTerm.toLowerCase().indexOf(term) || (termTextLower.indexOf(term) === closestMatchingTerm.toLowerCase().indexOf(term) && termText.length < closestMatchingTerm.length)) {
+                if (!closestMatchingTerm || 
+                    termTextLower.indexOf(term) < closestMatchingTerm.toLowerCase().indexOf(term) || 
+                    (termTextLower.indexOf(term) === closestMatchingTerm.toLowerCase().indexOf(term) && termText.length < closestMatchingTerm.length) ||
+                    (termTextLower.startsWith(searchText) && !closestMatchingTerm.toLowerCase().startsWith(searchText))) {
                   closestMatchingTerm = termText;
                 }
               }
