@@ -550,7 +550,10 @@ function searchData() {
               contentTexts.forEach(text => {
                 const regex = new RegExp(`\\b${term}\\b`, 'i'); // Match whole words only
                 if (regex.test(text)) {
-                  relevanceScore += 1; // Increase relevance score if search term is found as a whole word in contentTexts
+                  relevanceScore += 10; // Increase relevance score if search term is found as a whole word in contentTexts
+                }
+                if (text.includes(term)) {
+                  relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
                 }
               });
             });
