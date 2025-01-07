@@ -527,7 +527,9 @@ function searchData() {
           // Check for exact match with the entire searchText
           if (termTextLower === searchText) {
             relevanceScore += 10000;
-            closestMatchingTerm = termText;
+            if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
+              closestMatchingTerm = termText;
+              }
           } else {
             searchTerms.forEach(term => {
               if (termTextLower === term) {
