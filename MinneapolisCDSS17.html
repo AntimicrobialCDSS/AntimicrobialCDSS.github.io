@@ -520,8 +520,8 @@ function searchData() {
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
         if (item[termKey]) {
-          const termText = item[termKey];
-          const termTextLower = termText.trim().toLowerCase();
+          const termText = item[termKey].trim();
+          const termTextLower = termText.toLowerCase();
 
           // Check for exact match with the entire searchText
           if (termTextLower === searchText) {
@@ -558,7 +558,7 @@ function searchData() {
       return {
         ...item,
         relevanceScore,
-        sortTerm.trim()
+        sortTerm
       };
     })
     .filter(item => item.relevanceScore > 0)
