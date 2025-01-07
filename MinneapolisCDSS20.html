@@ -513,6 +513,7 @@ function searchData() {
 
     let filteredData = omData.map(item => {
       let relevanceScore = 0;
+      let matchingTerm = ''
       let closestMatchingTerm = '';
       let sortTerm = '';
       const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
@@ -528,7 +529,7 @@ function searchData() {
           if (termTextLower === searchText) {
             relevanceScore += 10000;
             if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
-              closestMatchingTerm = termText;
+              matchingTerm = termText;
               }
           } else {
             searchTerms.forEach(term => {
@@ -561,12 +562,14 @@ function searchData() {
         }
       }
 
-      if (closestMatchingTerm === "") {
+      if (matchingTerm === "" && closestMatchingTerm === "") {
         sortTerm = Term1;
-      } else {
+      } else if (matchingTerm === "") {
         sortTerm = closestMatchingTerm;
-      }
-
+        } else {
+        sortTerm = matchingTerm;
+          }
+      
       return {
         ...item,
         relevanceScore,
