@@ -523,12 +523,17 @@ function searchData() {
           const termText = item[termKey];
           const termTextLower = termText.trim().toLowerCase();
 
+          // Check for exact match with the entire searchText
+          if (termTextLower === searchText) {
+            relevanceScore += 50;
+            closestMatchingTerm = termText;
+          }
+
           searchTerms.forEach(term => {
             if (termTextLower === term) {
               relevanceScore += 15;
-               closestMatchingTerm = termText;
-             } else 
-            if (termTextLower.includes(term)) {
+              closestMatchingTerm = termText;
+            } else if (termTextLower.includes(term)) {
               relevanceScore += 10;
               if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
                 closestMatchingTerm = termText;
@@ -541,13 +546,15 @@ function searchData() {
               }
             });
           });
-          }
         }
+      }
+
       if (closestMatchingTerm === "") {
-        sortTerm = Term1
-      } else {sortTerm = closestMatchingTerm 
-      }   
-      
+        sortTerm = Term1;
+      } else {
+        sortTerm = closestMatchingTerm;
+      }
+
       return {
         ...item,
         relevanceScore,
