@@ -521,13 +521,15 @@ function searchData() {
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
         if (item[termKey]) {
-          const termText = item[termKey];
-          const termTextLower = termText.trim().toLowerCase();
+          const termText = item[termKey].trim();
+          const termTextLower = termText.toLowerCase();
 
           // Check for exact match with the entire searchText
           if (termTextLower === searchText) {
             relevanceScore += 50;
-            closestMatchingTerm = termText;
+            if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
+              closestMatchingTerm = termText;
+            }
           }
 
           searchTerms.forEach(term => {
