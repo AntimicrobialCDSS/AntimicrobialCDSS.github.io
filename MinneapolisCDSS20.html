@@ -526,12 +526,12 @@ function searchData() {
 
           // Check for exact match with the entire searchText
           if (termTextLower === searchText) {
-            relevanceScore += 100;
+            relevanceScore += 50;
             closestMatchingTerm = termText;
           } else {
             searchTerms.forEach(term => {
               if (termTextLower === term) {
-                relevanceScore += 25;
+                relevanceScore += 15;
                 if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
                   closestMatchingTerm = termText;
                 }
@@ -543,9 +543,9 @@ function searchData() {
               }
 
               contentTexts.forEach(text => {
-                //if (text.includes(term)) {
-                if (text === term) {
-                relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
+                const regex = new RegExp(`\\b${term}\\b`, 'i'); // Match whole words only
+                if (regex.test(text)) {
+                  relevanceScore += 1; // Increase relevance score if search term is found as a whole word in contentTexts
                 }
               });
             });
