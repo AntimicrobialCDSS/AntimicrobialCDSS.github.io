@@ -500,6 +500,7 @@ function populateDropdown(omData) {
 }
 
 // Function to search and sort data based on the input
+// Function to search and sort data based on the input
 function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
@@ -521,15 +522,13 @@ function searchData() {
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
         if (item[termKey]) {
-          const termText = item[termKey].trim();
-          const termTextLower = termText.toLowerCase();
+          const termText = item[termKey];
+          const termTextLower = termText.trim().toLowerCase();
 
           // Check for exact match with the entire searchText
           if (termTextLower === searchText) {
             relevanceScore += 50;
-            if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
-              closestMatchingTerm = termText;
-            }
+            closestMatchingTerm = termText;
           }
 
           searchTerms.forEach(term => {
@@ -540,7 +539,7 @@ function searchData() {
               }
             } else if (termTextLower.includes(term)) {
               relevanceScore += 10;
-              if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
+              if (!closestMatchingTerm || termTextLower.indexOf(term) < closestMatchingTerm.toLowerCase().indexOf(term) || (termTextLower.indexOf(term) === closestMatchingTerm.toLowerCase().indexOf(term) && termText.length < closestMatchingTerm.length)) {
                 closestMatchingTerm = termText;
               }
             }
