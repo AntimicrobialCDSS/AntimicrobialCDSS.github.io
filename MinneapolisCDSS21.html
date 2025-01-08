@@ -801,7 +801,7 @@ function createOMTable(selectedData) {
           if (Item && !Item.startsWith(MenuPrefix)) {
           /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
               const matchingODItem = odData.find(
-                odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+                odItem => odItem.Name.trim().toLowerCase() === Item.trim().toLowerCase()
                 );
               if (matchingODItem) {
                 const clickableSymbol = document.createElement('a');
