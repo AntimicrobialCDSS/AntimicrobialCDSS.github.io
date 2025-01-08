@@ -800,13 +800,18 @@ function createOMTable(selectedData) {
 
           if (Item && !Item.startsWith(MenuPrefix)) {
           /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
-              const clickableSymbol = document.createElement('a');
-              clickableSymbol.textContent = " \u24d8";
-              clickableSymbol.classList.add('clickable');
-              clickableSymbol.addEventListener('click', () => {
-                  handleRowClick(matchingItem, true);
-              });
-              cellContentElement.appendChild(clickableSymbol);
+              const matchingODItem = odData.find(
+                odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+                );
+              if (matchingODItem) {
+                const clickableSymbol = document.createElement('a');
+                clickableSymbol.textContent = " \u24d8";
+                clickableSymbol.classList.add('clickable');
+                clickableSymbol.addEventListener('click', () => {
+                    handleRowClick(matchingItem, true);
+                });
+                cellContentElement.appendChild(clickableSymbol);
+              }
           }
 
           
