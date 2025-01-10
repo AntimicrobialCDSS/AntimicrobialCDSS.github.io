@@ -15,6 +15,7 @@
   var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
   var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
+  var homeButton = 'CDSS'; /*Only important to CDSS program functions, can be left as it for other systems*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
   const OMjson = 'MinneapolisOMJSON.json'; /*Name of OMJSON file*/
   const ODjson = 'MinneapolisODJSON.json'; /*Name of ODJSOM file*/
@@ -26,6 +27,7 @@
   var hideButtonsDownloads = 'False'; /*buttons to allow user to download json and txml files*/
   var hideButtonsVersions = 'False';/*mark as true for non-CDSS systems*/
   var hideButtonsIndex = 'False';/*mark as true for non-CDSS systems*/
+  var hideButtonsHome = 'False';/*mark as true for non-CDSS systems*/
   var Version = 'V1.07'; /*Text at the bottom of the menu, change to whatever you want*/
   </script> 
   <meta charset="UTF-8">
@@ -233,7 +235,8 @@
 #mainMenuButton,
 #indexButton,
 #goForwardButton,
-#install-button {
+#install-button,
+#homeButton  {
   font-family: 'PT Serif Regular', Arial, sans-serif;
   background-color: transparent; /* Make the background transparent */
   border: none; /* Remove the border */
@@ -251,7 +254,8 @@
 #mainMenuButton:hover,
 #indexButton:hover,
 #goForwardButton:hover,
-#install-button:hover {
+#install-button:hover,
+#homeButton:hover  {
   background-color: #4db8ff; /* lighter shade of blue */
 }
   #filterDropdown {
@@ -287,6 +291,7 @@
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
   <button id="install-button" style="display: none";>Install App</button>
+  <button id="homeButton">CDSS</button>
 </div>
     <div class ="search-container">
         <input type="text" id="searchInput" placeholder=&#x1F50D;>
@@ -432,6 +437,9 @@ if (CDSSlocation === 'Sioux Falls') {
 if (hideButtonsIndex === 'True') {
   {document.getElementById("indexButton").style.display="none";};
 }
+if (hideButtonsHome === 'True') {
+  {document.getElementById("homeButton").style.display="none";};
+}
   
 // Function to hide or remove buttons based on the value of hideButtons
 if (hideButtonsDownloads === 'True') {
@@ -450,6 +458,7 @@ document.getElementById('versionTag').textContent = Version;
 document.getElementById('pageTitle').textContent = Title;
 document.getElementById('mainMenuButton').textContent = MainMenuButton;
 document.getElementById('indexButton').textContent = IndexButton;
+document.getElementById('homeButton').textContent = homeButton;
   
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
