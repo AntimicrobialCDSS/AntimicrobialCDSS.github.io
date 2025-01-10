@@ -291,7 +291,7 @@
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
   <button id="install-button" style="display: none";>Install App</button>
-  <button id="homeButton">CDSS</button>
+  <button id="homeButton" onclick="window.location.href='https://antimicrobialcdss.github.io/'">CDSS</button>
 </div>
     <div class ="search-container">
         <input type="text" id="searchInput" placeholder=&#x1F50D;>
@@ -1339,7 +1339,19 @@ function handleIndex() {
   scrollToTop();    
   adjustFontSize();
   }
-
+ 
+  // Function to handle the Index button click event
+function handleIndex() {
+  const dropdown = document.getElementById('filterDropdown');
+  document.getElementById('searchInput').value = null;
+  document.getElementById('searchInput').placeholder = "\u{1F50D}";
+  populateDropdown(omData);
+  dropdown.value = Index;
+  filterData({ target: dropdown });
+  scrollToTop();    
+  adjustFontSize();
+  }
+  
   // Function to handle the Download JSON button click event
   function handleDownloadJSON() {
     const displayText = selectedData.DisplayText || selectedData.Name;
@@ -1419,6 +1431,7 @@ document.getElementById('goBackButton').addEventListener('click', handleGoBack);
 document.getElementById('goForwardButton').addEventListener('click', handleGoForward);
 document.getElementById('mainMenuButton').addEventListener('click', handleMainMenu);
 document.getElementById('indexButton').addEventListener('click', handleIndex);
+document.getElementById('homeButton').addEventListener('click', handleHome);
 document.getElementById('filterDropdown').addEventListener('change', filterData);
 window.addEventListener('resize', adjustFontSize);
 window.addEventListener('DOMContentLoaded', adjustFontSize);
