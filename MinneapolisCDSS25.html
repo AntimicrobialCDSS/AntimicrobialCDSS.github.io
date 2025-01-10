@@ -960,12 +960,21 @@ async function findMatches(matchingItem) {
             console.log("Item matches:", itemMatches);
 
             // Create popup content including WordProcessing fields and URLs
-            const popupContent = itemMatches
-                .map(match => {
+            const popupContent = itemMatches.length > 0
+                ? itemMatches.map(match => {
                     const link = match.txmlURL ? `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText || match.txmlName}</a>` : match.txmlName;
                     return `${link} - ${match.odItem.Name}`;
-                })
-                .join('<br>');
+                }).join('<br>')
+                : filteredODData.map(odItem => {
+                    let content = `<strong>${odItem.Name}</strong><br>`;
+                    for (let i = 1; i <= 20; i++) {
+                        const wordProcessingField = odItem[`WordProcessing${i}`];
+                        if (wordProcessingField && wordProcessingField.trim() !== '') {
+                            content += `WordProcessing${i}: ${wordProcessingField}<br>`;
+                        }
+                    }
+                    return content;
+                }).join('<br>');
 
             // Debugging: Log the popup content
             console.log("Popup content:", popupContent);
@@ -986,7 +995,6 @@ async function findMatches(matchingItem) {
         return []; // Return an empty array if an error occurs
     }
 }
-  
 async function fetchAndParseXML(txmlFile) {
     try {
         const response = await fetch(txmlFile);
