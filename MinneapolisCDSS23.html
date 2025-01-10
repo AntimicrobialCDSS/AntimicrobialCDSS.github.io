@@ -963,7 +963,10 @@ async function findMatches(matchingItem) {
             if (urls.length > 0) {
                 const popupContent = itemMatches
                     .filter(match => match.txmlURL) // Ensure only matches with URLs are included
-                    .map(match => `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText || match.txmlName}</a>`)
+                    .map(match => {
+                        const displayText = match.odItem.DisplayText || match.odItem.SecondaryDisplayText || match.txmlURL;
+                        return `<a href="${match.txmlURL}" target="_blank">${displayText}</a>`;
+                    })
                     .join('<br>');
 
                 // Debugging: Log the popup content
