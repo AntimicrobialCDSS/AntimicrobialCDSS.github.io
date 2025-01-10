@@ -1,5 +1,5 @@
 const APP_PREFIX = 'CDSS_';
-const VERSION = '1.213'; // Update the version when you make changes
+const VERSION = '1.08'; // Update the version when you make changes
 
 const URLS = [
   '/AbxLinks.json',
