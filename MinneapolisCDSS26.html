@@ -733,15 +733,15 @@ function createOMTable(selectedData) {
           const contentText = cellContent;
           let currentIndex = 0;
 
-          if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              const RowClickElement = document.createElement('a');
-              RowClickElement.classList.add('clickable');
-              RowClickElement.addEventListener('click', () => {
-                  handleRowClick(matchingItem, false);
-              });
-              RowClickElement.textContent = cellContent;
-              cellContentElement.appendChild(RowClickElement);
-          } 
+          //if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+          //    const RowClickElement = document.createElement('a');
+          //    RowClickElement.classList.add('clickable');
+          //    RowClickElement.addEventListener('click', () => {
+          //        handleRowClick(matchingItem, false);
+          //    });
+          //    RowClickElement.textContent = cellContent;
+          //    cellContentElement.appendChild(RowClickElement);
+          //} 
           
           if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
             if (abxLinkData.length > 0) {
