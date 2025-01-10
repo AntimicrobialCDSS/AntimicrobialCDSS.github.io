@@ -958,19 +958,25 @@ async function findMatches(matchingItem) {
             // Debugging: Log the itemMatches array
             console.log("Item matches:", itemMatches);
 
-            // If multiple URLs are found, create a new tab with the links
+            // If URLs are found, handle them based on the number of URLs
             if (urls.length > 0) {
-                const popupContent = itemMatches
-                    .filter(match => match.txmlURL) // Ensure only matches with URLs are included
-                    .map(match => `<a href="${match.txmlURL}" target="_self">${match.txmlDefaultText || match.txmlName}</a>`)
-                    .join('<br>');
+                if (urls.length === 1) {
+                    // If only one URL is found, open it directly in a new tab
+                    window.open(urls[0], '_blank');
+                } else {
+                    // If multiple URLs are found, create a new tab with the links
+                    const popupContent = itemMatches
+                        .filter(match => match.txmlURL) // Ensure only matches with URLs are included
+                        .map(match => `<a href="${match.txmlURL}" target="_self">${match.txmlDefaultText || match.txmlName}</a>`)
+                        .join('<br>');
 
-                // Debugging: Log the popup content
-                console.log("Popup content:", popupContent);
+                    // Debugging: Log the popup content
+                    console.log("Popup content:", popupContent);
 
-                // Open a new tab and write the content
-                const newTab = window.open("", "_blank");
-                newTab.document.write(`<html><head><title>Matching URLs</title></head><body>${popupContent}</body></html>`);
+                    // Open a new tab and write the content
+                    const newTab = window.open("", "_blank");
+                    newTab.document.write(`<html><head><title>Matching URLs</title></head><body>${popupContent}</body></html>`);
+                }
             }
         }
 
