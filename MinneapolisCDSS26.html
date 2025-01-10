@@ -733,71 +733,18 @@ function createOMTable(selectedData) {
           const contentText = cellContent;
           let currentIndex = 0;
 
-          //if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-          //    const RowClickElement = document.createElement('a');
-          //    RowClickElement.classList.add('clickable');
-          //    RowClickElement.addEventListener('click', () => {
-          //        handleRowClick(matchingItem, false);
-          //    });
-          //    RowClickElement.textContent = cellContent;
-          //    cellContentElement.appendChild(RowClickElement);
-          //} 
+          if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+              const RowClickElement = document.createElement('a');
+              RowClickElement.classList.add('clickable');
+              RowClickElement.addEventListener('click', () => {
+                  handleRowClick(matchingItem, false);
+              });
+              RowClickElement.textContent = cellContent;
+              cellContentElement.appendChild(RowClickElement);
+          } 
           
-          if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-            if (abxLinkData.length > 0) {
-              const linkContainer = document.createElement('a');
-              const matchingURLs = abxLinkData.filter(item =>
-                contentText.toLowerCase().includes(item.Name.toLowerCase())
-              );
-              const sortedMatchingURLs = matchingURLs.sort((a, b) => {
-                const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
-                const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
-                return aIndex - bIndex;
-              });
-
-              currentIndex = 0;
-              sortedMatchingURLs.forEach(matchingURL => {
-                const { Name, URL } = matchingURL;
-                const nameRegex = new RegExp(`\\b${Name}\\b`, 'gi');
-                let match;
-                while ((match = nameRegex.exec(contentText)) !== null) {
-                  if (currentIndex > match.index) {
-                    currentIndex = match.index + match[0].length;
-                    continue;
-                  }
-                  const nonLinkText = contentText.substring(currentIndex, match.index);
-                  const linkText = match[0].toLowerCase();
-                  if (matchedTexts.has(linkText)) {
-                    const remainingText = contentText.substring(lastMatchedIndexes[row - 1], match.index);
-                    const remainingTextNode = document.createTextNode(remainingText);
-                    linkContainer.appendChild(remainingTextNode);
-                    currentIndex = match.index + match[0].length;
-                    continue;
-                  }
-                  const linkElement = document.createElement('a');
-                  linkElement.href = URL;
-                  linkElement.classList.add('AbxLink');
-                  linkElement.target = '_blank';
-                  linkElement.textContent = match[0];
-                  const nonLinkTextNode = document.createTextNode(nonLinkText);
-                  linkContainer.appendChild(nonLinkTextNode);
-                  linkContainer.appendChild(linkElement);
-                  matchedTexts.add(linkText);
-                  lastMatchedIndexes[row - 1] = match.index + match[0].length;
-                  currentIndex = match.index + match[0].length;
-                }
-              });
-              if (currentIndex < contentText.length) {
-                const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
-                const remainingTextNode = document.createTextNode(remainingText);
-                linkContainer.appendChild(remainingTextNode);
-              }
-              cellContentElement.appendChild(linkContainer);
-            } else {
-              cellContentElement.textContent = contentText;
-            }
-          }
-
+//
+//
           if (Item && !Item.startsWith(MenuPrefix)) {
           /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
               const clickableSymbol = document.createElement('a');
