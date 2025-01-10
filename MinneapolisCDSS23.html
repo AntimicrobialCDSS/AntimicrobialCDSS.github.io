@@ -928,11 +928,13 @@ async function findMatches(matchingItem) {
                 const wordProcessingField = item[`WordProcessing${i}`];
                 // Check if the field exists and contains text
                 if (wordProcessingField && wordProcessingField.trim() !== '') {
+                    console.log(`Checking WordProcessing${i}: ${wordProcessingField}`);
                     // Check for matches with txml names using wildcards
                     const matchesInTxml = txmlData.fields.filter(field => new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(wordProcessingField));
                     if (matchesInTxml.length > 0) {
                         // If matches are found, add them to the itemMatches array
                         matchesInTxml.forEach(match => {
+                            console.log(`Match found: ${match.name} with URL: ${match.url}`);
                             itemMatches.push({
                                 txmlName: match.name,
                                 txmlURL: match.url,
@@ -944,6 +946,8 @@ async function findMatches(matchingItem) {
                                 urls.push(match.url);
                             }
                         });
+                    } else {
+                        console.log(`No matches found for WordProcessing${i}`);
                     }
                 }
             }
@@ -951,12 +955,18 @@ async function findMatches(matchingItem) {
             // Add all matches for the current ODJSON item to the main matches array
             matches.push(...itemMatches);
 
+            // Debugging: Log the itemMatches array
+            console.log("Item matches:", itemMatches);
+
             // If multiple URLs are found, create a popup
             if (urls.length > 0) {
                 const popupContent = itemMatches
                     .filter(match => match.txmlURL && match.txmlDefaultText)
                     .map(match => `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText}</a>`)
                     .join('<br>');
+
+                // Debugging: Log the popup content
+                console.log("Popup content:", popupContent);
 
                 // Close the current popup window if it exists
                 if (currentPopupWindow && !currentPopupWindow.closed) {
