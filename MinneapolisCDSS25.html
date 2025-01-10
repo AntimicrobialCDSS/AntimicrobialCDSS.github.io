@@ -903,98 +903,72 @@ async function handleRowClick(item, ClickSymbol) {
 
 // Function to find matches between txml names and ODJSON text fields
 // Declare the variable globally to ensure it's only declared once
-let currentPopupWindow = null;
+let currentDropdown = null;
 
 async function findMatches(matchingItem) {
     try {
         const txmlData = await fetchAndParseXML(txmlFile);
         const odData = await fetchODData();
 
-        // Initialize an array to store matches
         const matches = [];
 
-        // Filter ODJSON data to include only items with matching names
         const filteredODData = odData.filter(odItem =>
             odItem.Name.trim().toLowerCase() === matchingItem.Name.trim().toLowerCase()
         );
 
-        // Loop through each filtered item in the ODJSON data
         for (const item of filteredODData) {
-            // Initialize arrays to store matches and URLs for the current ODJSON item
             const itemMatches = [];
             const urls = [];
 
-            // Loop through each field to search for matches
-            for (let i = 1; i <= 20; i++) { // Updated to check up to WordProcessing20
+            for (let i = 1; i <= 20; i++) {
                 const wordProcessingField = item[`WordProcessing${i}`];
-                // Check if the field exists and contains text
                 if (wordProcessingField && wordProcessingField.trim() !== '') {
-                    console.log(`Checking WordProcessing${i}: ${wordProcessingField}`);
-                    // Check for matches with txml names using wildcards
                     const matchesInTxml = txmlData.fields.filter(field => new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(wordProcessingField));
                     if (matchesInTxml.length > 0) {
-                        // If matches are found, add them to the itemMatches array
                         matchesInTxml.forEach(match => {
-                            console.log(`Match found: ${match.name} with URL: ${match.url}`);
                             itemMatches.push({
                                 txmlName: match.name,
                                 txmlURL: match.url,
                                 txmlDefaultText: match.defaultText,
                                 odItem: item
                             });
-                            // If the match has a URL, add it to the URLs array
                             if (match.url) {
                                 urls.push(match.url);
                             }
                         });
-                    } else {
-                        console.log(`No matches found for WordProcessing${i}`);
                     }
                 }
             }
 
-            // Add all matches for the current ODJSON item to the main matches array
             matches.push(...itemMatches);
 
-            // Debugging: Log the itemMatches array
-            console.log("Item matches:", itemMatches);
+            if (urls.length > 0) {
+                const dropdownContent = itemMatches
+                    .filter(match => match.txmlURL)
+                    .map(match => `<option value="${match.txmlURL}">${match.txmlDefaultText || match.txmlName}</option>`)
+                    .join('');
 
-            // Create popup content including WordProcessing fields and URLs
-            const popupContent = itemMatches.length > 0
-                ? itemMatches.map(match => {
-                    const link = match.txmlURL ? `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText || match.txmlName}</a>` : match.txmlName;
-                    return `${link} - ${match.odItem.Name}`;
-                }).join('<br>')
-                : filteredODData.map(odItem => {
-                    let content = `<strong>${odItem.Name}</strong><br>`;
-                    for (let i = 1; i <= 20; i++) {
-                        const wordProcessingField = odItem[`WordProcessing${i}`];
-                        if (wordProcessingField && wordProcessingField.trim() !== '') {
-                            content += `WordProcessing${i}: ${wordProcessingField}<br>`;
-                        }
-                    }
-                    return content;
-                }).join('<br>');
+                if (currentDropdown) {
+                    currentDropdown.remove();
+                }
 
-            // Debugging: Log the popup content
-            console.log("Popup content:", popupContent);
+                currentDropdown = document.createElement('select');
+                currentDropdown.innerHTML = dropdownContent;
+                currentDropdown.addEventListener('change', (event) => {
+                    window.open(event.target.value, '_blank');
+                });
 
-            // Close the current popup window if it exists
-            if (currentPopupWindow && !currentPopupWindow.closed) {
-                currentPopupWindow.close();
+                document.body.appendChild(currentDropdown);
             }
-
-            // Open a new popup window and store the reference
-            currentPopupWindow = window.open("", "popupWindow", "width=600,height=400,scrollbars=yes");
-            currentPopupWindow.document.write(`<html><head><title>Matching URLs</title></head><body>${popupContent}</body></html>`);
         }
 
         return matches;
     } catch (error) {
         console.error("Error finding matches:", error);
-        return []; // Return an empty array if an error occurs
+        return [];
     }
 }
+  
 async function fetchAndParseXML(txmlFile) {
     try {
         const response = await fetch(txmlFile);
@@ -1520,4 +1494,5 @@ if ('serviceWorker' in navigator) {
         });
 </script>
 </body>
+</html>
 </html>
