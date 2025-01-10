@@ -904,6 +904,8 @@ async function handleRowClick(item, ClickSymbol) {
 // Function to find matches between txml names and ODJSON text fields
 let currentPopupWindow = null; // Variable to store the reference to the current popup window
 
+let currentPopupWindow = null; // Variable to store the reference to the current popup window
+
 async function findMatches(matchingItem) {
     try {
         const txmlData = await fetchAndParseXML(txmlFile);
@@ -961,8 +963,8 @@ async function findMatches(matchingItem) {
             // If multiple URLs are found, create a popup
             if (urls.length > 0) {
                 const popupContent = itemMatches
-                    .filter(match => match.txmlURL && match.txmlDefaultText)
-                    .map(match => `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText}</a>`)
+                    .filter(match => match.txmlURL) // Ensure only matches with URLs are included
+                    .map(match => `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText || match.txmlName}</a>`)
                     .join('<br>');
 
                 // Debugging: Log the popup content
