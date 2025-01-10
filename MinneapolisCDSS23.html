@@ -902,9 +902,8 @@ async function handleRowClick(item, ClickSymbol) {
 
 
 // Function to find matches between txml names and ODJSON text fields
-let currentPopupWindow = null; // Variable to store the reference to the current popup window
-
-let currentPopupWindow = null; // Variable to store the reference to the current popup window
+// Declare the variable globally to ensure it's only declared once
+let currentPopupWindow = null;
 
 async function findMatches(matchingItem) {
     try {
