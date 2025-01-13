@@ -962,9 +962,7 @@ async function findMatches(matchingItem) {
                       //createODTable(item)
                       console.log(`No matches found for WordProcessing${i}`);
                     }
-                } else {
-                  createODTable(item)
-                }
+                } 
             }
 
             // Add all matches for the current ODJSON item to the main matches array
@@ -993,6 +991,9 @@ async function findMatches(matchingItem) {
                     newTab.document.write(`<html><head><title>Select CDSS Link</title></head><body>Multiple links in CDSS order dialog. Select one below to open.<br>${popupContent}</body></html>`);
                 }
             }
+                else {
+                  createODTable(item)
+                }
         }
 
         return matches;
