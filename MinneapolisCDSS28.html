@@ -957,11 +957,13 @@ async function findMatches(matchingItem) {
                                 urls.push(match.url);
                             }
                         });
-                    } //else {
+                    } else {
                       //matchingItem = selectedItem
                       //createODTable(item)
-                      //console.log(`No matches found for WordProcessing${i}`);
-                    //}
+                      console.log(`No matches found for WordProcessing${i}`);
+                    }
+                } else {
+                  createODTable(item)
                 }
             }
 
