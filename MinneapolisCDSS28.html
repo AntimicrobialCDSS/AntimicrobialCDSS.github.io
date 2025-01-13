@@ -15,7 +15,7 @@
   var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
   var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
-  var homeButton = 'https://antimicrobialcdss.github.io/'; /*Only important to CDSS program functions, home URL*/
+  var homeButtonUrl = 'https://antimicrobialcdss.github.io/'; /*Only important to CDSS program functions, home URL*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
   const OMjson = 'MinneapolisOMJSON.json'; /*Name of OMJSON file*/
   const ODjson = 'MinneapolisODJSON.json'; /*Name of ODJSOM file*/
@@ -291,9 +291,9 @@
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
   <button id="install-button" style="display: none";>Install App</button>
-<button id="homeButton" onclick=homeButton>
-    &#9650;
-</button>
+  <button id="homeButton">
+      &#9650;
+  </button>
 </div>
     <div class ="search-container">
         <input type="text" id="searchInput" placeholder=&#x1F50D;>
@@ -460,7 +460,6 @@ document.getElementById('versionTag').textContent = Version;
 document.getElementById('pageTitle').textContent = Title;
 document.getElementById('mainMenuButton').textContent = MainMenuButton;
 document.getElementById('indexButton').textContent = IndexButton;
-//document.getElementById('homeButton').textContent = homeButton;
   
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
@@ -1443,7 +1442,10 @@ window.addEventListener('DOMContentLoaded', adjustFontSize);
 document.getElementById('searchInput').addEventListener('input', searchData);
 document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
-document.addEventListener('DOMContentLoaded', () => {
+document.getElementById('homeButton').addEventListener('click', function() {
+    window.location.href = homeButtonUrl;
+});
+  document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('menusLink').setAttribute('href', OMjson);
       document.getElementById('menusLink').setAttribute('download', OMjson);
 
