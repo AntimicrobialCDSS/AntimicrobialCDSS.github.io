@@ -528,7 +528,7 @@ function searchData() {
       let closestMatchingTerm = '';
       let sortTerm = '';
       const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
-      const Term1 = item.Term1.trim();
+      const Term1 = item.Term1 ? item.Term1.trim() : '';
       
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
