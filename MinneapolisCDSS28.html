@@ -15,7 +15,7 @@
   var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
   var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
-  var homeButton = 'CDSS'; /*Only important to CDSS program functions, can be left as it for other systems*/
+  var homeButton = 'https://antimicrobialcdss.github.io/'; /*Only important to CDSS program functions, home URL*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
   const OMjson = 'MinneapolisOMJSON.json'; /*Name of OMJSON file*/
   const ODjson = 'MinneapolisODJSON.json'; /*Name of ODJSOM file*/
@@ -291,7 +291,7 @@
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
   <button id="install-button" style="display: none";>Install App</button>
-<button id="homeButton" onclick="window.location.href='https://antimicrobialcdss.github.io/'">
+<button id="homeButton" onclick=homeButton>
     &#9650;
 </button>
 </div>
