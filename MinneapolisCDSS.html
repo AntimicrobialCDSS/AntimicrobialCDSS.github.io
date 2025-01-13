@@ -15,6 +15,7 @@
   var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
   var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
+  var homeButtonUrl = 'https://antimicrobialcdss.github.io/'; /*Only important to CDSS program functions, home URL*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
   const OMjson = 'MinneapolisOMJSON.json'; /*Name of OMJSON file*/
   const ODjson = 'MinneapolisODJSON.json'; /*Name of ODJSOM file*/
@@ -26,7 +27,8 @@
   var hideButtonsDownloads = 'False'; /*buttons to allow user to download json and txml files*/
   var hideButtonsVersions = 'False';/*mark as true for non-CDSS systems*/
   var hideButtonsIndex = 'False';/*mark as true for non-CDSS systems*/
-  var Version = 'V1.07'; /*Text at the bottom of the menu, change to whatever you want*/
+  var hideButtonsHome = 'False';/*mark as true for non-CDSS systems*/
+  var Version = 'V1.09'; /*Text at the bottom of the menu, change to whatever you want*/
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -209,7 +211,7 @@
   .search-container{
     flex-basis: 100%;
     align-items: Left;
-    max-width: 330px; 
+    max-width: 375px; 
     margin-bottom: 10px;
     margin-right: 10px;
     margin-left: 10px;
@@ -217,7 +219,7 @@
   .dropbox-container{
     display: flex;
     align-items: Left;
-    max-width: 300px; 
+    max-width: 375px; 
   } 
 .CDSSLogo {
   width: 200px; /* Set the maximum width for the image */
@@ -233,7 +235,8 @@
 #mainMenuButton,
 #indexButton,
 #goForwardButton,
-#install-button {
+#install-button,
+#homeButton  {
   font-family: 'PT Serif Regular', Arial, sans-serif;
   background-color: transparent; /* Make the background transparent */
   border: none; /* Remove the border */
@@ -251,7 +254,8 @@
 #mainMenuButton:hover,
 #indexButton:hover,
 #goForwardButton:hover,
-#install-button:hover {
+#install-button:hover,
+#homeButton:hover  {
   background-color: #4db8ff; /* lighter shade of blue */
 }
   #filterDropdown {
@@ -262,15 +266,15 @@
     position: absolute;
     top: 100%;
     display: none; 
-    max-height: 300px;  
-    max-width: 300px;
+    max-height: 500px;  
+    max-width: 375px;
     overflow-y: auto; 
     }
   #searchInput {
     font-family: 'PT Serif Regular', Arial, sans-serif;
     width: 100%;
     text-align: left;
-    max-width: 300px;
+    max-width: 375px;
     font-size: 14px;
     font-family: "Times New Roman", serif;
   }
@@ -287,6 +291,9 @@
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
   <button id="install-button" style="display: none";>Install App</button>
+  <button id="homeButton">
+      &#9650;
+  </button>
 </div>
     <div class ="search-container">
         <input type="text" id="searchInput" placeholder=&#x1F50D;>
@@ -432,6 +439,9 @@ if (CDSSlocation === 'Sioux Falls') {
 if (hideButtonsIndex === 'True') {
   {document.getElementById("indexButton").style.display="none";};
 }
+if (hideButtonsHome === 'True') {
+  {document.getElementById("homeButton").style.display="none";};
+}
   
 // Function to hide or remove buttons based on the value of hideButtons
 if (hideButtonsDownloads === 'True') {
@@ -517,7 +527,7 @@ function searchData() {
       let closestMatchingTerm = '';
       let sortTerm = '';
       const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
-      const Term1 = item.Term1;
+      const Term1 = item.Term1 ? item.Term1.trim() : '';
       
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
@@ -797,21 +807,16 @@ function createOMTable(selectedData) {
               cellContentElement.textContent = contentText;
             }
           }
-
+          
           if (Item && !Item.startsWith(MenuPrefix)) {
           /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
-              const matchingODItem = odData.find(
-                odItem => odItem.Name.trim().toLowerCase() === Item.trim().toLowerCase()
-                );
-              if (matchingODItem) {
-                const clickableSymbol = document.createElement('a');
-                clickableSymbol.textContent = " \u24d8";
-                clickableSymbol.classList.add('clickable');
-                clickableSymbol.addEventListener('click', () => {
-                    handleRowClick(matchingItem, true);
-                });
-                cellContentElement.appendChild(clickableSymbol);
-              }
+              const clickableSymbol = document.createElement('a');
+              clickableSymbol.textContent = " \u24d8";
+              clickableSymbol.classList.add('clickable');
+              clickableSymbol.addEventListener('click', () => {
+                  handleRowClick(matchingItem, true);
+              });
+              cellContentElement.appendChild(clickableSymbol);
           }
 
           
@@ -907,6 +912,8 @@ async function handleRowClick(item, ClickSymbol) {
 
 
 // Function to find matches between txml names and ODJSON text fields
+// Declare the variable globally to ensure it's only declared once
+let currentPopupWindow = null;
 async function findMatches(matchingItem) {
     try {
         const txmlData = await fetchAndParseXML(txmlFile);
@@ -927,15 +934,17 @@ async function findMatches(matchingItem) {
             const urls = [];
 
             // Loop through each field to search for matches
-            for (let i = 1; i <= 6; i++) {
+            for (let i = 1; i <= 20; i++) { // Updated to check up to WordProcessing20
                 const wordProcessingField = item[`WordProcessing${i}`];
                 // Check if the field exists and contains text
                 if (wordProcessingField && wordProcessingField.trim() !== '') {
+                    console.log(`Checking WordProcessing${i}: ${wordProcessingField}`);
                     // Check for matches with txml names using wildcards
                     const matchesInTxml = txmlData.fields.filter(field => new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(wordProcessingField));
                     if (matchesInTxml.length > 0) {
                         // If matches are found, add them to the itemMatches array
                         matchesInTxml.forEach(match => {
+                            console.log(`Match found: ${match.name} with URL: ${match.url}`);
                             itemMatches.push({
                                 txmlName: match.name,
                                 txmlURL: match.url,
@@ -947,25 +956,44 @@ async function findMatches(matchingItem) {
                                 urls.push(match.url);
                             }
                         });
+                    } else {
+                      //matchingItem = selectedItem
+                      //createODTable(item)
+                      console.log(`No matches found for WordProcessing${i}`);
                     }
-                }
+                } 
             }
 
             // Add all matches for the current ODJSON item to the main matches array
             matches.push(...itemMatches);
 
-            // Handle opening URLs based on the number of URLs found
-            urls.forEach(url => {
-                window.open(url);
-            });
+            // Debugging: Log the itemMatches array
+            console.log("Item matches:", itemMatches);
 
-            // If multiple URLs are found, create a popup
-            if (urls.length > 1) {
-                const popupContent = itemMatches
-                    .filter(match => match.txmlURL && match.txmlDefaultText)
-                    .map(match => `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText}</a>`)
-                    .join('<br>');
+            // If URLs are found, handle them based on the number of URLs
+            if (urls.length > 0) {
+                if (urls.length === 1) {
+                    // If only one URL is found, open it directly in a new tab
+                    window.open(urls[0], '_blank');
+                } else {
+                    // If multiple URLs are found, create a new tab with the links
+                    const popupContent = itemMatches
+                        .filter(match => match.txmlURL) // Ensure only matches with URLs are included
+                        .map(match => `<a href="${match.txmlURL}" target="_self">${match.txmlDefaultText || match.txmlName}</a>`)
+                        .join('<br>');
+
+                    // Debugging: Log the popup content
+                    console.log("Popup content:", popupContent);
+
+                    // Open a new tab and write the content
+                    const newTab = window.open("", "_blank");
+                    newTab.document.write(`<html><head><title>Select CDSS Link</title></head><body>Multiple links in CDSS order dialog. Select one below to open.<br>${popupContent}</body></html>`);
+                }
             }
+                else {
+                  createODTable(item)
+                  pushHistory(item.Name)
+                }
         }
 
         return matches;
@@ -974,7 +1002,7 @@ async function findMatches(matchingItem) {
         return []; // Return an empty array if an error occurs
     }
 }
-
+  
 async function fetchAndParseXML(txmlFile) {
     try {
         const response = await fetch(txmlFile);
@@ -1316,7 +1344,19 @@ function handleIndex() {
   scrollToTop();    
   adjustFontSize();
   }
-
+ 
+  // Function to handle the Index button click event
+function handleIndex() {
+  const dropdown = document.getElementById('filterDropdown');
+  document.getElementById('searchInput').value = null;
+  document.getElementById('searchInput').placeholder = "\u{1F50D}";
+  populateDropdown(omData);
+  dropdown.value = Index;
+  filterData({ target: dropdown });
+  scrollToTop();    
+  adjustFontSize();
+  }
+  
   // Function to handle the Download JSON button click event
   function handleDownloadJSON() {
     const displayText = selectedData.DisplayText || selectedData.Name;
@@ -1402,7 +1442,10 @@ window.addEventListener('DOMContentLoaded', adjustFontSize);
 document.getElementById('searchInput').addEventListener('input', searchData);
 document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
-document.addEventListener('DOMContentLoaded', () => {
+document.getElementById('homeButton').addEventListener('click', function() {
+    window.location.href = homeButtonUrl;
+});
+  document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('menusLink').setAttribute('href', OMjson);
       document.getElementById('menusLink').setAttribute('download', OMjson);
 
