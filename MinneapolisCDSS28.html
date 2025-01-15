@@ -594,7 +594,7 @@ function searchData() {
     filteredData.forEach(item => {
       const option = document.createElement('option');
       option.value = item.Name;
-      option.textContent = item.sortTerm + item.relevanceScore;
+      option.textContent = item.sortTerm; //+ item.relevanceScore;
       dropdown.appendChild(option);
     });
 
