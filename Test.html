@@ -1384,16 +1384,16 @@ function handleOutpt(selecteddata) {
   document.getElementById('searchInput').placeholder = "\u{1F50D}";
   populateDropdown(omData);
 
-  if (!selecteddata.Outpt || selecteddata.Outpt.trim() === "") {
-    const userResponse = confirm("404\nMenu not found. Go to Outpatient Main Menu?");
-    if (userResponse) {
-      dropdown.value = "ORZID3 GMENU ABX OUTPT MAIN";
-    }
-  } else {
+  //if (!selecteddata.Outpt || selecteddata.Outpt.trim() === "") {
+  //  const userResponse = confirm("404\nMenu not found. Go to Outpatient Main Menu?");
+  //  if (userResponse) {
+   //   dropdown.value = "ORZID3 GMENU ABX OUTPT MAIN";
+   // }
+  //} else {
     dropdown.value = omData.find(
       omItem => omItem.trim().toLowerCase() === selecteddata.Outpt.trim().toLowerCase()
     );
-  }
+  //}
 
   filterData({ target: dropdown });
   scrollToTop();
