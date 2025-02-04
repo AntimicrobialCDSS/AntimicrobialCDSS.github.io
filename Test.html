@@ -499,6 +499,9 @@ document.getElementById('indexButton').textContent = IndexButton;
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
+
+  const itemsWithoutTerms = [];
+
   omData.forEach(item => {
     const terms = [];
     // Check for "Term1" through "Term99" in the item
@@ -508,15 +511,11 @@ function populateDropdown(omData) {
         terms.push(item[termKey]);
       }
     }
-    // If there are no terms for item and item.name starts with MenuPrefix
-    //if (terms.length === 0 && item.Name.startsWith(SearchMenuPrefix)) {
-      // Use displayText if not blank, else use item.name
-    //  const displayText = item.DisplayText || item.Name;
-    //  const option = document.createElement('option');
-    //  option.value = item.Name;
-    //  option.textContent = displayText;
-    //  dropdown.appendChild(option);
-    //} else {
+
+    if (terms.length === 0) {
+      // Collect items without terms to add them later
+      itemsWithoutTerms.push(item);
+    } else {
       // Create separate dropdown options for each "Term" value
       terms.forEach(term => {
         const option = document.createElement('option');
@@ -524,25 +523,19 @@ function populateDropdown(omData) {
         option.textContent = term;
         dropdown.appendChild(option);
       });
-   // }
+    }
   });
-  // Count the number of matches after the dropdown is populated
-  //const matchCount = dropdown.length;
-  //const firstLine = document.createElement('option');
-  //if (matchCount === 0) {
-    // If there are no matches, create an option with red text
-  //  firstLine.textContent = 'No Matches';
-  //  firstLine.style.color = 'red'; // Set the text color to red
-  //} else {
-    // If there are matches, create an option for the match count with green text
-  //  firstLine.textContent = `Matches: ${matchCount}`;
-  //  firstLine.style.color = 'green'; // Set the text color to green
-  //}
-  //firstLine.disabled = true;
-  //firstLine.selected = true;
-  //dropdown.insertBefore(firstLine, dropdown.firstChild);
-  dropdown.scrollTop = 0;
-}
+
+  // Add items without terms at the end and make them invisible
+  itemsWithoutTerms.forEach(item => {
+    const option = document.createElement('option');
+    option.value = item.Name;
+    option.textContent = item.DisplayText || item.Name;
+    option.style.display = 'none'; // Make the option invisible
+    dropdown.appendChild(option);
+  });
+
+  drop
 
 // Function to search and sort data based on the input
 function searchData() {
@@ -1384,14 +1377,14 @@ function handleIndex() {
  const dropdown = document.getElementById('filterDropdown');
  document.getElementById('searchInput').value = null;
  document.getElementById('searchInput').placeholder = "\u{1F50D}";
-	populateDropdown(omData);
-  dropdown.value = selectedData.Outpt
+ populateDropdown(omData);
+ dropdown.value = selectedData.Outpt
 	  //= omData.find(
         //omItem => omItem.trim().toLowerCase() === item.Outpt.trim().toLowerCase()
     //);
-  filterData({ target: dropdown });
-  scrollToTop();    
-  adjustFontSize();
+ filterData({ target: dropdown });
+ scrollToTop();    
+ adjustFontSize();
   }
 	
   // Function to handle the Download JSON button click event
