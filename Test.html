@@ -522,6 +522,7 @@ function populateDropdown(omData) {
         option.value = item.Name;
         option.textContent = term;
         dropdown.appendChild(option);
+        console.log(`Added term option: ${term}`);
       });
     }
   });
@@ -531,12 +532,16 @@ function populateDropdown(omData) {
     const option = document.createElement('option');
     option.value = item.Name;
     option.textContent = item.DisplayText || item.Name;
+	  
     option.style.display = 'none'; // Make the option invisible
     dropdown.appendChild(option);
+    console.log(`Added invisible option: ${option.textContent}`);
   });
 
-  drop
-
+  dropdown.scrollTop = 0;
+  console.log('Dropdown population complete');
+}
+	
 // Function to search and sort data based on the input
 function searchData() {
   const searchInput = document.getElementById('searchInput');
