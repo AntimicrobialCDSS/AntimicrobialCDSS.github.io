@@ -191,6 +191,16 @@
   justify-content: flex-start;
 }
     
+.buttons-container2 {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-left: 70px; 
+  display: flex;
+  align-items: flex-start; 
+  gap: 50px;
+  justify-content: flex-start;
+}
+    
 .buttons-containerDownloads,
 .buttons-containerVersions,
 .buttons-containerMenuJson {
@@ -231,6 +241,22 @@
   height: auto;
   float: Left; /* Float the image to the right */
 }
+
+#inptButton,
+#outptButton,
+#educButton   {
+  font-family: 'PT Serif Regular', Arial, sans-serif;
+  background-color: transparent; /* Make the background transparent */
+  border: none; /* Remove the border */
+  border-radius: 10px; /* Adjust border-radius for rounded corners */
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  color: white;
+  padding: 5px 5px; /* Adjust the values to your desired padding */
+}
+
 #goBackButton,
 #mainMenuButton,
 #indexButton,
@@ -246,7 +272,7 @@
   font-size: 20px;
   cursor: pointer;
   color: white;
-  padding: 5px 5px; /* Adjust the values to your desired padding */
+  padding: 5px 5px;
 }
 
 /* Add a darker shade of blue on hover */
@@ -255,7 +281,11 @@
 #indexButton:hover,
 #goForwardButton:hover,
 #install-button:hover,
-#homeButton:hover  {
+#homeButton:hover,
+#inptButton:hover,
+#outptButton:hover,
+#educButton:hover 
+{
   background-color: #4db8ff; /* lighter shade of blue */
 }
   #filterDropdown {
@@ -284,24 +314,29 @@
   </style>
 </head>
 <body>
-  <div id="header">
-<div class="buttons-container">
-  <button id="goBackButton">&#9664;</button>
-  <button id="mainMenuButton">Minneapolis Home</button>
-  <button id="indexButton">Index</button>
-  <button id="goForwardButton">&#9654;</button>
-  <button id="install-button" style="display: none";>Install App</button>
-  <button id="homeButton">
-      &#9650;
-  </button>
-</div>
+	<div id="header">
+		<div class="buttons-container">
+  		<button id="goBackButton">&#9664;</button>
+      	<button id="mainMenuButton">Minneapolis Home</button>
+      	<button id="indexButton">Index</button>
+      	<button id="goForwardButton">&#9654;</button>
+      	<button id="install-button" style="display: none";>Install App</button>
+      	<button id="homeButton">
+        	 &#9650;
+		</button>
+	</div>
     <div class ="search-container">
         <input type="text" id="searchInput" placeholder=&#x1F50D;>
     </div>
     <div class ="dropbox-container">
         <select id="filterDropdown"></select>
     </div>
-  </div>
+   	<div class="buttons-container2">
+    	<button id="inptButton">Inpatient</button>
+    	<button id="outptButton">Outpatient</button>
+    	<button id="educButton">ED/UC</button>
+  	</div>
+</div>
  <table class="table">
   <div id="resultContainer"></div>
 </table>
