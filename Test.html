@@ -1379,7 +1379,7 @@ function handleIndex() {
   scrollToTop();    
   adjustFontSize();
   }
-
+// Function to handle the OutPt button click event
 function handleOutpt() {
   const dropdown = document.getElementById('filterDropdown');
   document.getElementById('searchInput').value = null;
@@ -1397,18 +1397,6 @@ function handleOutpt() {
         omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
     );
 	
-  // Function to handle the Index button click event
-function handleIndex() {
-  const dropdown = document.getElementById('filterDropdown');
-  document.getElementById('searchInput').value = null;
-  document.getElementById('searchInput').placeholder = "\u{1F50D}";
-  populateDropdown(omData);
-  dropdown.value = Index;
-  filterData({ target: dropdown });
-  scrollToTop();    
-  adjustFontSize();
-  }
-  
   // Function to handle the Download JSON button click event
   function handleDownloadJSON() {
     const displayText = selectedData.DisplayText || selectedData.Name;
@@ -1488,6 +1476,7 @@ document.getElementById('goBackButton').addEventListener('click', handleGoBack);
 document.getElementById('goForwardButton').addEventListener('click', handleGoForward);
 document.getElementById('mainMenuButton').addEventListener('click', handleMainMenu);
 document.getElementById('indexButton').addEventListener('click', handleIndex);
+document.getElementById('outptButton').addEventListener('click', handleOutpt);
 document.getElementById('filterDropdown').addEventListener('change', filterData);
 window.addEventListener('resize', adjustFontSize);
 window.addEventListener('DOMContentLoaded', adjustFontSize);
