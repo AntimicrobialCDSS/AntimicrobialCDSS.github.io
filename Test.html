@@ -1385,9 +1385,10 @@ function handleIndex() {
  document.getElementById('searchInput').value = null;
  document.getElementById('searchInput').placeholder = "\u{1F50D}";
 	populateDropdown(omData);
-  dropdown.value = omData.find(
-        omItem => omItem.trim().toLowerCase() === item.Outpt.trim().toLowerCase()
-    );
+  dropdown.value = selectedData.Outpt
+	  //= omData.find(
+        //omItem => omItem.trim().toLowerCase() === item.Outpt.trim().toLowerCase()
+    //);
   filterData({ target: dropdown });
   scrollToTop();    
   adjustFontSize();
