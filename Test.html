@@ -1390,9 +1390,7 @@ function handleOutpt(selecteddata) {
    //   dropdown.value = "ORZID3 GMENU ABX OUTPT MAIN";
    // }
   //} else {
-    dropdown.value = omData.find(
-      omItem => omItem.trim().toLowerCase() === selecteddata.Outpt.trim().toLowerCase()
-    );
+    dropdown.value = selecteddata.Outpt 
   //}
 
   filterData({ target: dropdown });
