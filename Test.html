@@ -1393,10 +1393,6 @@ function handleOutpt() {
   adjustFontSize();
   }
 	
-	    const matchingItem = omData.find(
-        omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
-    );
-	
   // Function to handle the Download JSON button click event
   function handleDownloadJSON() {
     const displayText = selectedData.DisplayText || selectedData.Name;
@@ -1410,31 +1406,7 @@ function handleOutpt() {
     element.click();
     document.body.removeChild(element);
     }
-  
-  // Function to handle the Download JSON button click event
-  function handleDownloadOMJSON() {
-    const data = JSON.stringify(omData, null, 2);
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-    element.setAttribute('download', OMjson);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-    }
-
-  // Function to handle the Download JSON button click event
-  function handleDownloadODJSON() {
-    const data = JSON.stringify(odData, null, 2);
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-    element.setAttribute('download', ODjson);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-    }
-  
+ 
 // Function to open the dropdown when clicking into the search input
 function openDropdown() {
   const dropdown = document.getElementById('filterDropdown');
