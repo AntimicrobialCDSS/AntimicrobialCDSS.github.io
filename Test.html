@@ -1386,7 +1386,7 @@ function handleIndex() {
  document.getElementById('searchInput').placeholder = "\u{1F50D}";
 	populateDropdown(omData);
   dropdown.value = omData.find(
-        omItem => omItem..trim().toLowerCase() === item.Outpt.trim().toLowerCase()
+        omItem => omItem.trim().toLowerCase() === item.Outpt.trim().toLowerCase()
     );
   filterData({ target: dropdown });
   scrollToTop();    
