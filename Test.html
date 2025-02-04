@@ -10,17 +10,16 @@
   gtag('config', 'G-RZT6D0E0DS');
   </script>
   <script>
-  var Version = 'V1.05'; /*Text at the bottom of the menu, change to whatever you want*/
   var CDSSlocation = 'Minneapolis'; /*Only important to CDSS program functions, can be left as it for other systems*/
   var Title = 'Minneapolis Antimicrobial CDSS'; /*Name of the tab on the website*/
   var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
   var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
+  var homeButtonUrl = 'https://antimicrobialcdss.github.io/'; /*Only important to CDSS program functions, home URL*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
   const OMjson = 'MinneapolisOMJSON.json'; /*Name of OMJSON file*/
   const ODjson = 'MinneapolisODJSON.json'; /*Name of ODJSOM file*/
   const txmlFile = 'Minneapolis.txml'; /*Name of txml file*/
-  const ItemLinkjson = 'MinneapolisItemLinks.json'; /*Name of ItemLinks file*/
   const AbxLinkjson = 'AbxLinks.json'; /*Name of AbxLinks file*/
   const SearchMenuPrefix = 'ORZID2'; /*Order menu prefix to be used in search bar*/
   const MenuPrefix = 'ORZID'; /*Order menu prefix*/
@@ -28,6 +27,8 @@
   var hideButtonsDownloads = 'False'; /*buttons to allow user to download json and txml files*/
   var hideButtonsVersions = 'False';/*mark as true for non-CDSS systems*/
   var hideButtonsIndex = 'False';/*mark as true for non-CDSS systems*/
+  var hideButtonsHome = 'False';/*mark as true for non-CDSS systems*/
+  var Version = 'V1.092'; /*Text at the bottom of the menu, change to whatever you want*/
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -83,7 +84,7 @@
       text-decoration: none; /* Remove underline from links */
       border-radius: 0; /* Square corners */
       display: inline-block; /* Make links behave like buttons */
-      width: 19%; /* Take up 75% of the screen */
+      width: 12%; /* Take up 75% of the screen */
     }
     
     .button:hover {
@@ -105,7 +106,7 @@
       text-decoration: none; /* Remove underline from links */
       border-radius: 0; /* Square corners */
       display: inline-block; /* Make links behave like buttons */
-      width: 22%; /* Take up 75% of the screen */
+      width: 16%; /* Take up 75% of the screen */
     }
     
     .button2:hover {
@@ -193,7 +194,7 @@
 .buttons-containerDownloads,
 .buttons-containerVersions,
 .buttons-containerMenuJson {
-  width: 500px;
+  width: 800px;
   margin-left: 0px; /* Add the desired margin value */
   margin-top: 5px; 
   align-items: flex-start; 
@@ -210,7 +211,7 @@
   .search-container{
     flex-basis: 100%;
     align-items: Left;
-    max-width: 330px; 
+    max-width: 375px; 
     margin-bottom: 10px;
     margin-right: 10px;
     margin-left: 10px;
@@ -218,7 +219,7 @@
   .dropbox-container{
     display: flex;
     align-items: Left;
-    max-width: 300px; 
+    max-width: 375px; 
   } 
 .CDSSLogo {
   width: 200px; /* Set the maximum width for the image */
@@ -234,7 +235,8 @@
 #mainMenuButton,
 #indexButton,
 #goForwardButton,
-#install-button {
+#install-button,
+#homeButton  {
   font-family: 'PT Serif Regular', Arial, sans-serif;
   background-color: transparent; /* Make the background transparent */
   border: none; /* Remove the border */
@@ -252,7 +254,8 @@
 #mainMenuButton:hover,
 #indexButton:hover,
 #goForwardButton:hover,
-#install-button:hover {
+#install-button:hover,
+#homeButton:hover  {
   background-color: #4db8ff; /* lighter shade of blue */
 }
   #filterDropdown {
@@ -263,15 +266,15 @@
     position: absolute;
     top: 100%;
     display: none; 
-    max-height: 300px;  
-    max-width: 300px;
+    max-height: 500px;  
+    max-width: 375px;
     overflow-y: auto; 
     }
   #searchInput {
     font-family: 'PT Serif Regular', Arial, sans-serif;
     width: 100%;
     text-align: left;
-    max-width: 300px;
+    max-width: 375px;
     font-size: 14px;
     font-family: "Times New Roman", serif;
   }
@@ -288,6 +291,9 @@
   <button id="indexButton">Index</button>
   <button id="goForwardButton">&#9654;</button>
   <button id="install-button" style="display: none";>Install App</button>
+  <button id="homeButton">
+      &#9650;
+  </button>
 </div>
     <div class ="search-container">
         <input type="text" id="searchInput" placeholder=&#x1F50D;>
@@ -301,6 +307,7 @@
 </table>
     <div class="buttons-containerVersions">
       <button id="desMoinesButton" class="button">Des Moines</button>
+      <button id="blackHillsButton" class="button">TestBlackHills</button>
       <button id="fargoButton" class="button">Fargo</button>
       <button id="minneapolisButton" class="button">Minneapolis</button>
       <button id="omahaButton" class="button">Omaha</button>
@@ -352,19 +359,19 @@ function adjustFontSize() {
     const columns = row.querySelectorAll('td');
     columns.forEach((column, index) => {
          if(screenWidth<400){
-      column.style.fontSize = '11px';
+      column.style.fontSize = '10px';
       }
         else if ((screenWidth>399)&&(screenWidth<800)){
-       column.style.fontSize = '14px';
+       column.style.fontSize = '13px';
        }
        else if ((screenWidth>799)&&(screenWidth<1200)){
         column.style.fontSize = '16px';
        }
         else if ((screenWidth>1199)&&(screenWidth<1600)){
-        column.style.fontSize = '18px';
+        column.style.fontSize = '19px';
        }
         else if (screenWidth>1599){
-        column.style.fontSize = '20px';
+        column.style.fontSize = '22px';
        }      
     });
   });
@@ -389,12 +396,6 @@ async function fetchODData() {
   return data;
   }
 
-// Fetch ItemLink Data
-async function fetchItemLink() {
-    const response = await fetch(ItemLinkjson);
-    const data = await response.json();
-    return data;
-  }
   // Fetch AbxLink Data
 async function fetchAbxLink() {
   const response = await fetch(AbxLinkjson);
@@ -411,12 +412,14 @@ let selectedData = null; // Currently selected data
 let history = []; // History of selected items
 let forwardHistory = []; // History of forward selections
 let historyIndex = -1; // Index of the current selection in the history
-let itemLinkData = []; // ItemLink data
 let abxLinkData = []; // AbxLink data
 
 // Function to hide location buttons
 if (CDSSlocation === 'Des Moines') {
   {document.getElementById("desMoinesButton").style.display="none";};
+}
+if (CDSSlocation === 'Black Hills') {
+  {document.getElementById("blackHillsButton").style.display="none";};
 }
 if (CDSSlocation === 'Fargo') {
   {document.getElementById("fargoButton").style.display="none";};
@@ -435,6 +438,9 @@ if (CDSSlocation === 'Sioux Falls') {
 }  
 if (hideButtonsIndex === 'True') {
   {document.getElementById("indexButton").style.display="none";};
+}
+if (hideButtonsHome === 'True') {
+  {document.getElementById("homeButton").style.display="none";};
 }
   
 // Function to hide or remove buttons based on the value of hideButtons
@@ -468,14 +474,14 @@ function populateDropdown(omData) {
       }
     }
     // If there are no terms for item and item.name starts with MenuPrefix
-    if (terms.length === 0 && item.Name.startsWith(SearchMenuPrefix)) {
+    //if (terms.length === 0 && item.Name.startsWith(SearchMenuPrefix)) {
       // Use displayText if not blank, else use item.name
-      const displayText = item.DisplayText || item.Name;
-      const option = document.createElement('option');
-      option.value = item.Name;
-      option.textContent = displayText;
-      dropdown.appendChild(option);
-    } else {
+    //  const displayText = item.DisplayText || item.Name;
+    //  const option = document.createElement('option');
+    //  option.value = item.Name;
+    //  option.textContent = displayText;
+    //  dropdown.appendChild(option);
+    //} else {
       // Create separate dropdown options for each "Term" value
       terms.forEach(term => {
         const option = document.createElement('option');
@@ -483,23 +489,24 @@ function populateDropdown(omData) {
         option.textContent = term;
         dropdown.appendChild(option);
       });
-    }
+   // }
   });
   // Count the number of matches after the dropdown is populated
-  const matchCount = dropdown.length;
-  const firstLine = document.createElement('option');
-  if (matchCount === 0) {
+  //const matchCount = dropdown.length;
+  //const firstLine = document.createElement('option');
+  //if (matchCount === 0) {
     // If there are no matches, create an option with red text
-    firstLine.textContent = 'No Matches';
-    firstLine.style.color = 'red'; // Set the text color to red
-  } else {
+  //  firstLine.textContent = 'No Matches';
+  //  firstLine.style.color = 'red'; // Set the text color to red
+  //} else {
     // If there are matches, create an option for the match count with green text
-    firstLine.textContent = `Matches: ${matchCount}`;
-    firstLine.style.color = 'green'; // Set the text color to green
-  }
-  firstLine.disabled = true;
-  firstLine.selected = true;
-  dropdown.insertBefore(firstLine, dropdown.firstChild);
+  //  firstLine.textContent = `Matches: ${matchCount}`;
+  //  firstLine.style.color = 'green'; // Set the text color to green
+  //}
+  //firstLine.disabled = true;
+  //firstLine.selected = true;
+  //dropdown.insertBefore(firstLine, dropdown.firstChild);
+  dropdown.scrollTop = 0;
 }
 
 // Function to search and sort data based on the input
@@ -507,65 +514,104 @@ function searchData() {
   const searchInput = document.getElementById('searchInput');
   const dropdown = document.getElementById('filterDropdown');
   const searchText = searchInput.value.trim().toLowerCase();
-  // Check if the search text is empty
+
   if (searchText === '') {
-    // Populate and sort the dropdown with the original data when the search text is blank
     populateDropdown(omData);
     sortDropdownByTerm();
   } else {
-    // Split the search text by space to handle multiple search terms
     const searchTerms = searchText.split(' ');
-    // Filter data based on search text and prioritize items with matches in terms
+
     let filteredData = omData.map(item => {
-      const displayText = item.DisplayText || item.Name;
-      const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
-      const terms = [];
-      // Check for "Term1" through "Term99" in the item and calculate relevance score
       let relevanceScore = 0;
+      let matchingTerm = ''
+      let closestMatchingTerm = '';
+      let sortTerm = '';
+      const contentTexts = (item.Contents || []).map(content => content.Text ? content.Text.toLowerCase() : '').filter(Boolean);
+      const Term1 = item.Term1 ? item.Term1.trim() : '';
+      
       for (let i = 1; i <= 99; i++) {
         const termKey = `Term${i}`;
         if (item[termKey]) {
-          const termText = item[termKey].toLowerCase();
-          terms.push(termText);
-          if (termText === searchText) {
-            relevanceScore += 1000; // Increase relevance score for exact term match significantly
-          } else if (termText.includes(searchText)) {
-            relevanceScore += 100; // Increase relevance score if search text is found in terms
+          const termText = item[termKey].trim();
+          const termTextLower = termText.toLowerCase();
+
+          // Check for exact match with the entire searchText
+          if (termTextLower === searchText) {
+            relevanceScore += 10000;
+            matchingTerm = termText;
+          } else {
+            searchTerms.forEach(term => {
+              if (termTextLower === term) {
+                relevanceScore += 1000;
+                if (!closestMatchingTerm || termText.length < closestMatchingTerm.length) {
+                  closestMatchingTerm = termText;
+                }
+              } else if (termTextLower.includes(term)) {
+                relevanceScore += 100;
+                if (!closestMatchingTerm || 
+                    termTextLower.indexOf(term) < closestMatchingTerm.toLowerCase().indexOf(term) || 
+                    (termTextLower.indexOf(term) === closestMatchingTerm.toLowerCase().indexOf(term) && termText.length < closestMatchingTerm.length) ||
+                    (termTextLower.startsWith(searchText) && !closestMatchingTerm.toLowerCase().startsWith(searchText))) {
+                  closestMatchingTerm = termText;
+                }
+              }
+
+              contentTexts.forEach(text => {
+                const regex = new RegExp(`\\b${term}\\b`, 'i'); // Match whole words only
+                if (regex.test(text)) {
+                  relevanceScore += 10; // Increase relevance score if search term is found as a whole word in contentTexts
+                }
+                if (text.includes(term)) {
+                  relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
+                }
+              });
+            });
           }
         }
       }
-      // Check if any of the search terms are present in the item's displayText or contentTexts
-      searchTerms.forEach(term => {
-        if (displayText.toLowerCase().includes(term)) {
-          relevanceScore += 50; // Increase relevance score if search term is found in displayText
-        }
-        contentTexts.forEach(text => {
-          if (text.includes(term)) {
-            relevanceScore += 1; // Increase relevance score if search term is found in contentTexts
+
+      if (matchingTerm === "" && closestMatchingTerm === "") {
+        sortTerm = Term1;
+      } else if (matchingTerm === "") {
+        sortTerm = closestMatchingTerm;
+        } else {
+        sortTerm = matchingTerm;
           }
-        });
-      });
+      
       return {
         ...item,
-        relevanceScore, // Add relevance score to the item
+        relevanceScore,
+        sortTerm
       };
     })
-    .filter(item => item.relevanceScore > 0) // Filter out items with relevance score of 0
-    .sort((a, b) => {
-      // Sort based on relevance score, descending
-      if (a.relevanceScore !== b.relevanceScore) {
-        return b.relevanceScore - a.relevanceScore;
-      }
-      // If relevance score is the same, sort alphabetically by displayText
-      const aDisplayText = a.DisplayText || a.Name;
-      const bDisplayText = b.DisplayText || b.Name;
-      return aDisplayText.localeCompare(bDisplayText, undefined, { sensitivity: 'base' });
+    .filter(item => item.relevanceScore > 0)
+    .sort((a, b) => b.relevanceScore - a.relevanceScore);
+    
+    filteredData = filteredData.filter(item => !(item.sortTerm).toLowerCase().includes('index'));
+   
+    dropdown.innerHTML = '';
+
+    filteredData.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.Name;
+      option.textContent = item.sortTerm; //+ item.relevanceScore;
+      dropdown.appendChild(option);
     });
-    filteredData = filteredData.filter(item => !(item.DisplayText || item.Name).toLowerCase().includes('index'));
-    // Call the function to populate the dropdown with filtered and sorted data
-    populateDropdown(filteredData);
+
+    const matchCount = dropdown.length;
+    const firstLine = document.createElement('option');
+    if (matchCount === 0) {
+      firstLine.textContent = 'No Matches';
+      firstLine.style.color = 'red';
+    } else {
+      firstLine.textContent = `Matches: ${matchCount}`;
+      firstLine.style.color = 'green';
+    }
+    firstLine.disabled = true;
+    firstLine.selected = true;
+    dropdown.insertBefore(firstLine, dropdown.firstChild);
   }
-  // Scroll to the top of the dropdown
+  
   dropdown.scrollTop = 0;
 }
     
@@ -761,7 +807,7 @@ function createOMTable(selectedData) {
               cellContentElement.textContent = contentText;
             }
           }
-
+          
           if (Item && !Item.startsWith(MenuPrefix)) {
           /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
               const clickableSymbol = document.createElement('a');
@@ -850,7 +896,7 @@ async function handleRowClick(item, ClickSymbol) {
                         console.log("Matching ODJSON Item:", odItem);
                     });
                 } else {
-                    console.log('No matching item found in OMJSON.json, ODJSON.json, or MinneapolisItemLink.json');
+                    console.log('No matching item found in OMJSON.json, ODJSON.json, or txml');
                 }
             } else {
                 // Handle other cases
@@ -865,35 +911,9 @@ async function handleRowClick(item, ClickSymbol) {
 }
 
 
-// Function to fetch data from txml file
-async function fetchAndParseXML(txmlFile) {
-    try {
-        const response = await fetch(txmlFile);
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        const xmlText = await response.text();
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-
-        // Extract boilerplate text from the XML document
-        const boilerplateTexts = Array.from(xmlDoc.querySelectorAll("BOILERPLATE_TEXT p"), p => p.textContent);
-
-        // Extract field names and URLs from the XML document
-        const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD"), field => {
-            const name = field.getAttribute("NAME");
-            const url = field.querySelector("URL") ? field.querySelector("URL").textContent : null;
-            return { name, url };
-        });
-
-        return { boilerplateTexts, fields };
-    } catch (error) {
-        console.error("Error fetching or parsing the XML file:", error);
-        return { boilerplateTexts: [], fields: [] }; // Return empty arrays if error occurs
-    }
-}
-
 // Function to find matches between txml names and ODJSON text fields
+// Declare the variable globally to ensure it's only declared once
+let currentPopupWindow = null;
 async function findMatches(matchingItem) {
     try {
         const txmlData = await fetchAndParseXML(txmlFile);
@@ -914,15 +934,17 @@ async function findMatches(matchingItem) {
             const urls = [];
 
             // Loop through each field to search for matches
-            for (let i = 1; i <= 6; i++) {
+            for (let i = 1; i <= 20; i++) { // Updated to check up to WordProcessing20
                 const wordProcessingField = item[`WordProcessing${i}`];
                 // Check if the field exists and contains text
                 if (wordProcessingField && wordProcessingField.trim() !== '') {
+                    console.log(`Checking WordProcessing${i}: ${wordProcessingField}`);
                     // Check for matches with txml names using wildcards
                     const matchesInTxml = txmlData.fields.filter(field => new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(wordProcessingField));
                     if (matchesInTxml.length > 0) {
                         // If matches are found, add them to the itemMatches array
                         matchesInTxml.forEach(match => {
+                            console.log(`Match found: ${match.name} with URL: ${match.url}`);
                             itemMatches.push({
                                 txmlName: match.name,
                                 txmlURL: match.url,
@@ -934,25 +956,44 @@ async function findMatches(matchingItem) {
                                 urls.push(match.url);
                             }
                         });
+                    } else {
+                      //matchingItem = selectedItem
+                      //createODTable(item)
+                      console.log(`No matches found for WordProcessing${i}`);
                     }
-                }
+                } 
             }
 
             // Add all matches for the current ODJSON item to the main matches array
             matches.push(...itemMatches);
 
-            // Handle opening URLs based on the number of URLs found
-            urls.forEach(url => {
-                window.open(url);
-            });
+            // Debugging: Log the itemMatches array
+            console.log("Item matches:", itemMatches);
 
-            // If multiple URLs are found, create a popup
-            if (urls.length > 1) {
-                const popupContent = itemMatches
-                    .filter(match => match.txmlURL && match.txmlDefaultText)
-                    .map(match => `<a href="${match.txmlURL}" target="_blank">${match.txmlDefaultText}</a>`)
-                    .join('<br>');
+            // If URLs are found, handle them based on the number of URLs
+            if (urls.length > 0) {
+                if (urls.length === 1) {
+                    // If only one URL is found, open it directly in a new tab
+                    window.open(urls[0], '_blank');
+                } else {
+                    // If multiple URLs are found, create a new tab with the links
+                    const popupContent = itemMatches
+                        .filter(match => match.txmlURL) // Ensure only matches with URLs are included
+                        .map(match => `<a href="${match.txmlURL}" target="_self">${match.txmlDefaultText || match.txmlName}</a>`)
+                        .join('<br>');
+
+                    // Debugging: Log the popup content
+                    console.log("Popup content:", popupContent);
+
+                    // Open a new tab and write the content
+                    const newTab = window.open("", "_blank");
+                    newTab.document.write(`<html><head><title>Select CDSS Link</title></head><body>Multiple links in CDSS order dialog. Select one below to open.<br>${popupContent}</body></html>`);
+                }
             }
+                else {
+                  createODTable(item)
+                  pushHistory(item.Name)
+                }
         }
 
         return matches;
@@ -962,9 +1003,51 @@ async function findMatches(matchingItem) {
     }
 }
   
-function createODTable(selectedItem) {
+async function fetchAndParseXML(txmlFile) {
+    try {
+        const response = await fetch(txmlFile);
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        const xmlText = await response.text();
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "text/xml");
+
+        // Extract boilerplate text from the XML document
+        const boilerplateTexts = Array.from(xmlDoc.querySelectorAll("BOILERPLATE_TEXT p"), p => p.textContent);
+
+        // Extract field names and their attributes from the XML document
+        const fields = Array.from(xmlDoc.querySelectorAll("TEMPLATE_FIELDS FIELD")).map(field => {
+            const name = field.getAttribute("NAME");
+            const type = field.querySelector("TYPE") ? field.querySelector("TYPE").textContent : null;
+            const inactive = field.querySelector("INACTIVE") ? field.querySelector("INACTIVE").textContent : null;
+            const length = field.querySelector("LENGTH") ? field.querySelector("LENGTH").textContent : null;
+            const defaultText = field.querySelector("DEFAULT_TEXT") ? field.querySelector("DEFAULT_TEXT").textContent : null;
+            const defaultIndex = field.querySelector("DEFAULT_INDEX") ? field.querySelector("DEFAULT_INDEX").textContent : null;
+            const required = field.querySelector("REQUIRED") ? field.querySelector("REQUIRED").textContent : null;
+            const separateLines = field.querySelector("SEPARATE_LINES") ? field.querySelector("SEPARATE_LINES").textContent : null;
+            const maxLength = field.querySelector("MAX_LENGTH") ? field.querySelector("MAX_LENGTH").textContent : null;
+            const indent = field.querySelector("INDENT") ? field.querySelector("INDENT").textContent : null;
+            const pad = field.querySelector("PAD") ? field.querySelector("PAD").textContent : null;
+            const minValue = field.querySelector("MIN_VALUE") ? field.querySelector("MIN_VALUE").textContent : null;
+            const maxValue = field.querySelector("MAX_VALUE") ? field.querySelector("MAX_VALUE").textContent : null;
+            const increment = field.querySelector("INCREMENT") ? field.querySelector("INCREMENT").textContent : null;
+            const url = field.querySelector("URL") ? field.querySelector("URL").textContent : null;
+            const items = field.querySelector("ITEMS") ? field.querySelector("ITEMS").textContent : null;
+
+            return { name, type, inactive, length, defaultText, defaultIndex, required, separateLines, maxLength, indent, pad, minValue, maxValue, increment, url, items };
+        });
+
+        return { boilerplateTexts, fields };
+    } catch (error) {
+        console.error("Error fetching or parsing the XML file:", error);
+        return { boilerplateTexts: [], fields: [] }; // Return empty arrays if error occurs
+    }
+}
+
+async function createODTable(selectedItem) {
     // Check if selectedItem is already an object or a string
-    const itemData = typeof selectedItem === 'string' 
+    const itemData = typeof selectedItem === 'string'
         ? odData.find(item => item.Name === selectedItem)
         : selectedItem;
 
@@ -976,47 +1059,169 @@ function createODTable(selectedItem) {
     const table = document.createElement('table');
     table.classList.add('table');
     const tbody = document.createElement('tbody');
-   
-  // Create the header row with a bold header and a background color
+
+    // Create the header row with a bold header and a background color
     const headerRow = document.createElement('tr');
     const headerCell = document.createElement('td');
     headerCell.textContent = 'ORDER DIALOG INFORMATION';
-    headerCell.colSpan = 1; // Span across one column
     headerCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
     headerCell.style.fontWeight = 'bold';
     headerCell.style.backgroundColor = 'lightblue'; // Set background color
+    headerCell.style.textAlign = 'left'; // Center align the header
+    headerCell.colSpan = 1; // Span across one column
     headerRow.appendChild(headerCell);
     tbody.appendChild(headerRow);
-    
-    // Iterate over the entries of itemData
-    Object.entries(itemData).forEach(([key, value]) => {
-        const row = document.createElement('tr');
-        
-        // Create cells for key and value
-        const cell = document.createElement('td');
-        /*keyCell.textContent = key;*/
-        /*const valueCell = document.createElement('td');*/
-        /*valueCell.textContent = JSON.stringify(value, null, 2);*/
-        cell.innerHTML = `<b>${key}:</b> ${value}`;
-        row.appendChild(cell);
-        // Append cells to the row
-       /* row.appendChild(keyCell);*/
-       /* row.appendChild(valueCell);*/
 
-        // Append row to the tbody
-        tbody.appendChild(row);
+      // Add rows for components with clickable symbols
+    Object.keys(itemData).forEach(key => {
+      if (/^Component\d+$/.test(key)) {
+          const componentName = itemData[key];
+          const componentItem = odData.find(item => item.Name === componentName);
+  
+          const row = document.createElement('tr');
+          const cell = document.createElement('td');
+          const nameAndSymbol = document.createElement('div');
+  
+          // Bold component name
+          const nameText = document.createElement('span');
+          nameText.innerHTML = `<b>${key}:</b> ${componentName}`;
+          nameText.style.display = 'inline-block'; // Display inline for better alignment
+  
+          nameAndSymbol.appendChild(nameText);
+  
+          if (componentItem) {
+              // Clickable symbol
+              const clickableSymbol = document.createElement('a');
+              clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+              clickableSymbol.classList.add('clickable');
+              clickableSymbol.title = 'Click for more information';
+              clickableSymbol.style.marginLeft = '10px'; // Space between name and symbol
+              clickableSymbol.addEventListener('click', (event) => {
+                  event.preventDefault();
+                  createODTable(componentItem); // Create new table for the component
+                  pushHistory(componentItem.Name); // Add to history
+              });
+  
+              nameAndSymbol.appendChild(clickableSymbol);
+          } else {
+              // If there's no match, just display the component name
+              console.warn(`No matching component found for ${componentName}`);
+          }
+  
+          cell.appendChild(nameAndSymbol);
+          row.appendChild(cell);
+          tbody.appendChild(row);
+      }
     });
 
-    // Append tbody to the table
-    table.appendChild(tbody);
+    // Create rows for other key-value pairs
+    const wordProcessingFields = []; // To keep track of `WordProcessing` fields
+    await Promise.all(Object.entries(itemData).map(async ([key, value]) => {
+        if (!/^Component\d+$/.test(key) && value.trim() !== '') { // Exclude blank fields
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
 
-    // Display the table in the result container
+            if (/^WordProcessing\d+$/.test(key)) {
+                wordProcessingFields.push({ key, value }); // Store for later processing
+            } else {
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
+                row.appendChild(cell);
+                tbody.appendChild(row);
+            }
+        }
+    }));
+
+    // Process `WordProcessing` fields separately
+    for (const { key, value } of wordProcessingFields) {
+        const row = document.createElement('tr');
+        const cell = document.createElement('td');
+
+        if (/^WordProcessing\d+$/.test(key)) {
+            const txmlData = await fetchAndParseXML(txmlFile);
+            const matchingTexts = txmlData.fields.filter(field =>
+                new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(value)
+            );
+
+            if (matchingTexts.length > 0) {
+                const clickableSymbol = document.createElement('a');
+                clickableSymbol.textContent = " \u24d8"; // Unicode character for circled information symbol
+                clickableSymbol.classList.add('clickable');
+                clickableSymbol.title = 'Click for more information';
+                clickableSymbol.style.marginLeft = '10px'; // Space between value and symbol
+                clickableSymbol.addEventListener('click', async (event) => {
+                    event.preventDefault();
+
+                    // Add txml rows to the existing table
+                    const txmlItem = matchingTexts[0]; // Assume at least one item exists to use for the header
+                    const txmlHeaderRow = document.createElement('tr');
+                    const txmlHeaderCell = document.createElement('td');
+                    txmlHeaderCell.textContent = `TEMPLATE FIELD INFORMATION`;
+                    txmlHeaderCell.style.fontFamily = 'PT Serif Bold, Arial, sans-serif';
+                    txmlHeaderCell.style.fontWeight = 'bold';
+                    txmlHeaderCell.style.backgroundColor = 'lightyellow'; // Different background color
+                    txmlHeaderCell.style.textAlign = 'left'; // Center align the header
+                    txmlHeaderCell.colSpan = 1; // Span across one column
+                    txmlHeaderRow.appendChild(txmlHeaderCell);
+                    tbody.appendChild(txmlHeaderRow);
+
+                    matchingTexts.forEach(text => {
+                        const fields = [
+                            { label: 'Name', value: text.name },
+                            { label: 'URL', value: text.url ? `<a href="${text.url}" target="_blank">${text.url}</a>` : 'N/A' },
+                            { label: 'Type', value: text.type },
+                            { label: 'Inactive', value: text.inactive },
+                            { label: 'Length', value: text.length },
+                            { label: 'Default Text', value: text.defaultText },
+                            { label: 'Default Index', value: text.defaultIndex },
+                            { label: 'Required', value: text.required },
+                            { label: 'Separate Lines', value: text.separateLines },
+                            { label: 'Max Length', value: text.maxLength },
+                            { label: 'Indent', value: text.indent },
+                            { label: 'Pad', value: text.pad },
+                            { label: 'Min Value', value: text.minValue },
+                            { label: 'Max Value', value: text.maxValue },
+                            { label: 'Increment', value: text.increment },
+                            { label: 'Items', value: text.items }
+                        ];
+
+                        fields.forEach(field => {
+                            if (field.value) {
+                                const row = document.createElement('tr');
+                                const cell = document.createElement('td');
+
+                                cell.innerHTML = `<b>${field.label}:</b> ${field.value}`;
+                                row.appendChild(cell);
+                                tbody.appendChild(row);
+                            }
+                        });
+                    });
+
+                    // Adjust font size for the newly added rows
+                    adjustFontSize();
+                });
+
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
+                cell.appendChild(clickableSymbol);
+            } else {
+                cell.innerHTML = `<b>${key}:</b> ${value}`;
+            }
+
+            row.appendChild(cell);
+            tbody.appendChild(row);
+        }
+    }
+
+    table.appendChild(tbody);
     const resultContainer = document.getElementById('resultContainer');
     resultContainer.innerHTML = '';
-    resultContainer.appendChild(table);
+    if (selectedItem) {
+        resultContainer.appendChild(table);
+    }
+
+    // Adjust font size after table is fully appended
+    adjustFontSize();
 }
 
-    
 // Function to filter data based on the selected option
 function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
@@ -1139,7 +1344,19 @@ function handleIndex() {
   scrollToTop();    
   adjustFontSize();
   }
-
+ 
+  // Function to handle the Index button click event
+function handleIndex() {
+  const dropdown = document.getElementById('filterDropdown');
+  document.getElementById('searchInput').value = null;
+  document.getElementById('searchInput').placeholder = "\u{1F50D}";
+  populateDropdown(omData);
+  dropdown.value = Index;
+  filterData({ target: dropdown });
+  scrollToTop();    
+  adjustFontSize();
+  }
+  
   // Function to handle the Download JSON button click event
   function handleDownloadJSON() {
     const displayText = selectedData.DisplayText || selectedData.Name;
@@ -1194,6 +1411,9 @@ function openDropdown() {
 document.getElementById('desMoinesButton').addEventListener('click', function () {
 openPageInNewWindow("DesMoinesCDSS.html", { " CI ": " ", " NE ": " ", "GMENU": "CI GMENU" });
 });
+document.getElementById('minneapolisButton').addEventListener('click', function () {
+  openPageInNewWindow("BlackHillsCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
+});
 document.getElementById('fargoButton').addEventListener('click', function () {
   openPageInNewWindow("FargoCDSS.html",{ " CI ": " ", " NE ": " " }); // Pass the replacement value
 });
@@ -1222,7 +1442,10 @@ window.addEventListener('DOMContentLoaded', adjustFontSize);
 document.getElementById('searchInput').addEventListener('input', searchData);
 document.getElementById('searchInput').addEventListener('click', openDropdown);
 document.getElementById('searchInput').addEventListener('input', openDropdown);
-document.addEventListener('DOMContentLoaded', () => {
+document.getElementById('homeButton').addEventListener('click', function() {
+    window.location.href = homeButtonUrl;
+});
+  document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('menusLink').setAttribute('href', OMjson);
       document.getElementById('menusLink').setAttribute('download', OMjson);
 
@@ -1261,11 +1484,10 @@ function openPageInNewWindow(pageURL, replacements) {
   }
   
 // Fetch data and initialize the dropdown
-Promise.all([fetchOMData(), fetchODData(), fetchItemLink(), fetchAbxLink()]) // Add fetchIndex()
-  .then(([omjsonData, odjsonData, itemlinkjsonData, abxlinkjsonData]) => { 
+Promise.all([fetchOMData(), fetchODData(), fetchAbxLink()]) // Add fetchIndex()
+  .then(([omjsonData, odjsonData, abxlinkjsonData]) => { 
     omData = omjsonData;
     odData = odjsonData;
-    itemLinkData = itemlinkjsonData;
     abxLinkData = abxlinkjsonData;
     populateDropdown(omData); 
       const urlParams = new URLSearchParams(window.location.search);
