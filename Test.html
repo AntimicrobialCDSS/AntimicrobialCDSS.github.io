@@ -1378,13 +1378,13 @@ function handleIndex() {
   adjustFontSize();
   }
 // Function to handle the OutPt button click event
- function handleOutpt(selecteddata) {
+function handleOutpt(selecteddata) {
   const dropdown = document.getElementById('filterDropdown');
   document.getElementById('searchInput').value = null;
   document.getElementById('searchInput').placeholder = "\u{1F50D}";
   populateDropdown(omData);
 
-  if (!selecteddata.Outpt) {
+  if (!selecteddata.Outpt || selecteddata.Outpt.trim() === "") {
     const userResponse = confirm("404\nMenu not found. Go to Outpatient Main Menu?");
     if (userResponse) {
       dropdown.value = "ORZID3 GMENU ABX OUTPT MAIN";
