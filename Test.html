@@ -1379,7 +1379,24 @@ function handleIndex() {
   scrollToTop();    
   adjustFontSize();
   }
- 
+
+function handleOutpt() {
+  const dropdown = document.getElementById('filterDropdown');
+  document.getElementById('searchInput').value = null;
+  document.getElementById('searchInput').placeholder = "\u{1F50D}";
+  populateDropdown(omData);
+  dropdown.value = omData.find(
+        omItem => omItem..trim().toLowerCase() === item.Outpt.trim().toLowerCase()
+    );
+  filterData({ target: dropdown });
+  scrollToTop();    
+  adjustFontSize();
+  }
+	
+	    const matchingItem = omData.find(
+        omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
+    );
+	
   // Function to handle the Index button click event
 function handleIndex() {
   const dropdown = document.getElementById('filterDropdown');
