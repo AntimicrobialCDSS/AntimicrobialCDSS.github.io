@@ -1385,8 +1385,8 @@ function handleIndex() {
   const searchInput = document.getElementById('searchInput');
   searchInput.value = null;
   searchInput.placeholder = "\u{1F50D}";
+  currentVersion = 'outpt';
   populateDropdown(omData);
-  
   const selectedDataName = selectedData.Name;
   let matchedItemName = null;
 	 
@@ -1416,8 +1416,6 @@ function handleIndex() {
  filterData({ target: dropdown });
  scrollToTop();    
  adjustFontSize();
- currentVersion = 'outpt';
- console.log(currentVersion);
  //checkMatchesAndSetButtonAppearance()
   }
 
@@ -1427,7 +1425,7 @@ function handleEduc() {
   searchInput.value = null;
   searchInput.placeholder = "\u{1F50D}";
   populateDropdown(omData);
-
+  currentVersion = 'educ';
   const selectedDataName = selectedData.Name;
   let matchedItemName = null;
 
@@ -1457,7 +1455,6 @@ function handleEduc() {
   filterData({ target: dropdown });
   scrollToTop();
   adjustFontSize();
-  currentVersion = 'educ';
   //checkMatchesAndSetButtonAppearance()
 }
 	
@@ -1467,7 +1464,7 @@ function handleInpt() {
   searchInput.value = null;
   searchInput.placeholder = "\u{1F50D}";
   populateDropdown(omData);
-
+  currentVersion = 'inpt';
   const selectedDataName = selectedData.Name;
   let matchedItemName = null;
 
@@ -1493,7 +1490,6 @@ function handleInpt() {
   filterData({ target: dropdown });
   scrollToTop();
   adjustFontSize();
-  currentVersion = 'inpt';
   //checkMatchesAndSetButtonAppearance()
 }
 // Function to handle the Download JSON button click event
