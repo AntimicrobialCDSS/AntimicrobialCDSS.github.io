@@ -1400,7 +1400,7 @@ function handleIndex() {
  adjustFontSize();
   }
 
-function handleInpt() {
+  function handleInpt() {
   const dropdown = document.getElementById('filterDropdown');
   const searchInput = document.getElementById('searchInput');
   searchInput.value = null;
@@ -1410,16 +1410,15 @@ function handleInpt() {
   const selectedDataName = selectedData.Name;
   let matchedItemName = null;
 
-  outerLoop:
-  for (const item of omData) {
+  omData.forEach(item => {
     for (let i = 1; i <= 99; i++) {
       const termKey = `Term${i}`;
       if (item[termKey] && item[termKey] === selectedDataName) {
         matchedItemName = item.name;
-        break outerLoop;
+        break;
       }
     }
-  }
+  });
 
   if (matchedItemName) {
     dropdown.value = matchedItemName;
