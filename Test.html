@@ -1383,7 +1383,30 @@ function handleIndex() {
  document.getElementById('searchInput').value = null;
  document.getElementById('searchInput').placeholder = "\u{1F50D}";
  populateDropdown(omData);
- dropdown.value = selectedData.Outpt
+ //dropdown.value = selectedData.Outpt
+  if (selectedData.Outpt) {
+    dropdown.value = selectedData.Outpt;
+    console.log('Dropdown value set to:', selectedData.Outpt);
+  } else {
+    console.log('Outpt is empty or does not exist, checking items in omData');
+    for (const item of omData) {
+      console.log('Checking item:', item.name);
+      if (item.Outpt === selectedDataName) {
+        matchedItemName = item.name;
+        console.log('Match found:', matchedItemName);
+        break;
+      }
+    }
+
+    if (matchedItemName) {
+      dropdown.value = matchedItemName;
+      console.log('Dropdown value set to:', matchedItemName);
+    } else {
+      dropdown.value = ''; // Clear the dropdown if no match is found
+      console.log('No match found, dropdown cleared');
+    }
+  }
+	 
  filterData({ target: dropdown });
  scrollToTop();    
  adjustFontSize();
