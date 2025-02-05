@@ -1682,7 +1682,7 @@ function checkMatchesAndSetButtonAppearance() {
       }
     }
   }
-	
+console.log(matchedOutptName);	
   if (selectedData["ED/UC"]) {
     matchedEducName = selectedData["ED/UC"];
   } else {
@@ -1693,7 +1693,8 @@ function checkMatchesAndSetButtonAppearance() {
       }
     }
   }
-
+  console.log(matchedEducName);
+	
   if (matchedOutptName) {
     setButtonAppearance(outptButton, true); // Set button to active appearance
   } else {
