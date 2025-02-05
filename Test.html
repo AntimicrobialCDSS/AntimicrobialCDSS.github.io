@@ -1384,13 +1384,51 @@ function handleIndex() {
  document.getElementById('searchInput').placeholder = "\u{1F50D}";
  populateDropdown(omData);
  dropdown.value = selectedData.Outpt
-	  //= omData.find(
-        //omItem => omItem.trim().toLowerCase() === item.Outpt.trim().toLowerCase()
-    //);
  filterData({ target: dropdown });
  scrollToTop();    
  adjustFontSize();
   }
+
+ function handleEduc() {
+ const dropdown = document.getElementById('filterDropdown');
+ document.getElementById('searchInput').value = null;
+ document.getElementById('searchInput').placeholder = "\u{1F50D}";
+ populateDropdown(omData);
+ dropdown.value = selectedData.ED/UC
+ filterData({ target: dropdown });
+ scrollToTop();    
+ adjustFontSize();
+  }
+
+function handleInpt() {
+  const dropdown = document.getElementById('filterDropdown');
+  const searchInput = document.getElementById('searchInput');
+  searchInput.value = null;
+  searchInput.placeholder = "\u{1F50D}";
+  populateDropdown(omData);
+
+  const selectedDataName = selectedData.Name;
+  let matchedItemName = null;
+
+  outerLoop:
+  for (const item of omData) {
+    for (let i = 1; i <= 99; i++) {
+      const termKey = `Term${i}`;
+      if (item[termKey] && item[termKey] === selectedDataName) {
+        matchedItemName = item.name;
+        break outerLoop;
+      }
+    }
+  }
+
+  if (matchedItemName) {
+    dropdown.value = matchedItemName;
+  }
+
+  filterData({ target: dropdown });
+  scrollToTop();
+  adjustFontSize();
+}
 	
   // Function to handle the Download JSON button click event
   function handleDownloadJSON() {
