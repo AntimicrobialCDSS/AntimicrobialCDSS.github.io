@@ -1306,6 +1306,7 @@ function sortDropdownByTerm() {
 
 // Function to push the current selection to the history
 function pushHistory(item) {
+
   if (item !== history[historyIndex]) {
     historyIndex++;
     history.splice(historyIndex, history.length - historyIndex, item);
@@ -1343,6 +1344,7 @@ function handleGoBack() {
 
 // Function to handle the Go Forward button click event
 function handleGoForward() {
+    const goForwardButton = document.getElementById('goForwardButton);	
     if (historyIndex < history.length - 1) {
         historyIndex++;
         const selectedItem = history[historyIndex];
@@ -1358,11 +1360,11 @@ function handleGoForward() {
         } else {
             createODTable(selectedItem);
         }
+	goForwardButton.classList.remove('inactive-button'); // Remove inactive class	  
+    	goForwardButton.style.color = ''; // Reset to default color    
     } else {
-        // Handle the case when the historyIndex is at the end
-        // This could be redirecting somewhere or showing a message
-        // For now, let's just log a message
-        //console.log("End of history reached");
+    	goForwardButton.classList.add('inactive-button'); // Add inactive class
+    	goForwardButton.style.color = 'grey'; // Set to grey text
     }
     scrollToTop();
     adjustFontSize();
