@@ -1348,10 +1348,11 @@ function handleGoBack() {
     }
     else {
       createODTable(selectedItem)
-    }
-  goBackButton.classList.remove('inactive-button'); // Remove inactive class	  
-  goBackButton.style.color = ''; // Reset to default color 	  
-  } else {
+    }  
+  if (historyIndex > 1) {
+    goBackButton.classList.remove('inactive-button'); // Remove inactive class	  
+    goBackButton.style.color = ''; // Reset to default color 	
+    } else {
     goBackButton.classList.add('inactive-button'); // Add inactive class
     goBackButton.style.color = 'grey'; // Set to grey text
    }
