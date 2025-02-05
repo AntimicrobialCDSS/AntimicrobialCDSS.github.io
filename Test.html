@@ -1665,6 +1665,8 @@ function checkMatchesAndSetButtonAppearance() {
   const outptButton = document.getElementById('outptButton');
   const educButton = document.getElementById('educButton');
   const inptButton = document.getElementById('inptButton');
+  matchedOutptName = null;
+  matchedEducName = null;
 	
   if (!selectedData || !selectedData.Name) {
     selectedData = { Name: MainMenu }; // Set selectedData.Name to MainMenu if not defined
@@ -1682,7 +1684,6 @@ function checkMatchesAndSetButtonAppearance() {
       }
     }
   }
-console.log(matchedOutptName);	
   if (selectedData["ED/UC"]) {
     matchedEducName = selectedData["ED/UC"];
   } else {
@@ -1693,7 +1694,6 @@ console.log(matchedOutptName);
       }
     }
   }
-  console.log(matchedEducName);
 	
   if (matchedOutptName) {
     setButtonAppearance(outptButton, true); // Set button to active appearance
