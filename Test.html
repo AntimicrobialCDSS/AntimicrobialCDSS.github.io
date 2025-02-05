@@ -1725,18 +1725,17 @@ if (currentVersion === 'inpt'){
 	setButtonBackground(inptButton, true);
 	setButtonBackground(outptButton, false);
 	setButtonBackground(educButton, false);
-	console.log('inpt');
+	setButtonAppearance(indexButton, true);
 } else if (currentVersion === 'outpt') {
   	setButtonBackground(inptButton, false);
 	setButtonBackground(outptButton, true);
 	setButtonBackground(educButton, false);
-	console.log('outpt');
+	setButtonAppearance(indexButton, true);
 } else if (currentVersion === 'educ') {
   	setButtonBackground(inptButton, false);
 	setButtonBackground(outptButton, false);
 	setButtonBackground(educButton, true);
 	setButtonAppearance(indexButton, false);
-	console.log('educ');
 	}
 }
 // Function to set the button appearance
