@@ -1415,12 +1415,12 @@ function handleInpt() {
   outerLoop:
   for (const item of omData) {
     let hasTerms = false;
-    console.log('Checking item:', item.name);
+    //console.log('Checking item:', item.name);
     for (let i = 1; i <= 99; i++) {
       const termKey = `Term${i}`;
       if (item[termKey]) {
         hasTerms = true;
-        console.log(`Found term ${termKey}:`, item[termKey]);
+        //console.log(`Found term ${termKey}:`, item[termKey]);
         if (item[termKey] === selectedDataName) {
           matchedItemName = item.name;
           console.log('Match found:', matchedItemName);
