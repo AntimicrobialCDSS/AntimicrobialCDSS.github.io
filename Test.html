@@ -1379,11 +1379,15 @@ function handleIndex() {
   }
 // Function to handle the OutPt button click event
  function handleOutpt() {
- const dropdown = document.getElementById('filterDropdown');
- document.getElementById('searchInput').value = null;
- document.getElementById('searchInput').placeholder = "\u{1F50D}";
- populateDropdown(omData);
- //dropdown.value = selectedData.Outpt
+  const dropdown = document.getElementById('filterDropdown');
+  const searchInput = document.getElementById('searchInput');
+  searchInput.value = null;
+  searchInput.placeholder = "\u{1F50D}";
+  populateDropdown(omData);
+
+  const selectedDataName = selectedData.Name;
+  let matchedItemName = null;
+	 
   if (selectedData.Outpt) {
     dropdown.value = selectedData.Outpt;
     console.log('Dropdown value set to:', selectedData.Outpt);
