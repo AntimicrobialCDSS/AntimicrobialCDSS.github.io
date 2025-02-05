@@ -1344,7 +1344,8 @@ function handleGoBack() {
 
 // Function to handle the Go Forward button click event
 function handleGoForward() {
-    const goForwardButton = document.getElementById('goForwardButton);	
+    const goForwardButton = document.getElementById('goForwardButton');
+    const outptButton = document.getElementById('outptButton')
     if (historyIndex < history.length - 1) {
         historyIndex++;
         const selectedItem = history[historyIndex];
