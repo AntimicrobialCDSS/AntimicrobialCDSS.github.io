@@ -1654,6 +1654,13 @@ if ('serviceWorker' in navigator) {
 // Function to check for matches and set button appearance
 function checkMatchesAndSetButtonAppearance() {
   const outptButton = document.getElementById('outptButton'); // Assuming the button has this ID
+
+  if (!selectedData || !selectedData.Name) {
+    console.log('selectedData or selectedData.Name is not defined');
+    setButtonAppearance(outptButton, false); // Set button to grey text
+    return;
+  }
+
   const selectedDataName = selectedData.Name;
   let matchedItemName = null;
 
@@ -1688,6 +1695,7 @@ function setButtonAppearance(button, isActive) {
 window.onload = function() {
   checkMatchesAndSetButtonAppearance();
 };
+In this version, the che
 	
 </script>
 </body>
