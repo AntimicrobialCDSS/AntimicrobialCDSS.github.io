@@ -1390,7 +1390,7 @@ function handleIndex() {
   } else {
     console.log('Outpt is empty or does not exist, checking items in omData');
     for (const item of omData) {
-      console.log('Checking item:', item.name);
+      console.log('Checking item:', item.Name);
       if (item.Outpt === selectedDataName) {
         matchedItemName = item.name;
         console.log('Match found:', matchedItemName);
@@ -1428,7 +1428,7 @@ function handleEduc() {
   } else {
     console.log('ED/UC is empty or does not exist, checking items in omData');
     for (const item of omData) {
-      console.log('Checking item:', item.name);
+      console.log('Checking item:', item.Name);
       if (item["ED/UC"] === selectedDataName) {
         matchedItemName = item.name;
         console.log('Match found:', matchedItemName);
@@ -1463,7 +1463,7 @@ function handleInpt() {
   console.log('Selected Data Name:', selectedDataName);
 
   for (const item of omData) {
-    console.log('Checking item:', item.name);
+    console.log('Checking item:', item.Name);
     if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
       matchedItemName = item.Name;
       console.log('Match found:', matchedItemName);
