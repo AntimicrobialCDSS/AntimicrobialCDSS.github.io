@@ -1441,7 +1441,7 @@ function handleInpt() {
 
   for (const item of omData) {
     //console.log('Checking item:', item.name);
-    if (item.Outpt === selectedDataName) {
+    if (item.Outpt || item["ED/UC"] === selectedDataName) {
       matchedItemName = item.Name;
       console.log('Match found:', matchedItemName);
       break;
