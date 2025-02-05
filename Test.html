@@ -90,7 +90,8 @@
       width: 12%; /* Take up 75% of the screen */
     }
     
-    .button:hover {
+    .button:hover,
+    .button2:hover {
       background-color: #4db8ff; /* Light Blue color */
     }
     
@@ -111,11 +112,16 @@
       display: inline-block; /* Make links behave like buttons */
       width: 16%; /* Take up 75% of the screen */
     }
-    
-    .button2:hover {
-      background-color: #4db8ff; /* Light Blue color */
-    }
-    
+	  
+    .inactive-button {
+    pointer-events: none; /* Prevent clicks */
+    background-color: #00aedb; /* Inactive color */
+    color: grey; /* Inactive text color */
+  }
+
+  .inactive-button:hover {
+    background-color: #00aedb; /* Prevent hover effect */
+  }
     .no-term {
       display: none;
     }
@@ -1741,8 +1747,10 @@ if (currentVersion === 'inpt'){
 // Function to set the button appearance
 function setButtonAppearance(button, isActive) {
   if (isActive) {
+    button.classList.remove('inactive-button'); // Remove inactive class	  
     button.style.color = ''; // Reset to default color
   } else {
+    button.classList.add('inactive-button'); // Add inactive class
     button.style.color = 'grey'; // Set to grey text
   }
 }
