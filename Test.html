@@ -1390,14 +1390,18 @@ function handleIndex() {
   }
 
  function handleEduc() {
- const dropdown = document.getElementById('filterDropdown');
- document.getElementById('searchInput').value = null;
- document.getElementById('searchInput').placeholder = "\u{1F50D}";
- populateDropdown(omData);
- dropdown.value = selectedData.["ED/UC"]
- filterData({ target: dropdown });
- scrollToTop();    
- adjustFontSize();
+  const dropdown = document.getElementById('filterDropdown');
+  const searchInput = document.getElementById('searchInput');
+  searchInput.value = null;
+  searchInput.placeholder = "\u{1F50D}";
+  populateDropdown(omData);
+
+  // Access the property correctly
+  dropdown.value = selectedData["ED/UC"];
+
+  filterData({ target: dropdown });
+  scrollToTop();
+  adjustFontSize();
 }
 	
 function handleInpt() {
