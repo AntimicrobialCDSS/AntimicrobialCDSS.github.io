@@ -1654,33 +1654,53 @@ if ('serviceWorker' in navigator) {
 
 // Function to check for matches and set button appearance
 function checkMatchesAndSetButtonAppearance() {
-  const outptButton = document.getElementById('outptButton'); // Assuming the button has this ID
-
+  const outptButton = document.getElementById('outptButton');
+  const educButton = document.getElementById('educButton');
+	
   if (!selectedData || !selectedData.Name) {
     selectedData = { Name: MainMenu }; // Set selectedData.Name to MainMenu if not defined
   }
 
   const selectedDataName = selectedData.Name;
-  let matchedItemName = null;
+  let matchedOutptName = null;
+  let matchedEducName = null;
 
   if (selectedData.Outpt) {
-    matchedItemName = selectedData.Outpt;
+    matchedOutptName = selectedData.Outpt;
   } else {
     for (const item of omData) {
-      if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
-        matchedItemName = item.Outpt;
+      if (item.Outpt === selectedDataName) {
+        matchedOutptName = item.Outpt;
         break;
       }
     }
   }
+	
+  if (selectedData["ED/UC"]) {
+    matchedEducName = selectedData["ED/UC"];
+  } else {
+    for (const item of omData) {
+      if (item["ED/UC"] === selectedDataName) {
+        matchedEducName = item["ED/UC"];
+        break;
+      }
+    }
+  }
+  
 
-  if (matchedItemName) {
+  if (matchedOutptName) {
     setButtonAppearance(outptButton, true); // Set button to active appearance
   } else {
     setButtonAppearance(outptButton, false); // Set button to grey text
   }
 }
 
+if (matchedEducName) {
+    setButtonAppearance(educButton, true); // Set button to active appearance
+  } else {
+    setButtonAppearance(educButton, false); // Set button to grey text
+  }
+}
 // Function to set the button appearance
 function setButtonAppearance(button, isActive) {
   if (isActive) {
