@@ -1412,10 +1412,11 @@ function handleIndex() {
       console.log('No match found, dropdown cleared');
     }
   }
- const currentVersion = 'outpt' 
  filterData({ target: dropdown });
  scrollToTop();    
  adjustFontSize();
+ const currentVersion = 'outpt'
+ checkMatchesAndSetButtonAppearance()
   }
 
 function handleEduc() {
@@ -1450,10 +1451,12 @@ function handleEduc() {
       console.log('No match found, dropdown cleared');
     }
   }
-  const currentVersion = 'educ'
+  
   filterData({ target: dropdown });
   scrollToTop();
   adjustFontSize();
+  const currentVersion = 'educ'
+  checkMatchesAndSetButtonAppearance()
 }
 	
 function handleInpt() {
@@ -1484,10 +1487,11 @@ function handleInpt() {
     dropdown.value = ''; // Clear the dropdown if no match is found
     //console.log('No match found, dropdown cleared');
   }
-  const currentVersion = 'inpt'
   filterData({ target: dropdown });
   scrollToTop();
   adjustFontSize();
+  const currentVersion = 'inpt'
+  checkMatchesAndSetButtonAppearance()
 }
 // Function to handle the Download JSON button click event
   function handleDownloadJSON() {
