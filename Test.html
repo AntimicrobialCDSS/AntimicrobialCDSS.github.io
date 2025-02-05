@@ -1392,7 +1392,7 @@ function handleIndex() {
     for (const item of omData) {
       console.log('Checking item:', item.Name);
       if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
-        matchedItemName = item.Name;
+        matchedItemName = item.Outpt;
         console.log('Match found:', matchedItemName);
         break;
       }
@@ -1430,7 +1430,7 @@ function handleEduc() {
     for (const item of omData) {
       console.log('Checking item:', item.Name);
       if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
-        matchedItemName = item.Name;
+        matchedItemName = item["ED/UC"];
         console.log('Match found:', matchedItemName);
         break;
       }
