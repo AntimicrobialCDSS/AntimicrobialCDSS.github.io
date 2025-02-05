@@ -14,9 +14,12 @@
   var Title = 'Minneapolis Antimicrobial CDSS'; /*Name of the tab on the website*/
   var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
+  const outptMenu = 'ORZID3 GMENU ABX OUTPT MAIN'; /*the menu the website starts at*/
+  const educMenu = 'ORZID GMENU ER/UC EMERGENCY DEPARTMENT MAIN MENU'; /*the menu the website starts at*/	  
   var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
   var homeButtonUrl = 'https://antimicrobialcdss.github.io/'; /*Only important to CDSS program functions, home URL*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
+  const outptIndex = 'ORZID3 GMENU ABX INDEX OUTPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
   const OMjson = 'MinneapolisOMJSON.json'; /*Name of OMJSON file*/
   const ODjson = 'MinneapolisODJSON.json'; /*Name of ODJSOM file*/
   const txmlFile = 'Minneapolis.txml'; /*Name of txml file*/
@@ -1364,7 +1367,13 @@ function handleMainMenu() {
   document.getElementById('searchInput').value = null;
   document.getElementById('searchInput').placeholder = "\u{1F50D}";
   populateDropdown(omData);
-  dropdown.value = MainMenu;
+  if (currentVersion === 'inpt') {	
+  	dropdown.value = MainMenu;
+  	} else if (currentVersion === 'outpt') {
+	  	dropdown.value = outptMenu;
+	} else if (currentVersion === 'educ') {
+	  	dropdown.value = educMenu;
+  	};
   filterData({ target: dropdown });
   scrollToTop()    
   adjustFontSize();
@@ -1376,7 +1385,13 @@ function handleIndex() {
   document.getElementById('searchInput').value = null;
   document.getElementById('searchInput').placeholder = "\u{1F50D}";
   populateDropdown(omData);
-  dropdown.value = Index;
+  if (currentVersion === 'inpt') {	
+  	dropdown.value = Index;
+  	} else if (currentVersion === 'outpt') {
+	  	dropdown.value = outptMenu;
+	} else if (currentVersion === 'educ') {
+	  	dropdown.value = Index;
+  	};
   filterData({ target: dropdown });
   scrollToTop();    
   adjustFontSize();
