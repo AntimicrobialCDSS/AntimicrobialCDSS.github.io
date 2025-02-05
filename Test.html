@@ -1410,18 +1410,28 @@ function handleIndex() {
   const selectedDataName = selectedData.Name;
   let matchedItemName = null;
 
-  omData.forEach(item => {
+  outerLoop:
+  for (const item of omData) {
+    let hasTerms = false;
     for (let i = 1; i <= 99; i++) {
       const termKey = `Term${i}`;
-      if (item[termKey] && item[termKey] === selectedDataName) {
-        matchedItemName = item.name;
-        break;
+      if (item[termKey]) {
+        hasTerms = true;
+        if (item[termKey] === selectedDataName) {
+          matchedItemName = item.name;
+          break outerLoop;
+        }
       }
     }
-  });
+    if (!hasTerms) {
+      continue; // Skip items with no terms
+    }
+  }
 
   if (matchedItemName) {
     dropdown.value = matchedItemName;
+  } else {
+    dropdown.value = ''; // Clear the dropdown if no match is found
   }
 
   filterData({ target: dropdown });
