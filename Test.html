@@ -444,6 +444,7 @@ async function fetchAbxLink() {
 let omData = []; // OMJSON data
 let odData = []; // ODJSON data
 let selectedData = null; // Currently selected data
+let currentVersion = null;
 let history = []; // History of selected items
 let forwardHistory = []; // History of forward selections
 let historyIndex = -1; // Index of the current selection in the history
@@ -1385,7 +1386,7 @@ function handleIndex() {
   searchInput.value = null;
   searchInput.placeholder = "\u{1F50D}";
   populateDropdown(omData);
-
+  
   const selectedDataName = selectedData.Name;
   let matchedItemName = null;
 	 
@@ -1411,7 +1412,7 @@ function handleIndex() {
       console.log('No match found, dropdown cleared');
     }
   }
-	 
+ const currentVersion = 'outpt' 
  filterData({ target: dropdown });
  scrollToTop();    
  adjustFontSize();
@@ -1449,7 +1450,7 @@ function handleEduc() {
       console.log('No match found, dropdown cleared');
     }
   }
-
+  const currentVersion = 'educ'
   filterData({ target: dropdown });
   scrollToTop();
   adjustFontSize();
@@ -1483,7 +1484,7 @@ function handleInpt() {
     dropdown.value = ''; // Clear the dropdown if no match is found
     //console.log('No match found, dropdown cleared');
   }
-
+  const currentVersion = 'inpt'
   filterData({ target: dropdown });
   scrollToTop();
   adjustFontSize();
@@ -1656,6 +1657,7 @@ if ('serviceWorker' in navigator) {
 function checkMatchesAndSetButtonAppearance() {
   const outptButton = document.getElementById('outptButton');
   const educButton = document.getElementById('educButton');
+  const inptButton = document.getElementById('inptButton');
 	
   if (!selectedData || !selectedData.Name) {
     selectedData = { Name: MainMenu }; // Set selectedData.Name to MainMenu if not defined
@@ -1686,7 +1688,6 @@ function checkMatchesAndSetButtonAppearance() {
       }
     }
   }
-  
 
   if (matchedOutptName) {
     setButtonAppearance(outptButton, true); // Set button to active appearance
@@ -1694,12 +1695,28 @@ function checkMatchesAndSetButtonAppearance() {
     setButtonAppearance(outptButton, false); // Set button to grey text
   }
 
-
 if (matchedEducName) {
     setButtonAppearance(educButton, true); // Set button to active appearance
   } else {
     setButtonAppearance(educButton, false); // Set button to grey text
   }
+
+if (currentVersion.value === 'inpt'){
+	setButtonBackground(inptButton, true);
+	setButtonBackground(outptButton, false);
+	setButtonBackground(educButton, false);	
+} else {
+  if (currentVersion.value === 'outpt') {
+  	setButtonBackground(inptButton, false);
+	setButtonBackground(outptButton, true);
+	setButtonBackground(educButton, false);		
+	}
+} else {
+  if (currentVersion.value === 'educ') {
+  	setButtonBackground(inptButton, false);
+	setButtonBackground(outptButton, false);
+	setButtonBackground(educButton, true);		
+	}
 }
 // Function to set the button appearance
 function setButtonAppearance(button, isActive) {
@@ -1710,6 +1727,15 @@ function setButtonAppearance(button, isActive) {
   }
 }
 
+// Function to set the button appearance
+function setButtonBackground(button, isActive) {
+  if (isActive) {
+    button.style.background: #4db8ff; // Reset to default color
+  } else {
+    button.style.background: #00aedb;; // Set to grey text
+  }
+}
+	
 // Run the checkMatchesAndSetButtonAppearance function on page load
 window.onload = function() {
   checkMatchesAndSetButtonAppearance();
