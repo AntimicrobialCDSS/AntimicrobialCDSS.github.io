@@ -1669,7 +1669,7 @@ function checkMatchesAndSetButtonAppearance() {
     matchedOutptName = selectedData.Outpt;
   } else {
     for (const item of omData) {
-      if (item.Outpt === selectedDataName) {
+      if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
         matchedOutptName = item.Outpt;
         break;
       }
@@ -1680,7 +1680,7 @@ function checkMatchesAndSetButtonAppearance() {
     matchedEducName = selectedData["ED/UC"];
   } else {
     for (const item of omData) {
-      if (item["ED/UC"] === selectedDataName) {
+      if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
         matchedEducName = item["ED/UC"];
         break;
       }
