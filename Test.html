@@ -1440,9 +1440,9 @@ function handleInpt() {
   console.log('Selected Data Name:', selectedDataName);
 
   for (const item of omData) {
-    //console.log('Checking item:', item.name);
-    if (item.Outpt || item["ED/UC"] === selectedDataName) {
-      matchedItemName = item.Name;
+    console.log('Checking item:', item.name);
+    if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
+      matchedItemName = item.name;
       console.log('Match found:', matchedItemName);
       break;
     }
