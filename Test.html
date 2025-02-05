@@ -904,7 +904,7 @@ function createOMTable(selectedData) {
   }
 checkMatchesAndSetButtonAppearance()
 console.log(historyIndex);
-if (historyIndex < history.length) {
+if (historyIndex < history.length - 2) {
 	goForwardButton.classList.remove('inactive-button'); // Remove inactive class	  
     	goForwardButton.style.color = ''; // Reset to default color  
 } else {
