@@ -1700,16 +1700,15 @@ if (matchedEducName) {
   } else {
     setButtonAppearance(educButton, false); // Set button to grey text
   }
-
-if (currentVersion.value === 'inpt'){
+if (currentVersion === 'inpt'){
 	setButtonBackground(inptButton, true);
 	setButtonBackground(outptButton, false);
 	setButtonBackground(educButton, false);	
-} else if (currentVersion.value === 'outpt') {
+} else if (currentVersion === 'outpt') {
   	setButtonBackground(inptButton, false);
 	setButtonBackground(outptButton, true);
 	setButtonBackground(educButton, false);		
-} else if (currentVersion.value === 'educ') {
+} else if (currentVersion === 'educ') {
   	setButtonBackground(inptButton, false);
 	setButtonBackground(outptButton, false);
 	setButtonBackground(educButton, true);		
