@@ -1389,15 +1389,38 @@ function handleIndex() {
  adjustFontSize();
   }
 
- function handleEduc() {
+function handleEduc() {
   const dropdown = document.getElementById('filterDropdown');
   const searchInput = document.getElementById('searchInput');
   searchInput.value = null;
   searchInput.placeholder = "\u{1F50D}";
   populateDropdown(omData);
 
-  // Access the property correctly
-  dropdown.value = selectedData["ED/UC"];
+  const selectedDataName = selectedData.Name;
+  let matchedItemName = null;
+
+  if (selectedData["ED/UC"]) {
+    dropdown.value = selectedData["ED/UC"];
+    console.log('Dropdown value set to:', selectedData["ED/UC"]);
+  } else {
+    console.log('ED/UC is empty or does not exist, checking items in omData');
+    for (const item of omData) {
+      console.log('Checking item:', item.name);
+      if (item["ED/UC"] === selectedDataName) {
+        matchedItemName = item.name;
+        console.log('Match found:', matchedItemName);
+        break;
+      }
+    }
+
+    if (matchedItemName) {
+      dropdown.value = matchedItemName;
+      console.log('Dropdown value set to:', matchedItemName);
+    } else {
+      dropdown.value = ''; // Clear the dropdown if no match is found
+      console.log('No match found, dropdown cleared');
+    }
+  }
 
   filterData({ target: dropdown });
   scrollToTop();
