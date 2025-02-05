@@ -1412,25 +1412,12 @@ function handleInpt() {
 
   console.log('Selected Data Name:', selectedDataName);
 
-  outerLoop:
   for (const item of omData) {
-    let hasTerms = false;
-    //console.log('Checking item:', item.name);
-    for (let i = 1; i <= 99; i++) {
-      const termKey = `Term${i}`;
-      if (item[termKey]) {
-        hasTerms = true;
-        console.log(`Found term ${termKey}:`, item[termKey]);
-        if (item[termKey] === selectedDataName) {
-          matchedItemName = item.name;
-          console.log('Match found:', matchedItemName);
-          break outerLoop;
-        }
-      }
-    }
-    if (!hasTerms) {
-      console.log('No terms found for item:', item.name);
-      continue; // Skip items with no terms
+    console.log('Checking item:', item.name);
+    if (item.Oupt && item.Oupt === selectedDataName) {
+      matchedItemName = item.name;
+      console.log('Match found:', matchedItemName);
+      break;
     }
   }
 
@@ -1446,7 +1433,6 @@ function handleInpt() {
   scrollToTop();
   adjustFontSize();
 }
-
 // Function to handle the Download JSON button click event
   function handleDownloadJSON() {
     const displayText = selectedData.DisplayText || selectedData.Name;
