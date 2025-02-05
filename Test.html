@@ -1388,10 +1388,8 @@ function handleIndex() {
   if (currentVersion === 'inpt') {	
   	dropdown.value = Index;
   	} else if (currentVersion === 'outpt') {
-	  	dropdown.value = outptMenu;
-	} else if (currentVersion === 'educ') {
-	  	dropdown.value = Index;
-  	};
+	  	dropdown.value = outptIndex;
+	};
   filterData({ target: dropdown });
   scrollToTop();    
   adjustFontSize();
@@ -1736,6 +1734,7 @@ if (currentVersion === 'inpt'){
   	setButtonBackground(inptButton, false);
 	setButtonBackground(outptButton, false);
 	setButtonBackground(educButton, true);
+	setButtonBackground(IndexButton, false);
 	console.log('educ');
 	}
 }
