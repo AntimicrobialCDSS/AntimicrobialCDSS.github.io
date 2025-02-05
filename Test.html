@@ -1657,10 +1657,7 @@ function checkMatchesAndSetButtonAppearance() {
   const outptButton = document.getElementById('outptButton'); // Assuming the button has this ID
 
   if (!selectedData || !selectedData.Name) {
-    selectedData.Name === MainMenu
-	  //console.log('selectedData or selectedData.Name is not defined');
-    //setButtonAppearance(outptButton, false); // Set button to grey text
-    //return;
+    selectedData = { Name: MainMenu }; // Set selectedData.Name to MainMenu if not defined
   }
 
   const selectedDataName = selectedData.Name;
