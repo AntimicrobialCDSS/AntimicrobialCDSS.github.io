@@ -874,7 +874,7 @@ function createOMTable(selectedData) {
       bodyRow.style.backgroundColor = 'lightblue';
     }
 
-    tbody.appendChild(bodyRow);
+    tbody.appendChild(bodyRow)	  
   }
 
   // Add a new row for the VistA Menu Name at the bottom of the table
@@ -890,6 +890,7 @@ function createOMTable(selectedData) {
   if (selectedData) {
     resultContainer.appendChild(table);
   }
+checkMatchesAndSetButtonAppearance()
 }
   
 async function handleRowClick(item, ClickSymbol) {
@@ -1655,11 +1656,11 @@ if ('serviceWorker' in navigator) {
 function checkMatchesAndSetButtonAppearance() {
   const outptButton = document.getElementById('outptButton'); // Assuming the button has this ID
 
-  if (!selectedData || !selectedData.Name) {
-    console.log('selectedData or selectedData.Name is not defined');
-    setButtonAppearance(outptButton, false); // Set button to grey text
-    return;
-  }
+  //if (!selectedData || !selectedData.Name) {
+  //  console.log('selectedData or selectedData.Name is not defined');
+  //  setButtonAppearance(outptButton, false); // Set button to grey text
+  //  return;
+  // }
 
   const selectedDataName = selectedData.Name;
   let matchedItemName = null;
