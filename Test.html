@@ -904,6 +904,14 @@ function createOMTable(selectedData) {
   }
 checkMatchesAndSetButtonAppearance()
 console.log(historyIndex);
+if (historyIndex < history.length - 1) {
+	goForwardButton.classList.remove('inactive-button'); // Remove inactive class	  
+    	goForwardButton.style.color = ''; // Reset to default color  
+} else {
+    	goForwardButton.classList.add('inactive-button'); // Add inactive class
+    	goForwardButton.style.color = 'grey'; // Set to grey text
+    }
+console.log(historyIndex);
 }
   
 async function handleRowClick(item, ClickSymbol) {
