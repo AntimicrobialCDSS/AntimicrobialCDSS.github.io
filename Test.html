@@ -1391,29 +1391,30 @@ function handleIndex() {
   populateDropdown(omData);
   const selectedDataName = selectedData.Name;
   let matchedItemName = null;
+  dropdown.value = matchedEducName;
 	 
-  if (selectedData.Outpt) {
-    dropdown.value = selectedData.Outpt;
-    //console.log('Dropdown value set to:', selectedData.Outpt);
-  } else {
-    //console.log('Outpt is empty or does not exist, checking items in omData');
-    for (const item of omData) {
-      console.log('Checking item:', item.Name);
-      if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
-        matchedItemName = item.Outpt;
-        //console.log('Match found:', matchedItemName);
-        break;
-      }
-    }
-
-    if (matchedItemName) {
-      dropdown.value = matchedItemName;
-      //console.log('Dropdown value set to:', matchedItemName);
-    } else {
-      dropdown.value = ''; // Clear the dropdown if no match is found
-      console.log('No match found, dropdown cleared');
-    }
-  }
+//  if (selectedData.Outpt) {
+ //   dropdown.value = selectedData.Outpt;
+ //   //console.log('Dropdown value set to:', selectedData.Outpt);
+ // } else {
+ //   //console.log('Outpt is empty or does not exist, checking items in omData');
+ //   for (const item of omData) {
+ //     console.log('Checking item:', item.Name);
+ //     if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
+  //      matchedItemName = item.Outpt;
+  //      //console.log('Match found:', matchedItemName);
+  //     break;
+   //  }
+  //  }
+//
+ //   if (matchedItemName) {
+  //    dropdown.value = matchedItemName;
+   //   //console.log('Dropdown value set to:', matchedItemName);
+   // } else {
+   //   dropdown.value = ''; // Clear the dropdown if no match is found
+   //   console.log('No match found, dropdown cleared');
+  //  }
+ // }
  console.log('outptbuttonclick');
  filterData({ target: dropdown });
  scrollToTop();    
