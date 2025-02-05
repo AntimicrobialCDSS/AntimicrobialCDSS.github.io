@@ -1650,6 +1650,45 @@ if ('serviceWorker' in navigator) {
                 });
             }
         });
+
+// Function to check for matches and set button appearance
+function checkMatchesAndSetButtonAppearance() {
+  const outptButton = document.getElementById('outptButton'); // Assuming the button has this ID
+  const selectedDataName = selectedData.Name;
+  let matchedItemName = null;
+
+  if (selectedData.Outpt) {
+    matchedItemName = selectedData.Outpt;
+  } else {
+    for (const item of omData) {
+      if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
+        matchedItemName = item.Outpt;
+        break;
+      }
+    }
+  }
+
+  if (matchedItemName) {
+    setButtonAppearance(outptButton, true); // Set button to active appearance
+  } else {
+    setButtonAppearance(outptButton, false); // Set button to grey text
+  }
+}
+
+// Function to set the button appearance
+function setButtonAppearance(button, isActive) {
+  if (isActive) {
+    button.style.color = ''; // Reset to default color
+  } else {
+    button.style.color = 'grey'; // Set to grey text
+  }
+}
+
+// Run the checkMatchesAndSetButtonAppearance function on page load
+window.onload = function() {
+  checkMatchesAndSetButtonAppearance();
+};
+	
 </script>
 </body>
 </html>
