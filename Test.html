@@ -1394,7 +1394,7 @@ function handleIndex() {
  document.getElementById('searchInput').value = null;
  document.getElementById('searchInput').placeholder = "\u{1F50D}";
  populateDropdown(omData);
- dropdown.value = selectedData.ED/UC
+ dropdown.value = selectedData.["ED/UC"]
  filterData({ target: dropdown });
  scrollToTop();    
  adjustFontSize();
