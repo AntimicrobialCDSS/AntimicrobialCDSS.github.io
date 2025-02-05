@@ -1703,19 +1703,22 @@ if (matchedEducName) {
   } else {
     setButtonAppearance(educButton, false); // Set button to grey text
   }
-console.log(currentVersion);
+
 if (currentVersion === 'inpt'){
 	setButtonBackground(inptButton, true);
 	setButtonBackground(outptButton, false);
-	setButtonBackground(educButton, false);	
+	setButtonBackground(educButton, false);
+	console.log('inpt');
 } else if (currentVersion === 'outpt') {
   	setButtonBackground(inptButton, false);
 	setButtonBackground(outptButton, true);
-	setButtonBackground(educButton, false);		
+	setButtonBackground(educButton, false);
+	console.log('outpt');
 } else if (currentVersion === 'educ') {
   	setButtonBackground(inptButton, false);
 	setButtonBackground(outptButton, false);
-	setButtonBackground(educButton, true);		
+	setButtonBackground(educButton, true);
+	console.log('educ');
 	}
 }
 // Function to set the button appearance
