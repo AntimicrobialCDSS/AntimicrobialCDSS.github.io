@@ -903,6 +903,10 @@ function createOMTable(selectedData) {
     resultContainer.appendChild(table);
   }
 checkMatchesAndSetButtonAppearance()
+forwardBackButtonActivate()
+}
+
+function forwardBackButtonActivate () {
 if (historyIndex < history.length - 1) {
 	goForwardButton.classList.remove('inactive-button'); // Remove inactive class	  
     	goForwardButton.style.color = ''; // Reset to default color  
@@ -919,7 +923,6 @@ if (historyIndex > 0) {
     	goBackButton.style.color = 'grey'; // Set to grey text
     }
 }
-  
 async function handleRowClick(item, ClickSymbol) {
     const matchingItem = omData.find(
         omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
@@ -1281,6 +1284,8 @@ async function createODTable(selectedItem) {
 
     // Adjust font size after table is fully appended
     adjustFontSize();
+    //checkMatchesAndSetButtonAppearance()
+    forwardBackButtonActivate()
 }
 
 // Function to filter data based on the selected option
