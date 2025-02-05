@@ -1320,12 +1320,12 @@ function sortDropdownByTerm() {
 
 // Function to push the current selection to the history
 function pushHistory(item) {
-
   if (item !== history[historyIndex]) {
     historyIndex++;
     history.splice(historyIndex, history.length - historyIndex, item);
     forwardHistory = [];
   }
+console.log(historyIndex, hisotry,length);	
 }
 
 function handleGoBack() {
