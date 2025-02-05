@@ -1705,14 +1705,11 @@ if (currentVersion.value === 'inpt'){
 	setButtonBackground(inptButton, true);
 	setButtonBackground(outptButton, false);
 	setButtonBackground(educButton, false);	
-} else {
-  if (currentVersion.value === 'outpt') {
+} else if (currentVersion.value === 'outpt') {
   	setButtonBackground(inptButton, false);
 	setButtonBackground(outptButton, true);
 	setButtonBackground(educButton, false);		
-	}
-} else {
-  if (currentVersion.value === 'educ') {
+} else if (currentVersion.value === 'educ') {
   	setButtonBackground(inptButton, false);
 	setButtonBackground(outptButton, false);
 	setButtonBackground(educButton, true);		
