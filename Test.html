@@ -903,14 +903,19 @@ function createOMTable(selectedData) {
     resultContainer.appendChild(table);
   }
 checkMatchesAndSetButtonAppearance()
-console.log(historyIndex);
-console.log(history.length);	
 if (historyIndex < history.length - 1) {
 	goForwardButton.classList.remove('inactive-button'); // Remove inactive class	  
     	goForwardButton.style.color = ''; // Reset to default color  
 } else {
     	goForwardButton.classList.add('inactive-button'); // Add inactive class
     	goForwardButton.style.color = 'grey'; // Set to grey text
+    }
+if (historyIndex = 0) {
+	goBackwardButton.classList.remove('inactive-button'); // Remove inactive class	  
+    	goBackwardButton.style.color = ''; // Reset to default color  
+} else {
+	goBackwardButton.classList.add('inactive-button'); // Add inactive class
+    	goBackwardButton.style.color = 'grey'; // Set to grey text
     }
 }
   
@@ -1344,7 +1349,13 @@ function handleGoBack() {
     else {
       createODTable(selectedItem)
     }
-  }
+  goBackwardButton.classList.remove('inactive-button'); // Remove inactive class	  
+  goBackwardButton.style.color = ''; // Reset to default color 	  
+  } else {
+    goBackwardButton.classList.add('inactive-button'); // Add inactive class
+    goBackwardButton.style.color = 'grey'; // Set to grey text
+   }
+	
   scrollToTop();
   adjustFontSize();
 }
