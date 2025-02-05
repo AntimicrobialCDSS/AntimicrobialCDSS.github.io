@@ -911,11 +911,11 @@ if (historyIndex < history.length - 1) {
     	goForwardButton.style.color = 'grey'; // Set to grey text
     }
 if (historyIndex = 0) {
-	goBackwardButton.classList.remove('inactive-button'); // Remove inactive class	  
-    	goBackwardButton.style.color = ''; // Reset to default color  
+	goBackButton.classList.remove('inactive-button'); // Remove inactive class	  
+    	goBackButton.style.color = ''; // Reset to default color  
 } else {
-	goBackwardButton.classList.add('inactive-button'); // Add inactive class
-    	goBackwardButton.style.color = 'grey'; // Set to grey text
+	goBackButton.classList.add('inactive-button'); // Add inactive class
+    	goBackButton.style.color = 'grey'; // Set to grey text
     }
 }
   
@@ -1349,11 +1349,11 @@ function handleGoBack() {
     else {
       createODTable(selectedItem)
     }
-  goBackwardButton.classList.remove('inactive-button'); // Remove inactive class	  
-  goBackwardButton.style.color = ''; // Reset to default color 	  
+  goBackButton.classList.remove('inactive-button'); // Remove inactive class	  
+  goBackButton.style.color = ''; // Reset to default color 	  
   } else {
-    goBackwardButton.classList.add('inactive-button'); // Add inactive class
-    goBackwardButton.style.color = 'grey'; // Set to grey text
+    goBackButton.classList.add('inactive-button'); // Add inactive class
+    goBackButton.style.color = 'grey'; // Set to grey text
    }
 	
   scrollToTop();
