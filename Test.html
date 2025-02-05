@@ -891,7 +891,7 @@ function createOMTable(selectedData) {
   if (selectedData) {
     resultContainer.appendChild(table);
   }
-checkMatchesAndSetButtonAppearance()
+//checkMatchesAndSetButtonAppearance()
 }
   
 async function handleRowClick(item, ClickSymbol) {
@@ -1416,7 +1416,7 @@ function handleIndex() {
  filterData({ target: dropdown });
  scrollToTop();    
  adjustFontSize();
- //checkMatchesAndSetButtonAppearance()
+ checkMatchesAndSetButtonAppearance()
   }
 
 function handleEduc() {
@@ -1455,7 +1455,7 @@ function handleEduc() {
   filterData({ target: dropdown });
   scrollToTop();
   adjustFontSize();
-  //checkMatchesAndSetButtonAppearance()
+  checkMatchesAndSetButtonAppearance()
 }
 	
 function handleInpt() {
@@ -1490,7 +1490,7 @@ function handleInpt() {
   filterData({ target: dropdown });
   scrollToTop();
   adjustFontSize();
-  //checkMatchesAndSetButtonAppearance()
+  checkMatchesAndSetButtonAppearance()
 }
 // Function to handle the Download JSON button click event
   function handleDownloadJSON() {
@@ -1743,7 +1743,7 @@ function setButtonBackground(button, isActive) {
 	
 // Run the checkMatchesAndSetButtonAppearance function on page load
 window.onload = function() {
-  //currentVersion = 'inpt'	
+  currentVersion = 'inpt'	
   checkMatchesAndSetButtonAppearance();
 };
 	
