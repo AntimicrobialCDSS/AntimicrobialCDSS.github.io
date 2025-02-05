@@ -1390,21 +1390,21 @@ function handleIndex() {
 	 
   if (selectedData.Outpt) {
     dropdown.value = selectedData.Outpt;
-    console.log('Dropdown value set to:', selectedData.Outpt);
+    //console.log('Dropdown value set to:', selectedData.Outpt);
   } else {
-    console.log('Outpt is empty or does not exist, checking items in omData');
+    //console.log('Outpt is empty or does not exist, checking items in omData');
     for (const item of omData) {
       console.log('Checking item:', item.Name);
       if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
         matchedItemName = item.Outpt;
-        console.log('Match found:', matchedItemName);
+        //console.log('Match found:', matchedItemName);
         break;
       }
     }
 
     if (matchedItemName) {
       dropdown.value = matchedItemName;
-      console.log('Dropdown value set to:', matchedItemName);
+      //console.log('Dropdown value set to:', matchedItemName);
     } else {
       dropdown.value = ''; // Clear the dropdown if no match is found
       console.log('No match found, dropdown cleared');
@@ -1428,21 +1428,21 @@ function handleEduc() {
 
   if (selectedData["ED/UC"]) {
     dropdown.value = selectedData["ED/UC"];
-    console.log('Dropdown value set to:', selectedData["ED/UC"]);
+    //console.log('Dropdown value set to:', selectedData["ED/UC"]);
   } else {
-    console.log('ED/UC is empty or does not exist, checking items in omData');
+    //console.log('ED/UC is empty or does not exist, checking items in omData');
     for (const item of omData) {
-      console.log('Checking item:', item.Name);
+      //console.log('Checking item:', item.Name);
       if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
         matchedItemName = item["ED/UC"];
-        console.log('Match found:', matchedItemName);
+        //console.log('Match found:', matchedItemName);
         break;
       }
     }
 
     if (matchedItemName) {
       dropdown.value = matchedItemName;
-      console.log('Dropdown value set to:', matchedItemName);
+      //console.log('Dropdown value set to:', matchedItemName);
     } else {
       dropdown.value = ''; // Clear the dropdown if no match is found
       console.log('No match found, dropdown cleared');
@@ -1464,23 +1464,23 @@ function handleInpt() {
   const selectedDataName = selectedData.Name;
   let matchedItemName = null;
 
-  console.log('Selected Data Name:', selectedDataName);
+  //console.log('Selected Data Name:', selectedDataName);
 
   for (const item of omData) {
-    console.log('Checking item:', item.Name);
+    //console.log('Checking item:', item.Name);
     if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
       matchedItemName = item.Name;
-      console.log('Match found:', matchedItemName);
+      //console.log('Match found:', matchedItemName);
       break;
     }
   }
 
   if (matchedItemName) {
     dropdown.value = matchedItemName;
-    console.log('Dropdown value set to:', matchedItemName);
+    //console.log('Dropdown value set to:', matchedItemName);
   } else {
     dropdown.value = ''; // Clear the dropdown if no match is found
-    console.log('No match found, dropdown cleared');
+    //console.log('No match found, dropdown cleared');
   }
 
   filterData({ target: dropdown });
