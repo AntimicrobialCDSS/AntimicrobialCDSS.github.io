@@ -522,7 +522,7 @@ function populateDropdown(omData) {
         option.value = item.Name;
         option.textContent = term;
         dropdown.appendChild(option);
-        console.log(`Added term option: ${term}`);
+        //console.log(`Added term option: ${term}`);
       });
     }
   });
@@ -535,11 +535,11 @@ function populateDropdown(omData) {
 	  
     option.style.display = 'none'; // Make the option invisible
     dropdown.appendChild(option);
-    console.log(`Added invisible option: ${option.textContent}`);
+    //console.log(`Added invisible option: ${option.textContent}`);
   });
 
   dropdown.scrollTop = 0;
-  console.log('Dropdown population complete');
+  //console.log('Dropdown population complete');
 }
 	
 // Function to search and sort data based on the input
@@ -907,7 +907,7 @@ async function handleRowClick(item, ClickSymbol) {
         const matchingODItem = odData.find(
             odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
         );
-        console.log("Matching item:", matchingODItem);
+        //console.log("Matching item:", matchingODItem);
 
         if (matchingODItem) {
             if (ClickSymbol) {
@@ -924,19 +924,19 @@ async function handleRowClick(item, ClickSymbol) {
                     matches.forEach(match => {
                         const { txmlName, txmlURL, odItem } = match;
                         // Handle each match here
-                        console.log("Matching .txml Name:", txmlName);
-                        console.log("Matching .txml URL:", txmlURL);
-                        console.log("Matching ODJSON Item:", odItem);
+                        //console.log("Matching .txml Name:", txmlName);
+                        //console.log("Matching .txml URL:", txmlURL);
+                        //console.log("Matching ODJSON Item:", odItem);
                     });
                 } else {
-                    console.log('No matching item found in OMJSON.json, ODJSON.json, or txml');
+                    //console.log('No matching item found in OMJSON.json, ODJSON.json, or txml');
                 }
             } else {
                 // Handle other cases
-                console.log('Matching item does not meet any specific condition');
+                //console.log('Matching item does not meet any specific condition');
             }
         } else {
-            console.log('No matching item found in OD data');
+            //console.log('No matching item found in OD data');
         }
     }
     scrollToTop();
@@ -971,13 +971,13 @@ async function findMatches(matchingItem) {
                 const wordProcessingField = item[`WordProcessing${i}`];
                 // Check if the field exists and contains text
                 if (wordProcessingField && wordProcessingField.trim() !== '') {
-                    console.log(`Checking WordProcessing${i}: ${wordProcessingField}`);
+                   // console.log(`Checking WordProcessing${i}: ${wordProcessingField}`);
                     // Check for matches with txml names using wildcards
                     const matchesInTxml = txmlData.fields.filter(field => new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(wordProcessingField));
                     if (matchesInTxml.length > 0) {
                         // If matches are found, add them to the itemMatches array
                         matchesInTxml.forEach(match => {
-                            console.log(`Match found: ${match.name} with URL: ${match.url}`);
+                            //console.log(`Match found: ${match.name} with URL: ${match.url}`);
                             itemMatches.push({
                                 txmlName: match.name,
                                 txmlURL: match.url,
@@ -992,7 +992,7 @@ async function findMatches(matchingItem) {
                     } else {
                       //matchingItem = selectedItem
                       //createODTable(item)
-                      console.log(`No matches found for WordProcessing${i}`);
+                      //console.log(`No matches found for WordProcessing${i}`);
                     }
                 } 
             }
@@ -1001,7 +1001,7 @@ async function findMatches(matchingItem) {
             matches.push(...itemMatches);
 
             // Debugging: Log the itemMatches array
-            console.log("Item matches:", itemMatches);
+            //console.log("Item matches:", itemMatches);
 
             // If URLs are found, handle them based on the number of URLs
             if (urls.length > 0) {
@@ -1016,7 +1016,7 @@ async function findMatches(matchingItem) {
                         .join('<br>');
 
                     // Debugging: Log the popup content
-                    console.log("Popup content:", popupContent);
+                    //console.log("Popup content:", popupContent);
 
                     // Open a new tab and write the content
                     const newTab = window.open("", "_blank");
@@ -1348,7 +1348,7 @@ function handleGoForward() {
         // Handle the case when the historyIndex is at the end
         // This could be redirecting somewhere or showing a message
         // For now, let's just log a message
-        console.log("End of history reached");
+        //console.log("End of history reached");
     }
     scrollToTop();
     adjustFontSize();
@@ -1398,9 +1398,9 @@ function handleIndex() {
  filterData({ target: dropdown });
  scrollToTop();    
  adjustFontSize();
-  }
-
-  function handleInpt() {
+}
+	
+function handleInpt() {
   const dropdown = document.getElementById('filterDropdown');
   const searchInput = document.getElementById('searchInput');
   searchInput.value = null;
@@ -1410,36 +1410,44 @@ function handleIndex() {
   const selectedDataName = selectedData.Name;
   let matchedItemName = null;
 
+  console.log('Selected Data Name:', selectedDataName);
+
   outerLoop:
   for (const item of omData) {
     let hasTerms = false;
+    console.log('Checking item:', item.name);
     for (let i = 1; i <= 99; i++) {
       const termKey = `Term${i}`;
       if (item[termKey]) {
         hasTerms = true;
+        console.log(`Found term ${termKey}:`, item[termKey]);
         if (item[termKey] === selectedDataName) {
           matchedItemName = item.name;
+          console.log('Match found:', matchedItemName);
           break outerLoop;
         }
       }
     }
     if (!hasTerms) {
+      console.log('No terms found for item:', item.name);
       continue; // Skip items with no terms
     }
   }
 
   if (matchedItemName) {
     dropdown.value = matchedItemName;
+    console.log('Dropdown value set to:', matchedItemName);
   } else {
     dropdown.value = ''; // Clear the dropdown if no match is found
+    console.log('No match found, dropdown cleared');
   }
 
   filterData({ target: dropdown });
   scrollToTop();
   adjustFontSize();
 }
-	
-  // Function to handle the Download JSON button click event
+
+// Function to handle the Download JSON button click event
   function handleDownloadJSON() {
     const displayText = selectedData.DisplayText || selectedData.Name;
     const data = JSON.stringify(selectedData, null, 2);
