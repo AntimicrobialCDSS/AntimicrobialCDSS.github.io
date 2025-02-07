@@ -1293,6 +1293,7 @@ function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
   const matchingData = omData.find(item => item.Name === selectedOption);
   if (matchingData) {
+    console.log('searchselect')
     selectedData = matchingData;
     currentVersion = 'inpt'	
     checkMatchesAndSetButtonAppearance();
