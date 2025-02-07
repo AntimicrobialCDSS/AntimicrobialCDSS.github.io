@@ -758,13 +758,11 @@ function isValidURL(value) {
 
 function scrollToTop() {
   const resultContainer = document.getElementById('resultContainer');
-  setTimeout(() => {
-    resultContainer.scrollTop = 0;
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }, 100); // 100 milliseconds delay
+  resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
 }
 	
 // Function to escape special characters in a string to use in a regular expression
