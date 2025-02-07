@@ -15,7 +15,7 @@
   var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
   const outptMenu = 'ORZID3 GMENU ABX OUTPT MAIN'; /*the menu the website starts at*/
-  const educMenu = 'ORZID GMENU ER/UC EMERGENCY DEPARTMENT MAIN MENU'; /*the menu the website starts at*/	  
+  const erucMenu = 'ORZID GMENU ER/UC EMERGENCY DEPARTMENT MAIN MENU'; /*the menu the website starts at*/	  
   var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
   var homeButtonUrl = 'https://antimicrobialcdss.github.io/'; /*Only important to CDSS program functions, home URL*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
@@ -255,7 +255,7 @@
 
 #inptButton,
 #outptButton,
-#educButton   {
+#erucButton   {
   font-family: 'PT Serif Regular', Arial, sans-serif;
   background-color: transparent; /* Make the background transparent */
   border: none; /* Remove the border */
@@ -295,7 +295,7 @@
 #homeButton:hover,
 #inptButton:hover,
 #outptButton:hover,
-#educButton:hover 
+#erucButton:hover 
 {
   background-color: #4db8ff; /* lighter shade of blue */
 }
@@ -339,7 +339,7 @@
 	<div class="buttons-container2">
     	<button id="inptButton">Inpatient</button>
     	<button id="outptButton">Outpatient</button>
-    	<button id="educButton">ED/UC</button>
+    	<button id="erucButton">ER/UC</button>
   	</div>	
     <div class="search-container">
       <input type="text" id="searchInput" placeholder="&#x1F50D;">
@@ -461,7 +461,7 @@ let forwardHistory = []; // History of forward selections
 let historyIndex = -1; // Index of the current selection in the history
 let abxLinkData = []; // AbxLink data
 let matchedOutptName = null;
-let matchedEducName = null;
+let matchedErucName = null;
 	
 // Function to hide location buttons
 if (CDSSlocation === 'Des Moines') {
@@ -1422,8 +1422,8 @@ function handleMainMenu() {
   	dropdown.value = MainMenu;
   	} else if (currentVersion === 'outpt') {
 	  	dropdown.value = outptMenu;
-	} else if (currentVersion === 'educ') {
-	  	dropdown.value = educMenu;
+	} else if (currentVersion === 'eruc') {
+	  	dropdown.value = erucMenu;
   	};
   filterData({ target: dropdown });
   scrollToTop()    
@@ -1486,16 +1486,16 @@ function handleIndex() {
  checkMatchesAndSetButtonAppearance()
   }
 
-function handleEduc() {
+function handleEruc() {
   const dropdown = document.getElementById('filterDropdown');
   const searchInput = document.getElementById('searchInput');
   searchInput.value = null;
   searchInput.placeholder = "\u{1F50D}";
   populateDropdown(omData);
-  currentVersion = 'educ';
+  currentVersion = 'eruc';
   const selectedDataName = selectedData.Name;
   let matchedItemName = null;
-  dropdown.value = matchedEducName;
+  dropdown.value = matchedErucName;
 	
  //  if (selectedData["ED/UC"]) {
  //   dropdown.value = selectedData["ED/UC"];
@@ -1519,7 +1519,7 @@ function handleEduc() {
 //      console.log('No match found, dropdown cleared');
 //    }
 //  }
-  //console.log('educbuttonclick');
+  //console.log('erucButtonclick');
   filterData({ target: dropdown });
   scrollToTop();
   adjustFontSize();
@@ -1540,7 +1540,7 @@ function handleInpt() {
 
   for (const item of omData) {
     //console.log('Checking item:', item.Name);
-    if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
+    if (item.Outpt === selectedDataName || item.ERUC === selectedDataName) {
       matchedItemName = item.Name;
       //console.log('Match found:', matchedItemName);
       break;
@@ -1617,7 +1617,7 @@ document.getElementById('mainMenuButton').addEventListener('click', handleMainMe
 document.getElementById('indexButton').addEventListener('click', handleIndex);
 document.getElementById('outptButton').addEventListener('click', handleOutpt);
 document.getElementById('inptButton').addEventListener('click', handleInpt);
-document.getElementById('educButton').addEventListener('click', handleEduc);
+document.getElementById('erucButton').addEventListener('click', handleEruc);
 document.getElementById('filterDropdown').addEventListener('change', filterData);
 window.addEventListener('resize', adjustFontSize);
 window.addEventListener('DOMContentLoaded', adjustFontSize);
@@ -1727,11 +1727,11 @@ if ('serviceWorker' in navigator) {
 // Function to check for matches and set button appearance
 function checkMatchesAndSetButtonAppearance() {
   const outptButton = document.getElementById('outptButton');
-  const educButton = document.getElementById('educButton');
+  const erucButton = document.getElementById('erucButton');
   const inptButton = document.getElementById('inptButton');
   const indexButton = document.getElementById('indexButton');
   matchedOutptName = null;
-  matchedEducName = null;
+  matchedErucName = null;
 	
   if (!selectedData || !selectedData.Name) {
     selectedData = { Name: MainMenu }; // Set selectedData.Name to MainMenu if not defined
@@ -1743,18 +1743,18 @@ function checkMatchesAndSetButtonAppearance() {
     matchedOutptName = selectedData.Outpt;
   } else {
     for (const item of omData) {
-      if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
+      if (item.Outpt === selectedDataName || item.ERUC === selectedDataName) {
         matchedOutptName = item.Outpt;
         break;
       }
     }
   }
-  if (selectedData["ED/UC"]) {
-    matchedEducName = selectedData["ED/UC"];
+  if (selectedData.ERUC) {
+    matchedErucName = selectedData.ERUC;
   } else {
     for (const item of omData) {
-      if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
-        matchedEducName = item["ED/UC"];
+      if (item.Outpt === selectedDataName || item.ERUC === selectedDataName) {
+        matchedErucName = item.ERUC;
         break;
       }
     }
@@ -1766,26 +1766,26 @@ function checkMatchesAndSetButtonAppearance() {
     setButtonAppearance(outptButton, false); // Set button to grey text
   }
 
-if (matchedEducName) {
-    setButtonAppearance(educButton, true); // Set button to active appearance
+if (matchedErucName) {
+    setButtonAppearance(erucButton, true); // Set button to active appearance
   } else {
-    setButtonAppearance(educButton, false); // Set button to grey text
+    setButtonAppearance(erucButton, false); // Set button to grey text
   }
 
 if (currentVersion === 'inpt'){
 	setButtonBackground(inptButton, true);
 	setButtonBackground(outptButton, false);
-	setButtonBackground(educButton, false);
+	setButtonBackground(erucButton, false);
 	setButtonAppearance(indexButton, true);
 } else if (currentVersion === 'outpt') {
   	setButtonBackground(inptButton, false);
 	setButtonBackground(outptButton, true);
-	setButtonBackground(educButton, false);
+	setButtonBackground(erucButton, false);
 	setButtonAppearance(indexButton, true);
-} else if (currentVersion === 'educ') {
+} else if (currentVersion === 'eruc') {
   	setButtonBackground(inptButton, false);
 	setButtonBackground(outptButton, false);
-	setButtonBackground(educButton, true);
+	setButtonBackground(erucButton, true);
 	setButtonAppearance(indexButton, false);
 	}
 }
