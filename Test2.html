@@ -1294,16 +1294,16 @@ function filterData(event, sortByTerm = false) {
   const matchingData = omData.find(item => item.Name === selectedOption);
   if (matchingData) {
     selectedData = matchingData;
-    if (currentVersion === 'outpt' && selectedData.Outpt) {
-      createOMTable(selectedData.Outpt);
-      pushHistory(selectedData.Outpt);
-      } else if (currentVersion === 'educ' && selectedData["ED/UC"]) {
-      createOMTable(selectedData["ED/UC"]);
-      pushHistory(selectedData["ED/UC"]);
+    if (currentVersion === 'outpt' && matchingData.Outpt) {
+      createOMTable(matchingData.Outpt);
+      pushHistory(matchingData.Outpt);
+      } else if (currentVersion === 'educ' && matchingData["ED/UC"]) {
+      createOMTable(matchingData["ED/UC"]);
+      pushHistory(matchingData["ED/UC"]);
     } else {
       createOMTable(matchingData);
       pushHistory(matchingData.Name);
-    }
+    //}
     } /*else {
     // Handle the case when selectedData is not found
     // For example, display an error message or clear the result container
