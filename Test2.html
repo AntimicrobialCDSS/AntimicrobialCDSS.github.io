@@ -1307,6 +1307,8 @@ function filterData(event, sortByTerm = false) {
     } else {
       createOMTable(matchingData);
       pushHistory(matchingData.Name);
+      currentVersion = 'inpt'	
+      checkMatchesAndSetButtonAppearance();	    
     }
   } else if (currentVersion === 'educ') {
     const matchingEducData = omData.find(item => item.Name === matchingData["ED/UC"]);
@@ -1316,6 +1318,8 @@ function filterData(event, sortByTerm = false) {
     } else {
       createOMTable(matchingData);
       pushHistory(matchingData.Name);
+      currentVersion = 'inpt'	
+      checkMatchesAndSetButtonAppearance();
     }
   } else {
     createOMTable(matchingData);
