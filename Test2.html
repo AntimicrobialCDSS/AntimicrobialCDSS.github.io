@@ -1295,10 +1295,10 @@ function filterData(event, sortByTerm = false) {
   if (matchingData) {
     selectedData = matchingData;
     if (currentVersion === 'outpt' && matchingData.Outpt) {
-      createOMTable(matchingData.Outpt);
+      createOMTable(matchingData);
       pushHistory(matchingData.Outpt);
       } else if (currentVersion === 'educ' && matchingData["ED/UC"]) {
-      createOMTable(matchingData["ED/UC"]);
+      createOMTable(matchingData);
       pushHistory(matchingData["ED/UC"]);
     } else {
       createOMTable(matchingData);
