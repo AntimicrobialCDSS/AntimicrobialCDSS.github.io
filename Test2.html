@@ -1295,11 +1295,11 @@ function filterData(event, sortByTerm = false) {
   if (matchingData) {
     selectedData = matchingData;
     if (currentVersion === 'outpt' && matchedOutptName) {
-      createOMTable(matchingOutptName);
-      pushHistory(matchingOutptName);
+      createOMTable(matchedOutptName);
+      pushHistory(matchedOutptName);
       } else if (currentVersion === 'educ' && matchedEducName) {
-      createOMTable(matchingEducName);
-      pushHistory(matchingEducName);
+      createOMTable(matchedEducName);
+      pushHistory(matchedEducName);
     } else {
       createOMTable(matchingData);
       pushHistory(matchingData.Name);
