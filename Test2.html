@@ -1293,26 +1293,38 @@ async function createODTable(selectedItem) {
 function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
   const matchingData = omData.find(item => item.Name === selectedOption);
-  if (matchingData) {
-    selectedData = matchingData;
-    if (currentVersion === 'outpt' && matchingData.Outpt) {
-      createOMTable(matchingData);
+
+  if (!matchingData) {
+    console.error('No matching data found');
+    return;
+  }
+
+  if (currentVersion === 'outpt') {
+    const matchingOutptData = omData.find(item => item.Name === matchingData.Outpt);
+    if (matchingOutptData) {
+      createOMTable(matchingOutptData);
       pushHistory(matchingData.Outpt);
-      } else if (currentVersion === 'educ' && matchingData["ED/UC"]) {
+    } else {
       createOMTable(matchingData);
+      pushHistory(matchingData.Name);
+    }
+  } else if (currentVersion === 'educ') {
+    const matchingEducData = omData.find(item => item.Name === matchingData["ED/UC"]);
+    if (matchingEducData) {
+      createOMTable(matchingEducData);
       pushHistory(matchingData["ED/UC"]);
     } else {
       createOMTable(matchingData);
       pushHistory(matchingData.Name);
     }
-    } /*else {
-    // Handle the case when selectedData is not found
-    // For example, display an error message or clear the result container
-    const resultContainer = document.getElementById('resultContainer');
-    resultContainer.innerHTML = 'Selected data not found.';
-  }*/
+  } else {
+    createOMTable(matchingData);
+    pushHistory(matchingData.Name);
+  }
+
   scrollToTop();
   adjustFontSize();
+
   if (sortByTerm) {
     sortDropdownByTerm();
   }
