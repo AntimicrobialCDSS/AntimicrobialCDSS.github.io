@@ -31,7 +31,7 @@
   var hideButtonsVersions = 'False';/*mark as true for non-CDSS systems*/
   var hideButtonsIndex = 'False';/*mark as true for non-CDSS systems*/
   var hideButtonsHome = 'False';/*mark as true for non-CDSS systems*/
-  var Version = 'V1.092'; /*Text at the bottom of the menu, change to whatever you want*/
+  var Version = 'V1.2'; /*Text at the bottom of the menu, change to whatever you want*/
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -280,7 +280,7 @@
   border-radius: 10px; /* Adjust border-radius for rounded corners */
   text-align: center;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   color: white;
   padding: 5px 5px;
@@ -1793,7 +1793,8 @@ function setButtonAppearance(button, isActive) {
 // Function to set the button appearance
 function setButtonBackground(button, isActive) {
   if (isActive) {
-    button.style.background = '#00b159';
+    //button.style.background = '#00b159';
+    button.style.background = transparent;
   } else {
     button.style.background = '#00aedb'; 
   }
