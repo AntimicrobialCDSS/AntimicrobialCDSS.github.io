@@ -14,9 +14,12 @@
   var Title = 'Minneapolis Antimicrobial CDSS'; /*Name of the tab on the website*/
   var MainMenuButton = 'Minneapolis Home'; /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
+  const outptMenu = 'ORZID3 GMENU ABX OUTPT MAIN'; /*the menu the website starts at*/
+  const educMenu = 'ORZID GMENU ER/UC EMERGENCY DEPARTMENT MAIN MENU'; /*the menu the website starts at*/	  
   var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
   var homeButtonUrl = 'https://antimicrobialcdss.github.io/'; /*Only important to CDSS program functions, home URL*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
+  const outptIndex = 'ORZID3 GMENU ABX INDEX OUTPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
   const OMjson = 'MinneapolisOMJSON.json'; /*Name of OMJSON file*/
   const ODjson = 'MinneapolisODJSON.json'; /*Name of ODJSOM file*/
   const txmlFile = 'Minneapolis.txml'; /*Name of txml file*/
@@ -28,7 +31,7 @@
   var hideButtonsVersions = 'False';/*mark as true for non-CDSS systems*/
   var hideButtonsIndex = 'False';/*mark as true for non-CDSS systems*/
   var hideButtonsHome = 'False';/*mark as true for non-CDSS systems*/
-  var Version = 'V1.092'; /*Text at the bottom of the menu, change to whatever you want*/
+  var Version = 'V1.2'; /*Text at the bottom of the menu, change to whatever you want*/
   </script> 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,7 +90,8 @@
       width: 12%; /* Take up 75% of the screen */
     }
     
-    .button:hover {
+    .button:hover,
+    .button2:hover {
       background-color: #4db8ff; /* Light Blue color */
     }
     
@@ -108,11 +112,16 @@
       display: inline-block; /* Make links behave like buttons */
       width: 16%; /* Take up 75% of the screen */
     }
-    
-    .button2:hover {
-      background-color: #4db8ff; /* Light Blue color */
-    }
-    
+	  
+    .inactive-button {
+    pointer-events: none; /* Prevent clicks */
+    background-color: #00aedb; /* Inactive color */
+    color: grey; /* Inactive text color */
+  }
+
+  .inactive-button:hover {
+    background-color: #00aedb; /* Prevent hover effect */
+  }
     .no-term {
       display: none;
     }
@@ -184,10 +193,22 @@
 }
     
 .buttons-container {
-  margin: 10px; /* Add the desired margin value */
+  margin-top: 10px; /* Add the desired margin value */
+  margin-bottom: 5px;
+  margin-left: 5px;
   display: flex;
   align-items: flex-start; 
-  gap: 15px;
+  gap: 10px;
+  justify-content: flex-start;
+}
+    
+.buttons-container2 {
+  margin-top: 0px;
+  margin-bottom: 5px;
+  margin-left: 50px; 
+  display: flex;
+  align-items: flex-start; 
+  gap: 50px;
   justify-content: flex-start;
 }
     
@@ -231,6 +252,22 @@
   height: auto;
   float: Left; /* Float the image to the right */
 }
+
+#inptButton,
+#outptButton,
+#educButton   {
+  font-family: 'PT Serif Regular', Arial, sans-serif;
+  background-color: transparent; /* Make the background transparent */
+  border: none; /* Remove the border */
+  border-radius: 10px; /* Adjust border-radius for rounded corners */
+  text-align: center;
+  text-decoration: none;
+  font-size: 12px;
+  cursor: pointer;
+  color: white;
+  padding: 5px 5px; /* Adjust the values to your desired padding */
+}
+
 #goBackButton,
 #mainMenuButton,
 #indexButton,
@@ -243,10 +280,10 @@
   border-radius: 10px; /* Adjust border-radius for rounded corners */
   text-align: center;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   color: white;
-  padding: 5px 5px; /* Adjust the values to your desired padding */
+  padding: 5px 5px;
 }
 
 /* Add a darker shade of blue on hover */
@@ -255,7 +292,11 @@
 #indexButton:hover,
 #goForwardButton:hover,
 #install-button:hover,
-#homeButton:hover  {
+#homeButton:hover,
+#inptButton:hover,
+#outptButton:hover,
+#educButton:hover 
+{
   background-color: #4db8ff; /* lighter shade of blue */
 }
   #filterDropdown {
@@ -279,29 +320,34 @@
     font-family: "Times New Roman", serif;
   }
   .blankSpace {
-   padding: 20px 30px; // blank div(or blank space) height and width. Depends on you.
+   padding: 20px 30px; 
 }
   </style>
 </head>
 <body>
-  <div id="header">
-<div class="buttons-container">
-  <button id="goBackButton">&#9664;</button>
-  <button id="mainMenuButton">Minneapolis Home</button>
-  <button id="indexButton">Index</button>
-  <button id="goForwardButton">&#9654;</button>
-  <button id="install-button" style="display: none";>Install App</button>
-  <button id="homeButton">
-      &#9650;
-  </button>
-</div>
-    <div class ="search-container">
-        <input type="text" id="searchInput" placeholder=&#x1F50D;>
-    </div>
-    <div class ="dropbox-container">
+	<div id="header">
+		<div class="buttons-container">
+  		<button id="goBackButton">&#9664;</button>
+      	<button id="mainMenuButton">Minneapolis Home</button>
+      	<button id="indexButton">Index</button>
+      	<button id="goForwardButton">&#9654;</button>
+      	<button id="install-button" style="display: none";>Install App</button>
+      	<button id="homeButton">
+        	 &#9650;
+		</button>
+	</div>
+	<div class="buttons-container2">
+    	<button id="inptButton">Inpatient</button>
+    	<button id="outptButton">Outpatient</button>
+    	<button id="educButton">ED/UC</button>
+  	</div>	
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="&#x1F50D;">
+      <div class="dropbox-container">
         <select id="filterDropdown"></select>
+      </div>
     </div>
-  </div>
+</div>
  <table class="table">
   <div id="resultContainer"></div>
 </table>
@@ -409,11 +455,14 @@ async function fetchAbxLink() {
 let omData = []; // OMJSON data
 let odData = []; // ODJSON data
 let selectedData = null; // Currently selected data
+let currentVersion = null;
 let history = []; // History of selected items
 let forwardHistory = []; // History of forward selections
 let historyIndex = -1; // Index of the current selection in the history
 let abxLinkData = []; // AbxLink data
-
+let matchedOutptName = null;
+let matchedEducName = null;
+	
 // Function to hide location buttons
 if (CDSSlocation === 'Des Moines') {
   {document.getElementById("desMoinesButton").style.display="none";};
@@ -464,6 +513,9 @@ document.getElementById('indexButton').textContent = IndexButton;
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
+
+  const itemsWithoutTerms = [];
+
   omData.forEach(item => {
     const terms = [];
     // Check for "Term1" through "Term99" in the item
@@ -473,42 +525,37 @@ function populateDropdown(omData) {
         terms.push(item[termKey]);
       }
     }
-    // If there are no terms for item and item.name starts with MenuPrefix
-    //if (terms.length === 0 && item.Name.startsWith(SearchMenuPrefix)) {
-      // Use displayText if not blank, else use item.name
-    //  const displayText = item.DisplayText || item.Name;
-    //  const option = document.createElement('option');
-    //  option.value = item.Name;
-    //  option.textContent = displayText;
-    //  dropdown.appendChild(option);
-    //} else {
+
+    if (terms.length === 0) {
+      // Collect items without terms to add them later
+      itemsWithoutTerms.push(item);
+    } else {
       // Create separate dropdown options for each "Term" value
       terms.forEach(term => {
         const option = document.createElement('option');
         option.value = item.Name;
         option.textContent = term;
         dropdown.appendChild(option);
+        //console.log(`Added term option: ${term}`);
       });
-   // }
+    }
   });
-  // Count the number of matches after the dropdown is populated
-  //const matchCount = dropdown.length;
-  //const firstLine = document.createElement('option');
-  //if (matchCount === 0) {
-    // If there are no matches, create an option with red text
-  //  firstLine.textContent = 'No Matches';
-  //  firstLine.style.color = 'red'; // Set the text color to red
-  //} else {
-    // If there are matches, create an option for the match count with green text
-  //  firstLine.textContent = `Matches: ${matchCount}`;
-  //  firstLine.style.color = 'green'; // Set the text color to green
-  //}
-  //firstLine.disabled = true;
-  //firstLine.selected = true;
-  //dropdown.insertBefore(firstLine, dropdown.firstChild);
-  dropdown.scrollTop = 0;
-}
 
+  // Add items without terms at the end and make them invisible
+  itemsWithoutTerms.forEach(item => {
+    const option = document.createElement('option');
+    option.value = item.Name;
+    option.textContent = item.DisplayText || item.Name;
+	  
+    option.style.display = 'none'; // Make the option invisible
+    dropdown.appendChild(option);
+    //console.log(`Added invisible option: ${option.textContent}`);
+  });
+
+  dropdown.scrollTop = 0;
+  //console.log('Dropdown population complete');
+}
+	
 // Function to search and sort data based on the input
 function searchData() {
   const searchInput = document.getElementById('searchInput');
@@ -666,6 +713,9 @@ function handleOutsideClick(event) {
   dropdown.addEventListener('change', function (event) {
     dropdown.style.display = 'none';
     isDropdownOpen = false;
+    //console.log('searchselect')
+    currentVersion = 'inpt'	
+    checkMatchesAndSetButtonAppearance(); 	  
   });
 }
 
@@ -693,18 +743,28 @@ function isValidURL(value) {
   }
 }
   
-  // Scroll to the top of the table
-function scrollToTop() { // Add opening curly brace here
-  const resultContainer = document.getElementById('resultContainer');
-  resultContainer.scrollTop = 0;
+  
+// Scroll to the top of the table
+//function scrollToTop() { // Add opening curly brace her
+//  const resultContainer = document.getElementById('resultContainer');
+//  resultContainer.scrollTop = 0;
 
-  // Scroll the page to the top
+// Scroll the page to the top
+//window.scrollTo({
+//    top: 0,
+//    behavior: 'smooth'
+// });
+//} 
+
+function scrollToTop() {
+  const resultContainer = document.getElementById('resultContainer');
+  resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
   });
-} 
-  
+}
+	
 // Function to escape special characters in a string to use in a regular expression
   function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -841,7 +901,7 @@ function createOMTable(selectedData) {
       bodyRow.style.backgroundColor = 'lightblue';
     }
 
-    tbody.appendChild(bodyRow);
+    tbody.appendChild(bodyRow)	  
   }
 
   // Add a new row for the VistA Menu Name at the bottom of the table
@@ -857,8 +917,27 @@ function createOMTable(selectedData) {
   if (selectedData) {
     resultContainer.appendChild(table);
   }
+checkMatchesAndSetButtonAppearance()
+forwardBackButtonActivate()
 }
-  
+
+function forwardBackButtonActivate () {
+if (historyIndex < history.length - 1) {
+	goForwardButton.classList.remove('inactive-button'); // Remove inactive class	  
+    	goForwardButton.style.color = ''; // Reset to default color  
+} else {
+    	goForwardButton.classList.add('inactive-button'); // Add inactive class
+    	goForwardButton.style.color = 'grey'; // Set to grey text
+    }
+//console.log(historyIndex);	
+if (historyIndex > 0) {
+	goBackButton.classList.remove('inactive-button'); // Remove inactive class	  
+    	goBackButton.style.color = ''; // Reset to default color  
+} else {
+	goBackButton.classList.add('inactive-button'); // Add inactive class
+    	goBackButton.style.color = 'grey'; // Set to grey text
+    }
+}
 async function handleRowClick(item, ClickSymbol) {
     const matchingItem = omData.find(
         omItem => omItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
@@ -874,7 +953,7 @@ async function handleRowClick(item, ClickSymbol) {
         const matchingODItem = odData.find(
             odItem => odItem.Name.trim().toLowerCase() === item.Item.trim().toLowerCase()
         );
-        console.log("Matching item:", matchingODItem);
+        //console.log("Matching item:", matchingODItem);
 
         if (matchingODItem) {
             if (ClickSymbol) {
@@ -891,19 +970,19 @@ async function handleRowClick(item, ClickSymbol) {
                     matches.forEach(match => {
                         const { txmlName, txmlURL, odItem } = match;
                         // Handle each match here
-                        console.log("Matching .txml Name:", txmlName);
-                        console.log("Matching .txml URL:", txmlURL);
-                        console.log("Matching ODJSON Item:", odItem);
+                        //console.log("Matching .txml Name:", txmlName);
+                        //console.log("Matching .txml URL:", txmlURL);
+                        //console.log("Matching ODJSON Item:", odItem);
                     });
                 } else {
-                    console.log('No matching item found in OMJSON.json, ODJSON.json, or txml');
+                    //console.log('No matching item found in OMJSON.json, ODJSON.json, or txml');
                 }
             } else {
                 // Handle other cases
-                console.log('Matching item does not meet any specific condition');
+                //console.log('Matching item does not meet any specific condition');
             }
         } else {
-            console.log('No matching item found in OD data');
+            //console.log('No matching item found in OD data');
         }
     }
     scrollToTop();
@@ -938,13 +1017,13 @@ async function findMatches(matchingItem) {
                 const wordProcessingField = item[`WordProcessing${i}`];
                 // Check if the field exists and contains text
                 if (wordProcessingField && wordProcessingField.trim() !== '') {
-                    console.log(`Checking WordProcessing${i}: ${wordProcessingField}`);
+                   // console.log(`Checking WordProcessing${i}: ${wordProcessingField}`);
                     // Check for matches with txml names using wildcards
                     const matchesInTxml = txmlData.fields.filter(field => new RegExp(field.name.replace(/\*/g, '.*'), 'i').test(wordProcessingField));
                     if (matchesInTxml.length > 0) {
                         // If matches are found, add them to the itemMatches array
                         matchesInTxml.forEach(match => {
-                            console.log(`Match found: ${match.name} with URL: ${match.url}`);
+                            //console.log(`Match found: ${match.name} with URL: ${match.url}`);
                             itemMatches.push({
                                 txmlName: match.name,
                                 txmlURL: match.url,
@@ -959,7 +1038,7 @@ async function findMatches(matchingItem) {
                     } else {
                       //matchingItem = selectedItem
                       //createODTable(item)
-                      console.log(`No matches found for WordProcessing${i}`);
+                      //console.log(`No matches found for WordProcessing${i}`);
                     }
                 } 
             }
@@ -968,7 +1047,7 @@ async function findMatches(matchingItem) {
             matches.push(...itemMatches);
 
             // Debugging: Log the itemMatches array
-            console.log("Item matches:", itemMatches);
+            //console.log("Item matches:", itemMatches);
 
             // If URLs are found, handle them based on the number of URLs
             if (urls.length > 0) {
@@ -983,7 +1062,7 @@ async function findMatches(matchingItem) {
                         .join('<br>');
 
                     // Debugging: Log the popup content
-                    console.log("Popup content:", popupContent);
+                    //console.log("Popup content:", popupContent);
 
                     // Open a new tab and write the content
                     const newTab = window.open("", "_blank");
@@ -1220,6 +1299,8 @@ async function createODTable(selectedItem) {
 
     // Adjust font size after table is fully appended
     adjustFontSize();
+    //checkMatchesAndSetButtonAppearance()
+    forwardBackButtonActivate()
 }
 
 // Function to filter data based on the selected option
@@ -1264,13 +1345,14 @@ function pushHistory(item) {
     history.splice(historyIndex, history.length - historyIndex, item);
     forwardHistory = [];
   }
+//console.log(historyIndex, history.length);	
 }
 
 function handleGoBack() {
-  if (historyIndex === 0 || historyIndex === -1) {
-    window.location.href = "index.html";
-    return;
-  }
+ // if (historyIndex === 0 || historyIndex === -1) {
+ //   window.location.href = "index.html";
+ //   return;
+// }
   
   if (historyIndex > 0) {
     historyIndex--;
@@ -1287,8 +1369,16 @@ function handleGoBack() {
     }
     else {
       createODTable(selectedItem)
-    }
+    }  
   }
+  //if (historyIndex > 1) {
+  //  goBackButton.classList.remove('inactive-button'); // Remove inactive class	  
+  //  goBackButton.style.color = ''; // Reset to default color 	
+  //  } else {
+  //  goBackButton.classList.add('inactive-button'); // Add inactive class
+  //  goBackButton.style.color = 'grey'; // Set to grey text
+  // }
+	
   scrollToTop();
   adjustFontSize();
 }
@@ -1296,6 +1386,7 @@ function handleGoBack() {
 
 // Function to handle the Go Forward button click event
 function handleGoForward() {
+    const goForwardButton = document.getElementById('goForwardButton');
     if (historyIndex < history.length - 1) {
         historyIndex++;
         const selectedItem = history[historyIndex];
@@ -1311,11 +1402,11 @@ function handleGoForward() {
         } else {
             createODTable(selectedItem);
         }
+	//goForwardButton.classList.remove('inactive-button'); // Remove inactive class	  
+    	//goForwardButton.style.color = ''; // Reset to default color    
     } else {
-        // Handle the case when the historyIndex is at the end
-        // This could be redirecting somewhere or showing a message
-        // For now, let's just log a message
-        console.log("End of history reached");
+    	//goForwardButton.classList.add('inactive-button'); // Add inactive class
+    	//goForwardButton.style.color = 'grey'; // Set to grey text
     }
     scrollToTop();
     adjustFontSize();
@@ -1327,7 +1418,13 @@ function handleMainMenu() {
   document.getElementById('searchInput').value = null;
   document.getElementById('searchInput').placeholder = "\u{1F50D}";
   populateDropdown(omData);
-  dropdown.value = MainMenu;
+  if (currentVersion === 'inpt') {	
+  	dropdown.value = MainMenu;
+  	} else if (currentVersion === 'outpt') {
+	  	dropdown.value = outptMenu;
+	} else if (currentVersion === 'educ') {
+	  	dropdown.value = educMenu;
+  	};
   filterData({ target: dropdown });
   scrollToTop()    
   adjustFontSize();
@@ -1339,25 +1436,131 @@ function handleIndex() {
   document.getElementById('searchInput').value = null;
   document.getElementById('searchInput').placeholder = "\u{1F50D}";
   populateDropdown(omData);
-  dropdown.value = Index;
+  if (currentVersion === 'inpt') {	
+  	dropdown.value = Index;
+  	} else if (currentVersion === 'outpt') {
+	  	dropdown.value = outptIndex;
+	};
   filterData({ target: dropdown });
   scrollToTop();    
   adjustFontSize();
   }
- 
-  // Function to handle the Index button click event
-function handleIndex() {
+// Function to handle the OutPt button click event
+ function handleOutpt() {
   const dropdown = document.getElementById('filterDropdown');
-  document.getElementById('searchInput').value = null;
-  document.getElementById('searchInput').placeholder = "\u{1F50D}";
+  const searchInput = document.getElementById('searchInput');
+  searchInput.value = null;
+  searchInput.placeholder = "\u{1F50D}";
+  currentVersion = 'outpt';
   populateDropdown(omData);
-  dropdown.value = Index;
-  filterData({ target: dropdown });
-  scrollToTop();    
-  adjustFontSize();
+  const selectedDataName = selectedData.Name;
+  let matchedItemName = null;
+  dropdown.value = matchedOutptName;
+	 
+//  if (selectedData.Outpt) {
+ //   dropdown.value = selectedData.Outpt;
+ //   //console.log('Dropdown value set to:', selectedData.Outpt);
+ // } else {
+ //   //console.log('Outpt is empty or does not exist, checking items in omData');
+ //   for (const item of omData) {
+ //     console.log('Checking item:', item.Name);
+ //     if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
+  //      matchedItemName = item.Outpt;
+  //      //console.log('Match found:', matchedItemName);
+  //     break;
+   //  }
+  //  }
+//
+ //   if (matchedItemName) {
+  //    dropdown.value = matchedItemName;
+   //   //console.log('Dropdown value set to:', matchedItemName);
+   // } else {
+   //   dropdown.value = ''; // Clear the dropdown if no match is found
+   //   console.log('No match found, dropdown cleared');
+  //  }
+ // }
+ //console.log('outptbuttonclick');
+ filterData({ target: dropdown });
+ scrollToTop();    
+ adjustFontSize();
+ checkMatchesAndSetButtonAppearance()
   }
-  
-  // Function to handle the Download JSON button click event
+
+function handleEduc() {
+  const dropdown = document.getElementById('filterDropdown');
+  const searchInput = document.getElementById('searchInput');
+  searchInput.value = null;
+  searchInput.placeholder = "\u{1F50D}";
+  populateDropdown(omData);
+  currentVersion = 'educ';
+  const selectedDataName = selectedData.Name;
+  let matchedItemName = null;
+  dropdown.value = matchedEducName;
+	
+ //  if (selectedData["ED/UC"]) {
+ //   dropdown.value = selectedData["ED/UC"];
+ //   //console.log('Dropdown value set to:', selectedData["ED/UC"]);
+ // } else {
+  //  //console.log('ED/UC is empty or does not exist, checking items in omData');
+   // for (const item of omData) {
+   //   //console.log('Checking item:', item.Name);
+   //   if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
+   //     matchedItemName = item["ED/UC"];
+    //    //console.log('Match found:', matchedItemName);
+    //    break;
+    //  }
+   // }
+
+ //   if (matchedItemName) {
+//      dropdown.value = matchedItemName;
+//      //console.log('Dropdown value set to:', matchedItemName);
+//    } else {
+//      dropdown.value = ''; // Clear the dropdown if no match is found
+//      console.log('No match found, dropdown cleared');
+//    }
+//  }
+  //console.log('educbuttonclick');
+  filterData({ target: dropdown });
+  scrollToTop();
+  adjustFontSize();
+  checkMatchesAndSetButtonAppearance()
+}
+	
+function handleInpt() {
+  const dropdown = document.getElementById('filterDropdown');
+  const searchInput = document.getElementById('searchInput');
+  searchInput.value = null;
+  searchInput.placeholder = "\u{1F50D}";
+  populateDropdown(omData);
+  currentVersion = 'inpt';
+  const selectedDataName = selectedData.Name;
+  let matchedItemName = null;
+
+  //console.log('Selected Data Name:', selectedDataName);
+
+  for (const item of omData) {
+    //console.log('Checking item:', item.Name);
+    if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
+      matchedItemName = item.Name;
+      //console.log('Match found:', matchedItemName);
+      break;
+    }
+  }
+
+  if (matchedItemName) {
+    dropdown.value = matchedItemName;
+    //console.log('Dropdown value set to:', matchedItemName);
+  } else {
+    dropdown.value = ''; // Clear the dropdown if no match is found
+    //console.log('No match found, dropdown cleared');
+  }
+  //console.log('inptbuttonclick');
+  filterData({ target: dropdown });
+  scrollToTop();
+  adjustFontSize();
+  checkMatchesAndSetButtonAppearance()
+}
+// Function to handle the Download JSON button click event
   function handleDownloadJSON() {
     const displayText = selectedData.DisplayText || selectedData.Name;
     const data = JSON.stringify(selectedData, null, 2);
@@ -1370,31 +1573,7 @@ function handleIndex() {
     element.click();
     document.body.removeChild(element);
     }
-  
-  // Function to handle the Download JSON button click event
-  function handleDownloadOMJSON() {
-    const data = JSON.stringify(omData, null, 2);
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-    element.setAttribute('download', OMjson);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-    }
-
-  // Function to handle the Download JSON button click event
-  function handleDownloadODJSON() {
-    const data = JSON.stringify(odData, null, 2);
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-    element.setAttribute('download', ODjson);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-    }
-  
+ 
 // Function to open the dropdown when clicking into the search input
 function openDropdown() {
   const dropdown = document.getElementById('filterDropdown');
@@ -1436,6 +1615,9 @@ document.getElementById('goBackButton').addEventListener('click', handleGoBack);
 document.getElementById('goForwardButton').addEventListener('click', handleGoForward);
 document.getElementById('mainMenuButton').addEventListener('click', handleMainMenu);
 document.getElementById('indexButton').addEventListener('click', handleIndex);
+document.getElementById('outptButton').addEventListener('click', handleOutpt);
+document.getElementById('inptButton').addEventListener('click', handleInpt);
+document.getElementById('educButton').addEventListener('click', handleEduc);
 document.getElementById('filterDropdown').addEventListener('change', filterData);
 window.addEventListener('resize', adjustFontSize);
 window.addEventListener('DOMContentLoaded', adjustFontSize);
@@ -1532,15 +1714,110 @@ if ('serviceWorker' in navigator) {
                 // Wait for the user's choice
                 deferredInstallPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the installation');
+                        //console.log('User accepted the installation');
                     } else {
-                        console.log('User dismissed the installation');
+                        //console.log('User dismissed the installation');
                     }
                     // Reset the deferred event
                     deferredInstallPrompt = null;
                 });
             }
         });
+
+// Function to check for matches and set button appearance
+function checkMatchesAndSetButtonAppearance() {
+  const outptButton = document.getElementById('outptButton');
+  const educButton = document.getElementById('educButton');
+  const inptButton = document.getElementById('inptButton');
+  const indexButton = document.getElementById('indexButton');
+  matchedOutptName = null;
+  matchedEducName = null;
+	
+  if (!selectedData || !selectedData.Name) {
+    selectedData = { Name: MainMenu }; // Set selectedData.Name to MainMenu if not defined
+  }
+
+  const selectedDataName = selectedData.Name;
+
+  if (selectedData.Outpt) {
+    matchedOutptName = selectedData.Outpt;
+  } else {
+    for (const item of omData) {
+      if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
+        matchedOutptName = item.Outpt;
+        break;
+      }
+    }
+  }
+  if (selectedData["ED/UC"]) {
+    matchedEducName = selectedData["ED/UC"];
+  } else {
+    for (const item of omData) {
+      if (item.Outpt === selectedDataName || item["ED/UC"] === selectedDataName) {
+        matchedEducName = item["ED/UC"];
+        break;
+      }
+    }
+  }
+	
+  if (matchedOutptName) {
+    setButtonAppearance(outptButton, true); // Set button to active appearance
+  } else {
+    setButtonAppearance(outptButton, false); // Set button to grey text
+  }
+
+if (matchedEducName) {
+    setButtonAppearance(educButton, true); // Set button to active appearance
+  } else {
+    setButtonAppearance(educButton, false); // Set button to grey text
+  }
+
+if (currentVersion === 'inpt'){
+	setButtonBackground(inptButton, true);
+	setButtonBackground(outptButton, false);
+	setButtonBackground(educButton, false);
+	setButtonAppearance(indexButton, true);
+} else if (currentVersion === 'outpt') {
+  	setButtonBackground(inptButton, false);
+	setButtonBackground(outptButton, true);
+	setButtonBackground(educButton, false);
+	setButtonAppearance(indexButton, true);
+} else if (currentVersion === 'educ') {
+  	setButtonBackground(inptButton, false);
+	setButtonBackground(outptButton, false);
+	setButtonBackground(educButton, true);
+	setButtonAppearance(indexButton, false);
+	}
+}
+// Function to set the button appearance
+function setButtonAppearance(button, isActive) {
+  if (isActive) {
+    button.classList.remove('inactive-button'); // Remove inactive class	  
+    button.style.color = ''; // Reset to default color
+  } else {
+    button.classList.add('inactive-button'); // Add inactive class
+    button.style.color = 'grey'; // Set to grey text
+  }
+}
+
+// Function to set the button appearance
+function setButtonBackground(button, isActive) {
+  if (isActive) {
+    button.style.background = '#00b159';
+    //button.style.background = transparent;
+  } else {
+    button.style.background = '';	  
+    //button.style.background = '#00aedb'; 
+  }
+}
+
+	
+// Run the checkMatchesAndSetButtonAppearance function on page load
+window.onload = function() {
+  currentVersion = 'inpt'	
+  checkMatchesAndSetButtonAppearance();
+};
+	
 </script>
 </body>
 </html>
