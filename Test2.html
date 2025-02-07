@@ -1301,7 +1301,7 @@ function filterData(event, sortByTerm = false) {
       createOMTable(selectedData["ED/UC"]);
       pushHistory(selectedData["ED/UC"]);
     } else {
-      createOMTable(selectedData.Name);
+      createOMTable(matchingData);
       pushHistory(matchingData.Name);
     }
     } /*else {
