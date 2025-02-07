@@ -1294,14 +1294,14 @@ function filterData(event, sortByTerm = false) {
   const matchingData = omData.find(item => item.Name === selectedOption);
   if (matchingData) {
     selectedData = matchingData;
-    if (currentVersion === 'outpt' && matchedOutptName) {
-      createOMTable(matchedOutptName);
-      pushHistory(matchedOutptName);
-      } else if (currentVersion === 'educ' && matchedEducName) {
-      createOMTable(matchedEducName);
-      pushHistory(matchedEducName);
+    if (currentVersion === 'outpt' && selectedData.Outpt) {
+      createOMTable(selectedData.Outpt);
+      pushHistory(selectedData.Outpt);
+      } else if (currentVersion === 'educ' && selectedData["ED/UC"]) {
+      createOMTable(selectedData["ED/UC"]);
+      pushHistory(selectedData["ED/UC"]);
     } else {
-      createOMTable(matchingData);
+      createOMTable(selectedData.Name);
       pushHistory(matchingData.Name);
     }
     } /*else {
