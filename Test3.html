@@ -711,6 +711,9 @@ function handleOutsideClick(event) {
   dropdown.addEventListener('change', function (event) {
     dropdown.style.display = 'none';
     isDropdownOpen = false;
+    console.log('searchselect')
+    currentVersion = 'inpt'	
+    checkMatchesAndSetButtonAppearance(); 	  
   });
 }
 
@@ -1293,10 +1296,7 @@ function filterData(event, sortByTerm = false) {
   const selectedOption = event.target.value;
   const matchingData = omData.find(item => item.Name === selectedOption);
   if (matchingData) {
-    console.log('searchselect')
     selectedData = matchingData;
-    currentVersion = 'inpt'	
-    checkMatchesAndSetButtonAppearance();
     createOMTable(matchingData);
     pushHistory(matchingData.Name);
   } /*else {
