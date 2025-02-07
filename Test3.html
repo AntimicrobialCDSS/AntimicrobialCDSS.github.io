@@ -711,7 +711,7 @@ function handleOutsideClick(event) {
   dropdown.addEventListener('change', function (event) {
     dropdown.style.display = 'none';
     isDropdownOpen = false;
-    console.log('searchselect')
+    //console.log('searchselect')
     currentVersion = 'inpt'	
     checkMatchesAndSetButtonAppearance(); 	  
   });
@@ -917,7 +917,7 @@ if (historyIndex < history.length - 1) {
     	goForwardButton.classList.add('inactive-button'); // Add inactive class
     	goForwardButton.style.color = 'grey'; // Set to grey text
     }
-console.log(historyIndex);	
+//console.log(historyIndex);	
 if (historyIndex > 0) {
 	goBackButton.classList.remove('inactive-button'); // Remove inactive class	  
     	goBackButton.style.color = ''; // Reset to default color  
@@ -1333,7 +1333,7 @@ function pushHistory(item) {
     history.splice(historyIndex, history.length - historyIndex, item);
     forwardHistory = [];
   }
-console.log(historyIndex, history.length);	
+//console.log(historyIndex, history.length);	
 }
 
 function handleGoBack() {
@@ -1467,7 +1467,7 @@ function handleIndex() {
    //   console.log('No match found, dropdown cleared');
   //  }
  // }
- console.log('outptbuttonclick');
+ //console.log('outptbuttonclick');
  filterData({ target: dropdown });
  scrollToTop();    
  adjustFontSize();
@@ -1507,7 +1507,7 @@ function handleEduc() {
 //      console.log('No match found, dropdown cleared');
 //    }
 //  }
-  console.log('educbuttonclick');
+  //console.log('educbuttonclick');
   filterData({ target: dropdown });
   scrollToTop();
   adjustFontSize();
@@ -1542,7 +1542,7 @@ function handleInpt() {
     dropdown.value = ''; // Clear the dropdown if no match is found
     //console.log('No match found, dropdown cleared');
   }
-  console.log('inptbuttonclick');
+  //console.log('inptbuttonclick');
   filterData({ target: dropdown });
   scrollToTop();
   adjustFontSize();
@@ -1702,9 +1702,9 @@ if ('serviceWorker' in navigator) {
                 // Wait for the user's choice
                 deferredInstallPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the installation');
+                        //console.log('User accepted the installation');
                     } else {
-                        console.log('User dismissed the installation');
+                        //console.log('User dismissed the installation');
                     }
                     // Reset the deferred event
                     deferredInstallPrompt = null;
