@@ -1760,7 +1760,7 @@ function checkMatchesAndSetButtonAppearance() {
     }
   }
 	
-  if (!matchedOutptName || outptMenu === "N/A" ) {
+  if ((!matchedOutptName || outptMenu === "N/A" ) && currentVersion !== 'outpt')  {
     setButtonAppearance(outptButton, false); // Set button to active appearance
   } else {
     setButtonAppearance(outptButton, true); // Set button to grey text
