@@ -1760,13 +1760,13 @@ function checkMatchesAndSetButtonAppearance() {
     }
   }
 	
-  if (matchedOutptName || ouptMenu = 'N/A' ) {
+  if (!matchedOutptName || ouptMenu === "N/A" ) {
     setButtonAppearance(outptButton, true); // Set button to active appearance
   } else {
     setButtonAppearance(outptButton, false); // Set button to grey text
   }
 
-if (!matchedErucName || erucMenu === 'N/A') {
+if (!matchedErucName || erucMenu === "N/A") {
     setButtonAppearance(erucButton, false); // Set button to active appearance
   } else {
     setButtonAppearance(erucButton, true); // Set button to grey text
