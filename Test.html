@@ -1761,9 +1761,9 @@ function checkMatchesAndSetButtonAppearance() {
   }
 	
   if (!matchedOutptName || ouptMenu === "N/A" ) {
-    setButtonAppearance(outptButton, true); // Set button to active appearance
+    setButtonAppearance(outptButton, false); // Set button to active appearance
   } else {
-    setButtonAppearance(outptButton, false); // Set button to grey text
+    setButtonAppearance(outptButton, true); // Set button to grey text
   }
 
 if (!matchedErucName || erucMenu === "N/A") {
