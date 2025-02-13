@@ -15,7 +15,7 @@
   var MainMenuButton = 'St. Cloud Home'; /*Main menu button name*/
   const MainMenu = 'ORZID2 GMENU ABX INPT MAIN'; /*the menu the website starts at*/
   const outptMenu = 'ORZID3 GMENU ABX OUTPT MAIN'; /*the menu the website starts at*/
-  const erucMenu = 'N/A'; /*the menu the website starts at*/	  
+  const erucMenu = 'N/A'; /*Make 'N/A' to inactivate*/	  
   var IndexButton = 'Index'; /*Only important to CDSS program functions, can be left as it for other systems*/
   var homeButtonUrl = 'https://antimicrobialcdss.github.io/'; /*Only important to CDSS program functions, home URL*/
   const Index = 'ORZID2 GMENU ABX INDEX INPATIENT';/*Only important to CDSS program functions, can be left as it for other systems*/
@@ -1760,16 +1760,16 @@ function checkMatchesAndSetButtonAppearance() {
     }
   }
 	
-  if (matchedOutptName) {
+  if (matchedOutptName || ouptMenu = 'N/A' ) {
     setButtonAppearance(outptButton, true); // Set button to active appearance
   } else {
     setButtonAppearance(outptButton, false); // Set button to grey text
   }
 
-if (matchedErucName) {
-    setButtonAppearance(erucButton, true); // Set button to active appearance
+if (!matchedErucName || erucMenu === 'N/A') {
+    setButtonAppearance(erucButton, false); // Set button to active appearance
   } else {
-    setButtonAppearance(erucButton, false); // Set button to grey text
+    setButtonAppearance(erucButton, true); // Set button to grey text
   }
 
 if (currentVersion === 'inpt'){
