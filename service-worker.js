@@ -1,5 +1,6 @@
 const APP_PREFIX = 'CDSS_';
-const VERSION = '1.202'; // Update the version when you make changes
+const VERSION = '1.203'; // Update the version when you make changes
+const CACHE_NAME = APP_PREFIX + VERSION;
 
 const URLS = [
   '/AbxLinks.json',
@@ -79,52 +80,13 @@ const URLS = [
   '/Fonts/PTSerif-Regular.woff2',
 ];
 
-const CACHE_NAME = APP_PREFIX + VERSION;
-
-self.addEventListener('fetch', function (e) {
-  console.log('Fetch request: ' + e.request.url);
-
-  if (!e.request.url.startsWith(self.location.origin)) {
-    console.log('Skipping caching for third-party resource: ' + e.request.url);
-    return;
-  }
-
-  e.respondWith(
-    caches.match(e.request).then(function (response) {
-      if (response) {
-        console.log('Responding with cache: ' + e.request.url);
-        return response;
-      } else {
-        console.log('File is not cached, fetching: ' + e.request.url);
-
-        return fetch(e.request).then(function (response) {
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            console.error('Fetch failed for: ' + e.request.url);
-            return response;
-          }
-
-          const responseToCache = response.clone();
-          caches.open(CACHE_NAME).then(function (cache) {
-            cache.put(e.request, responseToCache);
-          });
-
-          return response;
-        }).catch(function (error) {
-          console.error('Fetch error: ' + error);
-        });
-      }
-    })
-  );
-});
-
 self.addEventListener('install', function (e) {
   console.log('Installing service worker: ' + CACHE_NAME);
 
   e.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
-      return cache.addAll(URLS).then(function () {
-        console.log('Cached files: ' + URLS.join(', '));
-      });
+      console.log('Caching files: ' + URLS.join(', '));
+      return cache.addAll(URLS);
     })
   );
 });
@@ -136,12 +98,48 @@ self.addEventListener('activate', function (e) {
     caches.keys().then(function (keyList) {
       return Promise.all(keyList.map(function (key) {
         if (key !== CACHE_NAME) {
-          console.log('Deleting cache: ' + key);
+          console.log('Deleting old cache: ' + key);
           return caches.delete(key);
         }
       }));
     }).then(function () {
+      console.log('Service worker activated.');
       return self.clients.claim();
+    })
+  );
+});
+
+self.addEventListener('fetch', function (e) {
+  console.log('Fetch request: ' + e.request.url);
+
+  if (!e.request.url.startsWith(self.location.origin)) {
+    console.log('Skipping caching for third-party resource: ' + e.request.url);
+    return;
+  }
+
+  e.respondWith(
+    caches.match(e.request).then(function (response) {
+      // Reload assets if version has changed.
+      const fetchRequest = e.request.clone();
+
+      return (
+        response || fetch(fetchRequest).then(function (networkResponse) {
+          // Check if we received a valid response
+          if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+            return networkResponse;
+          }
+
+          const responseToCache = networkResponse.clone();
+
+          caches.open(CACHE_NAME).then(function (cache) {
+            cache.put(e.request, responseToCache);
+          });
+
+          return networkResponse;
+        }).catch(function (error) {
+          console.error('Fetch error: ' + error);
+        })
+      );
     })
   );
 });
