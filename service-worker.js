@@ -1,5 +1,5 @@
 const APP_PREFIX = 'CDSS_';
-const VERSION = '1.210'; // Update the version when you make changes
+const VERSION = '1.211'; // Update the version when you make changes
 const CACHE_NAME = APP_PREFIX + VERSION;
 
 const URLS = [
@@ -50,6 +50,7 @@ const URLS = [
   '/SiouxFallsOMJSON.json',
   '/SiouxFallsODJSON.json',
 
+  '/StCloud.txml',
   '/StCloudCDSS.html',
   '/StCloudItemLinks.json',
   '/StCloudOMJSON.json',
