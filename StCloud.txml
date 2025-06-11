@@ -78,7 +78,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\ANTIMICROBIAL FORMULARY.pdf</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Antimicrobial Formulary.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX GENERIC CLICK LINK BELOW">
       <TYPE>T</TYPE>
@@ -128,7 +128,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/sites/vhav23/CDSS/CDSS%20Resources/Forms/AllItems.aspx?id=%2Fsites%2Fvhav23%2FCDSS%2FCDSS%20Resources%2FBeta%2Dlactam%20Allergies%20CDSS%2Epdf&amp;parent=%2Fsites%2Fvhav23%2FCDSS%2FCDSS%20Resources</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Beta-lactam Allergies CDSS.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CAP CALCULATOR">
       <TYPE>H</TYPE>
@@ -144,7 +144,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\PORT.html</URL>
+      <URL>https://reference.medscape.com/calculator/pneumonia-severity-index-psi</URL>
     </FIELD>
     <FIELD NAME="ABX CBOC INFO WI">
       <TYPE>H</TYPE>
@@ -209,7 +209,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\CDC Immunization Schedule Full.pdf</URL>
+      <URL>https://www.cdc.gov/vaccines/hcp/imz-schedules/downloads/adult/adult-combined-schedule.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX EMAIL VISN23 ANTIMICROBIAL CDSS">
       <TYPE>H</TYPE>
@@ -456,7 +456,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/nPEP.pdf?csf=1&amp;web=1&amp;e=0BGkBY</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/nPEP.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX PORT FINISHED CLICK OK BELOW">
       <TYPE>T</TYPE>
@@ -489,7 +489,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/PEP.pdf?csf=1&amp;web=1&amp;e=ceK8lv</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/PEP.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX SURGICAL PROPHYLAXIS INDICATION HEADER">
       <TYPE>T</TYPE>
@@ -766,7 +766,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/AntibiogramMinneapolis.pdf?csf=1&amp;web=1&amp;e=6ta6oR</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/AntibiogramMinneapolis.pdf</URL>
       <DESCRIPTION>
         <p>Jessica Trumpeter requested link to Antibiogram </p>
         <p>due to shared patients.</p>
