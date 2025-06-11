@@ -44,6 +44,12 @@
       <p>{FLD:ABX ACIP BEST PRACTICES GUIDANCE}</p>
       <p>{FLD:ABX CORONAVIRUS MINNEAPOLIS SHAREPOINT}</p>
       <p>{FLD:ABX VACCINE VISIT LOCATION}</p>
+      <p>{FLD:ABX MANDELL ONLINE}</p>
+      <p>{FLD:ABX ANTIBIOGRAM OPENING MESSAGE}</p>
+      <p>{FLD:ABX ANTIBIOGRAM MINN}</p>
+      <p>{FLD:ABX SANFORD GUIDE WEBSITE}</p>
+      <p>{FLD:ABX ANTIBIOGRAM MPLS-STCLOUD}</p>
+      <p>{FLD:223 LINKS}</p>
       <p>{FLD:ABX VACCINE RTC}</p>
       <p>{FLD:ABX VACC 3 START}</p>
       <p>{FLD:ABX VACC 2 START}</p>
@@ -712,6 +718,94 @@
         <p>Televisit. Nurse: refer to return to clinic order for administration date. </p>
         <p>Clinic visit. Nurse: administer dose(s) today or place RTC order to admin at later date.</p>
       </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX MANDELL ONLINE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Mandell's online [Click Here]</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.clinicalkey.com/#!/browse/book/3-s2.0-C20150008796</URL>
+    </FIELD>
+    <FIELD NAME="ABX ANTIBIOGRAM OPENING MESSAGE">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Click link below for the antibiogram:</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX ANTIBIOGRAM MINN">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Antibiogram Minneapolis access for St. Cloud</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/AntibiogramMinneapolis.pdf?csf=1&amp;web=1&amp;e=6ta6oR</URL>
+      <DESCRIPTION>
+        <p>Jessica Trumpeter requested link to Antibiogram </p>
+        <p>due to shared patients.</p>
+      </DESCRIPTION>
+    </FIELD>
+    <FIELD NAME="ABX SANFORD GUIDE WEBSITE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dva.sanfordguide.com/</URL>
+    </FIELD>
+    <FIELD NAME="ABX ANTIBIOGRAM MPLS-STCLOUD">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>St Cloud Antibiogram</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://antimicrobialcdss.github.io/Resources/AntibiogramStCloud.docx</URL>
+      <DESCRIPTION>
+        <p>ST Cloud Antibiogram document provided </p>
+        <p>by st cloud</p>
+      </DESCRIPTION>
     </FIELD>
     <FIELD NAME="ABX VACCINE RTC">
       <TYPE>T</TYPE>
