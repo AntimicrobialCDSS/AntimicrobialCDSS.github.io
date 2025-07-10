@@ -13,7 +13,7 @@
 {"Item":"ORZ GTX ABX CDSS EMAIL" ,"URL":"http://amion.com/"},
 {"Item":"ORZ GTX ABX CDSS EMAIL" ,"URL":"https://outlook.office.com/owa/?path=/mail/action/compose&to=[VISN23AntimicrobialCDSS@va.gov]?subject=Antimicrobial CDSS"},
 {"Item":"ORZ GTX ABX CDSS FAQ" ,"URL":"https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Antimicrobial%20CDSS%20Frequently%20Asked%20Questions.pdf?csf=1&web=1&e=dJyUHD"},
-{"Item":"ORZ GTX ABX CI MPLS VAMC ABX SENSITIVITIES" ,"URL":"https://dvagov.sharepoint.com/:x:/r/sites/vhav23/CDSS/CDSS%20Resources/DesMoinesAntibiogram.xlsx?d=w045ac77b6fe24a1ea56f4a9faa8db297&csf=1&web=1&e=MeZ3ju"},
+{"Item":"ORZ GTX ABX CI MPLS VAMC ABX SENSITIVITIES" ,"URL":"https://github.com/AntimicrobialCDSS/AntimicrobialCDSS.github.io/blob/main/Resources/AntibiogramDesMoines.xlsx"},
 {"Item":"ORZ GTX ABX COVID-19 INFORMATION" ,"URL":"https://dvagov.sharepoint.com/sites/min/SiteDirectory/COVID-19/SitePages/Home.aspx"},
 {"Item":"ORZ GTX ABX ENDOCARDITIS PDF COMP INFO" ,"URL":"https://www.ncbi.nlm.nih.gov/pubmed/17446442"},
 {"Item":"ORZ GTX ABX FDA 3926" ,"URL":"\\\\v23.med.va.gov\\V23\\VISN 23\\Services\\VHA13FPC14\\VISN23\\CDSS\\FDA Form 3926.pdf"},
