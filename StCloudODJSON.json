@@ -9381,7 +9381,7 @@
 {
 "Name" : "PSOZID2 NIRMATRELVIR 150MG RITONAVIR 100MG PO BID 5DS", 
 "DisplayGroup" : "OUTPATIENT MEDICATIONS", 
-"OrderableItem1" : "GOV-NIRMATRELVIR\/RITONAVIR (PAXLOVID) TA", 
+"OrderableItem1" : "NIRMATRELVIR\/RITONAVIR (PAXLOVID) TAB,OR", 
 "Urgency" : "ROUTINE", 
 "WordProcessing1" : "|OR QUICK ORDER AUDIT|", 
 "Instructions1" : "RENAL DOSE PER PACKAGE DIRECTIONS GOV-PA", 
@@ -9401,7 +9401,7 @@
 {
 "Name" : "PSOZID2 NIRMATRELVIR 300MG RITONAVIR 100MG PO BID 5DS", 
 "DisplayGroup" : "OUTPATIENT MEDICATIONS", 
-"OrderableItem1" : "GOV-NIRMATRELVIR\/RITONAVIR (PAXLOVID) TA", 
+"OrderableItem1" : "NIRMATRELVIR\/RITONAVIR (PAXLOVID) TAB,OR", 
 "Urgency" : "ROUTINE", 
 "WordProcessing1" : "|OR QUICK ORDER AUDIT|", 
 "Instructions1" : "STANDARD DOSE PER PACKAGE DIRECTIONS GOV", 
@@ -9416,6 +9416,30 @@
 "DrugName" : "GOV-PAXLOVID 150MGX2\/100MGX1 TAB PKT 3", 
 "Indication" : "FOR COVID-19", 
 "DisplayText" : "Nirmatrelvir 300 mg and ritonavir 100 mg (Paxlovid) PO BID for 5 days", 
+"Verify" : "YES", 
+"Version" : "StCloud"},
+{
+"Name" : "PSOZID2 NIRMATRELVIR RITONAVIR SEVERE RENAL DISEASE PO QDAY 5DS", 
+"DisplayGroup" : "OUTPATIENT MEDICATIONS", 
+"OrderableItem1" : "NIRMATRELVIR\/RITONAVIR (PAXLOVID) TAB,OR", 
+"Urgency" : "ROUTINE", 
+"WordProcessing1" : "On day 1 of Paxlovid Severe Renal Dose Pack = 3 tabs total once (2 tabs",
+"WordProcessing2" : "nirmatrelvir 150mg and 1 tab ritonavir 100mg). On days 2-5 of Paxlovid",
+"WordProcessing3" : "Severe Renal Dose Pack = 2 tabs total each day (1 tab nirmatrelvir 150mg",
+"WordProcessing4" : "and 1 tab ritonavir 100mg). Swallow tabs whole; do not chew, break, or",
+"WordProcessing5" : "crush. |OR QUICK ORDER AUDIT|", 
+"Instructions1" : "SEVERE RENAL DOSE PER PACKAGE DIRECTIONS", 
+"Route1" : "ORAL", 
+"DispenseDrug1" : "PAXLOVID SEVERE RENAL DOSE PACK", 
+"Routing" : "WINDOW", 
+"Quantity" : "5", 
+"Refills" : "0", 
+"Schedule1" : "Q24H", 
+"Dose1" : "&&&&SEVERE RENAL DOSE PER PACKAGE DIRECT", 
+"DaysSupply" : "5", 
+"DrugName" : "PAXLOVID SEVERE RENAL DOSE PACK", 
+"Indication" : "COVID-19", 
+"DisplayText" : "NIRMATRELVIR RITONAVIR SEVERE RENAL DISEASE", 
 "Verify" : "YES", 
 "Version" : "StCloud"},
 {
@@ -21825,6 +21849,11 @@
 "DisplayText" : "ED Diverticulitis  ",
 "Version" : "StCloud"},
 {
+"Name" : "ORZID GMENU ER\/UC EMERGENCY DEPARTMENT MAIN MENU", 
+"DisplayGroup" : "MENU", 
+"DisplayText" : "EMERGENCY DEPARTMENT MAIN MENU",
+"Version" : "StCloud"},
+{
 "Name" : "ORZID GMENU ER\/UC LYME ACUTE NEURO DISEASE", 
 "DisplayGroup" : "MENU", 
 "DisplayText" : "BLANK PAGE",
@@ -23165,7 +23194,7 @@
 {
 "Name" : "ORZID2 GMENU ABX MRSA RISK FACTORS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "[CLICK HERE] for list of MRSA risk factors",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU ABX MYOCARDITIS", 
@@ -23575,7 +23604,7 @@
 {
 "Name" : "ORZID2 GMENU ABX STAPHYLOCOCCUS AUREUS DECOLONIZATION", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "NULL",
+"DisplayText" : "Staphylococcus aureus Decolonization",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU ABX STASIS DERMATITIS", 
@@ -23866,6 +23895,11 @@
 "Name" : "ORZID2 GMENU BACTEREMIA STREPTOCOCCI", 
 "DisplayGroup" : "MENU", 
 "DisplayText" : "Bacteremia associated with Streptococci ",
+"Version" : "StCloud"},
+{
+"Name" : "ORZID2 GMENU BACTERIA MAIN MENU", 
+"DisplayGroup" : "MENU", 
+"DisplayText" : "Bacteria Main Menu",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU BED BUGS (HEMIPTERA)", 
@@ -24505,82 +24539,82 @@
 {
 "Name" : "ORZID2 GMENU GN INT RS GNB", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Interim results:  Gram-negative Bacilli",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GN INT RS GNC", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Interim results:  Gram-negative cocci",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM NEGATIVE BACTERIA", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Gram-negative Bacteria",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM POS BACTERIA", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Gram-positive bacteria",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FIN BACTEROIDES SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Bacteroides spp. (including Prevotella, Porphyromonas)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FIN CAMPYLOBACTER SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Campylobacter spp.",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FIN ENTEROBACTER SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Enterobacter spp.",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FIN M. CATARRHALIS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Moraxella catarrhalis",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FIN N. GONORRHOEAE", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Neisseria gonorrhoeae",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FIN N. MENINGITIDIS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Neisseria meningitidis",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FIN P. MULTICIDA", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Pasteurella multocida",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FIN PSEUDOMONAS SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Pseudomonas spp.",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FIN SALMONELLA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Salmonella spp.",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FIN SHIGELLA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Shigella spp. (bacillary dysentery)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FINAL A. BAUMANNI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Acinetobacter baumanni",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FINAL BORDETELLA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Bordetella species",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FINAL BRUCELLA SPP.", 
@@ -24590,37 +24624,37 @@
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FINAL CITROBACTER SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Citrobacter spp.",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FINAL ESCHERICHIA COLI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Escherichia coli",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FINAL HAEMOPHILUS SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Haemophilus spp.",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FINAL KLEBSIELLA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Klebsiella spp.",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FINAL LEGIONELLA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Legionella spp.",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FINAL PROTEUS SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Proteus spp.",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-NEG FINAL SERRATIA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Serratia spp.",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FI ACTINOMYCES SPP.", 
@@ -24628,9 +24662,14 @@
 "DisplayText" : "Actinomyces spp.",
 "Version" : "StCloud"},
 {
+"Name" : "ORZID2 GMENU GRAM-POS FI ACTINOYCES SPP.", 
+"DisplayGroup" : "MENU", 
+"DisplayText" : "",
+"Version" : "StCloud"},
+{
 "Name" : "ORZID2 GMENU GRAM-POS FI ANAEROBIC COCCI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Anaerobic Gram-positive cocci (including Peptostreptococcus)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FI BACILLUS SPP.", 
@@ -24640,22 +24679,22 @@
 {
 "Name" : "ORZID2 GMENU GRAM-POS FI CLOSTRIDIUM SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Clostridium spp.",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FI CORYNEBACTERIUM SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Corynebacterium spp.",
+"DisplayText" : "Corynebacterium spp. ",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FI ENTEROCOCCI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Enterococci",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FI LISTERIA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Listeria spp.",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FI PROPIONIBACT SPP.", 
@@ -24665,62 +24704,62 @@
 {
 "Name" : "ORZID2 GMENU GRAM-POS FI S. ANGINOSUS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Streptococcus anginosus (formerly S. milleri)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FI S. PNEUMONIAE", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Streptococcus pneumoniae",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FI TREAT ENTEROCOCCI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Treatment for Enterococcal infections",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FIN COAG-NEG STAPH", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Treatment for Coagulase negative Staphylococci",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FIN S. AUREUS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Treatment for Staphyloccus aureus",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FIN S. BOVIS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Group D (S. bovis)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FIN S. PYOGENES", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Group A Streptococci (S. pyogenes)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FIN STAPH LUGDUNENSIS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Tretment for Staphylococus Lugdunesis",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FIN STAPHYLOCOCCI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Staphylococci",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FIN STREP C,F,G", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Streptococci Groups C, F, G",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FIN VIRIDANS STREP", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Viridans streptococci (including S. mutans, S. mitis, S. sanguis)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS FINAL S. AGALACTIAE", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Group B Streptococci (S. agalactiae)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU GRAM-POS INT RS COCCI PAIRS", 
@@ -24925,7 +24964,7 @@
 {
 "Name" : "ORZID2 GMENU INTRO SPEC PATHOGEN", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Introduction to Specific Pathogen section ",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID2 GMENU KERATITIS", 
@@ -26483,6 +26522,11 @@
 "DisplayText" : "Bacteremia (Outpatient)  ",
 "Version" : "StCloud"},
 {
+"Name" : "ORZID3 GMENU BACTERIA MAIN MENU", 
+"DisplayGroup" : "MENU", 
+"DisplayText" : "Bacteria Main Menu (Outpt) ",
+"Version" : "StCloud"},
+{
 "Name" : "ORZID3 GMENU BACTERIAL VAGINOSIS", 
 "DisplayGroup" : "MENU", 
 "DisplayText" : "Bacterial vaginosis (Outpatient)",
@@ -27055,27 +27099,27 @@
 {
 "Name" : "ORZID3 GMENU GRAM NEGATIVE BACTERIA", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Gram negative bacteria (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM POSITIVE BACTERIA", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG A. BAUMANNI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Acinetobacter baumanni (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG BACTEROIDES SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Bacteroides spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG BORDETELLA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Bordetella spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG BRUCELLA SPP.", 
@@ -27085,92 +27129,92 @@
 {
 "Name" : "ORZID3 GMENU GRAM-NEG CAMPYLOBACTER SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Campylobacter spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG CITROBACTER SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Citrobacter spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG E. COLI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Escherichia coli (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG ENTEROBACTER SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Enterobacter spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG HAEMOPHILUS SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Haemophilus spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG KLEBSIELLA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Klebsiella spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG LEGIONELLA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Legionella spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG M. CATARRHALIS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Moraxella catarrhalis (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG N. GONORRHOEAE", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Neisseria gonorrhoeae (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG N. MENINGITIDIS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Neisseria meningitidis (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG P. MULTOCIDA", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Pasteurella multocida (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG PROTEUS SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Proteus spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG PSEUDOMONAS SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Pseudomonas spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG SALMONELLA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Salmonella spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG SERRATIA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Serratia spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-NEG SHIGELLA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Shigella spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS ACTINOMYCES SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Actinomyces spp. (Outpatient)",
+"DisplayText" : "Actinomyces spp. (Outpatient) ",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS ANAEROBIC GPC", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Anaerobic Gram-positive cocci (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS BACILLI SPP.", 
@@ -27180,12 +27224,12 @@
 {
 "Name" : "ORZID3 GMENU GRAM-POS CLOSTRIDIUM SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Clostridium spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS COAG NEG STAPH", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Treatment for Coagulase Negative Staphylococci (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS CORYNEBACTERIUM SPP.", 
@@ -27195,72 +27239,72 @@
 {
 "Name" : "ORZID3 GMENU GRAM-POS ENTEROCOCCI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Enterococci (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS GROUPS C, F, G", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Streptococci Groups C, F, G (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS LISTERIA SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Listeria spp. (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS PROPIONIBACT SPP.", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Propionibacterium species (Outpatient)",
+"DisplayText" : "Propionibacterium species (Outpatient) ",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS S. AGALACTIAE", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Group B (S. agalactiae) - Outpatient",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS S. ANGINOSUS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Streptococcus anginosus (formerly S. milleri) - Outpatient",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS S. BOVIS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Group D Streptococci (S. bovis) - Outpatient",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS S. PNEUMONIAE", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Streptococcus pneumoniae (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS S. PYOGENES", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Group A (S. pyogenes) - Outpatient",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS STAPH LUGDUNENSIS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "TREATMENT FOR STAPHYLOCOCCUS LUGDUNENSIS",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS STAPHYLOCOCCI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Staphylococci (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS TREAT ENTEROCOCCI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Treatment for Enterococcal infections (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS TREAT S. AUREUS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Treatment for Staphylococcus aureus (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU GRAM-POS VIRIDANS STREPTO", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Viridans streptococci (including S. mutans, S. mitis, ...) - Outpatient",
+"DisplayText" : "Viridans streptococci (including S. mutans, S. mitis, BLANK PAGE) - Outpatient",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU H SUPPURATIVA", 
@@ -27375,22 +27419,22 @@
 {
 "Name" : "ORZID3 GMENU INT RS GRAM-NEG BACILLI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Interim results:  Gram-negative bacilli (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU INT RS GRAM-NEG COCCI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Iterim report of Gram-negative cocci (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU INT RS GRAM-POS BACILLI", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Interim report of Gram-positive Bacilli (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU INT RS GRAM-POS COCCI PAIRS", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Interim report of Gram-positive cocci in pairs (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU INTRAVASC CATH-ASSOC INFECT", 
@@ -27410,12 +27454,12 @@
 {
 "Name" : "ORZID3 GMENU LRG UNIF BAC AEROBIC BOT", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Large uniform bacilli in an aerobic bottle (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU LRG UNIF BAC ANAEROBIC BOT", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Large uniform bacilli in an anaerobic bottle (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU LUNG ABSCESS", 
@@ -28015,12 +28059,12 @@
 {
 "Name" : "ORZID3 GMENU SM UNIF BAC AEROBIC BOT", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Small uniform bacillin in an aerobic bottle (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU SM UNIF BAC ANAEROBIC BOT", 
 "DisplayGroup" : "MENU", 
-"DisplayText" : "Small uniform bacilli in an anaerobic bottle (Outpatient)",
+"DisplayText" : "BLANK PAGE",
 "Version" : "StCloud"},
 {
 "Name" : "ORZID3 GMENU SOFT TISSUE, MUSCLE, BONE AND JOINT INFECTIONS", 
@@ -34615,7 +34659,7 @@
 {
 "Name" : "PSJZID2 NIRMATRELVIR 150MG RITONAVIR 100MG PO BID 5D", 
 "DisplayGroup" : "UNIT DOSE MEDICATIONS", 
-"OrderableItem1" : "GOV-NIRMATRELVIR\/RITONAVIR (PAXLOVID) TA", 
+"OrderableItem1" : "NIRMATRELVIR\/RITONAVIR (PAXLOVID) TAB,OR", 
 "Urgency" : "ROUTINE", 
 "WordProcessing1" : "For COVID-19 treatment, 1 tablet ritonavir 100mg and 1 tablet",
 "WordProcessing2" : "nirmatrelvir 150mg given at the same time qam and qpm x 5 days",
@@ -34634,7 +34678,7 @@
 {
 "Name" : "PSJZID2 NIRMATRELVIR 300MG RITONAVIR 100MG PO BID 5DS", 
 "DisplayGroup" : "UNIT DOSE MEDICATIONS", 
-"OrderableItem1" : "GOV-NIRMATRELVIR\/RITONAVIR (PAXLOVID) TA", 
+"OrderableItem1" : "NIRMATRELVIR\/RITONAVIR (PAXLOVID) TAB,OR", 
 "Urgency" : "ROUTINE", 
 "WordProcessing1" : "For COVID-19 treatment, 1 tablet ritonavir 100mg and 2 tablets",
 "WordProcessing2" : "nirmatrelvir 150mg given at the same time qam and qpm x 5 days",
@@ -34648,6 +34692,26 @@
 "DrugName" : "GOV-PAXLOVID 150MGX2\/100MGX1 TAB PKT 3", 
 "Indication" : "FOR COVID-19", 
 "DisplayText" : "Paxlovid (nirmatrelvir-ritonavir) 300 mg - 100 mg PO BID for 5 days", 
+"Verify" : "YES", 
+"Version" : "StCloud"},
+{
+"Name" : "PSJZID2 NIRMATRELVIR RITONAVIR SEVERE RENAL DISEASE PO", 
+"DisplayGroup" : "UNIT DOSE MEDICATIONS", 
+"OrderableItem1" : "NIRMATRELVIR\/RITONAVIR (PAXLOVID) TAB,OR", 
+"Urgency" : "ROUTINE", 
+"WordProcessing1" : "On day 1 of Paxlovid Severe Renal Dose Pack = 3 tabs total once (2 tabs",
+"WordProcessing2" : "nirmatrelvir 150mg and 1 tab ritonavir 100mg). On days 2-5 of Paxlovid",
+"WordProcessing3" : "Severe Renal Dose Pack = 2 tabs total once daily (1 tab nirmatrelvir 150mg",
+"WordProcessing4" : "and 1 tab ritonavir 100mg). Swallow tabs whole; do not chew, break, or",
+"WordProcessing5" : "crush. |OR QUICK ORDER AUDIT|", 
+"Instructions1" : "SEVERE RENAL DOSE PER PACKAGE DIRECTIONS", 
+"Route1" : "ORAL", 
+"DispenseDrug1" : "PAXLOVID SEVERE RENAL DOSE PACK", 
+"Schedule1" : "Q24H", 
+"Dose1" : "&&&&SEVERE RENAL DOSE PER PACKAGE DIRECT", 
+"DrugName" : "PAXLOVID SEVERE RENAL DOSE PACK", 
+"Indication" : "COVID-19", 
+"DisplayText" : "Nirmatrelvir-ritonavir 300mg\/100mg once then 150mg\/100mg qday for 4 days", 
 "Verify" : "YES", 
 "Version" : "StCloud"},
 {
@@ -41181,12 +41245,6 @@
 "GOType" : "", 
 "Version" : "StCloud"},
 {
-"Name" : "GMRCTZ CHLORHEXIDINE BODY WASH NURSING TEXT ORDER", 
-"DisplayGroup" : "NURSING", 
-"DisplayText" : "CHLORHEXIDINE TEXT ORDER", 
-"Verify" : "", 
-"Version" : "StCloud"},
-{
 "Name" : "GMRCTZ DENTAL", 
 "DisplayGroup" : "CONSULTS", 
 "OrderableItem1" : "DENTAL OUTPT", 
@@ -41223,22 +41281,6 @@
 "Verify" : "YES", 
 "Version" : "StCloud"},
 {
-"Name" : "GMRCTZ NON FORMULARY\/PRIOR AUTH MEDICATION", 
-"DisplayGroup" : "CONSULTS", 
-"OrderableItem1" : "NON-FORMULARY\/PRIOR AUTH MEDICATION CONS", 
-"Urgency" : "ROUTINE", 
-"PlaceOfConsultation" : "Consultant's Choice", 
-"ClinicallyIndicatedDate" : "", 
-"DisplayText" : "Non Formulary\/Prior Auth Medication Consult", 
-"Verify" : "YES", 
-"Version" : "StCloud"},
-{
-"Name" : "GMRCTZ PHARMACEUTICAL PRIOR AUTHORIZATION OUTPT", 
-"DisplayGroup" : "CONSULTS", 
-"DisplayText" : "", 
-"Verify" : "", 
-"Version" : "StCloud"},
-{
 "Name" : "LR OTHER LAB TESTS", 
 "DisplayGroup" : "LABORATORY", 
 "OrderableItem1" : "", 
@@ -41251,18 +41293,6 @@
 "WordProcessing1" : "", 
 "Duration1" : "OR GTX VISITSTR", 
 "DisplayText" : "Laboratory", 
-"Verify" : "YES", 
-"Version" : "StCloud"},
-{
-"Name" : "LRTZ CHLAMYDIA\/N.GONORRHOEAE, PCR-URINE SP", 
-"DisplayGroup" : "CHEMISTRY", 
-"OrderableItem1" : "CHLAMYDIA\/N.GONORRHOEAE,PCR-URINE", 
-"CollectionType" : "Send patient to lab", 
-"Schedule1" : "ONCE", 
-"CollectionSample" : "URINE", 
-"Specimen" : "URINE", 
-"Urgency" : "ROUTINE", 
-"DisplayText" : "CHLAMYDIA\/N.GONORRHOEAE, PCR-URINE", 
 "Verify" : "YES", 
 "Version" : "StCloud"},
 {
@@ -41302,31 +41332,6 @@
 "Verify" : "YES", 
 "Version" : "StCloud"},
 {
-"Name" : "LRTZ CHLAMYDIA\/N.GONORRHOEAE,PCR-URINE SP T+28", 
-"DisplayGroup" : "CHEMISTRY", 
-"OrderableItem1" : "CHLAMYDIA\/N.GONORRHOEAE,PCR-URINE", 
-"StartDateTime" : "28 DAYS FROM TODAY", 
-"CollectionType" : "Send patient to lab", 
-"Schedule1" : "ONCE", 
-"CollectionSample" : "URINE", 
-"Specimen" : "URINE", 
-"DisplayText" : "CHLAMYDIA\/N.GONORRHOEAE, PCR-URINE SP", 
-"Verify" : "", 
-"Version" : "StCloud"},
-{
-"Name" : "LRTZ CMP SP NON-Fasting T+28", 
-"DisplayGroup" : "CHEMISTRY", 
-"OrderableItem1" : "COMPREHENSIVE MET. PANEL", 
-"StartDateTime" : "28 DAYS FROM TODAY", 
-"CollectionType" : "Send patient to lab", 
-"Schedule1" : "ONCE", 
-"CollectionSample" : "BLOOD GT", 
-"Specimen" : "PLASMA", 
-"DisplayText" : "CMP", 
-"Verify" : "NO", 
-"AutoAccept" : "YES",
-"Version" : "StCloud"},
-{
 "Name" : "LRTZ G6-PD QUANTITATIVE", 
 "DisplayGroup" : "CHEMISTRY", 
 "OrderableItem1" : "G-6-PD, QUANTITATIVE", 
@@ -41336,69 +41341,9 @@
 "Verify" : "", 
 "Version" : "StCloud"},
 {
-"Name" : "LRTZ HEP B CORE ANTIBODY ROUTINE SP", 
-"DisplayGroup" : "CHEMISTRY", 
-"OrderableItem1" : "HEPATITIS B CORE ANTIBODY (IGM\/IGG)", 
-"CollectionType" : "Send patient to lab", 
-"Schedule1" : "ONE TIME", 
-"CollectionSample" : "BLOOD GOLD", 
-"Specimen" : "SERUM", 
-"Urgency" : "ROUTINE", 
-"DisplayText" : "Hep B Core Antibody", 
-"Verify" : "YES", 
-"Version" : "StCloud"},
-{
-"Name" : "LRTZ HEP B SURFACE ANTIBODY ROUTINE SP", 
-"DisplayGroup" : "CHEMISTRY", 
-"OrderableItem1" : "HEPATITIS B SURFACE ANTIBODY", 
-"CollectionType" : "Send patient to lab", 
-"Schedule1" : "ONE TIME", 
-"CollectionSample" : "BLOOD GOLD", 
-"Specimen" : "SERUM", 
-"Urgency" : "ROUTINE", 
-"DisplayText" : "Hepatitis B Surface Antibody", 
-"Verify" : "YES", 
-"Version" : "StCloud"},
-{
-"Name" : "LRTZ HEP B SURFACE ANTIGEN ROUTINE SP", 
-"DisplayGroup" : "CHEMISTRY", 
-"OrderableItem1" : "HEPATITIS B SURFACE ANTIGEN", 
-"CollectionType" : "Send patient to lab", 
-"Schedule1" : "ONE TIME", 
-"CollectionSample" : "BLOOD GOLD", 
-"Specimen" : "SERUM", 
-"Urgency" : "ROUTINE", 
-"DisplayText" : "Hep B Surface Antigen", 
-"Verify" : "YES", 
-"Version" : "StCloud"},
-{
-"Name" : "LRTZ HEP C ANTIBODY ROUTINE SP", 
-"DisplayGroup" : "CHEMISTRY", 
-"OrderableItem1" : "HEPATITIS C ANTIBODY", 
-"CollectionType" : "Send patient to lab", 
-"Schedule1" : "ONE TIME", 
-"CollectionSample" : "BLOOD GOLD", 
-"Specimen" : "SERUM", 
-"Urgency" : "ROUTINE", 
-"DisplayText" : "Hep C Antibody", 
-"Verify" : "YES", 
-"Version" : "StCloud"},
-{
 "Name" : "LRTZ HIV SCREEN ROUTINE SP", 
 "DisplayGroup" : "CHEMISTRY", 
 "OrderableItem1" : "HIV 1\/2 ANTIGEN\/ANTIBODY", 
-"CollectionType" : "Send patient to lab", 
-"Schedule1" : "ONCE", 
-"CollectionSample" : "BLOOD GOLD", 
-"Specimen" : "SERUM", 
-"DisplayText" : "HIV Screen", 
-"Verify" : "YES", 
-"Version" : "StCloud"},
-{
-"Name" : "LRTZ HIV SCREEN ROUTINE SP T+28", 
-"DisplayGroup" : "CHEMISTRY", 
-"OrderableItem1" : "HIV 1\/2 ANTIGEN\/ANTIBODY", 
-"StartDateTime" : "28 DAYS FROM TODAY", 
 "CollectionType" : "Send patient to lab", 
 "Schedule1" : "ONCE", 
 "CollectionSample" : "BLOOD GOLD", 
@@ -41507,42 +41452,6 @@
 "Verify" : "YES", 
 "Version" : "StCloud"},
 {
-"Name" : "LRTZ PREGNANCY URINE ROUTINE SP T+28", 
-"DisplayGroup" : "CHEMISTRY", 
-"OrderableItem1" : "PREGNANCY TEST (URINE)", 
-"StartDateTime" : "28 DAYS FROM TODAY", 
-"CollectionType" : "Send patient to lab", 
-"Schedule1" : "ONCE", 
-"CollectionSample" : "URINE,RANDOM", 
-"Specimen" : "URINE", 
-"DisplayText" : "Urine Pregnancy", 
-"Verify" : "YES", 
-"Version" : "StCloud"},
-{
-"Name" : "LRTZ RPR SP", 
-"DisplayGroup" : "CHEMISTRY", 
-"OrderableItem1" : "RPR W\/REFLEX", 
-"CollectionType" : "Send patient to lab", 
-"Schedule1" : "ONE TIME", 
-"CollectionSample" : "BLOOD GOLD", 
-"Specimen" : "SERUM", 
-"Urgency" : "ROUTINE", 
-"DisplayText" : "RPR", 
-"Verify" : "NO", 
-"Version" : "StCloud"},
-{
-"Name" : "LRTZ RPR SP T+28", 
-"DisplayGroup" : "CHEMISTRY", 
-"OrderableItem1" : "RPR W\/REFLEX", 
-"StartDateTime" : "28 DAYS FROM TODAY", 
-"CollectionType" : "Send patient to lab", 
-"Schedule1" : "ONCE", 
-"CollectionSample" : "BLOOD GOLD", 
-"Specimen" : "SERUM", 
-"DisplayText" : "RPR W\/REFLEX", 
-"Verify" : "NO", 
-"Version" : "StCloud"},
-{
 "Name" : "LRTZID IGG ABY BORDETELLA PERTUSSIS", 
 "DisplayGroup" : "LABORATORY", 
 "DisplayText" : "", 
@@ -41556,7 +41465,7 @@
 "Version" : "StCloud"},
 {
 "Name" : "ORZ ADD MENU CONSULTS-ALL UPDATED", 
-"DisplayGroup" : "5.1  GMRCTZ AUDIOLOGY                               15.1  GMRCTZ CHAPLAIN CONSULT                               29.1  GMRCTZ DENTAL                               17.1  GMRCTZ CLC ADMISSION CONSULT                               32.4  GMRCTZ PROSTHETICS REQUEST - URGENT CARE                               32.3  GMRCTZ RADIOLOGY E-CONSULT                               37.2  GMRCTZ LST MDC COMMITTEE CONSULT                               13.3  GMRCTZ PCMHI CONSULT OUTPT                                1.4  GMRCTZ ALX\/MTE RN PCMHI BEHAVIORAL LAB CONSULT                                2.4  GMRCTZ BRD RN PCMHI BEHAVIORAL LAB CONSULT                                                                                                                                  3.4  GMRCTZ STC RN PCMHI BEHAVIORAL LAB CONSULT                                                                                                                                  8.1  GMRCTZ BATTLEFIELD ACUPUNCTURE CONSULT                                                                                                                                  9.3  GMRCTZ PAIN PSYCHOLOGY CONSULT OUTPT                                                                                                                                 11.3  GMRCTZ PALO ALTO YOGA                                                                                                                                 19.3  ORZ ADD MENU PODIATRY ORDER MENU UPDATED                                                                                                                                 35.3  GMRCTZ RECREATION THERAPY FITNESS                                                                                                                                 31.1  ORZ ADD MENU DIABETES CONSULTS                                                                                                                                 12.2  GMRCTZ HOSPICE                                                                                                                                  10.3  GMRCTZ PALLIATIVE CARE                                                                                                                                 34.3  GMRCTZ REC BEHAVIORIAL HEALTH CONSULT                                                                                                                                 36.1  GMRCTZ EC SKIN INTEGRITY CONSULT                                                                                                                                 13.1  GMRCTZ CAREGIVER SUPPORT PROGRAM OUTPT                                                                                                                                 35.1  GMRCTZ EC PHARMACY                                                                                                                                 11.2  GMRCTZ HOSPICE\/PALLIATIVE CARE E-CONSULT                                                                                                                                 10.1  GMRCTZ BRO TEAM CONSULT                                                                                                                                 35.2  GMRCTZ IREST YOGA NIDRA MEDITATION GROUP                                                                                                                                 16.3  ORZ ADD MENU EMG PRE-WORK                                                                                                                                 40.2  GMRCTZ MH BHIP CONSULT OUTPT                                                                                                                                 29.3  GMRCTZ MH BHIP PSYCHOLOGICAL ASSESSMENT OUTPT                                                                                                                                 42.2  GMRCTZ MH NEUROPSYCHOL OUTPT                                                                                                                                  43.2  GMRCTZ MH NEUROPSYCHOL E-CONSULT                                                                                                                                 45.2  GMRCTZ MH-RRTP-VA OUTPT                                                                                                                                 17.2  GMRCTZ IFC CTX MH RRTP                                                                                                                                 13.2  GMRCTZ IFC BATAVIA MH RESIDENTIAL REHAB TREATMENT PROGRAM                                                                                                                                 14.2  GMRCTZ IFC BAY PINES PTSD RESIDENTIAL ADMISSIONS                                                                                                                                 18.2  GMRCTZ IFC CINCINNATI MH RESIDENTIAL REHAB TREATMENT PROGRAM                                                                                                                                 24.2  GMRCTZ IFC SALISBURY PTSD RRTP                                                                                                                                 28.2  GMRCTZ IFC TOMAH MH RESIDENTIAL CONSULT                                                                                                                                 29.2  GMRCTZ IFC TOPEKA RESIDENTIAL REHAB TREATMENT PROGRAM                                                                                                                                 30.2  GMRCTZ IFC WHITE CITY MH RESIDENTIAL REHAB TREATMENT PROGRAM                                                                                                                                 42.4  ORZ ADD MENU WOMENS HEALTH PREWORK                                                                                                                                 20.1  ORZ SET PSM COLPOSCOPY                                                                                                                                  7.2  GMRCTZ HEMATOLOGY\/ONCOLOGY                                                                                                                                  8.2  GMRCTZ HEMATOLOGY\/ONCOLOGY E-CONSULT                                                                                                                                  6.4  GMRCTZ SOCIAL WORK CONSULT ACBOC                                                                                                                                  7.4  GMRCTZ SOCIAL WORK CONSULT BCBOC                                                                                                                                  8.4  GMRCTZ SOCIAL WORK CONSULT MCBOC                                                                                                                                  9.4  GMRCTZ SOCIAL WORK CONSULT PC                                                                                                                                 33.2  ORZ SET INFUSION CONSULT                                                                                                                                  3.1  ORZ SET PSM ALTEPLASE PWDR INJ OUTPT                                                                                                                                 31.4  GMRCTZ TRAVELING VETERAN                                                                                                                                 36.2  GMRCTZ LIFE-SUSTAINING TX EDUCATION CONSULT                                                                                                                                 18.4  GMRCTZ TELE-EYE SCREENING                                                                                                                                 21.4  GMRCTZ TELE-EYE SCREENING MCBOC                                                                                                                                 12.3  GMRCTZ BRD PCMHI CONSULT OUTPT                                                                                                                                 14.3  GMRCTZ PCMHI E-CONSULT                                                                                                                                 14.1  GMRCTZ CDM CONSULT                                                                                                                                 15.3  ORZ ADD MENU PHARMACY CONSULTS                                                                                                                                  2.1  GMRCTZ ALS CONSULT                                                                                                                                 36.4  GMRCTZ VIST CONSULT                                                                                                                                  4.4  GMRCTZ SCI&D CONSULT                                                                                                                                 12.4  GMRCTZ SPEECH THERAPY\/SWALLOW CONSULT                                                                                                                                  9.1  GMRCTZ BP MONITOR                                                                                                                                 34.1  GMRCTZ DURABLE EQUIPMENT                                                                                                                                 22.1  GMRCTZ COMPRESSION STOCKINGS                                                                                                                                  7.3  GMRCTZ ORTHOTICS\/PROSTHETICS REFERRAL CONSULT OUTPT                                                                                                                                 31.3  ORZ ADD MENU PSM RESP PFTS                                                                                                                                 18.1  GMRCTZ COLO-RECTAL PROCEDURES                                                                                                                                 38.1  GMRCTZ EGD OUTPT                                                                                                                                 40.1  ORZ ADD MENU ENT ORDER MENU                                                                                                                                  4.2  GMRCTZ GENERAL SURGERY                                                                                                                                  5.2  GMRCTZ GENERAL SURGERY E-CONSULT                                                                                                                                 43.1  GMRCTZ EYE CONSULT                                                                                                                                  6.1  GMRCTZ AUDIOLOGY E-CONSULT                                                                                                                                 39.1  GMRCTZ ENDOSCOPY E-CONSULT                                                                                                                                 44.2  GMRCTZ MH BHIP PERI-PROCEDURAL E-CONSULT                                                                                                                                   5.3  GMRCTZ OPTOMETRY E-CONSULT                                                                                                                                 16.4  ORZ ADD MENU SUSPECTED ABUSE NEGLECT CONSULTS                                                                                                                                 22.4  ORZ ADD MENU TELEHEALTH CONSULTS                                                                                                                                 17.4  GMRCTZ TBI CASE MANAGEMENT CONSULT                                                                                                                                 23.1  GMRCTZ COVID-19 EXTENSION OUTPT                                                                                                                                 37.4  GMRCTZ VOC REHAB SERVICES OUTPT                                                                                                                                 38.4  GMRCTZ IFC WAR RELATED ILLNESS AND INJURY STUDY CENTER                                                                                                                                 21.3  GMRCTZ GENERIC PROSTHETICS CONSULT                                                                                                                                  1.2  GMRCTZ FLEX SIGMOIDOSCOPY                                                                                                                                 32.1  ORZ ADD MENU DIGITAL DIVIDE CONSULTS                                                                                                                                 16.2  GMRCTZ IFC CENTRAL IOWA PAIN WHOLE HEALTH                                                                                                                                 27.1  GMRCTZ CSP PCAFC HOME-CARE ASSESSMENT OUTPT                                                                                                                                 28.1  GMRCTZ CSP PCAFC VETERAN FUNCTIONAL ASSESSMENT INSTRUMENT OUTPT                                                                                                                                 38.3  GMRCTZ RESPITE CARE CONSULT                                                                                                                                 43.4  GMRCTZ PROSTHETICS REQUEST - WOUND VAC                                                                                                                                 28.3  GMRCTZ PSM ROUTINE FOLLOW-UP                                                                                                                                 19.4  GMRCTZ TELE-EYE SCREENING ACBOC                                                                                                                                 20.4  GMRCTZ TELE-EYE SCREENING BCBOC                                                                                                                                 27.3  GMRCTZ PSM MBHI HBC EVALUATION CONSULT OUTPT                                                                                                                                 21.1  ORZ ADD MENU COMMUNITY CONSULTS                                                                                                                                 19.2  GMRCTZ IFC DENVER FISHER HOUSE                                                                                                                                 13.4  GMRCTZ STRIDE MOBILITY INPT                                                                                                                                 41.4  ORZ ADD MENU WHOLE HEALTH CONSULTS                                                                                                                                 26.2  GMRCTZ IFC SFX TAI CHI                                                                                                                                 14.4  GMRCTZ SPP-HIGH RISK FLAG PLACEMENT E-CONSULT                                                                                                                                 40.4  ORZ ADD MENU WHEELCHAIR CONSULTS                                                                                                                                 24.4  ORZ ADD MENU TELE ORTHO BONE PHONE CONSULTS                                                                                                                                 30.3  ORZ ADD MENU PULMONOLOGY OUTPT ORDER MENU                                                                                                                                 11.1  ORZ ADD MENU CARDIOLOGY CONSULT V23 RCI                                                                                                                                 10.4  GMRCTZ SSC ROUTINE FOLLOW UP OUTPT                                                                                                                                 28.4  GMRCTZ TOMAH TELEPRIDE IFC                                                                                                                                  6.3  ORZ ADD MENU ORTHO CONSULT MENU                                                                                                                                 19.1  ORZ ADD MENU COLONOSCOPY CONSULTS UPDATED                                                                                                                                 33.1  GMRCTZ MPLS DRIVER TRAINING\/EVAL                                                                                                                                 47.2  GMRCTZ MPLS NEUROSURGERY                                                                                                                                  1.3  GMRCTZ MPLS NUC MED                                                                                                                                 33.3  GMRCTZ MPLS RADIATION ONCOLOGY                                                                                                                                 27.4  GMRCTZ MPLS THORACIC SURGERY                                                                                                                                 34.4  ORZ ADD MENU VASCULAR CONSULTS                                                                                                                                 24.3  GMRCTZ PROSTHETICS REQUEST-FLOW SHOES AND INSERTS                                                                                                                                  4.1  GMRCTZ STC AMPUTEE CLINIC OUTPT                                                                                                                                 33.4  ORZ ADD MENU UROLOGY CONSULT MENU                                                                                                                                 37.1  GMRCTZ MPLS EEG                                                                                                                                  2.2  ORZ SET PSM CONSULT IFC GASTROENTEROLOGY                                                                                                                                  3.2  ORZ SET PSM IFC MPLS GI-LIVER CONSULT                                                                                                                                 20.3  GMRCTZ MPLS POLYTRAUMA                                                                                                                                 29.4  GMRCTZ IFC MPLS TRANSGENDER E-CONSULT                                                                                                                                 30.4  GMRCTZ MPLS TRAVEL MEDICINE                                                                                                                                 15.4  GMRCTZ MPLS SURGICAL ONCOLOGY                                                                                                                                 38.2  GMRCTZ LUNG CANCER SCREENING CONSULT                                                                                                                                  9.2  GMRCTZ HOME BASED PRIMARY CARE                                                                                                                                 46.2  ORZ ADD MENU NEUROLOGY-REVISED                                                                                                                                  7.1  GMRCTZ BARIATRIC SURGERY CARE CONSULT                                                                                                                                  4.3  ORZ ADD MENU OCCUPATIONAL THERAPY                                                                                                                                 18.3  ORZ ADD MENU PHYSICAL THERAPY                                                                                                                                  6.2  GMRCTZ HCBS IDT CONSULT                                                                                                                                  1.1  GMRCTZ ADHC OUTPATIENT REFERRAL CONSULT                                                                                                                                 26.3  GMRCTZ PROSTHETICS REQUEST - NEBULIZER CONSULT OUTPT                                                                                                                                 36.3  ORZ ADD MENU RENAL\/NEPHROLOGY OUTPT ORDER MENU                                                                                                                                 39.3  ORZ ADD MENU RHEUMATOLOGY CONSULT ORDER MENU                                                                                                                                 17.3  GMRCTZ PHYSIATRY TRIGGER POINT INJECTION CONSULT                                                                                                                                 24.1  GMRCTZ COVID-19 LONG COVID CONSULT                                                                                                                                 41.2  ORZ ADD MENU METABOLIC\/ENDOCRINOLOGY ORDER MENU                                                                                                                                 25.2  GMRCTZ IFC SALT LAKE CITY RRTP                                                                                                                                 30.1  ORZ ADD MENU DERMATOLOGY CONSULT                                                                                                                                 35.4  ORZ ADD MENU VET-HOME TELEHEALTH IFC CONSULTS                                                                                                                                 23.2  GMRCTZ IFC PHARMACOGENOMICS E-CONSULT                                                                                                                                 22.3  GMRCTZ PROSTHETICS REQUEST - CGM                                                                                                                                 26.4  ORZ ADD MENU TELE-VASCULAR HOTLINE OUTPT                                                                                                                                 37.3  ORZ ADD MENU RESPIRATORY THERAPY ORDER MENU                                                                                                                                 16.1  ORZ ADD MENU CHIROPRACTIC                                                                                                                                 42.1  GMRCTZ PAIN CLINIC CONSULT OUTPT                                                                                                                                 25.4  GMRCTZ V23 IFC VASCULAR TELE-PAVE CONSULT                                                                                                                                 25.3  GMRCTZ PROSTHETICS REQUEST - MEDICAL ALERT DEVICE                                                                                                                                 23.4  GMRCTZ V23 IFC TELE-NEUROSURGERY CONSULT                                                                                                                                 20.2  GMRCTZ IFC MPLS FISHER HOUSE                                                                                                                                 34.2  ORZ ADD MENU INTERVENTIONAL RADIOLOGY                                                                                                                                 39.4  ORZ SET NUT WEIGHT LOSS\/MOVE\/WT MGMT                                                                                                                                 11.4  GMRCTZ SOGI VETERAN HEALTH CONSULT OUTPT                                                                                                                                  2.3  ORZ ADD MENU NUTRITION CONSULTS                                                                                                                                 21.2  GMRCTZ IFC MPLS GRECC                                                                                                                                 26.1  GMRCTZ CSP CAREGIVER INTERVENTION CONSULT OUTPT                                                                                                                                 32.2  ORZ ADD MENU INFERTILITY                                                                                                                                 23.3  GMRCTZ PROSTHETICS REQUEST-FIREARM LOCKBOX                                                                                                                                  8.3  ORZ ADD MENU PAIN MANAGEMENT                                                                                                                                 27.2  GMRCTZ IFC CVT-TELEONCOLOGY CONSULT TO DURHAM VAMC                                                                                                                                 41.1  ORZ ADD MENU ENVIRONMENTAL HEALTH CONSULTS                                                                                                                                 39.2  ORZ ADD MENU MAMMOGRAM CONSULT                                                                                                                                 31.2  GMRCTZ MPLS INFECTIOUS DISEASE", 
+"DisplayGroup" : "5.1  GMRCTZ AUDIOLOGY                               15.1  GMRCTZ CHAPLAIN CONSULT OUTPT                               29.1  GMRCTZ DENTAL                               17.1  GMRCTZ CLC ADMISSION CONSULT                               32.4  GMRCTZ PROSTHETICS REQUEST - URGENT CARE                               32.3  GMRCTZ RADIOLOGY E-CONSULT                               37.2  GMRCTZ LST MDC COMMITTEE CONSULT                               13.3  GMRCTZ PCMHI CONSULT OUTPT                                1.4  GMRCTZ ALX\/MTE RN PCMHI BEHAVIORAL LAB CONSULT                                2.4  GMRCTZ BRD RN PCMHI BEHAVIORAL LAB CONSULT                                                                                                                                  3.4  GMRCTZ STC RN PCMHI BEHAVIORAL LAB CONSULT                                                                                                                                  8.1  GMRCTZ BATTLEFIELD ACUPUNCTURE CONSULT                                                                                                                                  9.3  GMRCTZ PAIN PSYCHOLOGY CONSULT OUTPT                                                                                                                                 11.3  GMRCTZ PALO ALTO YOGA                                                                                                                                 19.3  ORZ ADD MENU PODIATRY ORDER MENU UPDATED                                                                                                                                 35.3  GMRCTZ RECREATION THERAPY FITNESS                                                                                                                                 31.1  ORZ ADD MENU DIABETES CONSULTS                                                                                                                                 12.2  GMRCTZ HOSPICE                                                                                                                                  10.3  GMRCTZ PALLIATIVE CARE                                                                                                                                 34.3  GMRCTZ REC BEHAVIORIAL HEALTH CONSULT                                                                                                                                 36.1  GMRCTZ EC SKIN INTEGRITY CONSULT                                                                                                                                 13.1  GMRCTZ CAREGIVER SUPPORT PROGRAM OUTPT                                                                                                                                 35.1  GMRCTZ EC PHARMACY                                                                                                                                 11.2  GMRCTZ HOSPICE\/PALLIATIVE CARE E-CONSULT                                                                                                                                 10.1  GMRCTZ BRO TEAM CONSULT                                                                                                                                 35.2  GMRCTZ IREST YOGA NIDRA MEDITATION GROUP                                                                                                                                 16.3  ORZ ADD MENU EMG PRE-WORK                                                                                                                                 40.2  GMRCTZ MH BHIP CONSULT OUTPT                                                                                                                                 29.3  GMRCTZ MH BHIP PSYCHOLOGICAL ASSESSMENT OUTPT                                                                                                                                 42.2  GMRCTZ MH NEUROPSYCHOL OUTPT                                                                                                                                  43.2  GMRCTZ MH NEUROPSYCHOL E-CONSULT                                                                                                                                 45.2  GMRCTZ MH-RRTP-VA OUTPT                                                                                                                                 17.2  GMRCTZ IFC CTX MH RRTP                                                                                                                                 13.2  GMRCTZ IFC BATAVIA MH RESIDENTIAL REHAB TREATMENT PROGRAM                                                                                                                                 14.2  GMRCTZ IFC BAY PINES PTSD RESIDENTIAL ADMISSIONS                                                                                                                                 18.2  GMRCTZ IFC CINCINNATI MH RESIDENTIAL REHAB TREATMENT PROGRAM                                                                                                                                 24.2  GMRCTZ IFC SALISBURY PTSD RRTP                                                                                                                                 28.2  GMRCTZ IFC TOMAH MH RESIDENTIAL CONSULT                                                                                                                                 29.2  GMRCTZ IFC TOPEKA RESIDENTIAL REHAB TREATMENT PROGRAM                                                                                                                                 30.2  GMRCTZ IFC WHITE CITY MH RESIDENTIAL REHAB TREATMENT PROGRAM                                                                                                                                 42.4  ORZ ADD MENU WOMENS HEALTH PREWORK                                                                                                                                 20.1  ORZ SET PSM COLPOSCOPY                                                                                                                                  7.2  GMRCTZ HEMATOLOGY\/ONCOLOGY                                                                                                                                  8.2  GMRCTZ HEMATOLOGY\/ONCOLOGY E-CONSULT                                                                                                                                  6.4  GMRCTZ SOCIAL WORK CONSULT ACBOC                                                                                                                                  7.4  GMRCTZ SOCIAL WORK CONSULT BCBOC                                                                                                                                  8.4  GMRCTZ SOCIAL WORK CONSULT MCBOC                                                                                                                                  9.4  GMRCTZ SOCIAL WORK CONSULT PC                                                                                                                                 33.2  ORZ SET INFUSION CONSULT                                                                                                                                  3.1  ORZ SET PSM ALTEPLASE PWDR INJ OUTPT                                                                                                                                 31.4  GMRCTZ TRAVELING VETERAN                                                                                                                                 36.2  GMRCTZ LIFE-SUSTAINING TX EDUCATION CONSULT                                                                                                                                 18.4  GMRCTZ TELE-EYE SCREENING                                                                                                                                 21.4  GMRCTZ TELE-EYE SCREENING MCBOC                                                                                                                                 12.3  GMRCTZ BRD PCMHI CONSULT OUTPT                                                                                                                                 14.3  GMRCTZ PCMHI E-CONSULT                                                                                                                                 14.1  GMRCTZ CDM CONSULT                                                                                                                                 15.3  ORZ ADD MENU PHARMACY CONSULTS                                                                                                                                  2.1  GMRCTZ ALS CONSULT                                                                                                                                 36.4  GMRCTZ VIST CONSULT                                                                                                                                  4.4  GMRCTZ SCI&D CONSULT                                                                                                                                 12.4  GMRCTZ SPEECH THERAPY\/SWALLOW CONSULT                                                                                                                                  9.1  GMRCTZ BP MONITOR                                                                                                                                 34.1  GMRCTZ DURABLE EQUIPMENT                                                                                                                                 22.1  GMRCTZ COMPRESSION STOCKINGS                                                                                                                                  7.3  GMRCTZ ORTHOTICS\/PROSTHETICS REFERRAL CONSULT OUTPT                                                                                                                                 31.3  ORZ ADD MENU PSM RESP PFTS                                                                                                                                 18.1  GMRCTZ COLO-RECTAL PROCEDURES                                                                                                                                 38.1  GMRCTZ EGD OUTPT                                                                                                                                 40.1  ORZ ADD MENU ENT ORDER MENU                                                                                                                                  4.2  GMRCTZ GENERAL SURGERY                                                                                                                                  5.2  GMRCTZ GENERAL SURGERY E-CONSULT                                                                                                                                 43.1  GMRCTZ EYE CONSULT                                                                                                                                  6.1  GMRCTZ AUDIOLOGY E-CONSULT                                                                                                                                 39.1  GMRCTZ ENDOSCOPY E-CONSULT                                                                                                                                 44.2  GMRCTZ MH BHIP PERI-PROCEDURAL E-CONSULT                                                                                                                                   5.3  GMRCTZ OPTOMETRY E-CONSULT                                                                                                                                 16.4  ORZ ADD MENU SUSPECTED ABUSE NEGLECT CONSULTS                                                                                                                                 22.4  ORZ ADD MENU TELEHEALTH CONSULTS                                                                                                                                 17.4  GMRCTZ TBI CASE MANAGEMENT CONSULT                                                                                                                                 23.1  GMRCTZ COVID-19 EXTENSION OUTPT                                                                                                                                 37.4  GMRCTZ VOC REHAB SERVICES OUTPT                                                                                                                                 38.4  GMRCTZ IFC WAR RELATED ILLNESS AND INJURY STUDY CENTER                                                                                                                                 21.3  GMRCTZ GENERIC PROSTHETICS CONSULT                                                                                                                                  1.2  GMRCTZ FLEX SIGMOIDOSCOPY                                                                                                                                 32.1  ORZ ADD MENU DIGITAL DIVIDE CONSULTS                                                                                                                                 16.2  GMRCTZ IFC CENTRAL IOWA PAIN WHOLE HEALTH                                                                                                                                 27.1  GMRCTZ CSP PCAFC HOME-CARE ASSESSMENT OUTPT                                                                                                                                 28.1  GMRCTZ CSP PCAFC VETERAN FUNCTIONAL ASSESSMENT INSTRUMENT OUTPT                                                                                                                                 38.3  GMRCTZ RESPITE CARE CONSULT                                                                                                                                 43.4  GMRCTZ PROSTHETICS REQUEST - WOUND VAC                                                                                                                                 28.3  GMRCTZ PSM ROUTINE FOLLOW-UP                                                                                                                                 19.4  GMRCTZ TELE-EYE SCREENING ACBOC                                                                                                                                 20.4  GMRCTZ TELE-EYE SCREENING BCBOC                                                                                                                                 27.3  GMRCTZ PSM MBHI HBC EVALUATION CONSULT OUTPT                                                                                                                                 21.1  ORZ ADD MENU COMMUNITY CONSULTS                                                                                                                                 19.2  GMRCTZ IFC DENVER FISHER HOUSE                                                                                                                                 13.4  GMRCTZ STRIDE MOBILITY INPT                                                                                                                                 41.4  ORZ ADD MENU WHOLE HEALTH CONSULTS                                                                                                                                 26.2  GMRCTZ IFC SFX TAI CHI                                                                                                                                 14.4  GMRCTZ SPP-HIGH RISK FLAG PLACEMENT E-CONSULT                                                                                                                                 40.4  ORZ ADD MENU WHEELCHAIR CONSULTS                                                                                                                                 24.4  ORZ ADD MENU TELE ORTHO BONE PHONE CONSULTS                                                                                                                                 30.3  ORZ ADD MENU PULMONOLOGY OUTPT ORDER MENU                                                                                                                                 11.1  ORZ ADD MENU CARDIOLOGY CONSULT V23 RCI                                                                                                                                 10.4  GMRCTZ SSC ROUTINE FOLLOW UP OUTPT                                                                                                                                 28.4  GMRCTZ TOMAH TELEPRIDE IFC                                                                                                                                  6.3  ORZ ADD MENU ORTHO CONSULT MENU                                                                                                                                 19.1  ORZ ADD MENU COLONOSCOPY CONSULTS UPDATED                                                                                                                                 33.1  GMRCTZ MPLS DRIVER TRAINING\/EVAL                                                                                                                                 47.2  GMRCTZ MPLS NEUROSURGERY                                                                                                                                  1.3  GMRCTZ MPLS NUC MED                                                                                                                                 33.3  GMRCTZ MPLS RADIATION ONCOLOGY                                                                                                                                 27.4  GMRCTZ MPLS THORACIC SURGERY                                                                                                                                 34.4  ORZ ADD MENU VASCULAR CONSULTS                                                                                                                                 24.3  GMRCTZ PROSTHETICS REQUEST-FLOW SHOES AND INSERTS                                                                                                                                  4.1  GMRCTZ STC AMPUTEE CLINIC OUTPT                                                                                                                                 33.4  ORZ ADD MENU UROLOGY CONSULT MENU                                                                                                                                 37.1  GMRCTZ MPLS EEG                                                                                                                                  2.2  ORZ SET PSM CONSULT IFC GASTROENTEROLOGY                                                                                                                                  3.2  ORZ SET PSM IFC MPLS GI-LIVER CONSULT                                                                                                                                 20.3  GMRCTZ MPLS POLYTRAUMA                                                                                                                                 29.4  GMRCTZ IFC MPLS TRANSGENDER E-CONSULT                                                                                                                                 30.4  GMRCTZ MPLS TRAVEL MEDICINE                                                                                                                                 15.4  GMRCTZ MPLS SURGICAL ONCOLOGY                                                                                                                                 38.2  GMRCTZ LUNG CANCER SCREENING CONSULT                                                                                                                                  9.2  GMRCTZ HOME BASED PRIMARY CARE                                                                                                                                 46.2  ORZ ADD MENU NEUROLOGY-REVISED                                                                                                                                  7.1  GMRCTZ BARIATRIC SURGERY CARE CONSULT                                                                                                                                  4.3  ORZ ADD MENU OCCUPATIONAL THERAPY                                                                                                                                 18.3  ORZ ADD MENU PHYSICAL THERAPY                                                                                                                                  6.2  GMRCTZ HCBS IDT CONSULT                                                                                                                                  1.1  GMRCTZ ADHC OUTPATIENT REFERRAL CONSULT                                                                                                                                 26.3  GMRCTZ PROSTHETICS REQUEST - NEBULIZER CONSULT OUTPT                                                                                                                                 36.3  ORZ ADD MENU RENAL\/NEPHROLOGY OUTPT ORDER MENU                                                                                                                                 39.3  ORZ ADD MENU RHEUMATOLOGY CONSULT ORDER MENU                                                                                                                                 17.3  GMRCTZ PHYSIATRY TRIGGER POINT INJECTION CONSULT                                                                                                                                 24.1  GMRCTZ COVID-19 LONG COVID CONSULT                                                                                                                                 41.2  ORZ ADD MENU METABOLIC\/ENDOCRINOLOGY ORDER MENU                                                                                                                                 25.2  GMRCTZ IFC SALT LAKE CITY RRTP                                                                                                                                 30.1  ORZ ADD MENU DERMATOLOGY CONSULT                                                                                                                                 35.4  ORZ ADD MENU VET-HOME TELEHEALTH IFC CONSULTS                                                                                                                                 23.2  GMRCTZ IFC PHARMACOGENOMICS E-CONSULT                                                                                                                                 22.3  GMRCTZ PROSTHETICS REQUEST - CGM                                                                                                                                 26.4  ORZ ADD MENU TELE-VASCULAR HOTLINE OUTPT                                                                                                                                 37.3  ORZ ADD MENU RESPIRATORY THERAPY ORDER MENU                                                                                                                                 16.1  ORZ ADD MENU CHIROPRACTIC                                                                                                                                 42.1  GMRCTZ PAIN CLINIC CONSULT OUTPT                                                                                                                                 25.4  GMRCTZ V23 IFC VASCULAR TELE-PAVE CONSULT                                                                                                                                 25.3  GMRCTZ PROSTHETICS REQUEST - MEDICAL ALERT DEVICE                                                                                                                                 23.4  GMRCTZ V23 IFC TELE-NEUROSURGERY CONSULT                                                                                                                                 20.2  GMRCTZ IFC MPLS FISHER HOUSE                                                                                                                                 34.2  ORZ ADD MENU INTERVENTIONAL RADIOLOGY                                                                                                                                 39.4  ORZ SET NUT WEIGHT LOSS\/MOVE\/WT MGMT                                                                                                                                 11.4  GMRCTZ SOGI VETERAN HEALTH CONSULT OUTPT                                                                                                                                  2.3  ORZ ADD MENU NUTRITION CONSULTS                                                                                                                                 21.2  GMRCTZ IFC MPLS GRECC                                                                                                                                 26.1  GMRCTZ CSP CAREGIVER INTERVENTION CONSULT OUTPT                                                                                                                                 32.2  ORZ ADD MENU INFERTILITY                                                                                                                                 23.3  GMRCTZ PROSTHETICS REQUEST-FIREARM LOCKBOX                                                                                                                                  8.3  ORZ ADD MENU PAIN MANAGEMENT                                                                                                                                 27.2  GMRCTZ IFC CVT-TELEONCOLOGY CONSULT TO DURHAM VAMC                                                                                                                                 41.1  ORZ ADD MENU ENVIRONMENTAL HEALTH CONSULTS                                                                                                                                 39.2  ORZ ADD MENU MAMMOGRAM CONSULT                                                                                                                                 31.2  GMRCTZ MPLS INFECTIOUS DISEASE", 
 "DisplayText" : "Consults All...", 
 "Verify" : "", 
 "Version" : "StCloud"},
@@ -41606,17 +41515,5 @@
 "Component1" : "PSOQ CBOC CS EMTRICITABINE 200MG\/TENOFOV AF 25MG TAB", 
 "Component2" : "PSOQ CBOC CS DOLUTEGRAVIR 50MG TAB", 
 "DisplayText" : "Dolutegravir 50mg + Emtricitabine 200mg\/Tenofov 25mg (nPEP)", 
-"Version" : "StCloud"},
-{
-"Name" : "SD RTC", 
-"DisplayGroup" : "CLINIC SCHEDULING", 
-"Location" : "", 
-"ClinicallyIndicatedDate" : "", 
-"ApptNum" : "20.5", 
-"SchedInt" : "", 
-"Prereq" : "40.0", 
-"SDComment" : "OR GTX YES\/NO", 
-"DisplayText" : "Return To Clinic", 
-"Verify" : "YES", 
 "Version" : "StCloud"}
 ]
