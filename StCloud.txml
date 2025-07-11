@@ -49,7 +49,6 @@
       <p>{FLD:ABX ANTIBIOGRAM MINN}</p>
       <p>{FLD:ABX SANFORD GUIDE WEBSITE}</p>
       <p>{FLD:ABX ANTIBIOGRAM MPLS-STCLOUD}</p>
-      <p>{FLD:223 LINKS}</p>
       <p>{FLD:ABX VACCINE RTC}</p>
       <p>{FLD:ABX VACC 3 START}</p>
       <p>{FLD:ABX VACC 2 START}</p>
@@ -508,6 +507,21 @@
         <p>Indication/Type of Surgery:</p>
       </ITEMS>
     </FIELD>
+    <FIELD NAME="ABX SURGICAL PROPHYLAXIS INDICATION EDIT">
+      <TYPE>E</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>1</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>1</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>http://</URL>
+    </FIELD>
     <FIELD NAME="ABX RESOURCE QTC PROLONGATION DRUGS">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -603,6 +617,22 @@
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
       <URL>http://www.health.state.mn.us/divs/idepc/diseases/lyme/highrisk.pdf</URL>
+    </FIELD>
+    <FIELD NAME="ABX HEAD LICE PDF FILE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Head Lice PDF</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>http://www.cdc.gov/ncidod/dpd/parasites/lice/2004_PDF_Treating_head_lice.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX HEAD LICE PDF CLICK LINK BELOW">
       <TYPE>H</TYPE>
