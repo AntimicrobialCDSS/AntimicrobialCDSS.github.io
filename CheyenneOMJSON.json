@@ -7566,7 +7566,7 @@
 {"Row" : 29, "Column" : 1, "Text" : "Up-to-Date article: Clostridioides difficile infection in adults: Clinical"}, 
 {"Row" : 30, "Column" : 1, "Text" : "manifestations and diagnosis"}
 ]},
-{"Name" : "ORZID2 GMENU ABX INPT MAIN", "Term1" : "Inpatient Main Menu", "Term2" : "Main Menu, Inpatient", "DisplayText" : "Inpatient Antimicrobial Computer Decision Support System (CDSS)", "Version" : "Cheyenne", "Contents" : [
+{"Name" : "ORZID2 GMENU ABX INPT MAIN", "Outpt" : "ORZID3 GMENU ABX OUTPT MAIN", "ERUC" : "ORZID GMENU ER/UC EMERGENCY DEPARTMENT MAIN MENU", "Term1" : "Inpatient Main Menu", "Term2" : "Main Menu, Inpatient", "DisplayText" : "Inpatient Antimicrobial Computer Decision Support System (CDSS)", "Version" : "Cheyenne", "Contents" : [
 {"Row" : 17, "Column" : 1, "Item" : "ORZID2 GMENU ABX INDEX INPATIENT", "DisplayText" : "Inpatient Antimicrobial CDSS Index", "Text" : "[CLICK HERE]", "Mnemonic" : "7"},
 {"Row" : 21, "Column" : 1, "Item" : "ORZID2 GMENU ABX CNS", "DisplayText" : "Central Nervous System", "Text" : "Central Nervous System", "Mnemonic" : "11"},
 {"Row" : 22, "Column" : 1, "Item" : "ORZID2 GMENU ABX HEAD AND NECK", "DisplayText" : "Head and Neck", "Text" : "Head and Neck", "Mnemonic" : "12"},
