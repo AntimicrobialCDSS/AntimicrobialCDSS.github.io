@@ -1,5 +1,5 @@
 <CPRS_TEMPLATE>
-  <TEMPLATE NAME="CheyenneExport2">
+  <TEMPLATE NAME="Cheyenne">
     <TYPE>T</TYPE>
     <STATUS>A</STATUS>
     <BOILERPLATE_TEXT>
@@ -28,7 +28,6 @@
       <p>{FLD:ABX CORONAVIRUS CDC WEBSITE}</p>
       <p>{FLD:VHA HIGH CONSEQUENCE INFECTION PREPAREDNESS PROGRAM}</p>
       <p>{FLD:ABX MONOCLONAL ANTIBODY ALLOCATION SOP}</p>
-      <p>{FLD:ABX DENTAL ABX PPX SOP}</p>
       <p>{FLD:ABX HEPATITIS B ONCOLOGY SHAREPOINT URL}</p>
       <p>{FLD:ABX IDP FLUOROQUINOLONE ADVERSE REACTIONS}</p>
       <p>{FLD:ABX JLV LINK}</p>
@@ -36,14 +35,13 @@
       <p>{FLD:ABX LEXICOMP CLICK HERE}</p>
       <p>{FLD:ABX LEXICOMP ONLINE}</p>
       <p>{FLD:ABX MANDELL ONLINE}</p>
-      <p>{FLD:ABX MDH RABIES GUIDE}</p>
+      <p>{FLD:ABX RABIES WY GUIDE}</p>
+      <p>{FLD:ABX RABIES CO GUIDE}</p>
       <p>{FLD:ABX MONKEYPOX SHAREPOINT}</p>
       <p>{FLD:ABX CALL 3D}</p>
       <p>{FLD:ABX DATE}</p>
       <p>{FLD:ABX CLICK LINK BELOW INFECT CTRL}</p>
       <p>{FLD:ABX MVAMC INFECT CTRL INTRANET}</p>
-      <p>{FLD:ABX MINNEAPOLIS ON-CALL SCHEDULE}</p>
-      <p>{FLD:ABX PHARMACIST PHONE/PAGER NUMBERS}</p>
       <p>{FLD:ABX POST EXPOSURE PROPHYLAXIS NPEP}</p>
       <p>{FLD:ABX PORT FINISHED CLICK OK BELOW}</p>
       <p>{FLD:ABX POST EXPOSURE PROPHYLAXIS}</p>
@@ -573,22 +571,6 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://dvagov.sharepoint.com/sites/VHACHY/chycovid19/SitePages/Home.aspx</URL>
     </FIELD>
-    <FIELD NAME="ABX DENTAL ABX PPX SOP">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>DENTAL ABX PPX SOP</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:w:/r/sites/vhav23/CDSS/CDSS%20Resources/DENTAL%20ABX%20PPX%20SOP.docx?d=w352a443499834e6d90c23057dac3d10a&amp;csf=1&amp;web=1&amp;e=w3aPxA</URL>
-    </FIELD>
     <FIELD NAME="ABX HEPATITIS B ONCOLOGY SHAREPOINT URL">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -704,11 +686,11 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://www.clinicalkey.com/#!/browse/book/3-s2.0-C2016100010X</URL>
     </FIELD>
-    <FIELD NAME="ABX MDH RABIES GUIDE">
+    <FIELD NAME="ABX RABIES WY GUIDE">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>Rabies Guide, Minnesota Department of Health [Click Here]</DEFAULT_TEXT>
+      <DEFAULT_TEXT>Rabies Guide, Wyoming Department of Health [Click Here]</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>1</SEPARATE_LINES>
@@ -718,7 +700,23 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://www.health.state.mn.us/diseases/rabies/risk/index.html</URL>
+      <URL>https://health.wyo.gov/publichealth/infectious-disease-epidemiology-unit/disease/rabies/</URL>
+    </FIELD>
+    <FIELD NAME="ABX RABIES CO GUIDE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Rabies Guide, Colorado Department of Health [Click Here]</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://cdphe.colorado.gov/animal-related-diseases/rabies</URL>
     </FIELD>
     <FIELD NAME="ABX MONKEYPOX SHAREPOINT">
       <TYPE>H</TYPE>
@@ -802,38 +800,6 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://dvagov.sharepoint.com/sites/min/SiteDirectory/InfCon/SitePages/Infection-Prevention.aspx</URL>
     </FIELD>
-    <FIELD NAME="ABX MINNEAPOLIS ON-CALL SCHEDULE">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>On-Call Schedule</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>http://vaww.visn23.med.va.gov/concall/index.asp</URL>
-    </FIELD>
-    <FIELD NAME="ABX PHARMACIST PHONE/PAGER NUMBERS">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>Pharmacists Coverage Contact Information</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:x:/r/sites/vhav23/CDSS/CDSS%20Resources/Pharmacy%20coverage%20by%20team%20v.4.xlsx?d=w5de5c350df7d49f7b4e6bbeef53b5d33&amp;csf=1&amp;web=1&amp;e=XMcPB8</URL>
-    </FIELD>
     <FIELD NAME="ABX POST EXPOSURE PROPHYLAXIS NPEP">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -879,7 +845,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/PEP.pdf?csf=1&amp;web=1&amp;e=ceK8lv</URL>
+      <URL>https://dvagov.sharepoint.com/:w:/r/sites/VHACHYHCS/Document_Center/MCP%20Library/Blood%20Borne%20Pathogens%20Exposure%20Control%20Plan.docx?d=w9e06031edd264cb5a68d190d8f0ade19&amp;csf=1&amp;web=1&amp;e=iorfwK</URL>
     </FIELD>
     <FIELD NAME="ABX SURGICAL PROPHYLAXIS INDICATION HEADER">
       <TYPE>T</TYPE>
