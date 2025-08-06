@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VISN23 UC Menu Tracking</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="icon" href="CDSSLogoApp.png" type="image/x-icon">
+    <style>
+        @font-face {
+          font-family: 'PT Serif Bold';
+          src: url('Fonts/PTSerif-Bold.eot');
+          src: url('Fonts/PTSerif-Bold.eot?#iefix') format('embedded-opentype'),
+               url('Fonts/PTSerif-Bold.woff2') format('woff2'),
+               url('Fonts/PTSerif-Bold.woff') format('woff'),
+               url('Fonts/PTSerif-Bold.ttf') format('truetype'),
+               url('Fonts/PTSerif-Bold.svg#PTSerifbold') format('svg');
+          font-weight: bold;
+        }
+        @font-face {
+          font-family: 'PT Serif Italic';
+          src: url('Fonts/PTSerif-Italic.eot');
+          src: url('Fonts/PTSerif-Italic.eot?#iefix') format('embedded-opentype'),
+               url('Fonts/PTSerif-Italic.woff2') format('woff2'),
+               url('Fonts/PTSerif-Italic.woff') format('woff'),
+               url('Fonts/PTSerif-Italic.ttf') format('truetype'),
+               url('Fonts/PTSerif-Italic.svg#PTSerifitalic') format('svg');
+          font-weight: normal;
+          font-style: italic;
+        }
+        @font-face {
+          font-family: 'PT Serif Regular';
+          src: url('Fonts/PTSerif-Regular.eot');
+          src: url('Fonts/PTSerif-Regular.eot?#iefix') format('embedded-opentype'),
+               url('Fonts/PTSerif-Regular.woff2') format('woff2'),
+               url('Fonts/PTSerif-Regular.woff') format('woff'),
+               url('Fonts/PTSerif-Regular.ttf') format('truetype'),
+               url('Fonts/PTSerif-Regular.svg#PTSerifregular') format('svg');
+          font-weight: normal;
+          font-style: normal;
+        }
+        body {
+            font-family: 'PT Serif Regular', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+        }
+        .textContainer {
+            margin-top: 0px;
+            max-width: 800px;
+            padding: 10px;
+        }
+        .bold-text {
+            font-family: 'PT Serif Bold', Arial, sans-serif;
+            font-weight: bold;
+        }
+        .top-image,
+        .bottom-image {
+            margin-top: 20px;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            width: 100%;
+	    padding: 10px;
+        }
+        #graph {
+            width: 100%;
+        }
+        #info {
+            margin-top: 20px;
+            max-width: 800px;
+            font-size: 14px;
+            text-align: left;
+        }
+        #CDSSLogo,
+        #VASeal {
+            width: 100%;
+            max-width: 400px; 
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-image">
+        <img src="CDSSLogo.png" alt="CDSS Logo" id="CDSSLogo">
+    </div>
+    <div class="textContainer">
+        <p><a href="https://antimicrobialcdss.github.io/">Go to Antimicrobial CDSS Homepage</a></p>
+    </div>
+    <div id="container">
+	<h1>VISN23 Urine Culture Menu FY2024 Cohort</h1>
+        <div id="graph"></div>
+        <div id="info">
+            <h2>Displayed data is obtained from CDW and aggregated from below VAHCS sites.</h2>
+            <h2>Included Sites (complexity):</h2>
+            <p>Des Moines - 1c</p>
+            <p>Fargo - 2</p>
+            <p>Iowa City - 1b</p>
+	    <p>Omaha - 1b</p>
+            <p>St. Cloud - 3</p>
+            <p>Sioux Falls - 2</p>
+            <br>
+	    <p>Contact information: Erik Stensgard, PharmD (erik.stengsgard@va.gov)</p>	
+        </div>
+    </div>
+    <div class="bottom-image">
+        <img src="VASeal.jpg" alt="VA Seal" id="VASeal">
+    </div>
+    <script>
+        // Data
+        var dates = [
+            "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", 
+            "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", 
+            "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", 
+            "2025-03", "2025-04", "2025-05", "2025-06", "2025-07"
+        ];
+        var counts = [
+            1054, 1035, 968, 871, 922, 841, 1028, 944, 1000, 995, 915, 1086, 956, 915, 933, 868, 950, 892, 874, 901, 926, 
+            799, 1042, 948, 859, 959, 784, 787, 851, 771, 836, 920, 856, 834, 893
+        ];
+
+        // Plot data
+        var trace1 = {
+            x: dates,
+            y: counts,
+            mode: 'lines+markers',
+            name: 'Urine Culture Counts'
+        };
+
+        // Calculate trend line
+        var sum_x = 0, sum_y = 0, sum_xy = 0, sum_xx = 0, n = counts.length;
+        for (var i = 0; i < n; i++) {
+            var x = new Date(dates[i]).getTime();
+            var y = counts[i];
+            sum_x += x;
+            sum_y += y;
+            sum_xy += x * y;
+            sum_xx += x * x;
+        }
+
+        var slope = (n * sum_xy - sum_x * sum_y) / (n * sum_xx - sum_x * sum_x);
+        var intercept = (sum_y - slope * sum_x) / n;
+        var trendline = dates.map(date => slope * new Date(date).getTime() + intercept);
+
+        var trace2 = {
+            x: dates,
+            y: trendline,
+            mode: 'lines',
+            name: 'Trend Line'
+        };
+
+        var data = [trace1, trace2];
+
+        // Layout
+        var layout = {
+            title: 'Urine Culture Counts Over Time with Trend Line',
+            xaxis: {
+                title: 'Date'
+            },
+            yaxis: {
+                title: 'Urine Culture Count'
+            }
+        };
+
+        Plotly.newPlot('graph', data, layout);
+    </script>
+</body>
+</html>
