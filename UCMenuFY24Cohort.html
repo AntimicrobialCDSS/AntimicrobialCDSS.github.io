@@ -37,15 +37,15 @@
           font-weight: normal;
           font-style: normal;
         }
-        body {
+        .body {
             font-family: 'PT Serif Regular', Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: left;
         }
-        .textContainer {
+        .Container {
             margin-top: 0px;
             max-width: 800px;
             padding: 10px;
@@ -53,26 +53,18 @@
         .bold-text {
             font-family: 'PT Serif Bold', Arial, sans-serif;
             font-weight: bold;
+	    margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: left;
         }
         .top-image,
         .bottom-image {
             margin-top: 20px;
         }
-        #container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
         #graph {
             width: 100%;
-            max-width: 800px;
-        }
-        #info {
-            margin-top: 20px;
-            max-width: 800px;
-            font-size: 14px;
-            text-align: left;
         }
         #CDSSLogo,
         #VASeal {
@@ -86,23 +78,22 @@
     <div class="top-image">
         <img src="CDSSLogo.png" alt="CDSS Logo" id="CDSSLogo">
     </div>
-    <div class="textContainer">
+    <div class="Container">
         <p><a href="index.html">Return to home page</a></p>
-    </div>
-    <h1>VISN23 Urine Culture Menu FY2024 Cohort</h1>
-    <div id="container">
+    	<br>
+	<div class="bold-text">VISN23 Urine Culture Menu FY2024 Cohort</div> 
         <div id="graph"></div>
-        <div id="info">
-            <h2>Displayed data is obtained from CDW and aggregated from below VAHCS sites.</h2>
-            <h2>Included Sites (complexity):</h2>
-            <p>Des Moines - 1c</p>
-            <p>Fargo - 2</p>
-            <p>Iowa City - 1b</p>
-	        <p>Omaha - 1b</p>
-            <p>St. Cloud - 3</p>
-            <p>Sioux Falls - 2</p>
-            <br>
-	        <p>Contact information: Erik Stensgard, PharmD (erik.stengsgard@va.gov)</p>	
+        <div class="body">
+		<h2>Displayed data is obtained from CDW and aggregated from below VAHCS sites.</h2>
+        	<h2>Included Sites (complexity):</h2>
+        	<p>Des Moines - 1c</p>
+       	 	<p>Fargo - 2</p>
+        	<p>Iowa City - 1b</p>
+		<p>Omaha - 1b</p>
+        	<p>St. Cloud - 3</p>
+        	<p>Sioux Falls - 2</p>
+        	<br>
+		<p>Contact information: Erik Stensgard, PharmD (erik.stengsgard@va.gov)</p>	
         </div>
     </div>
     <div class="bottom-image">
