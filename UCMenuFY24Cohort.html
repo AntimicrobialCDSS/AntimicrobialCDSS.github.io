@@ -43,7 +43,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            align-items: left;
+            align-items: center;
         }
         .textContainer {
             margin-top: 0px;
@@ -61,12 +61,12 @@
         #container {
             display: flex;
             flex-direction: column;
-            align-items: left;
+            align-items: center;
             width: 100%;
-	    padding: 10px;
         }
         #graph {
             width: 100%;
+            max-width: 800px;
         }
         #info {
             margin-top: 20px;
@@ -87,10 +87,10 @@
         <img src="CDSSLogo.png" alt="CDSS Logo" id="CDSSLogo">
     </div>
     <div class="textContainer">
-        <p><a href="https://antimicrobialcdss.github.io/">Go to Antimicrobial CDSS Homepage</a></p>
+        <p><a href="index.html">Return to home page</a></p>
     </div>
+    <h1>VISN23 Urine Culture Menu FY2024 Cohort</h1>
     <div id="container">
-	<h1>VISN23 Urine Culture Menu FY2024 Cohort</h1>
         <div id="graph"></div>
         <div id="info">
             <h2>Displayed data is obtained from CDW and aggregated from below VAHCS sites.</h2>
@@ -98,11 +98,11 @@
             <p>Des Moines - 1c</p>
             <p>Fargo - 2</p>
             <p>Iowa City - 1b</p>
-	    <p>Omaha - 1b</p>
+	        <p>Omaha - 1b</p>
             <p>St. Cloud - 3</p>
             <p>Sioux Falls - 2</p>
             <br>
-	    <p>Contact information: Erik Stensgard, PharmD (erik.stengsgard@va.gov)</p>	
+	        <p>Contact information: Erik Stensgard, PharmD (erik.stengsgard@va.gov)</p>	
         </div>
     </div>
     <div class="bottom-image">
@@ -111,10 +111,10 @@
     <script>
         // Data
         var dates = [
-            "2022-09", "2022-10", "2022-11", "2022-12", "2023-01", "2023-02", "2023-03", "2023-04", "2023-05", "2023-06", 
-            "2023-07", "2023-08", "2023-09", "2023-10", "2023-11", "2023-12", "2024-01", "2024-02", "2024-03", "2024-04", 
-            "2024-05", "2024-06", "2024-07", "2024-08", "2024-09", "2024-10", "2024-11", "2024-12", "2025-01", "2025-02", 
-            "2025-03", "2025-04", "2025-05", "2025-06", "2025-07"
+            "2022-09-01", "2022-10-01", "2022-11-01", "2022-12-01", "2023-01-01", "2023-02-01", "2023-03-01", "2023-04-01", "2023-05-01", "2023-06-01", 
+            "2023-07-01", "2023-08-01", "2023-09-01", "2023-10-01", "2023-11-01", "2023-12-01", "2024-01-01", "2024-02-01", "2024-03-01", "2024-04-01", 
+            "2024-05-01", "2024-06-01", "2024-07-01", "2024-08-01", "2024-09-01", "2024-10-01", "2024-11-01", "2024-12-01", "2025-01-01", "2025-02-01", 
+            "2025-03-01", "2025-04-01", "2025-05-01", "2025-06-01", "2025-07-01"
         ];
         var counts = [
             1054, 1035, 968, 871, 922, 841, 1028, 944, 1000, 995, 915, 1086, 956, 915, 933, 868, 950, 892, 874, 901, 926, 
@@ -126,7 +126,7 @@
             x: dates,
             y: counts,
             mode: 'lines+markers',
-            name: 'Urine Culture Counts'
+            name: 'UC Count'
         };
 
         // Calculate trend line
@@ -157,7 +157,10 @@
         var layout = {
             title: 'Urine Culture Counts Over Time with Trend Line',
             xaxis: {
-                title: 'Date'
+                title: 'Date',
+                tickformat: '%b-%y',
+                tickvals: dates,
+                tickangle: -45
             },
             yaxis: {
                 title: 'Urine Culture Count'
