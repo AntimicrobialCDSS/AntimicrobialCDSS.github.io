@@ -510,13 +510,10 @@ document.getElementById('versionTag').textContent = Version;
 document.getElementById('pageTitle').textContent = Title;
 document.getElementById('mainMenuButton').textContent = MainMenuButton;
 document.getElementById('indexButton').textContent = IndexButton;
-
-  // Function to handle Edit Menu button click and open a new editable tab
+// Function to handle Edit Menu button click and open a new editable tab
   function handleEditMenu() {
     const menuContent = selectedData; // Get the current menu content being displayed
-    const editableContent = JSON.stringify(menuContent, null, 2); // Convert to JSON string for editing
 
-    // Create a new tab with a form and text area for editing the menu content
     const newTab = window.open("", "_blank");
     newTab.document.write(`
       <html>
@@ -524,32 +521,94 @@ document.getElementById('indexButton').textContent = IndexButton;
         <title>Edit Menu</title>
         <style>
           body { font-family: Arial, sans-serif; padding: 20px; }
-          textarea { width: 100%; height: 80vh; }
-          select { width: 100%; }
+          table { width: 100%; border-collapse: collapse; }
+          th, td { border: 1px solid black; padding: 10px; }
+          .editable { background: lightyellow; }
         </style>
       </head>
       <body>
         <h1>Edit Menu</h1>
-        <form id="editMenuForm">
-          <textarea id="menuTextArea">${editableContent}</textarea><br>
-          <button type="button" onclick="saveMenu()">Save</button>
-        </form>
+        <div id="editMenuContainer"></div>
+        <button id="saveButton">Save</button>
+
         <script>
-          function saveMenu() {
-            const updatedContent = document.getElementById('menuTextArea').value;
-            try {
-              // Parse the JSON content to validate it
-              const parsedContent = JSON.parse(updatedContent);
-
-              // Save the updated menu content back to the main tab (use localStorage for simplicity)
-              localStorage.setItem('editedMenuContent', JSON.stringify(parsedContent));
-
-              // Notify the user of the successful save
-              alert('Menu content saved successfully! You can now refresh the main page to see the changes.');
-            } catch (error) {
-              alert('Error saving menu content: ' + error.message);
+          // Function to create an editable table from the menu content
+          function createEditableTable(data) {
+            const table = document.createElement('table');
+            
+            const maxRow = Math.max(...data.Contents.map(item => item.Row));
+            const columns = Math.max(...data.Contents.map(item => item.Column));
+            
+            for (let row = 1; row <= maxRow; row++) {
+              const bodyRow = document.createElement('tr');
+              
+              for (let column = 1; column <= columns; column++) {
+                const matchingItems = data.Contents.filter(
+                  item => item.Row === row && item.Column === column
+                );
+                const displayCell = document.createElement('td');
+                
+                if (matchingItems.length > 0) {
+                  matchingItems.forEach(matchingItem => {
+                    const { Text, Item, Header, DisplayText } = matchingItem;
+                    const cellContent = Text || DisplayText || Item || '';
+                    const cellContentElement = document.createElement('div');
+                    const editableDiv = document.createElement('div');
+                    editableDiv.contentEditable = true;
+                    editableDiv.classList.add('editable');
+                    editableDiv.textContent = cellContent;
+                    cellContentElement.appendChild(editableDiv);
+                    displayCell.appendChild(cellContentElement);
+                  });
+                }
+                
+                bodyRow.appendChild(displayCell);
+              }
+              
+              table.appendChild(bodyRow);
             }
+            
+            return table;
           }
+
+          // Create the editable table and add it to the new tab
+          const container = document.getElementById('editMenuContainer');
+          const editableTable = createEditableTable(${JSON.stringify(menuContent)});
+          container.appendChild(editableTable);
+
+          // Function to handle saving the edited menu
+          function saveMenu() {
+            const tableRows = container.querySelectorAll('tr');
+            const updatedContents = [];
+
+            tableRows.forEach((row, rowIndex) => {
+              const cells = row.querySelectorAll('td');
+
+              cells.forEach((cell, cellIndex) => {
+                const editableDiv = cell.querySelector('.editable');
+
+                if (editableDiv) {
+                  const text = editableDiv.textContent.trim();
+                  const matchingItem = menuContent.Contents.find(
+                    item => item.Row === rowIndex + 1 && item.Column === cellIndex + 1
+                  );
+
+                  if (matchingItem) {
+                    matchingItem.Text = text; // Update the text of the matching item
+                  }
+                }
+              });
+            });
+
+            // Save the updated menu content back to the main tab (use localStorage for simplicity)
+            localStorage.setItem('editedMenuContent', JSON.stringify(menuContent));
+
+            // Notify the user of the successful save
+            alert('Menu content saved successfully! You can now refresh the main page to see the changes.');
+          }
+
+          // Attach event listener to the Save button
+          document.getElementById('saveButton').addEventListener('click', saveMenu);
 
       </body>
       </html>
@@ -571,7 +630,7 @@ document.getElementById('indexButton').textContent = IndexButton;
 
   // Call the function to load the edited menu content on page load
   window.addEventListener('load', loadEditedMenuContent);
-
+  
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
