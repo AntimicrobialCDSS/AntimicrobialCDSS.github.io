@@ -370,15 +370,7 @@
       <a href="#" id="templateFieldsLink" class="button2">TemplateFieldData</a>
       <a href="#" id="downloadJSONButton" class="button2">CurrentMenuData</a>
     </div>
-	<div id="menuEditorContainer" style="display: none;">
-  <h3>Edit Menu</h3>
-  <form id="menuEditorForm">
-    <div id="menuFieldsContainer"></div>
-    <input type="submit" value="Save Changes">
-    <input type="button" value="Cancel" id="cancelEditButton">
-  </form>
-</div>
-<button id="editMenuButton">Edit Menu</button>
+	<button id="editTableButton">Edit Menu</button>
     <span id="versionTag"></span>
 <script>
 function adjustFontSize() {
@@ -458,6 +450,8 @@ async function fetchAbxLink() {
   return data;
   }
   
+
+
 // Global variables
 let omData = []; // OMJSON data
 let odData = []; // ODJSON data
@@ -516,88 +510,7 @@ document.getElementById('versionTag').textContent = Version;
 document.getElementById('pageTitle').textContent = Title;
 document.getElementById('mainMenuButton').textContent = MainMenuButton;
 document.getElementById('indexButton').textContent = IndexButton;
-
-// Function to handle Edit Menu button click
-document.getElementById('editMenuButton').addEventListener('click', function () {
-  const menuEditorContainer = document.getElementById('menuEditorContainer');
-  const menuFieldsContainer = document.getElementById('menuFieldsContainer');
-  menuFieldsContainer.innerHTML = ''; // Clear existing fields
-
-  if (selectedData && selectedData.Contents) {
-    selectedData.Contents.forEach((content, index) => {
-      const contentContainer = document.createElement('div');
-
-      // Text input
-      const textLabel = document.createElement('label');
-      textLabel.for = `text${index}`;
-      textLabel.textContent = `Text ${index + 1}:`;
-      const textInput = document.createElement('input');
-      textInput.type = 'text';
-      textInput.id = `text${index}`;
-      textInput.value = content.Text || '';
-      textInput.name = `text${index}`;
-
-      // Link input
-      const linkLabel = document.createElement('label');
-      linkLabel.for = `link${index}`;
-      linkLabel.textContent = `Link ${index + 1}:`;
-      const linkInput = document.createElement('input');
-      linkInput.type = 'text';
-      linkInput.id = `link${index}`;
-      linkInput.value = content.Item || ''; // Assume Item is the link
-      linkInput.name = `link${index}`;
-
-      contentContainer.appendChild(textLabel);
-      contentContainer.appendChild(textInput);
-      contentContainer.appendChild(linkLabel);
-      contentContainer.appendChild(linkInput);
-      menuFieldsContainer.appendChild(contentContainer);
-    });
-
-    menuEditorContainer.style.display = 'block'; // Show the form
-  }
-});
-
-// Function to handle form submission
-document.getElementById('menuEditorForm').addEventListener('submit', function (event) {
-  event.preventDefault();
-
-  if (selectedData && selectedData.Contents) {
-    selectedData.Contents.forEach((content, index) => {
-      const textInput = document.getElementById(`text${index}`).value.trim();
-      const linkInput = document.getElementById(`link${index}`).value.trim();
-
-      content.Text = textInput;
-      content.Item = linkInput;
-    });
-
-    alert('Changes saved successfully.');
-    createOMTable(selectedData); // Update the displayed menu
-    saveOMJSONData(); // Save changes to the file
-    document.getElementById('menuEditorContainer').style.display = 'none'; // Hide the form
-  }
-});
-
-// Function to handle cancel button
-document.getElementById('cancelEditButton').addEventListener('click', function () {
-  document.getElementById('menuEditorContainer').style.display = 'none';
-});
-
-// Function to save OMJSON data
-function saveOMJSONData() {
-  const data = JSON.stringify(omData, null, 2);
-  const blob = new Blob([data], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = OMjson;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
-}
-	
+  
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
@@ -858,7 +771,38 @@ function scrollToTop() {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
   
-// Function to create table from OMJson Data  
+// Global variable to indicate edit mode
+let isEditMode = false;
+
+// Function to handle Edit Table button click
+document.getElementById('editTableButton').addEventListener('click', function () {
+  isEditMode = !isEditMode;
+  this.textContent = isEditMode ? 'Save Changes' : 'Edit Menu';
+  createOMTable(selectedData);
+});
+
+// Function to create dropdown with ODJSON data
+function createODJSONDropdown(selectedValue) {
+  const dropdown = document.createElement('select');
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.textContent = 'Select Link';
+  dropdown.appendChild(defaultOption);
+
+  odData.forEach(item => {
+    const option = document.createElement('option');
+    option.value = item.Name;
+    option.textContent = item.Name;
+    if (item.Name === selectedValue) {
+      option.selected = true;
+    }
+    dropdown.appendChild(option);
+  });
+
+  return dropdown;
+}
+
+// Function to create table from OMJSON data
 function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
@@ -867,14 +811,7 @@ function createOMTable(selectedData) {
   const maxRow = Math.max(...Contents.map(item => item.Row));
   const columns = Math.max(...Contents.map(item => item.Column));
 
-  // Array to store the last matched index for each row
-  const lastMatchedIndexes = new Array(maxRow).fill(0);
-
   for (let row = 1; row <= maxRow; row++) {
-    const matchedTexts = new Set();
-    let allUpperCase = true;
-    let isInTop5Rows = row <= 5;
-    let trimmedValueNotBlank = false;
     const bodyRow = document.createElement('tr');
 
     for (let column = 1; column <= columns; column++) {
@@ -885,111 +822,50 @@ function createOMTable(selectedData) {
 
       if (matchingItems.length > 0) {
         matchingItems.forEach(matchingItem => {
-          const { Text, Item, Header, DisplayText } = matchingItem;
-          let cellContent = Text || DisplayText || Item || '';
-          const cellContentElement = document.createElement('Div');
-          const contentText = cellContent;
-          let currentIndex = 0;
+          const { Text, Item, Header } = matchingItem;
+          const cellContentElement = document.createElement('div');
 
-          if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-              const RowClickElement = document.createElement('a');
-              RowClickElement.classList.add('clickable');
-              RowClickElement.addEventListener('click', () => {
-                  handleRowClick(matchingItem, false);
-              });
-              RowClickElement.textContent = cellContent;
-              cellContentElement.appendChild(RowClickElement);
-          } 
-          
-          if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
-            if (abxLinkData.length > 0) {
-              const linkContainer = document.createElement('a');
-              const matchingURLs = abxLinkData.filter(item =>
-                contentText.toLowerCase().includes(item.Name.toLowerCase())
-              );
-              const sortedMatchingURLs = matchingURLs.sort((a, b) => {
-                const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
-                const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
-                return aIndex - bIndex;
-              });
-
-              currentIndex = 0;
-              sortedMatchingURLs.forEach(matchingURL => {
-                const { Name, URL } = matchingURL;
-                const nameRegex = new RegExp(`\\b${Name}\\b`, 'gi');
-                let match;
-                while ((match = nameRegex.exec(contentText)) !== null) {
-                  if (currentIndex > match.index) {
-                    currentIndex = match.index + match[0].length;
-                    continue;
-                  }
-                  const nonLinkText = contentText.substring(currentIndex, match.index);
-                  const linkText = match[0].toLowerCase();
-                  if (matchedTexts.has(linkText)) {
-                    const remainingText = contentText.substring(lastMatchedIndexes[row - 1], match.index);
-                    const remainingTextNode = document.createTextNode(remainingText);
-                    linkContainer.appendChild(remainingTextNode);
-                    currentIndex = match.index + match[0].length;
-                    continue;
-                  }
-                  const linkElement = document.createElement('a');
-                  linkElement.href = URL;
-                  linkElement.classList.add('AbxLink');
-                  linkElement.target = '_blank';
-                  linkElement.textContent = match[0];
-                  const nonLinkTextNode = document.createTextNode(nonLinkText);
-                  linkContainer.appendChild(nonLinkTextNode);
-                  linkContainer.appendChild(linkElement);
-                  matchedTexts.add(linkText);
-                  lastMatchedIndexes[row - 1] = match.index + match[0].length;
-                  currentIndex = match.index + match[0].length;
-                }
-              });
-              if (currentIndex < contentText.length) {
-                const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
-                const remainingTextNode = document.createTextNode(remainingText);
-                linkContainer.appendChild(remainingTextNode);
-              }
-              cellContentElement.appendChild(linkContainer);
-            } else {
-              cellContentElement.textContent = contentText;
-            }
-          }
-          
-          if (Item && !Item.startsWith(MenuPrefix)) {
-          /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
-              const clickableSymbol = document.createElement('a');
-              clickableSymbol.textContent = " \u24d8";
-              clickableSymbol.classList.add('clickable');
-              clickableSymbol.addEventListener('click', () => {
-                  handleRowClick(matchingItem, true);
-              });
-              cellContentElement.appendChild(clickableSymbol);
-          }
-
-          
           if (Header === 1) {
             cellContentElement.classList.add('bold');
             displayCell.classList.add('bold');
           }
-          displayCell.appendChild(cellContentElement);
-          if (cellContent !== cellContent.toUpperCase()) {
-            allUpperCase = false;
+
+          if (isEditMode) {
+            // Text input for editing text
+            const textInput = document.createElement('input');
+            textInput.type = 'text';
+            textInput.value = Text || '';
+            textInput.addEventListener('input', function () {
+              matchingItem.Text = this.value;
+            });
+            cellContentElement.appendChild(textInput);
+
+            // Dropdown for selecting links from ODJSON data
+            const linkDropdown = createODJSONDropdown(Item);
+            linkDropdown.addEventListener('change', function () {
+              matchingItem.Item = this.value;
+            });
+            cellContentElement.appendChild(linkDropdown);
+          } else {
+            // Display text and link
+            const textNode = document.createTextNode(Text || '');
+            cellContentElement.appendChild(textNode);
+
+            if (Item) {
+              const linkNode = document.createElement('a');
+              linkNode.textContent = ` (${Item})`;
+              cellContentElement.appendChild(linkNode);
+            }
           }
+
+          displayCell.appendChild(cellContentElement);
         });
       }
+
       bodyRow.appendChild(displayCell);
     }
 
-    const trimmedValue = bodyRow.innerText.trim();
-    if (trimmedValue !== '') {
-      trimmedValueNotBlank = true;
-    }
-    if (allUpperCase && isInTop5Rows && trimmedValueNotBlank) {
-      bodyRow.style.backgroundColor = 'lightblue';
-    }
-
-    tbody.appendChild(bodyRow)	  
+    tbody.appendChild(bodyRow);
   }
 
   // Add a new row for the VistA Menu Name at the bottom of the table
@@ -1005,10 +881,76 @@ function createOMTable(selectedData) {
   if (selectedData) {
     resultContainer.appendChild(table);
   }
-checkMatchesAndSetButtonAppearance()
-forwardBackButtonActivate()
+
+  adjustFontSize();
+
+  if (isEditMode) {
+    // Show the cancel button when in edit mode
+    document.getElementById('menuEditorContainer').style.display = 'block';
+  } else {
+    // Hide the cancel button when not in edit mode
+    document.getElementById('menuEditorContainer').style.display = 'none';
+  }
 }
 
+// Function to save OMJSON data
+function saveOMJSONData() {
+  const data = JSON.stringify(omData, null, 2);
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = OMjson;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
+// Additional event listener to call the save function when exiting edit mode
+document.getElementById('editTableButton').addEventListener('click', function () {
+  if (!isEditMode) {
+    saveOMJSONData();
+  }
+});
+
+// Fetch data and initialize the dropdown
+Promise.all([fetchOMData(), fetchODData(), fetchAbxLink()]) // Add fetchIndex()
+  .then(([omjsonData, odjsonData, abxlinkjsonData]) => { 
+    omData = omjsonData;
+    odData = odjsonData;
+    abxLinkData = abxlinkjsonData;
+    populateDropdown(omData); 
+    const urlParams = new URLSearchParams(window.location.search);
+    const dropdown = document.getElementById('filterDropdown');
+    const dropdownValue = urlParams.get('dropdown');
+    if (dropdownValue) {
+      dropdown.value = decodeURIComponent(dropdownValue);
+    } else {
+      // If no dropdown value is provided in the URL, set a default value
+      dropdown.value = MainMenu;
+    }
+    pushHistory(dropdown.value);
+    filterData({ target: dropdown });
+    scrollToTop()    
+    adjustFontSize();
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('menusLink').setAttribute('href', OMjson);
+  document.getElementById('menusLink').setAttribute('download', OMjson);
+
+  document.getElementById('ordersLink').setAttribute('href', ODjson);
+  document.getElementById('ordersLink').setAttribute('download', ODjson);
+
+  document.getElementById('templateFieldsLink').setAttribute('href', txmlFile);
+  document.getElementById('templateFieldsLink').setAttribute('download', txmlFile);
+});
+	
 function forwardBackButtonActivate () {
 if (historyIndex < history.length - 1) {
 	goForwardButton.classList.remove('inactive-button'); // Remove inactive class	  
