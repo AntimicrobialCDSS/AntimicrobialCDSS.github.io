@@ -511,20 +511,6 @@ document.getElementById('pageTitle').textContent = Title;
 document.getElementById('mainMenuButton').textContent = MainMenuButton;
 document.getElementById('indexButton').textContent = IndexButton;
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- All your existing head content here... -->
-</head>
-<body>
-  <!-- All your existing body content here... -->
-
-  <!-- New Edit Menu Button -->
-  <button id="editMenuButton">Edit Menu</button>
-
-  <script>
-  // Your existing JavaScript code here...
-
   // Function to handle Edit Menu button click and open a new editable tab
   function handleEditMenu() {
     const menuContent = selectedData; // Get the current menu content being displayed
@@ -549,7 +535,7 @@ document.getElementById('indexButton').textContent = IndexButton;
           <button type="button" onclick="saveMenu()">Save</button>
         </form>
         <script>
-          async function saveMenu() {
+          function saveMenu() {
             const updatedContent = document.getElementById('menuTextArea').value;
             try {
               // Parse the JSON content to validate it
@@ -564,7 +550,7 @@ document.getElementById('indexButton').textContent = IndexButton;
               alert('Error saving menu content: ' + error.message);
             }
           }
-        </script>
+
       </body>
       </html>
     `);
