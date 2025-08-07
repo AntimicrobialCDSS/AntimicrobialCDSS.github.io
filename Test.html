@@ -370,24 +370,15 @@
       <a href="#" id="templateFieldsLink" class="button2">TemplateFieldData</a>
       <a href="#" id="downloadJSONButton" class="button2">CurrentMenuData</a>
     </div>
-  <div id="menuEditorContainer">
+	<div id="menuEditorContainer" style="display: none;">
   <h3>Edit Menu</h3>
   <form id="menuEditorForm">
-    <label for="menuName">Menu Name:</label>
-    <input type="text" id="menuName" name="menuName" required>
-    
-    <label for="displayText">Display Text:</label>
-    <input type="text" id="displayText" name="displayText">
-    
-    <label for="menuLink">Menu Link:</label>
-    <input type="text" id="menuLink" name="menuLink">
-    
-    <label for="term1">Term1:</label>
-    <input type="text" id="term1" name="term1">
-    
-    <input type="submit" value="Save">
+    <div id="menuFieldsContainer"></div>
+    <input type="submit" value="Save Changes">
+    <input type="button" value="Cancel" id="cancelEditButton">
   </form>
 </div>
+<button id="editMenuButton">Edit Menu</button>
     <span id="versionTag"></span>
 <script>
 function adjustFontSize() {
@@ -467,8 +458,6 @@ async function fetchAbxLink() {
   return data;
   }
   
-
-
 // Global variables
 let omData = []; // OMJSON data
 let odData = []; // ODJSON data
@@ -516,48 +505,82 @@ if (hideButtonsDownloads === 'True') {
   {document.getElementById("ordersLink").style.display="none";};
   {document.getElementById("templateFieldsLink").style.display="none";};  
 }
-// Function to handle menu form submission
+
+// Function to hide or remove buttons based on the value of hideVersionButtons
+var buttonsContainerVersions = document.querySelector('.buttons-containerVersions');
+if (hideButtonsVersions === 'True') {
+buttonsContainerVersions.style.display = 'none';
+}
+    
+document.getElementById('versionTag').textContent = Version;
+document.getElementById('pageTitle').textContent = Title;
+document.getElementById('mainMenuButton').textContent = MainMenuButton;
+document.getElementById('indexButton').textContent = IndexButton;
+
+// Function to handle Edit Menu button click
+document.getElementById('editMenuButton').addEventListener('click', function () {
+  const menuEditorContainer = document.getElementById('menuEditorContainer');
+  const menuFieldsContainer = document.getElementById('menuFieldsContainer');
+  menuFieldsContainer.innerHTML = ''; // Clear existing fields
+
+  if (selectedData && selectedData.Contents) {
+    selectedData.Contents.forEach((content, index) => {
+      const contentContainer = document.createElement('div');
+
+      // Text input
+      const textLabel = document.createElement('label');
+      textLabel.for = `text${index}`;
+      textLabel.textContent = `Text ${index + 1}:`;
+      const textInput = document.createElement('input');
+      textInput.type = 'text';
+      textInput.id = `text${index}`;
+      textInput.value = content.Text || '';
+      textInput.name = `text${index}`;
+
+      // Link input
+      const linkLabel = document.createElement('label');
+      linkLabel.for = `link${index}`;
+      linkLabel.textContent = `Link ${index + 1}:`;
+      const linkInput = document.createElement('input');
+      linkInput.type = 'text';
+      linkInput.id = `link${index}`;
+      linkInput.value = content.Item || ''; // Assume Item is the link
+      linkInput.name = `link${index}`;
+
+      contentContainer.appendChild(textLabel);
+      contentContainer.appendChild(textInput);
+      contentContainer.appendChild(linkLabel);
+      contentContainer.appendChild(linkInput);
+      menuFieldsContainer.appendChild(contentContainer);
+    });
+
+    menuEditorContainer.style.display = 'block'; // Show the form
+  }
+});
+
+// Function to handle form submission
 document.getElementById('menuEditorForm').addEventListener('submit', function (event) {
   event.preventDefault();
 
-  const menuName = document.getElementById('menuName').value.trim();
-  const displayText = document.getElementById('displayText').value.trim();
-  const menuLink = document.getElementById('menuLink').value.trim();
-  const term1 = document.getElementById('term1').value.trim();
+  if (selectedData && selectedData.Contents) {
+    selectedData.Contents.forEach((content, index) => {
+      const textInput = document.getElementById(`text${index}`).value.trim();
+      const linkInput = document.getElementById(`link${index}`).value.trim();
 
-  // Validate input
-  if (!menuName) {
-    alert('Menu name is required.');
-    return;
+      content.Text = textInput;
+      content.Item = linkInput;
+    });
+
+    alert('Changes saved successfully.');
+    createOMTable(selectedData); // Update the displayed menu
+    saveOMJSONData(); // Save changes to the file
+    document.getElementById('menuEditorContainer').style.display = 'none'; // Hide the form
   }
+});
 
-  // Check if the menu item already exists in OMJSON
-  let existingItem = omData.find(item => item.Name.toLowerCase() === menuName.toLowerCase());
-
-  if (existingItem) {
-    // Update the existing item
-    existingItem.DisplayText = displayText;
-    existingItem.Link = menuLink;
-    existingItem.Term1 = term1;
-    alert('Menu item updated successfully.');
-  } else {
-    // Create a new item
-    const newItem = {
-      Name: menuName,
-      DisplayText: displayText,
-      Link: menuLink,
-      Term1: term1
-    };
-    omData.push(newItem);
-    alert('New menu item created successfully.');
-  }
-
-  // Save the updated OMJSON data and refresh the dropdown
-  saveOMJSONData();
-  populateDropdown(omData);
-
-  // Clear the form
-  document.getElementById('menuEditorForm').reset();
+// Function to handle cancel button
+document.getElementById('cancelEditButton').addEventListener('click', function () {
+  document.getElementById('menuEditorContainer').style.display = 'none';
 });
 
 // Function to save OMJSON data
@@ -574,61 +597,7 @@ function saveOMJSONData() {
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
 }
-
-// Function to handle menu item clicks
-function handleMenuItemClick(item) {
-  document.getElementById('menuName').value = item.Name;
-  document.getElementById('displayText').value = item.DisplayText || '';
-  document.getElementById('menuLink').value = item.Link || '';
-  document.getElementById('term1').value = item.Term1 || '';
-}
-
-// Add event listener to the dropdown to handle the menu item selection for editing
-document.getElementById('filterDropdown').addEventListener('change', function (event) {
-  const selectedValue = event.target.value;
-  const selectedItem = omData.find(item => item.Name === selectedValue);
-
-  if (selectedItem) {
-    handleMenuItemClick(selectedItem);
-  }
-});
-
-// Fetch data and initialize the dropdown
-Promise.all([fetchOMData(), fetchODData(), fetchAbxLink()]) // Add fetchIndex()
-  .then(([omjsonData, odjsonData, abxlinkjsonData]) => { 
-    omData = omjsonData;
-    odData = odjsonData;
-    abxLinkData = abxlinkjsonData;
-    populateDropdown(omData); 
-      const urlParams = new URLSearchParams(window.location.search);
-  const dropdown = document.getElementById('filterDropdown');
-  const dropdownValue = urlParams.get('dropdown');
-  if (dropdownValue) {
-    dropdown.value = decodeURIComponent(dropdownValue);
-  } else {
-    // If no dropdown value is provided in the URL, set a default value
-    dropdown.value = MainMenu;
-  }
-    pushHistory(dropdown.value);
-    filterData({ target: dropdown });
-    scrollToTop()    
-    adjustFontSize();
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-  
-// Function to hide or remove buttons based on the value of hideVersionButtons
-var buttonsContainerVersions = document.querySelector('.buttons-containerVersions');
-if (hideButtonsVersions === 'True') {
-buttonsContainerVersions.style.display = 'none';
-}
-    
-document.getElementById('versionTag').textContent = Version;
-document.getElementById('pageTitle').textContent = Title;
-document.getElementById('mainMenuButton').textContent = MainMenuButton;
-document.getElementById('indexButton').textContent = IndexButton;
-  
+	
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
