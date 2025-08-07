@@ -370,7 +370,7 @@
       <a href="#" id="templateFieldsLink" class="button2">TemplateFieldData</a>
       <a href="#" id="downloadJSONButton" class="button2">CurrentMenuData</a>
     </div>
-	<button id="editTableButton">Edit Menu</button>
+	<button id="editMenuButton">Edit Menu</button>
     <span id="versionTag"></span>
 <script>
 function adjustFontSize() {
@@ -510,7 +510,82 @@ document.getElementById('versionTag').textContent = Version;
 document.getElementById('pageTitle').textContent = Title;
 document.getElementById('mainMenuButton').textContent = MainMenuButton;
 document.getElementById('indexButton').textContent = IndexButton;
-  
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- All your existing head content here... -->
+</head>
+<body>
+  <!-- All your existing body content here... -->
+
+  <!-- New Edit Menu Button -->
+  <button id="editMenuButton">Edit Menu</button>
+
+  <script>
+  // Your existing JavaScript code here...
+
+  // Function to handle Edit Menu button click and open a new editable tab
+  function handleEditMenu() {
+    const menuContent = selectedData; // Get the current menu content being displayed
+    const editableContent = JSON.stringify(menuContent, null, 2); // Convert to JSON string for editing
+
+    // Create a new tab with a form and text area for editing the menu content
+    const newTab = window.open("", "_blank");
+    newTab.document.write(`
+      <html>
+      <head>
+        <title>Edit Menu</title>
+        <style>
+          body { font-family: Arial, sans-serif; padding: 20px; }
+          textarea { width: 100%; height: 80vh; }
+          select { width: 100%; }
+        </style>
+      </head>
+      <body>
+        <h1>Edit Menu</h1>
+        <form id="editMenuForm">
+          <textarea id="menuTextArea">${editableContent}</textarea><br>
+          <button type="button" onclick="saveMenu()">Save</button>
+        </form>
+        <script>
+          async function saveMenu() {
+            const updatedContent = document.getElementById('menuTextArea').value;
+            try {
+              // Parse the JSON content to validate it
+              const parsedContent = JSON.parse(updatedContent);
+
+              // Save the updated menu content back to the main tab (use localStorage for simplicity)
+              localStorage.setItem('editedMenuContent', JSON.stringify(parsedContent));
+
+              // Notify the user of the successful save
+              alert('Menu content saved successfully! You can now refresh the main page to see the changes.');
+            } catch (error) {
+              alert('Error saving menu content: ' + error.message);
+            }
+          }
+        </script>
+      </body>
+      </html>
+    `);
+  }
+
+  // Attach event listener to the Edit Menu button
+  document.getElementById('editMenuButton').addEventListener('click', handleEditMenu);
+
+  // Function to load the edited menu content from localStorage if it exists
+  function loadEditedMenuContent() {
+    const editedContent = localStorage.getItem('editedMenuContent');
+    if (editedContent) {
+      const parsedContent = JSON.parse(editedContent);
+      createOMTable(parsedContent); // Use the updated content to create the table
+      pushHistory(parsedContent.Name); // Add to history
+    }
+  }
+
+  // Call the function to load the edited menu content on page load
+  window.addEventListener('load', loadEditedMenuContent);
+
 function populateDropdown(omData) {
   const dropdown = document.getElementById('filterDropdown');
   dropdown.innerHTML = '';
@@ -771,38 +846,7 @@ function scrollToTop() {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
   
-// Global variable to indicate edit mode
-let isEditMode = false;
-
-// Function to handle Edit Table button click
-document.getElementById('editTableButton').addEventListener('click', function () {
-  isEditMode = !isEditMode;
-  this.textContent = isEditMode ? 'Save Changes' : 'Edit Menu';
-  createOMTable(selectedData);
-});
-
-// Function to create dropdown with ODJSON data
-function createODJSONDropdown(selectedValue) {
-  const dropdown = document.createElement('select');
-  const defaultOption = document.createElement('option');
-  defaultOption.value = '';
-  defaultOption.textContent = 'Select Link';
-  dropdown.appendChild(defaultOption);
-
-  odData.forEach(item => {
-    const option = document.createElement('option');
-    option.value = item.Name;
-    option.textContent = item.Name;
-    if (item.Name === selectedValue) {
-      option.selected = true;
-    }
-    dropdown.appendChild(option);
-  });
-
-  return dropdown;
-}
-
-// Function to create table from OMJSON data
+// Function to create table from OMJson Data  
 function createOMTable(selectedData) {
   const table = document.createElement('table');
   table.classList.add('table');
@@ -811,7 +855,14 @@ function createOMTable(selectedData) {
   const maxRow = Math.max(...Contents.map(item => item.Row));
   const columns = Math.max(...Contents.map(item => item.Column));
 
+  // Array to store the last matched index for each row
+  const lastMatchedIndexes = new Array(maxRow).fill(0);
+
   for (let row = 1; row <= maxRow; row++) {
+    const matchedTexts = new Set();
+    let allUpperCase = true;
+    let isInTop5Rows = row <= 5;
+    let trimmedValueNotBlank = false;
     const bodyRow = document.createElement('tr');
 
     for (let column = 1; column <= columns; column++) {
@@ -822,50 +873,111 @@ function createOMTable(selectedData) {
 
       if (matchingItems.length > 0) {
         matchingItems.forEach(matchingItem => {
-          const { Text, Item, Header } = matchingItem;
-          const cellContentElement = document.createElement('div');
+          const { Text, Item, Header, DisplayText } = matchingItem;
+          let cellContent = Text || DisplayText || Item || '';
+          const cellContentElement = document.createElement('Div');
+          const contentText = cellContent;
+          let currentIndex = 0;
 
+          if (Item && (Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+              const RowClickElement = document.createElement('a');
+              RowClickElement.classList.add('clickable');
+              RowClickElement.addEventListener('click', () => {
+                  handleRowClick(matchingItem, false);
+              });
+              RowClickElement.textContent = cellContent;
+              cellContentElement.appendChild(RowClickElement);
+          } 
+          
+          if (!Item || !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {
+            if (abxLinkData.length > 0) {
+              const linkContainer = document.createElement('a');
+              const matchingURLs = abxLinkData.filter(item =>
+                contentText.toLowerCase().includes(item.Name.toLowerCase())
+              );
+              const sortedMatchingURLs = matchingURLs.sort((a, b) => {
+                const aIndex = contentText.toLowerCase().indexOf(a.Name.toLowerCase());
+                const bIndex = contentText.toLowerCase().indexOf(b.Name.toLowerCase());
+                return aIndex - bIndex;
+              });
+
+              currentIndex = 0;
+              sortedMatchingURLs.forEach(matchingURL => {
+                const { Name, URL } = matchingURL;
+                const nameRegex = new RegExp(`\\b${Name}\\b`, 'gi');
+                let match;
+                while ((match = nameRegex.exec(contentText)) !== null) {
+                  if (currentIndex > match.index) {
+                    currentIndex = match.index + match[0].length;
+                    continue;
+                  }
+                  const nonLinkText = contentText.substring(currentIndex, match.index);
+                  const linkText = match[0].toLowerCase();
+                  if (matchedTexts.has(linkText)) {
+                    const remainingText = contentText.substring(lastMatchedIndexes[row - 1], match.index);
+                    const remainingTextNode = document.createTextNode(remainingText);
+                    linkContainer.appendChild(remainingTextNode);
+                    currentIndex = match.index + match[0].length;
+                    continue;
+                  }
+                  const linkElement = document.createElement('a');
+                  linkElement.href = URL;
+                  linkElement.classList.add('AbxLink');
+                  linkElement.target = '_blank';
+                  linkElement.textContent = match[0];
+                  const nonLinkTextNode = document.createTextNode(nonLinkText);
+                  linkContainer.appendChild(nonLinkTextNode);
+                  linkContainer.appendChild(linkElement);
+                  matchedTexts.add(linkText);
+                  lastMatchedIndexes[row - 1] = match.index + match[0].length;
+                  currentIndex = match.index + match[0].length;
+                }
+              });
+              if (currentIndex < contentText.length) {
+                const remainingText = contentText.substring(lastMatchedIndexes[row - 1]);
+                const remainingTextNode = document.createTextNode(remainingText);
+                linkContainer.appendChild(remainingTextNode);
+              }
+              cellContentElement.appendChild(linkContainer);
+            } else {
+              cellContentElement.textContent = contentText;
+            }
+          }
+          
+          if (Item && !Item.startsWith(MenuPrefix)) {
+          /*if (Item && !(Item.startsWith(MenuPrefix) || Item.startsWith(LinkPrefix))) {*/
+              const clickableSymbol = document.createElement('a');
+              clickableSymbol.textContent = " \u24d8";
+              clickableSymbol.classList.add('clickable');
+              clickableSymbol.addEventListener('click', () => {
+                  handleRowClick(matchingItem, true);
+              });
+              cellContentElement.appendChild(clickableSymbol);
+          }
+
+          
           if (Header === 1) {
             cellContentElement.classList.add('bold');
             displayCell.classList.add('bold');
           }
-
-          if (isEditMode) {
-            // Text input for editing text
-            const textInput = document.createElement('input');
-            textInput.type = 'text';
-            textInput.value = Text || '';
-            textInput.addEventListener('input', function () {
-              matchingItem.Text = this.value;
-            });
-            cellContentElement.appendChild(textInput);
-
-            // Dropdown for selecting links from ODJSON data
-            const linkDropdown = createODJSONDropdown(Item);
-            linkDropdown.addEventListener('change', function () {
-              matchingItem.Item = this.value;
-            });
-            cellContentElement.appendChild(linkDropdown);
-          } else {
-            // Display text and link
-            const textNode = document.createTextNode(Text || '');
-            cellContentElement.appendChild(textNode);
-
-            if (Item) {
-              const linkNode = document.createElement('a');
-              linkNode.textContent = ` (${Item})`;
-              cellContentElement.appendChild(linkNode);
-            }
-          }
-
           displayCell.appendChild(cellContentElement);
+          if (cellContent !== cellContent.toUpperCase()) {
+            allUpperCase = false;
+          }
         });
       }
-
       bodyRow.appendChild(displayCell);
     }
 
-    tbody.appendChild(bodyRow);
+    const trimmedValue = bodyRow.innerText.trim();
+    if (trimmedValue !== '') {
+      trimmedValueNotBlank = true;
+    }
+    if (allUpperCase && isInTop5Rows && trimmedValueNotBlank) {
+      bodyRow.style.backgroundColor = 'lightblue';
+    }
+
+    tbody.appendChild(bodyRow)	  
   }
 
   // Add a new row for the VistA Menu Name at the bottom of the table
@@ -881,76 +993,10 @@ function createOMTable(selectedData) {
   if (selectedData) {
     resultContainer.appendChild(table);
   }
-
-  adjustFontSize();
-
-  if (isEditMode) {
-    // Show the cancel button when in edit mode
-    document.getElementById('menuEditorContainer').style.display = 'block';
-  } else {
-    // Hide the cancel button when not in edit mode
-    document.getElementById('menuEditorContainer').style.display = 'none';
-  }
+checkMatchesAndSetButtonAppearance()
+forwardBackButtonActivate()
 }
 
-// Function to save OMJSON data
-function saveOMJSONData() {
-  const data = JSON.stringify(omData, null, 2);
-  const blob = new Blob([data], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = OMjson;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
-}
-
-// Additional event listener to call the save function when exiting edit mode
-document.getElementById('editTableButton').addEventListener('click', function () {
-  if (!isEditMode) {
-    saveOMJSONData();
-  }
-});
-
-// Fetch data and initialize the dropdown
-Promise.all([fetchOMData(), fetchODData(), fetchAbxLink()]) // Add fetchIndex()
-  .then(([omjsonData, odjsonData, abxlinkjsonData]) => { 
-    omData = omjsonData;
-    odData = odjsonData;
-    abxLinkData = abxlinkjsonData;
-    populateDropdown(omData); 
-    const urlParams = new URLSearchParams(window.location.search);
-    const dropdown = document.getElementById('filterDropdown');
-    const dropdownValue = urlParams.get('dropdown');
-    if (dropdownValue) {
-      dropdown.value = decodeURIComponent(dropdownValue);
-    } else {
-      // If no dropdown value is provided in the URL, set a default value
-      dropdown.value = MainMenu;
-    }
-    pushHistory(dropdown.value);
-    filterData({ target: dropdown });
-    scrollToTop()    
-    adjustFontSize();
-  })
-  .catch(error => {
-    console.error('Error:', error);
-  });
-
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('menusLink').setAttribute('href', OMjson);
-  document.getElementById('menusLink').setAttribute('download', OMjson);
-
-  document.getElementById('ordersLink').setAttribute('href', ODjson);
-  document.getElementById('ordersLink').setAttribute('download', ODjson);
-
-  document.getElementById('templateFieldsLink').setAttribute('href', txmlFile);
-  document.getElementById('templateFieldsLink').setAttribute('download', txmlFile);
-});
-	
 function forwardBackButtonActivate () {
 if (historyIndex < history.length - 1) {
 	goForwardButton.classList.remove('inactive-button'); // Remove inactive class	  
