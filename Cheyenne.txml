@@ -177,7 +177,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\ALBC.pdf</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/ALBC.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX GENERIC CLICK LINK BELOW">
       <TYPE>B</TYPE>
@@ -224,7 +224,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Antimicrobial%20Formulary.pdf?csf=1&amp;web=1&amp;e=E9wLjo</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Antimicrobial Formulary.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX UROLOGIC SURGERY PROPHYLAXIS GUIDELINES">
       <TYPE>H</TYPE>
@@ -256,7 +256,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/sites/vhav23/CDSS/CDSS%20Resources/Forms/AllItems.aspx?id=%2Fsites%2Fvhav23%2FCDSS%2FCDSS%20Resources%2FBeta%2Dlactam%20Allergies%20CDSS%2Epdf&amp;parent=%2Fsites%2Fvhav23%2FCDSS%2FCDSS%20Resources</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Beta-lactam Allergies CDSS.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CAP CALCULATOR">
       <TYPE>H</TYPE>
@@ -337,7 +337,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/CDC%20Immunization%20Schedule%20Full.pdf?csf=1&amp;web=1&amp;e=B3H7st</URL>
+      <URL>https://www.cdc.gov/vaccines/hcp/imz-schedules/downloads/adult/adult-combined-schedule.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CDC WEBSITE">
       <TYPE>H</TYPE>
@@ -428,7 +428,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Antimicrobial%20CDSS%20Frequently%20Asked%20Questions.pdf?csf=1&amp;web=1&amp;e=dJyUHD</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Antimicrobial CDSS Frequently Asked Questions.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CDSS ONLINE APP">
       <TYPE>H</TYPE>
@@ -813,7 +813,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/nPEP.pdf?csf=1&amp;web=1&amp;e=0BGkBY</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/nPEP.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX PORT FINISHED CLICK OK BELOW">
       <TYPE>T</TYPE>
@@ -845,7 +845,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:w:/r/sites/VHACHYHCS/Document_Center/MCP%20Library/Blood%20Borne%20Pathogens%20Exposure%20Control%20Plan.docx?d=w9e06031edd264cb5a68d190d8f0ade19&amp;csf=1&amp;web=1&amp;e=iorfwK</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/PEP.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX SURGICAL PROPHYLAXIS INDICATION HEADER">
       <TYPE>T</TYPE>
@@ -1093,7 +1093,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/SPLENECTOMY%20VACCINES.pdf?csf=1&amp;web=1&amp;e=htPSnR</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/SplenectomyVaccines.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CDC ANTIBIOTICS AREN'T ALWAYS THE ANSWER">
       <TYPE>H</TYPE>
