@@ -1,0 +1,416 @@
+<CPRS_TEMPLATE>
+  <TEMPLATE NAME="Omaha">
+    <TYPE>T</TYPE>
+    <STATUS>A</STATUS>
+    <BOILERPLATE_TEXT>
+      <p>{FLD:ABX ANTIMICROBIAL CDSS  WEB APP LINK}</p>
+      <p>{FLD:ABX GENERIC CLICK LINK BELOW}</p>
+      <p>{FLD:ABX CLICK CANCEL}</p>
+      <p>{FLD:ABX UROLOGIC SURGERY PROPHYLAXIS GUIDELINES}</p>
+      <p>{FLD:ABX BETA-LACTAM ALLERGIES PDF}</p>
+      <p>{FLD:ABX COVID-19 INPT TREATMENT}</p>
+      <p>{FLD:ABX MINNEAPOLIS ON-CALL SCHEDULE}</p>
+      <p>{FLD:ABX SURGICAL PROPHYLAXIS INDICATION HEADER}</p>
+      <p>{FLD:ABX SURGICAL PROPHYLAXIS INDICATION EDIT}</p>
+      <p>{FLD:ABX IXODES SCAPULARIS IDENTIFICATION}</p>
+      <p>{FLD:ABX MN TICKBORNE DISEASE RISK}</p>
+      <p>{FLD:ABX COVID-19 INTERACTION CHECK}</p>
+      <p>{FLD:ABX FECAL MICROBIOTA (VOWST)CFU PBM}</p>
+      <p>{FLD:ABX FECAL MICROBIOTA HYPERLINK PATIENT INFO}</p>
+      <p>{FLD:ABX AZITHROMYCIN PULMONARY RADIO BUTTONS}</p>
+      <p>{FLD:ABX AZITHROMYCIN LONGTERM PULMONARY TEXT}</p>
+      <p>{FLD:ABX DAYS SUPPLY QUANTITY CHECK}</p>
+      <p>{FLD:ABX MAB COVID EDUCATE}</p>
+      <p>{FLD:ABX MAB COVID CONSENT}</p>
+      <p>{FLD:MIN_SURG_VANCO_REASONS}</p>
+      <p>{FLD:MIN_SURG_VANCO_INFO1}</p>
+      <p>{FLD:EB 25/240*}</p>
+      <p>{FLD:ABX FECAL MICROBIOTA (VOWST) DIRECTIONS}</p>
+    </BOILERPLATE_TEXT>
+  </TEMPLATE>
+  <TEMPLATE_FIELDS>
+    <FIELD NAME="ABX ANTIMICROBIAL CDSS  WEB APP LINK">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Link to Antimicrobial CDSS Web App</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://antimicrobialcdss.github.io/</URL>
+    </FIELD>
+    <FIELD NAME="ABX GENERIC CLICK LINK BELOW">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Click on link below:</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX CLICK CANCEL">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Click cancel when finished.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX UROLOGIC SURGERY PROPHYLAXIS GUIDELINES">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>AUA Surgery ABX Prophylaxis Guidelines&lt;Link&gt;</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.auanet.org/guidelines/urologic-procedures-and-antimicrobial-prophylaxis-(2019)</URL>
+    </FIELD>
+    <FIELD NAME="ABX BETA-LACTAM ALLERGIES PDF">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Beta-lactam Reaction Assessment PDF</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Beta-lactam%20Allergies%20CDSS.pdf?csf=1&amp;web=1&amp;e=gsFtjT</URL>
+    </FIELD>
+    <FIELD NAME="ABX COVID-19 INPT TREATMENT">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Minneapolis VAHCS COVID-19 Pharmacologic Inpatient Treatment Guideline</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/COVID-19%20inpatient%20treatment%2012-1-22.pdf?csf=1&amp;web=1&amp;e=OedMA6</URL>
+    </FIELD>
+    <FIELD NAME="ABX MINNEAPOLIS ON-CALL SCHEDULE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Des Moines Clinical On-Call Schedule</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>http://amion.com/</URL>
+    </FIELD>
+    <FIELD NAME="ABX SURGICAL PROPHYLAXIS INDICATION HEADER">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Indication/Type of Surgery: </p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX SURGICAL PROPHYLAXIS INDICATION EDIT">
+      <TYPE>E</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>50</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>50</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+    </FIELD>
+    <FIELD NAME="ABX IXODES SCAPULARIS IDENTIFICATION">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Ixodes scapularis identification, Minnesota Department of Health</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.health.state.mn.us/diseases/tickborne/ticks.html</URL>
+    </FIELD>
+    <FIELD NAME="ABX MN TICKBORNE DISEASE RISK">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Tickborne disease risk map, Minnesota Department of Health</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.health.state.mn.us/diseases/lyme/highrisk.html</URL>
+    </FIELD>
+    <FIELD NAME="ABX FECAL MICROBIOTA (VOWST)CFU PBM">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Fecal microbiota (Vowst) Criteria for Use</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dvagov.sharepoint.com/:b:/r/sites/VHAPBM/Formulary/Clinical%20Guidance/Criteria%20For%20Use/Fecal%20microbiota%20spores%20live%20VOWST%20CFU%20updated%20Feb%202025.pdf?csf=1&amp;web=1&amp;e=ZyDcwu</URL>
+    </FIELD>
+    <FIELD NAME="ABX FECAL MICROBIOTA HYPERLINK PATIENT INFO">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Patient Information Vowst (fecal microbiota)</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.fda.gov/media/167578/download</URL>
+    </FIELD>
+    <FIELD NAME="ABX AZITHROMYCIN PULMONARY RADIO BUTTONS">
+      <TYPE>R</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>I am Pulmonary STAFF authorized to order</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX AZITHROMYCIN LONGTERM PULMONARY TEXT">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Azithromycin for long-term use for COPD </p>
+        <p>requires approval by Pulmonary.</p>
+        <p>Please place a Pulmonary Consult and </p>
+        <p>Pulmonary will place order for </p>
+        <p>azithromycin if appropriate. </p>
+        <p>PLEASE SELECT BELOW:</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX DAYS SUPPLY QUANTITY CHECK">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>PROVIDER PLEASE NOTE: duration depends </p>
+        <p>on site, type of infection and patient </p>
+        <p>specific factors. </p>
+        <p>REVIEW Days Supply and Quantity prior to </p>
+        <p>accepting order (otherwise order </p>
+        <p>defaults to 90 days supply).</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX MAB COVID EDUCATE">
+      <TYPE>X</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Patient/Caregiver has been counseled on </p>
+        <p>this EUA medication treatment and </p>
+        <p>provided printed information.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX MAB COVID CONSENT">
+      <TYPE>X</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>70</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Patient/Caregiver has consented to </p>
+        <p>receiving this medication treatment </p>
+        <p>authorized under EUA.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="MIN_SURG_VANCO_REASONS">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>-Documentation of a beta-lactam </p>
+        <p>(penicillin or cephalosporin) allergy</p>
+        <p>-Documentation of known prior </p>
+        <p>colonization with MRSA</p>
+        <p>-Documentation of patient being high-</p>
+        <p>risk due to acute inpatient </p>
+        <p>hospitalization within the last year</p>
+        <p>-Documentation of patient being high-</p>
+        <p>risk due to LTC setting within the last </p>
+        <p>year, prior to admission</p>
+        <p>-Documentation of increased MRSA rate </p>
+        <p>either facility-wide or procedure-</p>
+        <p>specific</p>
+        <p>-Documentation of chronic wound care or </p>
+        <p>dialysis</p>
+        <p>-Documentation of continuous inpatient </p>
+        <p>stay more than 24 hours prior to the </p>
+        <p>procedure of interest</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="MIN_SURG_VANCO_INFO1">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Vancomycin not recommended for routine </p>
+        <p>use because it is not as effective as </p>
+        <p>cefazolin in killing methicillin-</p>
+        <p>susceptible S. aureus, MSSA.  </p>
+        <p>Indiscriminate vancomycin prescribing </p>
+        <p>contributes to bacterial resistance.  </p>
+        <p>Vancomycin use should be avoided unless </p>
+        <p>the patient has a risk factor for MRSA </p>
+        <p>infection (noted below), or is allergic </p>
+        <p>to beta-lactams.</p>
+        <p></p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="EB 25/240*">
+      <TYPE>E</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>25</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>240</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+    </FIELD>
+  </TEMPLATE_FIELDS>
+</CPRS_TEMPLATE>
