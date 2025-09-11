@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    textarea {
+      width: 100%;
+      height: 80vh;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+    .editable {
+      background: lightyellow;
+    }
+    .info-icon {
+      cursor: pointer;
+      color: blue;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Edit Menu</h1>
+  <div>
+    <input type="text" id="searchBox" placeholder="Search by term...">
+    <label for="menuSelect">Select Menu to Edit:</label>
+    <select id="menuSelect"></select>
+  </div>
+  <div id="editMenuContainer"></div>
+  <button id="saveButton">Save</button>
+
+  <script>
+    const OMjson = 'MinneapolisOMJSON.json'; // Adjust this path to your actual OMJSON file path
+    const ODjson = 'MinneapolisODJSON.json'; // Adjust this path to your actual ODJSON file path
+
+    let omData = []; // OMJSON data
+    let odData = []; // ODJSON data
+    let selectedMenuContent = null; // Currently selected menu content
+
+    // Fetch OMJSON Data
+    async function fetchOMData() {
+      const response = await fetch(OMjson);
+      const data = await response.json();
+      return data;
+    }
+
+    // Fetch ODJSON Data
+    async function fetchODData() {
+      const response = await fetch(ODjson);
+      const data = await response.json();
+      return data;
+    }
+
+    // Populate the dropdown with menus from the OMJSON file
+    function populateMenuDropdown(data) {
+      const dropdown = document.getElementById('menuSelect');
+      dropdown.innerHTML = ''; // Clear existing options
+      data.sort((a, b) => a.Name.localeCompare(b.Name));
+      data.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item.Name;
+        let terms = '';
+        for (let i = 1; i <= 6; i++) {
+          if (item[`Term${i}`]) {
+            terms += `${terms ? ', ' : ''}${item[`Term${i}`]}`;
+          }
+        }
+        option.textContent = `${item.Name}${terms ? ` (${terms})` : ''}`;
+        dropdown.appendChild(option);
+      });
+    }
+
+    // Function to create an editable table from the menu content
+    function createEditableTable(data) {
+      if (!data) return;
+
+      const table = document.createElement('table');
+      
+      const maxRow = Math.max(...data.Contents.map(item => item.Row));
+      const columns = Math.max(...data.Contents.map(item => item.Column));
+      
+      for (let row = 1; row <= maxRow; row++) {
+        const bodyRow = document.createElement('tr');
+        
+        for (let column = 1; column <= columns; column++) {
+          const matchingItems = data.Contents.filter(
+            item => item.Row === row && item.Column === column
+          );
+          const displayCell = document.createElement('td');
+          
+          if (matchingItems.length > 0) {
+            matchingItems.forEach(matchingItem => {
+              const { Text, Item, Header, DisplayText } = matchingItem;
+              const cellContent = matchingItem.Mnemonic ? `${matchingItem.Mnemonic} ${Text || DisplayText || Item || ''}` : (Text || DisplayText || Item || '');
+              const cellContentElement = document.createElement('div');
+              const editableDiv = document.createElement('div');
+              editableDiv.contentEditable = true;
+              editableDiv.classList.add('editable');
+              editableDiv.textContent = cellContent;
+              
+              if (Item) {
+                const infoIcon = document.createElement('span');
+                infoIcon.textContent = "ℹ";
+                infoIcon.classList.add('info-icon');
+                infoIcon.title = getODItemInfo(Item);
+                cellContentElement.appendChild(infoIcon);
+
+                const select = document.createElement('select');
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.text = 'Select Item';
+                select.appendChild(defaultOption);
+                
+                odData.forEach(odItem => {
+                  const option = document.createElement('option');
+                  option.value = odItem.Name;
+                  option.text = odItem.Name; // Exclude display text
+                  if (odItem.Name === Item) {
+                    option.selected = true;
+                  }
+                  select.appendChild(option);
+                });
+
+                select.addEventListener('change', (event) => {
+                  matchingItem.Item = event.target.value;
+                });
+
+                cellContentElement.appendChild(select);
+              }
+
+              cellContentElement.appendChild(editableDiv);
+              displayCell.appendChild(cellContentElement);
+            });
+          }
+          
+          bodyRow.appendChild(displayCell);
+        }
+        
+        table.appendChild(bodyRow);
+      }
+      
+      return table;
+    }
+
+    // Function to handle saving the edited menu
+    function saveMenu() {
+      const tableRows = document.querySelectorAll('#editMenuContainer tr');
+      const updatedContents = [];
+
+      tableRows.forEach((row, rowIndex) => {
+        const cells = row.querySelectorAll('td');
+
+        cells.forEach((cell, cellIndex) => {
+          const editableDiv = cell.querySelector('.editable');
+          const select = cell.querySelector('select');
+
+          if (editableDiv || select) {
+            const text = editableDiv ? editableDiv.textContent.trim() : '';
+            const item = select ? select.value : '';
+            const matchingItem = selectedMenuContent.Contents.find(
+              item => item.Row === rowIndex + 1 && item.Column === cellIndex + 1
+            );
+
+            if (matchingItem) {
+              matchingItem.Text = text; // Update the text of the matching item
+              matchingItem.Item = item; // Update the item of the matching item
+              
+              updatedContents.push(matchingItem);
+            }
+          }
+        });
+      });
+
+      // Create the new JSON file with the updated contents
+      const updatedMenu = {
+        Name: selectedMenuContent.Name,
+        Mnemonic: selectedMenuContent.Mnemonic,
+        DisplayText: selectedMenuContent.DisplayText,
+        Version: selectedMenuContent.Version,
+        Contents: updatedContents,
+      };
+      
+      const blob = new Blob([JSON.stringify(updatedMenu, null, 2)], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `${updatedMenu.Name}.json`;
+      link.click();
+    }
+
+    // Function to get ODItem Info
+    function getODItemInfo(itemName) {
+      const item = odData.find(odItem => odItem.Name === itemName);
+      return item ? JSON.stringify(item, null, 2) : 'No information available';
+    }
+
+    // Function to filter menus based on search input
+    function filterMenus() {
+      const searchValue = document.getElementById('searchBox').value.toLowerCase();
+      const filteredData = omData.filter(item => {
+        return Object.keys(item).some(key => {
+          return item[key] && item[key].toString().toLowerCase().includes(searchValue);
+        });
+      });
+      populateMenuDropdown(filteredData);
+    }
+
+    // On load
+    document.addEventListener('DOMContentLoaded', async function() {
+      omData = await fetchOMData();
+      odData = await fetchODData();
+      
+      populateMenuDropdown(omData);
+
+      const menuSelect = document.getElementById('menuSelect');
+      menuSelect.addEventListener('change', (event) => {
+        const selectedMenuName = event.target.value;
+        selectedMenuContent = omData.find(menu => menu.Name === selectedMenuName);
+        const container = document.getElementById('editMenuContainer');
+        container.innerHTML = ''; // Clear previous content
+        const editableTable = createEditableTable(selectedMenuContent);
+        container.appendChild(editableTable);
+      });
+
+      // Attach event listener to the Save button
+      document.getElementById('saveButton').addEventListener('click', saveMenu);
+
+      // Attach event listener to the search box
+      document.getElementById('searchBox').addEventListener('input', filterMenus);
+    });
+  </script>
+</body>
+</html>
