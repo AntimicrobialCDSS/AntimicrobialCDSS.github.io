@@ -24,11 +24,18 @@
     .editable {
       background: lightyellow;
     }
+    .info-icon {
+      cursor: pointer;
+      color: blue;
+      font-weight: bold;
+      margin-right: 5px;
+    }
   </style>
 </head>
 <body>
   <h1>Edit Menu</h1>
   <div>
+    <input type="text" id="searchBox" placeholder="Search by term...">
     <label for="menuSelect">Select Menu to Edit:</label>
     <select id="menuSelect"></select>
   </div>
@@ -40,6 +47,7 @@
     const ODjson = 'MinneapolisODJSON.json'; // Adjust this path to your actual ODJSON file path
 
     let omData = []; // OMJSON data
+    let odData = []; // ODJSON data
     let selectedMenuContent = null; // Currently selected menu content
 
     // Fetch OMJSON Data
@@ -59,6 +67,7 @@
     // Populate the dropdown with menus from the OMJSON file
     function populateMenuDropdown(data) {
       const dropdown = document.getElementById('menuSelect');
+      dropdown.innerHTML = ''; // Clear existing options
       data.sort((a, b) => a.Name.localeCompare(b.Name));
       data.forEach(item => {
         const option = document.createElement('option');
@@ -66,16 +75,16 @@
         let terms = '';
         for (let i = 1; i <= 6; i++) {
           if (item[`Term${i}`]) {
-            terms += ` ${item[`Term${i}`]}`;
+            terms += `${terms ? ', ' : ''}${item[`Term${i}`]}`;
           }
         }
-        option.textContent = `${item.Name}${terms ? ` (${terms.trim()})` : ''}`;
+        option.textContent = `${item.Name}${terms ? ` (${terms})` : ''}`;
         dropdown.appendChild(option);
       });
     }
 
     // Function to create an editable table from the menu content
-    function createEditableTable(data, odData) {
+    function createEditableTable(data) {
       if (!data) return;
 
       const table = document.createElement('table');
@@ -95,15 +104,20 @@
           if (matchingItems.length > 0) {
             matchingItems.forEach(matchingItem => {
               const { Text, Item, Header, DisplayText } = matchingItem;
-              const cellContent = Item ? `${Item} ${DisplayText || Text || ''}` : (Text || DisplayText || '');
+              const cellContent = matchingItem.Mnemonic ? `${matchingItem.Mnemonic} ${Text || DisplayText || Item || ''}` : (Text || DisplayText || Item || '');
               const cellContentElement = document.createElement('div');
               const editableDiv = document.createElement('div');
               editableDiv.contentEditable = true;
               editableDiv.classList.add('editable');
               editableDiv.textContent = cellContent;
               
-              // Drop down for clickable items
               if (Item) {
+                const infoIcon = document.createElement('span');
+                infoIcon.textContent = "ℹ";
+                infoIcon.classList.add('info-icon');
+                infoIcon.title = getODItemInfo(Item);
+                cellContentElement.appendChild(infoIcon);
+
                 const select = document.createElement('select');
                 const defaultOption = document.createElement('option');
                 defaultOption.value = '';
@@ -113,7 +127,7 @@
                 odData.forEach(odItem => {
                   const option = document.createElement('option');
                   option.value = odItem.Name;
-                  option.text = `${odItem.Name} ${odItem.DisplayText}`;
+                  option.text = odItem.Name; // Exclude display text
                   if (odItem.Name === Item) {
                     option.selected = true;
                   }
@@ -173,6 +187,7 @@
       // Create the new JSON file with the updated contents
       const updatedMenu = {
         Name: selectedMenuContent.Name,
+        Mnemonic: selectedMenuContent.Mnemonic,
         DisplayText: selectedMenuContent.DisplayText,
         Version: selectedMenuContent.Version,
         Contents: updatedContents,
@@ -185,10 +200,27 @@
       link.click();
     }
 
+    // Function to get ODItem Info
+    function getODItemInfo(itemName) {
+      const item = odData.find(odItem => odItem.Name === itemName);
+      return item ? JSON.stringify(item, null, 2) : 'No information available';
+    }
+
+    // Function to filter menus based on search input
+    function filterMenus() {
+      const searchValue = document.getElementById('searchBox').value.toLowerCase();
+      const filteredData = omData.filter(item => {
+        return Object.keys(item).some(key => {
+          return item[key] && item[key].toString().toLowerCase().includes(searchValue);
+        });
+      });
+      populateMenuDropdown(filteredData);
+    }
+
     // On load
     document.addEventListener('DOMContentLoaded', async function() {
       omData = await fetchOMData();
-      const odData = await fetchODData();
+      odData = await fetchODData();
       
       populateMenuDropdown(omData);
 
@@ -198,12 +230,15 @@
         selectedMenuContent = omData.find(menu => menu.Name === selectedMenuName);
         const container = document.getElementById('editMenuContainer');
         container.innerHTML = ''; // Clear previous content
-        const editableTable = createEditableTable(selectedMenuContent, odData);
+        const editableTable = createEditableTable(selectedMenuContent);
         container.appendChild(editableTable);
       });
 
       // Attach event listener to the Save button
       document.getElementById('saveButton').addEventListener('click', saveMenu);
+
+      // Attach event listener to the search box
+      document.getElementById('searchBox').addEventListener('input', filterMenus);
     });
   </script>
 </body>
