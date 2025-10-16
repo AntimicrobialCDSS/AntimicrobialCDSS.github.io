@@ -3,9 +3,10 @@
     <TYPE>T</TYPE>
     <STATUS>A</STATUS>
     <BOILERPLATE_TEXT>
-      <p>{FLD:ABX ANTIMICROBIAL FORMULARY}</p>
+      <p>{FLD:ABX ANTIMICROBIAL CDSS  WEB APP LINK}</p>
       <p>{FLD:ABX GENERIC CLICK LINK BELOW}</p>
       <p>{FLD:ABX CLICK CANCEL}</p>
+      <p>{FLD:ABX ANTIMICROBIAL FORMULARY}</p>
       <p>{FLD:ABX BETA-LACTAM ALLERGIES PDF}</p>
       <p>{FLD:ABX CAP CALCULATOR}</p>
       <p>{FLD:ABX CBOC INFO WI}</p>
@@ -32,6 +33,7 @@
       <p>{FLD:ABX SURGICAL PROPHYLAXIS INDICATION EDIT}</p>
       <p>{FLD:ABX RESOURCE QTC PROLONGATION DRUGS}</p>
       <p>{FLD:ABX CLICK LINK FOR RESOURCE DRUGS QTC}</p>
+      <p>{FLD:ABX SANFORD GUIDE WEBSITE}</p>
       <p>{FLD:ABX SANFORD PREGNANCY WEBSITE}</p>
       <p>{FLD:ABX SURGICAL PROPHYLAXIS GUIDELINES 2013}</p>
       <p>{FLD:ABX IXODES SCAPULARIS IDENTIFICATION}</p>
@@ -43,31 +45,33 @@
       <p>{FLD:ABX CLICK LINK BELOW CDC WEBSITE}</p>
       <p>{FLD:ABX ACIP BEST PRACTICES GUIDANCE}</p>
       <p>{FLD:ABX CORONAVIRUS MINNEAPOLIS SHAREPOINT}</p>
+      <p>{FLD:ABX PHARMACY CONTACTS}</p>
       <p>{FLD:ABX VACCINE VISIT LOCATION}</p>
       <p>{FLD:ABX MANDELL ONLINE}</p>
       <p>{FLD:ABX ANTIBIOGRAM OPENING MESSAGE}</p>
       <p>{FLD:ABX ANTIBIOGRAM MINN}</p>
-      <p>{FLD:ABX SANFORD GUIDE WEBSITE}</p>
       <p>{FLD:ABX ANTIBIOGRAM MPLS-STCLOUD}</p>
+      <p>{FLD:223 LINKS}</p>
       <p>{FLD:ABX VACCINE RTC}</p>
       <p>{FLD:ABX VACC 3 START}</p>
       <p>{FLD:ABX VACC 2 START}</p>
       <p>{FLD:ABX VACC 4 START}</p>
       <p>{FLD:ABX MIIC LINK}</p>
       <p>{FLD:ABX WIR LINK}</p>
+      <p>{FLD:ABX AZITHROMYCIN PULMONARY RADIO BUTTONS}</p>
+      <p>{FLD:ABX AZITHROMYCIN LONGTERM PULMONARY TEXT}</p>
       <p>{FLD:ABX DAYS SUPPLY QUANTITY CHECK}</p>
       <p>{FLD:MIN_SURG_VANCO_REASONS}</p>
       <p>{FLD:MIN_SURG_VANCO_INFO1}</p>
       <p>{FLD:EB 25/240*}</p>
-      <p>{FLD:ABX AZITHROMYCIN PULMONARY RADIO BUTTONS}</p>
-      <p>{FLD:ABX AZITHROMYCIN LONGTERM PULMONARY TEXT}</p>
     </BOILERPLATE_TEXT>
   </TEMPLATE>
   <TEMPLATE_FIELDS>
-    <FIELD NAME="ABX ANTIMICROBIAL FORMULARY">
+    <FIELD NAME="ABX ANTIMICROBIAL CDSS  WEB APP LINK">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Link to Antimicrobial CDSS Web App</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>0</SEPARATE_LINES>
@@ -77,7 +81,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://antimicrobialcdss.github.io/Resources/Antimicrobial Formulary.pdf</URL>
+      <URL>https://antimicrobialcdss.github.io/</URL>
     </FIELD>
     <FIELD NAME="ABX GENERIC CLICK LINK BELOW">
       <TYPE>T</TYPE>
@@ -112,6 +116,21 @@
       <ITEMS>
         <p>Click cancel when finished.</p>
       </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX ANTIMICROBIAL FORMULARY">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://antimicrobialcdss.github.io/Resources/Antimicrobial Formulary.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX BETA-LACTAM ALLERGIES PDF">
       <TYPE>H</TYPE>
@@ -555,6 +574,21 @@
         <p>for drugs that cause QTc prolongation.</p>
       </ITEMS>
     </FIELD>
+    <FIELD NAME="ABX SANFORD GUIDE WEBSITE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dva.sanfordguide.com/</URL>
+    </FIELD>
     <FIELD NAME="ABX SANFORD PREGNANCY WEBSITE">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -802,21 +836,6 @@
         <p>due to shared patients.</p>
       </DESCRIPTION>
     </FIELD>
-    <FIELD NAME="ABX SANFORD GUIDE WEBSITE">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/</URL>
-    </FIELD>
     <FIELD NAME="ABX ANTIBIOGRAM MPLS-STCLOUD">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -947,6 +966,47 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://www.dhfswir.org/PR/clientSearch.do;jsessionid=U_zHpKge8tpC2vrB-JrXsAAZB9_TkPC8fQY7FS4u.master:ir-server?language=en</URL>
     </FIELD>
+    <FIELD NAME="ABX AZITHROMYCIN PULMONARY RADIO BUTTONS">
+      <TYPE>R</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <DATE_TYPE>D</DATE_TYPE>
+      <ITEMS>
+        <p>I am Pulmonary STAFF authorized to order.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX AZITHROMYCIN LONGTERM PULMONARY TEXT">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>http://</URL>
+      <ITEMS>
+        <p>Azithromycin for long-term use for COPD </p>
+        <p>requires approval by Pulmonary.  </p>
+        <p>Please place a Pulmonary Consult and </p>
+        <p>Pulmonary will place order for </p>
+        <p>azithromycin if appropriate. </p>
+        <p>PLEASE SELECT BELOW:</p>
+      </ITEMS>
+    </FIELD>
     <FIELD NAME="ABX DAYS SUPPLY QUANTITY CHECK">
       <TYPE>T</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -1042,47 +1102,6 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-    </FIELD>
-    <FIELD NAME="ABX AZITHROMYCIN PULMONARY RADIO BUTTONS">
-      <TYPE>R</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <DATE_TYPE>D</DATE_TYPE>
-      <ITEMS>
-        <p>I am Pulmonary STAFF authorized to order.</p>
-      </ITEMS>
-    </FIELD>
-    <FIELD NAME="ABX AZITHROMYCIN LONGTERM PULMONARY TEXT">
-      <TYPE>T</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>http://</URL>
-      <ITEMS>
-        <p>Azithromycin for long-term use for COPD </p>
-        <p>requires approval by Pulmonary.  </p>
-        <p>Please place a Pulmonary Consult and </p>
-        <p>Pulmonary will place order for </p>
-        <p>azithromycin if appropriate. </p>
-        <p>PLEASE SELECT BELOW:</p>
-      </ITEMS>
     </FIELD>
   </TEMPLATE_FIELDS>
 </CPRS_TEMPLATE>
