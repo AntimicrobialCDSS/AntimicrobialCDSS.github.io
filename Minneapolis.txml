@@ -1,13 +1,13 @@
 <CPRS_TEMPLATE>
-  <TEMPLATE NAME="CDSSFull6172024">
+  <TEMPLATE NAME="Minneapolis">
     <TYPE>T</TYPE>
     <STATUS>A</STATUS>
     <BOILERPLATE_TEXT>
       <p>{FLD:ABX ALBC ORTHOPEDIC SURGERY}</p>
-      <p>{FLD:ABX GENERIC CLICK LINK BELOW}</p>
       <p>{FLD:ABX CLICK CANCEL}</p>
+      <p>{FLD:ABX GENERIC CLICK LINK BELOW}</p>
       <p>{FLD:ABX MDH ANTIBIOGRAM}</p>
-      <p>{FLD:ABX MDH ANTIBIOGRAM CLICK LINK}</p>
+      <p>{FLD:ABX ANTIMICROBIAL CDSS  WEB APP LINK}</p>
       <p>{FLD:ABX ANTIMICROBIAL FORMULARY}</p>
       <p>{FLD:ABX UROLOGIC SURGERY PROPHYLAXIS GUIDELINES}</p>
       <p>{FLD:ABX BETA-LACTAM ALLERGIES PDF}</p>
@@ -16,9 +16,8 @@
       <p>{FLD:ABX CBOC INFO MN}</p>
       <p>{FLD:ABX ADULT IMMUNIZATION SCHEDULE, FULL VERSION}</p>
       <p>{FLD:ABX CDC ADULT IMMMUNIZATION SCHEDULE LIST}</p>
+      <p>{FLD:ABX CDC LYME DISEASE CASE MAP}</p>
       <p>{FLD:ABX CDC WEBSITE}</p>
-      <p>{FLD:ABX CLICK LINK BELOW CDC WEBSITE}</p>
-      <p>{FLD:ABX CDSS STAFF EMAIL ADDITIONAL VERBAGE}</p>
       <p>{FLD:ABX MINNEAPOLIS ON-CALL SCHEDULE}</p>
       <p>{FLD:ABX CDSS STAFF EMAIL VERBAGE}</p>
       <p>{FLD:ABX EMAIL VISN23 ANTIMICROBIAL CDSS}</p>
@@ -42,147 +41,70 @@
       <p>{FLD:ABX CALL 3D}</p>
       <p>{FLD:ABX DATE}</p>
       <p>{FLD:ABX MPLS VAMC ABX SENSITIVITIES}</p>
-      <p>{FLD:ABX SENSITIVITIES CLICK LINK BELOW}</p>
       <p>{FLD:ABX MVAMC INFECT CTRL INTRANET}</p>
-      <p>{FLD:ABX CLICK LINK BELOW INFECT CTRL}</p>
-      <p>{FLD:ABX DATE BOX}</p>
       <p>{FLD:ABX PHARMACIST PHONE/PAGER NUMBERS}</p>
-      <p>{FLD:ABX PORT FINISHED CLICK OK BELOW}</p>
       <p>{FLD:ABX POST EXPOSURE PROPHYLAXIS NPEP}</p>
       <p>{FLD:ABX POST EXPOSURE PROPHYLAXIS}</p>
       <p>{FLD:ABX SURGICAL PROPHYLAXIS INDICATION EDIT}</p>
       <p>{FLD:ABX SURGICAL PROPHYLAXIS INDICATION HEADER}</p>
       <p>{FLD:ABX RESOURCE QTC PROLONGATION DRUGS}</p>
-      <p>{FLD:ABX CLICK LINK FOR RESOURCE DRUGS QTC}</p>
       <p>{FLD:ABX SANFORD GUIDE WEBSITE}</p>
       <p>{FLD:ABX SANFORD PREGNANCY WEBSITE}</p>
       <p>{FLD:ABX SURGICAL PROPHYLAXIS GUIDELINES 2013}</p>
-      <p>{FLD:ABX VACCINE 2 DOSE SERIES START}</p>
-      <p>{FLD:ABX VACCINE INFO}</p>
-      <p>{FLD:ABX MIIC LINK}</p>
-      <p>{FLD:ABX WIR LINK}</p>
+      <p>{FLD:ABX THERADOC LINK}</p>
       <p>{FLD:ABX IXODES SCAPULARIS IDENTIFICATION}</p>
-      <p>{FLD:ABX MN TICKBORNE DISEASE RISK}</p>
+      <p>{FLD:ABX TPOXX SHAREPOINT LINK}</p>
+      <p>{FLD:ABX CLICK LINK BELOW CDC WEBSITE}</p>
       <p>{FLD:ABX HEAD LICE PDF FILE}</p>
-      <p>{FLD:ABX HEAD LICE PDF CLICK LINK BELOW}</p>
       <p>{FLD:ABX UP TO DATE LINKS}</p>
-      <p>{FLD:ABX UPTODATE CLICK LINK BELOW}</p>
       <p>{FLD:ABX ACIP BEST PRACTICES GUIDANCE}</p>
       <p>{FLD:ABX SPLENECTOMY VACCINES}</p>
       <p>{FLD:ABX CDC ANTIBIOTICS AREN'T ALWAYS THE ANSWER}</p>
       <p>{FLD:ABX COVID-19 INTERACTION CHECK}</p>
-      <p>{FLD:ABX IDP BENZATHINE PENICILLIN SANFORD}</p>
-      <p>{FLD:ABX IDP ACYCLOVIR SANFORD}</p>
-      <p>{FLD:ABX IDP ALBENDAZOLE SANFORD}</p>
-      <p>{FLD:ABX IDP AMANTADINE SANFORD}</p>
-      <p>{FLD:ABX IDP AMIKACIN SANFORD}</p>
-      <p>{FLD:ABX IDP AMOXICILLIN SANFORD}</p>
-      <p>{FLD:ABX IDP AMOXICILLIN-CLAVULANATE SAN}</p>
-      <p>{FLD:ABX IDP AMPHOTERICIN B SANFORD}</p>
-      <p>{FLD:ABX IDP AMPICILLIN SANFORD}</p>
-      <p>{FLD:ABX IDP AMPICILLIN-SULBACTAM SANFORD}</p>
-      <p>{FLD:ABX IDP ATOVAQUONE SANFORD}</p>
-      <p>{FLD:ABX IDP AZITHROMYCIN SANFORD}</p>
-      <p>{FLD:ABX IDP AZTREONAM SANFORD}</p>
-      <p>{FLD:ABX IDP CASPOFUNGIN}</p>
-      <p>{FLD:ABX IDP CEFADROXIL SANFORD}</p>
-      <p>{FLD:ABX IDP CEFAZOLIN SANFORD}</p>
-      <p>{FLD:ABX IDP CEFEPIME SANFORD}</p>
-      <p>{FLD:ABX IDP CEFIXIME}</p>
-      <p>{FLD:ABX IDP CEFOTETAN SANFORD}</p>
-      <p>{FLD:ABX IDP CEFOXITIN SANFORD}</p>
-      <p>{FLD:ABX IDP CEFPODOXIME SANFORD}</p>
-      <p>{FLD:ABX IDP CEFTAZIDIME SANFORD}</p>
-      <p>{FLD:ABX IDP CEFTRIAXONE SANFORD}</p>
-      <p>{FLD:ABX IDP CEFUROXIME ORAL SANFORD}</p>
-      <p>{FLD:ABX IDP CEPHALEXIN SANFORD}</p>
-      <p>{FLD:ABX IDP CHLORAMPHENICOL SANFORD}</p>
-      <p>{FLD:ABX IDP CIPROFLOXACIN SANFORD}</p>
-      <p>{FLD:ABX IDP CLARITHROMYCIN SANFORD}</p>
-      <p>{FLD:ABX IDP CLINDAMYCIN SANFORD}</p>
-      <p>{FLD:ABX IDP CLOTRIMAZOLE TOPICAL LEXI}</p>
-      <p>{FLD:ABX IDP FLUCONAZOLE SANFORD}</p>
-      <p>{FLD:ABX IDP FLUCYTOSINE SANFORD}</p>
-      <p>{FLD:ABX IDP FOSCARNET SANFORD}</p>
-      <p>{FLD:ABX IDP FOSFOMYCIN SANFORD}</p>
-      <p>{FLD:ABX IDP EMTRICITABINE + TENOFOVIR SANFORD}</p>
-      <p>{FLD:ABX IDP ERTAPENEM SANFORD}</p>
-      <p>{FLD:ABX IDP ERYTHROMYCIN OPHTHALMIC LEXI}</p>
-      <p>{FLD:ABX IDP ERYTHROMYCIN SANFORD}</p>
-      <p>{FLD:ABX IDP ETHAMBUTOL SANFORD}</p>
+      <p>{FLD:ABX DENTAL SOP}</p>
       <p>{FLD:ABX IDP DAPTOMYCIN SANFORD}</p>
-      <p>{FLD:ABX IDP DICLOXACILLIN SANFORD}</p>
-      <p>{FLD:ABX IDP DOLUTEGRAVIR SANFORD}</p>
-      <p>{FLD:ABX IDP DOXYCYCLINE SANFORD}</p>
-      <p>{FLD:ABX IDP LEVOFLOXACIN SANFORD}</p>
-      <p>{FLD:ABX IDP LINEZOLID SANFORD}</p>
-      <p>{FLD:ABX IDP IODOQUINOL SANFORD}</p>
-      <p>{FLD:ABX IDP ITRACONAZOLE NEW SANFORD}</p>
-      <p>{FLD:ABX IDP GANCICLOVIR SANFORD}</p>
       <p>{FLD:ABX IDP GENTAMICIN SANFORD}</p>
-      <p>{FLD:ABX IDP GRISEOFULVIN SANFORD}</p>
-      <p>{FLD:ABX IDP OSELTAMIVIR SANFORD}</p>
-      <p>{FLD:ABX IDP NAFCILLIN SANFORD}</p>
-      <p>{FLD:ABX IDP NEOMYCIN SANFORD}</p>
-      <p>{FLD:ABX IDP NITAZOXANIDE SANFORD}</p>
-      <p>{FLD:ABX IDP NITROFURANTOIN SANFORD}</p>
+      <p>{FLD:ABX IDP GANCICLOVIR SANFORD}</p>
       <p>{FLD:ABX IDP MEROPENEM SANFORD}</p>
-      <p>{FLD:ABX IDP METRONIDAZOLE SANFORD}</p>
-      <p>{FLD:ABX IDP METRONIDAZOLE TOPICAL LEXI}</p>
-      <p>{FLD:ABX IDP MICAFUNGIN SANFORD}</p>
-      <p>{FLD:ABX IDP MINOCYCLINE SANFORD}</p>
-      <p>{FLD:ABX IDP MOXIFLOXACIN OPHTHALMIC LEXI}</p>
-      <p>{FLD:ABX IDP MOXIFLOXACIN SANFORD}</p>
-      <p>{FLD:ABX IDP STREPTOMYCIN SANFORD}</p>
-      <p>{FLD:ABX IDP SULFACETAMIDE OPHTHALMIC LEXI}</p>
-      <p>{FLD:ABX IDP SULFADIAZINE SANFORD}</p>
-      <p>{FLD:ABX IDP PAROMOMYCIN SANFORD}</p>
       <p>{FLD:ABX IDP PENICILLIN VK SANFORD}</p>
-      <p>{FLD:ABX IDP PENICILLIN IV SANFORD}</p>
-      <p>{FLD:ABX IDP PIPERACILLIN-TAZOBACTAM SANFORD}</p>
-      <p>{FLD:ABX IDP PYRIMETHAMINE SANFORD}</p>
-      <p>{FLD:ABX IDP QUINUPRISTIN-DALFOPRISTIN SANFORD}</p>
-      <p>{FLD:ABX IDP RALTEGRAVIR SANFORD}</p>
-      <p>{FLD:ABX IDP RIFABUTIN SANFORD}</p>
-      <p>{FLD:ABX IDP RIFAMPIN SANFORD}</p>
-      <p>{FLD:ABX IDP RIFAXIMIN SANFORD}</p>
-      <p>{FLD:ABX IDP VALACYCLOVIR SANFORD}</p>
-      <p>{FLD:ABX IDP VALGANCICLOVIR SANFORD}</p>
-      <p>{FLD:ABX IDP VANCOMYCIN SANFORD}</p>
-      <p>{FLD:ABX IDP VORICONAZOLE SANFORD}</p>
-      <p>{FLD:ABX IDP ZANAMIVIR SANFORD}</p>
-      <p>{FLD:ABX IDP TERCONAZOLE LEXI}</p>
+      <p>{FLD:ABX IDP PAROMOMYCIN SANFORD}</p>
       <p>{FLD:ABX IDP TETRACYCLINE SANFORD}</p>
-      <p>{FLD:ABX IDP TOBRAMYCIN SANFORD}</p>
-      <p>{FLD:ABX IDP TRIMETHOPRIM SANFORD}</p>
-      <p>{FLD:ABX IDP TRIMETHOPRIM-SULFAMETHOXAZOLE SANFORD}</p>
-      <p>{FLD:ABX INFLUENZA OUTPATIENT}</p>
-      <p>{FLD:ABX BAM+ETE PROVIDER EUA LINK}</p>
-      <p>{FLD:ABX CDC SYMPTOMATIC RX ACUTE RESPIRATORY INFECTIONS}</p>
-      <p>{FLD:ABX VACCINE 3 DOSE SERIES START}</p>
-      <p>{FLD:ABX VACCINE 4 DOSE SERIES START}</p>
+      <p>{FLD:ABX IDP TERCONAZOLE LEXI}</p>
+      <p>{FLD:ABX IDSA GUIDELINES COVID}</p>
       <p>{FLD:ABX INFLUENZA VACCINE OUTPATIENT}</p>
+      <p>{FLD:ABX CDC SYMPTOMATIC RX ACUTE RESPIRATORY INFECTIONS}</p>
+      <p>{FLD:ABX VACCINATIONS POST TRANSPLANT NASHVILLE}</p>
       <p>{FLD:ABX VACCINE RTC}</p>
       <p>{FLD:ABX VACC 3 START}</p>
+      <p>{FLD:ABX MIIC LINK}</p>
       <p>{FLD:ABX VACC 2 START}</p>
       <p>{FLD:ABX VACC 4 START}</p>
-      <p>{FLD:ABX ATOVAQUONE PCP PROPHYLAXIS}</p>
+      <p>{FLD:ABX WIR LINK}</p>
       <p>{FLD:ABX ATOVAQUONE CLINICAL REASON}</p>
-      <p>{FLD:ABX AZITHROMYCIN LONGTERM PULMONARY TEXT}</p>
+      <p>{FLD:ABX ATOVAQUONE PCP PROPHYLAXIS}</p>
       <p>{FLD:ABX AZITHROMYCIN PULMONARY RADIO BUTTONS}</p>
-      <p>{FLD:ABX MAB COVID CONSENT}</p>
+      <p>{FLD:ABX AZITHROMYCIN LONGTERM PULMONARY TEXT}</p>
       <p>{FLD:ABX MAB COVID EDUCATE}</p>
-      <p>{FLD:ABX HYDROXYCHLOROQUINE COVID RADIO BUTTONS}</p>
-      <p>{FLD:MIN_SURG_VANCO_INFO1}</p>
+      <p>{FLD:ABX MAB COVID CONSENT}</p>
       <p>{FLD:MIN_SURG_VANCO_REASONS}</p>
-      <p>{FLD:ABX DAPSONE PCP PROPHYLAXIS}</p>
+      <p>{FLD:MIN_SURG_VANCO_INFO1}</p>
       <p>{FLD:ABX DAPSONE G6PD TEST}</p>
+      <p>{FLD:ABX DAPSONE PCP PROPHYLAXIS}</p>
       <p>{FLD:MIN_ACETAMINOPHEN}</p>
       <p>{FLD:EB 20/240}</p>
       <p>{FLD:MIN_ALBUTEROL}</p>
       <p>{FLD:MIN_BENZONATATE}</p>
       <p>{FLD:MIN_GUAIFENSESIN}</p>
       <p>{FLD:MIN_IBUPROFEN}</p>
+      <p>{FLD:MIN_ACYCLOVIR}</p>
+      <p>{FLD:MIN_PAGERVI}</p>
+      <p>{FLD:MIN_PAGERII}</p>
+      <p>{FLD:MIN_PAGERIII}</p>
+      <p>{FLD:MIN_RAZ_ALLERGIES}</p>
+      <p>{FLD:MIN_CT_DEFER}</p>
+      <p>{FLD:MIN_RAZ_GENERIC_DIALOG}</p>
+      <p>{FLD:MIN_WORD_PROC_FIELD_2_LINE_REQ}</p>
+      <p>{FLD:MIN_RAD_INFO}</p>
     </BOILERPLATE_TEXT>
   </TEMPLATE>
   <TEMPLATE_FIELDS>
@@ -190,7 +112,7 @@
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>ALBC Document</DEFAULT_TEXT>
+      <DEFAULT_TEXT>Orthopedic ALBC Protocol</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>0</SEPARATE_LINES>
@@ -202,29 +124,12 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://antimicrobialcdss.github.io/Resources/ALBC.pdf</URL>
     </FIELD>
-    <FIELD NAME="ABX GENERIC CLICK LINK BELOW">
-      <TYPE>T</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>Click on link below:</p>
-      </ITEMS>
-    </FIELD>
     <FIELD NAME="ABX CLICK CANCEL">
       <TYPE>T</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
+      <DEFAULT_INDEX>1</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
       <SEPARATE_LINES>1</SEPARATE_LINES>
       <MAX_LENGTH>0</MAX_LENGTH>
       <INDENT>0</INDENT>
@@ -235,6 +140,20 @@
       <ITEMS>
         <p>Click cancel when finished.</p>
       </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX GENERIC CLICK LINK BELOW">
+      <TYPE>B</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
     </FIELD>
     <FIELD NAME="ABX MDH ANTIBIOGRAM">
       <TYPE>H</TYPE>
@@ -252,24 +171,21 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://www.health.state.mn.us/diseases/antibioticresistance/abx/index.html</URL>
     </FIELD>
-    <FIELD NAME="ABX MDH ANTIBIOGRAM CLICK LINK">
-      <TYPE>T</TYPE>
+    <FIELD NAME="ABX ANTIMICROBIAL CDSS  WEB APP LINK">
+      <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Link to Antimicrobial CDSS Web App</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
       <MAX_LENGTH>0</MAX_LENGTH>
       <INDENT>0</INDENT>
       <PAD>0</PAD>
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>CLICK the link below to go to the </p>
-        <p>Minnesota Department of Health </p>
-        <p>Antibiogram...</p>
-      </ITEMS>
+      <URL>https://antimicrobialcdss.github.io/</URL>
     </FIELD>
     <FIELD NAME="ABX ANTIMICROBIAL FORMULARY">
       <TYPE>H</TYPE>
@@ -397,13 +313,32 @@
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
       <ITEMS>
-        <p>Use link below to navigate to CDC Recommended Adult Immunization Schedule PDF:</p>
+        <p>Use link below to navigate to CDC </p>
+        <p>Recommended Adult Immunization Schedule </p>
+        <p>PDF:</p>
       </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX CDC LYME DISEASE CASE MAP">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>CDC Lyme Disease Case Map</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.cdc.gov/lyme/data-research/facts-stats/lyme-disease-case-map.html</URL>
     </FIELD>
     <FIELD NAME="ABX CDC WEBSITE">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>CDC Website</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>1</SEPARATE_LINES>
@@ -414,43 +349,6 @@
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
       <URL>http://www.cdc.gov</URL>
-    </FIELD>
-    <FIELD NAME="ABX CLICK LINK BELOW CDC WEBSITE">
-      <TYPE>T</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>CLICK the link below...</p>
-      </ITEMS>
-    </FIELD>
-    <FIELD NAME="ABX CDSS STAFF EMAIL ADDITIONAL VERBAGE">
-      <TYPE>T</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>80</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>2</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>**Contact the CDSS staff for any questions on navigating the CDSS.</p>
-        <p>Contact Antimicrobial Stewardship for issues regarding antimicrobial </p>
-        <p>stewardship. Contact ID on call for any patient specific questions </p>
-        <p>or for drug approvals outside the CDSS.**</p>
-      </ITEMS>
     </FIELD>
     <FIELD NAME="ABX MINNEAPOLIS ON-CALL SCHEDULE">
       <TYPE>H</TYPE>
@@ -694,6 +592,7 @@
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Lexicomp Online Interaction Checker</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>1</SEPARATE_LINES>
@@ -709,7 +608,7 @@
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>Lexicomp online [Click Here]</DEFAULT_TEXT>
+      <DEFAULT_TEXT>Micromedix online [Click Here]</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>1</SEPARATE_LINES>
@@ -774,6 +673,7 @@
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>MPox SharePoint Site</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>0</SEPARATE_LINES>
@@ -799,7 +699,7 @@
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
       <ITEMS>
-        <p>Patient or ordering provider: call 3D clinic (31-4988) to schedule vaccine administration</p>
+        <p>Patient or ordering provider: Call Clinic 79(612-467-4988) to schedule vaccine administration.</p>
       </ITEMS>
     </FIELD>
     <FIELD NAME="ABX DATE">
@@ -833,24 +733,6 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://antimicrobialcdss.github.io/Resources/AntibiogramMinneapolis.pdf</URL>
     </FIELD>
-    <FIELD NAME="ABX SENSITIVITIES CLICK LINK BELOW">
-      <TYPE>T</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>CLICK the link below to go to the Mpls </p>
-        <p>VAMC Antibiotic Sensitivities...</p>
-      </ITEMS>
-    </FIELD>
     <FIELD NAME="ABX MVAMC INFECT CTRL INTRANET">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -867,40 +749,6 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://dvagov.sharepoint.com/sites/min/SiteDirectory/InfCon/SitePages/Infection-Prevention.aspx</URL>
     </FIELD>
-    <FIELD NAME="ABX CLICK LINK BELOW INFECT CTRL">
-      <TYPE>T</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>CLICK the link below to go to the </p>
-        <p>Minneapolis VAMC Infection Control </p>
-        <p>Intranet...</p>
-      </ITEMS>
-    </FIELD>
-    <FIELD NAME="ABX DATE BOX">
-      <TYPE>D</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>1</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <DATE_TYPE>D</DATE_TYPE>
-    </FIELD>
     <FIELD NAME="ABX PHARMACIST PHONE/PAGER NUMBERS">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -916,23 +764,6 @@
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
       <URL>https://antimicrobialcdss.github.io/Resources/Pharmacy coverage by team.xlsx</URL>
-    </FIELD>
-    <FIELD NAME="ABX PORT FINISHED CLICK OK BELOW">
-      <TYPE>T</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>When finished click OK below</p>
-      </ITEMS>
     </FIELD>
     <FIELD NAME="ABX POST EXPOSURE PROPHYLAXIS NPEP">
       <TYPE>H</TYPE>
@@ -1016,28 +847,11 @@
         <p>LINK TO QTC PROLONGATION FOR AZITHROMYCIN</p>
       </DESCRIPTION>
     </FIELD>
-    <FIELD NAME="ABX CLICK LINK FOR RESOURCE DRUGS QTC">
-      <TYPE>T</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>Click on the following link for a resource </p>
-        <p>for drugs that cause QTc prolongation.</p>
-      </ITEMS>
-    </FIELD>
     <FIELD NAME="ABX SANFORD GUIDE WEBSITE">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Sanford Guide Website</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>1</SEPARATE_LINES>
@@ -1069,6 +883,7 @@
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Surgical Prophylaxis Guidelines </DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>0</SEPARATE_LINES>
@@ -1084,56 +899,21 @@
         <p>Pubmed link</p>
       </DESCRIPTION>
     </FIELD>
-    <FIELD NAME="ABX VACCINE INFO">
-      <TYPE>T</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>80</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>2</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>__________________________________________________________________________</p>
-        <p></p>
-        <p>The below will text and links not be included in this order:</p>
-      </ITEMS>
-    </FIELD>
-    <FIELD NAME="ABX MIIC LINK">
+    <FIELD NAME="ABX THERADOC LINK">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>MIIC (Minnesota Immunization Information Connection) - Non-VA vaccines</DEFAULT_TEXT>
+      <DEFAULT_TEXT>TheraDoc Link</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
       <MAX_LENGTH>0</MAX_LENGTH>
       <INDENT>0</INDENT>
       <PAD>0</PAD>
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://miic.health.state.mn.us/miic/psp?cmd=LoginHandler</URL>
-    </FIELD>
-    <FIELD NAME="ABX WIR LINK">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>WIR (Wisconsin Immunization Registry) - Non-VA vaccines </DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://www.dhfswir.org/PR/clientSearch.do;jsessionid=U_zHpKge8tpC2vrB-JrXsAAZB9_TkPC8fQY7FS4u.master:ir-server?language=en</URL>
+      <URL>https://oitv23appthera1.va.gov/theradoc/</URL>
     </FIELD>
     <FIELD NAME="ABX IXODES SCAPULARIS IDENTIFICATION">
       <TYPE>H</TYPE>
@@ -1151,11 +931,11 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://www.health.state.mn.us/diseases/tickborne/ticks.html</URL>
     </FIELD>
-    <FIELD NAME="ABX MN TICKBORNE DISEASE RISK">
+    <FIELD NAME="ABX TPOXX SHAREPOINT LINK">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>Tickborne disease risk map, Minnesota Department of Health</DEFAULT_TEXT>
+      <DEFAULT_TEXT>Teams Monkeypox Taskforce Documents Link</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>1</SEPARATE_LINES>
@@ -1165,24 +945,9 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://www.health.state.mn.us/diseases/lyme/highrisk.html</URL>
+      <URL>https://dvagov.sharepoint.com/:f:/r/sites/VHAMINMonkeypoxTaskForce/Shared%20Documents/General/MPX%20Treatment/Current%20EAP%20documents?csf=1&amp;web=1&amp;e=gwdDf2</URL>
     </FIELD>
-    <FIELD NAME="ABX HEAD LICE PDF FILE">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>http://www.cdc.gov/ncidod/dpd/parasites/lice/2004_PDF_Treating_head_lice.pdf</URL>
-    </FIELD>
-    <FIELD NAME="ABX HEAD LICE PDF CLICK LINK BELOW">
+    <FIELD NAME="ABX CLICK LINK BELOW CDC WEBSITE">
       <TYPE>T</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
@@ -1196,9 +961,24 @@
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
       <ITEMS>
-        <p>Click the link below for the treating Head </p>
-        <p>Lice PDF file...</p>
+        <p>CLICK the link below...</p>
       </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX HEAD LICE PDF FILE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Head Lice PDF</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>http://www.cdc.gov/ncidod/dpd/parasites/lice/2004_PDF_Treating_head_lice.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX UP TO DATE LINKS">
       <TYPE>H</TYPE>
@@ -1216,28 +996,11 @@
       <INCREMENT>0</INCREMENT>
       <URL>http://www.uptodate.com/contents/search.do?unid=minmasoub&amp;srcsys=UTD187508&amp;eiv=2.1.0</URL>
     </FIELD>
-    <FIELD NAME="ABX UPTODATE CLICK LINK BELOW">
-      <TYPE>T</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>CLICK the link below to go to Up To </p>
-        <p>Date...</p>
-      </ITEMS>
-    </FIELD>
     <FIELD NAME="ABX ACIP BEST PRACTICES GUIDANCE">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>ACIP Best Practices Guidance</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>1</SEPARATE_LINES>
@@ -1297,11 +1060,11 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://www.covid19-druginteractions.org/checker</URL>
     </FIELD>
-    <FIELD NAME="ABX IDP BENZATHINE PENICILLIN SANFORD">
+    <FIELD NAME="ABX DENTAL SOP">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>46   Benzathine Penicillin IM</DEFAULT_TEXT>
+      <DEFAULT_TEXT>Dental SOP Antibiotic Prophylaxis </DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>0</SEPARATE_LINES>
@@ -1311,615 +1074,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/penicillins/penicillin-g</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP ACYCLOVIR SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>12   Acyclovir </DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiviral-agents/herpesvirus/acyclovir</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP ALBENDAZOLE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>16   Albendazole</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiparasitic-agents/albendazole</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP AMANTADINE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>18   Amantadine</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiviral-agents/influenza/amantadine</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP AMIKACIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>20   Amikacin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/amino-glycosides/amikacin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP AMOXICILLIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>22   Amoxicillin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/penicillins/amino-penicillins/amoxicillin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP AMOXICILLIN-CLAVULANATE SAN">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>24   Amoxicillin-Clavulanate</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/penicillins/amino-penicillins/amoxicillin-clavulanate</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP AMPHOTERICIN B SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>26   Amphotericin B Liposomal (Ambisome)</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antifungal-agents/ampho-b-family-polyenes/amphotericin-b</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP AMPICILLIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>28   Ampicillin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/penicillins/amino-penicillins/ampicillin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP AMPICILLIN-SULBACTAM SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>30   Ampicillin-sulbactam</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/penicillins/amino-penicillins/ampicillin-sulbactam</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP ATOVAQUONE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>32   Atovaquone</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiparasitic-agents/atovaquone-proguanil</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP AZITHROMYCIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>34   Azithromycin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/macrolides/azithromycin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP AZTREONAM SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>38   Aztreonam</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/monobactam/aztreonam</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CASPOFUNGIN">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>50   Caspofungin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antifungal-agents/echinocandins/caspofungin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CEFADROXIL SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>51   Cefadroxil</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/cephalosporins/oral/1st-generation/cefadroxil</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CEFAZOLIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>52   Cefazolin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/cephalosporins/parenteral/1st-generation/cefazolin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CEFEPIME SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>54   Cefepime</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/cephalosporins/parenteral/3rd-4th-generation/cefepime</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CEFIXIME">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>56   Cefixime</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/cephalosporins/oral/3rd-generation/cefixime</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CEFOTETAN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>58   Cefotetan</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/cephalosporins/parenteral/2nd-generation/cefotetan</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CEFOXITIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>60   Cefoxitin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/cephalosporins/parenteral/2nd-generation/cefoxitin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CEFPODOXIME SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>62   Cefpodoxime</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/cephalosporins/oral/3rd-generation/cefpodoxime-proxetil</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CEFTAZIDIME SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>64   Ceftazidime</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/cephalosporins/parenteral/3rd-4th-generation/ceftaz-1</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CEFTRIAXONE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>66   Ceftriaxone</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/cephalosporins/parenteral/3rd-4th-generation/ceftriaxone</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CEFUROXIME ORAL SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>70   Cefuroxime axetil Oral</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/cephalosporins/oral/2nd-generation/cefuroxime-axetil</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CEPHALEXIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>72   Cephalexin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/cephalosporins/oral/1st-generation/cephalexin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CHLORAMPHENICOL SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>74   Chloramphenicol</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/chloramphenicol</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CIPROFLOXACIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>76   Ciprofloxacin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/fluoroquinolones/ciprofloxacin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CLARITHROMYCIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>80   Clarithromycin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/macrolides/clarithromycin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CLINDAMYCIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>82   Clindamycin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/clindamycin-1/clindamycin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP CLOTRIMAZOLE TOPICAL LEXI">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>84   Clotrimazole </DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>http://www.uptodate.com/contents/search.do?unid=minmasoub&amp;srcsys=UTD187508&amp;eiv=2.1.0</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP FLUCONAZOLE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>130  Fluconazole</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antifungal-agents/azoles/fluconazole</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP FLUCYTOSINE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>134  Flucytosine</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antifungal-agents/flucytosine</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP FOSCARNET SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>136  Foscarnet</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiviral-agents/herpesvirus/foscarnet</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP FOSFOMYCIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>138  Fosfomycin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/agents-urinary-tract/fosfomycin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP EMTRICITABINE + TENOFOVIR SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>110  Emtricitabine + Tenofovir (Truvada)</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiretroviral-agents/truvada</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP ERTAPENEM SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>112  Ertapenem</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/carbapenems/ertapenem</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP ERYTHROMYCIN OPHTHALMIC LEXI">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>114  Erythromycin Ophthalmic</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>http://www.uptodate.com/contents/search.do?unid=minmasoub&amp;srcsys=UTD187508&amp;eiv=2.1.0</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP ERYTHROMYCIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>116  Erythromycin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/macrolides/erythromycin-base-esters#autotoc-item-autotoc-1</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP ETHAMBUTOL SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>120  Ethambutol</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antimycobacterial-agents/ethambutol</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Dental SOP.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX IDP DAPTOMYCIN SANFORD">
       <TYPE>H</TYPE>
@@ -1937,11 +1092,11 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/glyco-lipoglyco-peptides/daptomycin</URL>
     </FIELD>
-    <FIELD NAME="ABX IDP DICLOXACILLIN SANFORD">
+    <FIELD NAME="ABX IDP GENTAMICIN SANFORD">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>102  Dicloxacillin </DEFAULT_TEXT>
+      <DEFAULT_TEXT>146  Gentamicin</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>0</SEPARATE_LINES>
@@ -1951,103 +1106,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/penicillins/antistaphylo-coccal-penicillins/dicloxacin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP DOLUTEGRAVIR SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>104  Dolutegravir</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiretroviral-agents/dolutegravir</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP DOXYCYCLINE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>106  Doxycycline</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/tetra-cyclines/doxycycline</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP LEVOFLOXACIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>156  Levofloxacin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/fluoroquinolones/levofloxacin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP LINEZOLID SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>160  Linezolid</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/oxazolidinones/linezolid-zyvox</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP IODOQUINOL SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>150  Iodoquinol</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiparasitic-agents/iodoquinol</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP ITRACONAZOLE NEW SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>152  Itraconazole</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antifungal-agents/azoles/itraconazole</URL>
+      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/amino-glycosides/gentamicin</URL>
     </FIELD>
     <FIELD NAME="ABX IDP GANCICLOVIR SANFORD">
       <TYPE>H</TYPE>
@@ -2065,118 +1124,6 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://dva.sanfordguide.com/en/drug-information/antiviral-agents/herpesvirus/ganciclovir</URL>
     </FIELD>
-    <FIELD NAME="ABX IDP GENTAMICIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>146  Gentamicin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/amino-glycosides/gentamicin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP GRISEOFULVIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>148  Griseofulvin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antifungal-agents/griseofulvin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP OSELTAMIVIR SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>208  Oseltamivir</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiviral-agents/influenza/oseltamivir</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP NAFCILLIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>200  Nafcillin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/penicillins/antistaphylo-coccal-penicillins/nafcillin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP NEOMYCIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>202  Neomycin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/amino-glycosides/neomycin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP NITAZOXANIDE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>204  Nitazoxanide</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiparasitic-agents/nitazoxanide</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP NITROFURANTOIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>206  Nitrofurantoin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/agents-urinary-tract/nitrofurantoin</URL>
-    </FIELD>
     <FIELD NAME="ABX IDP MEROPENEM SANFORD">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -2192,166 +1139,6 @@
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
       <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/carbapenems/meropenem</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP METRONIDAZOLE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>172  Metronidazole IV &amp; Oral</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/nitroimidazoles/metronidazole#autotoc-item-autotoc-1</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP METRONIDAZOLE TOPICAL LEXI">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>176  Metronidazole Topical</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>http://www.uptodate.com/contents/search.do?unid=minmasoub&amp;srcsys=UTD187508&amp;eiv=2.1.0</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP MICAFUNGIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>178  Micafungin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antifungal-agents/echinocandins/micafungin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP MINOCYCLINE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>180  Minocycline</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/tetra-cyclines/minocycline</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP MOXIFLOXACIN OPHTHALMIC LEXI">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>182  Moxifloxacin Ophthalmic </DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>http://www.uptodate.com/contents/search.do?unid=minmasoub&amp;srcsys=UTD187508&amp;eiv=2.1.0</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP MOXIFLOXACIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>184  Moxifloxacin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/fluoroquinolones/moxifloxacin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP STREPTOMYCIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>246  Streptomycin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/amino-glycosides/streptomycin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP SULFACETAMIDE OPHTHALMIC LEXI">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>248  Sulfacetamide Ophthalmic</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://online.lexi.com/lco/action/doc/retrieve/docid/patch_f/1801743</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP SULFADIAZINE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>250  Sulfadiazine</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiparasitic-agents/sulfadiazine</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP PAROMOMYCIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>220  Paromomycin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiparasitic-agents/paromomycin</URL>
     </FIELD>
     <FIELD NAME="ABX IDP PENICILLIN VK SANFORD">
       <TYPE>H</TYPE>
@@ -2369,11 +1156,11 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/penicillins/penicillin-v</URL>
     </FIELD>
-    <FIELD NAME="ABX IDP PENICILLIN IV SANFORD">
+    <FIELD NAME="ABX IDP PAROMOMYCIN SANFORD">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>224  Penicillin IV </DEFAULT_TEXT>
+      <DEFAULT_TEXT>220  Paromomycin</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>0</SEPARATE_LINES>
@@ -2383,215 +1170,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/penicillins/penicillin-g</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP PIPERACILLIN-TAZOBACTAM SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>226  Piperacillin-tazobactam</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/penicillins/anti-pseudomonal-penicillins/piperacillin-tazobactam</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP PYRIMETHAMINE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>228  Pyrimethamine</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiparasitic-agents/pyrimethamine</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP QUINUPRISTIN-DALFOPRISTIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>230  Quinupristin-Dalfopristin </DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/streptogramins/quinupristin-dalfopristin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP RALTEGRAVIR SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>238  Raltegravir</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiretroviral-agents/raltegravir</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP RIFABUTIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>240  Rifabutin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antimycobacterial-agents/rifabutin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP RIFAMPIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>242  Rifampin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antimycobacterial-agents/rifampin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP RIFAXIMIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>244  Rifaximin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/rifamycin/rifaximin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP VALACYCLOVIR SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>270  Valacyclovir</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiviral-agents/herpesvirus/valacyclovir</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP VALGANCICLOVIR SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>272  Valganciclovir</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiviral-agents/herpesvirus/valganciclovir</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP VANCOMYCIN SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>274  Vancomycin</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/glyco-lipoglyco-peptides/vancomycin</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP VORICONAZOLE SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>276  Voriconazole</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antifungal-agents/azoles/voriconazole</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP ZANAMIVIR SANFORD">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>280  Zanamivir</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antiviral-agents/influenza/zanamavir</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP TERCONAZOLE LEXI">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>252  Terconazole</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>http://www.uptodate.com/contents/search.do?unid=minmasoub&amp;srcsys=UTD187508&amp;eiv=2.1.0</URL>
+      <URL>https://dva.sanfordguide.com/en/drug-information/antiparasitic-agents/paromomycin</URL>
     </FIELD>
     <FIELD NAME="ABX IDP TETRACYCLINE SANFORD">
       <TYPE>H</TYPE>
@@ -2609,11 +1188,11 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/tetra-cyclines/tetracycline</URL>
     </FIELD>
-    <FIELD NAME="ABX IDP TOBRAMYCIN SANFORD">
+    <FIELD NAME="ABX IDP TERCONAZOLE LEXI">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>256  Tobramycin</DEFAULT_TEXT>
+      <DEFAULT_TEXT>252  Terconazole</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>0</SEPARATE_LINES>
@@ -2623,13 +1202,13 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/amino-glycosides/tobramycin</URL>
+      <URL>http://www.uptodate.com/contents/search.do?unid=minmasoub&amp;srcsys=UTD187508&amp;eiv=2.1.0</URL>
     </FIELD>
-    <FIELD NAME="ABX IDP TRIMETHOPRIM SANFORD">
+    <FIELD NAME="ABX IDSA GUIDELINES COVID">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>258  Trimethoprim</DEFAULT_TEXT>
+      <DEFAULT_TEXT>IDSA Guidelines COVID</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>0</SEPARATE_LINES>
@@ -2639,13 +1218,13 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/trimethoprim-sulfonamides/trimethoprim</URL>
+      <URL>https://www.idsociety.org/practice-guideline/covid-19-guideline-treatment-and-management/</URL>
     </FIELD>
-    <FIELD NAME="ABX IDP TRIMETHOPRIM-SULFAMETHOXAZOLE SANFORD">
+    <FIELD NAME="ABX INFLUENZA VACCINE OUTPATIENT">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>260  Trimethoprim-sulfamethoxazole</DEFAULT_TEXT>
+      <DEFAULT_TEXT>Influenza Vaccine Outpatient Guidelines</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>0</SEPARATE_LINES>
@@ -2655,23 +1234,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/en/drug-information/antibacterial-agents/trimethoprim-sulfonamides/trimethoprim-sulfamethoxazole</URL>
-    </FIELD>
-    <FIELD NAME="ABX BAM+ETE PROVIDER EUA LINK">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>PROVIDER EUA Link to Complete Prior to Order/Administering</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/sites/VHAPBM/VA_MedSAFE/App/EUA/Lists/EUA_Orders/Item/newifs.aspx</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Outpatient Flu Vaccine Guidelines.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CDC SYMPTOMATIC RX ACUTE RESPIRATORY INFECTIONS">
       <TYPE>H</TYPE>
@@ -2689,11 +1252,11 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://www.cdc.gov/antibiotic-use/community/pdfs/aaw/CDC-AU_RCx_Relief_for_Viral_Illness_lg_v8-508.pdf</URL>
     </FIELD>
-    <FIELD NAME="ABX INFLUENZA VACCINE OUTPATIENT">
+    <FIELD NAME="ABX VACCINATIONS POST TRANSPLANT NASHVILLE">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>Influenza Vaccine Outpatient Guidance 2023-24</DEFAULT_TEXT>
+      <DEFAULT_TEXT>Nashville Post Transplant Vaccinations Guideline</DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>0</SEPARATE_LINES>
@@ -2703,7 +1266,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://antimicrobialcdss.github.io/Resources/Outpatient Flu vaccine guidelines.pdf</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Post Transplant Vaccination Nashville.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX VACCINE RTC">
       <TYPE>T</TYPE>
@@ -2745,6 +1308,22 @@
         <p>3 of 3 dose series</p>
       </ITEMS>
     </FIELD>
+    <FIELD NAME="ABX MIIC LINK">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>MIIC (Minnesota Immunization Information Connection) - Non-VA vaccines</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://miic.health.state.mn.us/miic/psp?cmd=LoginHandler</URL>
+    </FIELD>
     <FIELD NAME="ABX VACC 2 START">
       <TYPE>C</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -2783,10 +1362,11 @@
         <p>4 of 4 dose series</p>
       </ITEMS>
     </FIELD>
-    <FIELD NAME="ABX ATOVAQUONE PCP PROPHYLAXIS">
-      <TYPE>T</TYPE>
+    <FIELD NAME="ABX WIR LINK">
+      <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>WIR (Wisconsin Immunization Registry) - Non-VA vaccines </DEFAULT_TEXT>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
       <REQUIRED>0</REQUIRED>
       <SEPARATE_LINES>1</SEPARATE_LINES>
@@ -2796,11 +1376,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>Atovaquone is expensive, especially for long term prophylaxis. Please select </p>
-        <p>alternative recommendation, unless clinical reason for selecting Atovaquone. </p>
-        <p>Clinical reason for selecting Atovaquone: </p>
-      </ITEMS>
+      <URL>https://www.dhfswir.org/PR/clientSearch.do;jsessionid=U_zHpKge8tpC2vrB-JrXsAAZB9_TkPC8fQY7FS4u.master:ir-server?language=en</URL>
     </FIELD>
     <FIELD NAME="ABX ATOVAQUONE CLINICAL REASON">
       <TYPE>R</TYPE>
@@ -2820,6 +1396,42 @@
         <p>Atovaquone: Patient dx systemic lupus erythematosus (SLE)</p>
         <p>Atovaquone: Concern for hematologic toxicity (specify in comments section)</p>
         <p>Other: Please specify reason for atovaquone in comments section.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX ATOVAQUONE PCP PROPHYLAXIS">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Atovaquone is expensive, especially for long term prophylaxis. Please select </p>
+        <p>alternative recommendation, unless clinical reason for selecting Atovaquone. </p>
+        <p>Clinical reason for selecting Atovaquone: </p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX AZITHROMYCIN PULMONARY RADIO BUTTONS">
+      <TYPE>R</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>37</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>I am Pulmonary STAFF authorized to order.</p>
       </ITEMS>
     </FIELD>
     <FIELD NAME="ABX AZITHROMYCIN LONGTERM PULMONARY TEXT">
@@ -2844,40 +1456,6 @@
         <p>PLEASE SELECT BELOW:</p>
       </ITEMS>
     </FIELD>
-    <FIELD NAME="ABX AZITHROMYCIN PULMONARY RADIO BUTTONS">
-      <TYPE>R</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>37</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>1</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>I am Pulmonary STAFF authorized to order.</p>
-      </ITEMS>
-    </FIELD>
-    <FIELD NAME="ABX MAB COVID CONSENT">
-      <TYPE>X</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>70</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>1</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>Patient/Caregiver has consented to receiving this medication treatment authorized under EUA.</p>
-      </ITEMS>
-    </FIELD>
     <FIELD NAME="ABX MAB COVID EDUCATE">
       <TYPE>X</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -2895,12 +1473,12 @@
         <p>Patient/Caregiver has been counseled on this EUA medication treatment and provided printed information.</p>
       </ITEMS>
     </FIELD>
-    <FIELD NAME="ABX HYDROXYCHLOROQUINE COVID RADIO BUTTONS">
-      <TYPE>R</TYPE>
+    <FIELD NAME="ABX MAB COVID CONSENT">
+      <TYPE>X</TYPE>
       <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
+      <LENGTH>70</LENGTH>
       <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
+      <REQUIRED>1</REQUIRED>
       <SEPARATE_LINES>1</SEPARATE_LINES>
       <MAX_LENGTH>0</MAX_LENGTH>
       <INDENT>0</INDENT>
@@ -2909,33 +1487,7 @@
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
       <ITEMS>
-        <p>Dr.Devries</p>
-        <p>Dr.Drekonja</p>
-        <p>Dr.Johnson</p>
-        <p>Dr.Kaka</p>
-        <p>Dr.Narayan</p>
-        <p>Dr.Pragman</p>
-      </ITEMS>
-    </FIELD>
-    <FIELD NAME="MIN_SURG_VANCO_INFO1">
-      <TYPE>T</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>1</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <ITEMS>
-        <p>Vancomycin not recommended for routine use because it is not as effective as cefazolin in </p>
-        <p>killing methicillin-susceptible S. aureus, MSSA.  Indiscriminate vancomycin prescribing </p>
-        <p>contributes to bacterial resistance.  Vancomycin use should be avoided unless the patient </p>
-        <p>has a risk factor for MRSA infection (noted below), or is allergic to beta-lactams.</p>
-        <p></p>
+        <p>Patient/Caregiver has consented to receiving this medication treatment authorized under EUA.</p>
       </ITEMS>
     </FIELD>
     <FIELD NAME="MIN_SURG_VANCO_REASONS">
@@ -2961,7 +1513,7 @@
         <p>Documentation of continuous inpatient stay more than 24 hours prior to the procedure of interest</p>
       </ITEMS>
     </FIELD>
-    <FIELD NAME="ABX DAPSONE PCP PROPHYLAXIS">
+    <FIELD NAME="MIN_SURG_VANCO_INFO1">
       <TYPE>T</TYPE>
       <INACTIVE>0</INACTIVE>
       <LENGTH>0</LENGTH>
@@ -2975,8 +1527,11 @@
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
       <ITEMS>
-        <p>Patient to be tested for glucose-6-phosphate dehydrogenase (G6PD) deficiency BEFORE starting Dapsone.</p>
-        <p>Please confirm below: </p>
+        <p>Vancomycin not recommended for routine use because it is not as effective as cefazolin in </p>
+        <p>killing methicillin-susceptible S. aureus, MSSA.  Indiscriminate vancomycin prescribing </p>
+        <p>contributes to bacterial resistance.  Vancomycin use should be avoided unless the patient </p>
+        <p>has a risk factor for MRSA infection (noted below), or is allergic to beta-lactams.</p>
+        <p></p>
       </ITEMS>
     </FIELD>
     <FIELD NAME="ABX DAPSONE G6PD TEST">
@@ -2995,6 +1550,24 @@
       <ITEMS>
         <p>Confirm: Patient's lab test NORMAL for G6-PD.</p>
         <p>Patient already receiving Dapsone, continuation of therapy.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX DAPSONE PCP PROPHYLAXIS">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Patient to be tested for glucose-6-phosphate dehydrogenase (G6PD) deficiency BEFORE starting Dapsone.</p>
+        <p>Please confirm below: </p>
       </ITEMS>
     </FIELD>
     <FIELD NAME="MIN_ACETAMINOPHEN">
@@ -3107,6 +1680,166 @@
         <p>FOR GOUT</p>
         <p>FOR HEADACHE</p>
         <p>FOR </p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="MIN_ACYCLOVIR">
+      <TYPE>X</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>For Herpes Virus</p>
+        <p>For Cold Sores</p>
+        <p>For Shingles</p>
+        <p>For </p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="MIN_PAGERVI">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>My pager number on record is: </p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="MIN_PAGERII">
+      <TYPE>R</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>. I confirm that the pager number/cell phone number above is correct for reporting critical results.</p>
+        <p>. The pager number/cell phone number above is NOT correct for reporting critical results, I have entered my correct number below: </p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="MIN_PAGERIII">
+      <TYPE>X</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>My correct contact # for critical results is:</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="MIN_RAZ_ALLERGIES">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>To see allergies from all VA locations click Reports tab&gt;Remote Data&gt;All </p>
+        <p>Available Sites&gt;Clinical Reports&gt;Allergies.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="MIN_CT_DEFER">
+      <TYPE>R</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>1</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Defer to radiologist for final CT protocol.</p>
+        <p>Do NOT defer to radiologist for final CT protocol.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="MIN_RAZ_GENERIC_DIALOG">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Enter pertinent clinical HISTORY here. (Not reason for study)  You will need to</p>
+        <p>enter the reason for study on the NEXT screen after clicking OK.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="MIN_WORD_PROC_FIELD_2_LINE_REQ">
+      <TYPE>W</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>74</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>2</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+    </FIELD>
+    <FIELD NAME="MIN_RAD_INFO">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>If a provider has questions on report content during off hours shifts </p>
+        <p>(Mon.-Thurs. from 7pm to 7am, Fri. 7pm to Mon. 7am,weekends and all holidays)</p>
+        <p>call to speak with a radiologist at National Teleradiology Project (NTP) </p>
+        <p>x317100.</p>
       </ITEMS>
     </FIELD>
   </TEMPLATE_FIELDS>
