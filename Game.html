@@ -79,7 +79,7 @@
 
                 // Calculate projectile initial position to fire from the end of the syringe
                 var needlePosition = syringe.position.add(syringe.direction.scale(1.25));
-                projectile.position = new BABYLON.Vector3(needlePosition.x, syringe.position.y - 0.55, needlePosition.z);
+                projectile.position = new BABYLON.Vector3(needlePosition.x, syringe.position.y, needlePosition.z);
 
                 projectile.physicsImpostor = new BABYLON.PhysicsImpostor(projectile, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
                 projectile.physicsImpostor.applyImpulse(syringe.direction.scale(10), projectile.getAbsolutePosition());
@@ -100,10 +100,10 @@
                     syringe.direction = new BABYLON.Vector3(0, 0, 1);
                 }
                 if (keys["ArrowLeft"]) {
-                    syringe.direction = new BABYLON.Vector3(-1, 0, 0);
+                    syringe.direction = new BABYLON.Vector3(1, 0, 0);
                 }
                 if (keys["ArrowRight"]) {
-                    syringe.direction = new BABYLON.Vector3(1, 0, 0);
+                    syringe.direction = new BABYLON.Vector3(-1, 0, 0);
                 }
                 var angle = Math.atan2(syringe.direction.x, syringe.direction.z);
                 syringe.rotationQuaternion = new BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, -angle);
