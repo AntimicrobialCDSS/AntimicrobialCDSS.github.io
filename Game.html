@@ -11,10 +11,9 @@
 <body>
     <canvas id="renderCanvas"></canvas>
 
+    <!-- Include Babylon.js and Cannon.js -->
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
-    <script src="https://cdn.babylonjs.com/Oimo.js"></script>
-    <script src="https://cdn.babylonjs.com/Cannon.js"></script>
-    <script src="https://cdn.babylonjs.com/Ammo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
 
     <script>
         var canvas = document.getElementById("renderCanvas");
@@ -30,8 +29,8 @@
 
             var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 10, height: 10}, scene);
 
-            // Enable physics
-            scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), new BABYLON.CannonJSPlugin());
+            // Enable physics with Cannon.js
+            scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), new BABYLON.CannonJSPlugin(true, 10, CANNON));
 
             // Mortar and Pestle Model for Main Character
             var mortarBase = BABYLON.MeshBuilder.CreateCylinder("mortarBase", {diameter: 1, height: 0.5}, scene);
