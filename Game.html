@@ -28,6 +28,9 @@
             light.intensity = 0.7;
 
             var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 10, height: 10}, scene);
+            ground.position.y = 0;
+            // Assign physics impostor to the ground
+            ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
 
             // Enable physics with Cannon.js
             scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), new BABYLON.CannonJSPlugin());
@@ -60,7 +63,7 @@
                 bacteriaMaterial.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
                 bacterium.material = bacteriaMaterial;
 
-                bacterium.physicsImpostor = new BABYLON.PhysicsImpostor(bacterium, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 0.1, restitution: 0.9 }, scene);
+                bacterium.physicsImpostor = new BABYLON.PhysicsImpostor(bacterium, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
 
                 bacteria.push(bacterium);
             }
@@ -68,7 +71,7 @@
             var shootProjectile = function (direction) {
                 var projectile = BABYLON.MeshBuilder.CreateSphere("projectile", {diameter: 0.2, segments: 8}, scene);
                 projectile.position = mortarAndPestle.position.clone();
-                projectile.position.y += 0.5; // Set initial height to avoid ground clipping
+                projectile.position.y += 0.75; // Set initial height to avoid ground clipping
 
                 projectile.physicsImpostor = new BABYLON.PhysicsImpostor(projectile, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
                 projectile.physicsImpostor.applyImpulse(direction.scale(10), projectile.getAbsolutePosition());
@@ -93,26 +96,25 @@
             scene.onBeforeRenderObservable.add(function () {
                 if (keys["ArrowUp"]) {
                     mortarAndPestle.position.z -= 0.1;
-                    if (keys[" "]) { 
-                        shootProjectile(new BABYLON.Vector3(0, 0, -1));
-                    }
                 }
                 if (keys["ArrowDown"]) {
                     mortarAndPestle.position.z += 0.1;
-                    if (keys[" "]) {
-                        shootProjectile(new BABYLON.Vector3(0, 0, 1));
-                    }
                 }
                 if (keys["ArrowLeft"]) {
-                    mortarAndPestle.position.x += 0.1; // Reversing this to correct direction
-                    if (keys[" "]) {
-                        shootProjectile(new BABYLON.Vector3(1, 0, 0)); // Reversing this to correct direction
-                    }
+                    mortarAndPestle.position.x += 0.1;
                 }
                 if (keys["ArrowRight"]) {
-                    mortarAndPestle.position.x -= 0.1; // Reversing this to correct direction
-                    if (keys[" "]) {
-                        shootProjectile(new BABYLON.Vector3(-1, 0, 0)); // Reversing this to correct direction
+                    mortarAndPestle.position.x -= 0.1;
+                }
+                if (keys[" "]) { 
+                    var direction = new BABYLON.Vector3(
+                        keys["ArrowLeft"] ? 1 : (keys["ArrowRight"] ? -1 : 0), 
+                        0, 
+                        keys["ArrowUp"] ? -1 : (keys["ArrowDown"] ? 1 : 0)
+                    );
+                    if (direction.lengthSquared() > 0) { 
+                        direction.normalize();
+                        shootProjectile(direction);
                     }
                 }
             });
