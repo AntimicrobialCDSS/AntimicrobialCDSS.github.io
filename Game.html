@@ -14,16 +14,13 @@
     <!-- Babylon.js CDN -->
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
     <script src="https://cdn.babylonjs.com/cannon.js"></script>
-    <script src="https://cdn.babylonjs.com/babylon.gui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babylonjs-gui/4.2.0/babylon.gui.min.js"></script>
 
     <script>
-        var canvas = document.getElementById("renderCanvas");
-        var engine = new BABYLON.Engine(canvas, true);
-
         var loadJSON = function (url, callback) {
             var xobj = new XMLHttpRequest();
             xobj.overrideMimeType("application/json");
-            xobj.open('GET', url, true); 
+            xobj.open('GET', url, true);
             xobj.onreadystatechange = function () {
                 if (xobj.readyState == 4 && xobj.status == "200") {
                     callback(xobj.responseText);
@@ -32,13 +29,16 @@
             xobj.send(null);
         };
 
+        var canvas = document.getElementById("renderCanvas");
+        var engine = new BABYLON.Engine(canvas, true);
+
         var createScene = function (jsonData) {
             var scene = new BABYLON.Scene(engine);
 
             // This creates and positions a free camera (non-mesh)
             var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
 
-            // This targets the camera to scene origin
+            // This targets the camera to the scene origin
             camera.setTarget(BABYLON.Vector3.Zero());
 
             // This attaches the camera to the canvas
