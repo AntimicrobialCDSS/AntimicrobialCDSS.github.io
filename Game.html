@@ -43,7 +43,7 @@
             barrel.rotation.x = Math.PI / 2;
 
             var needle = BABYLON.MeshBuilder.CreateCylinder("needle", {diameter: 0.05, height: 1.0}, scene);
-            needle.position.z = 1.5;
+            needle.position.z = 2;
             needle.rotation.x = Math.PI / 2;
 
             var syringe = BABYLON.Mesh.MergeMeshes([barrel, needle], true, false, null, false, true);
@@ -56,7 +56,7 @@
 
             syringe.position.y = 0.75;
 
-            // Manage direction
+            // Initial direction
             syringe.direction = new BABYLON.Vector3(0, 0, -1);
 
             var bacteria = [];
@@ -76,8 +76,9 @@
             var shootProjectile = function () {
                 var projectile = BABYLON.MeshBuilder.CreateSphere("projectile", {diameter: 0.1, segments: 8}, scene);
 
+                // Calculate projectile initial position to fire from the end of the syringe
                 var needlePosition = syringe.position.add(syringe.direction.scale(1.5));
-                projectile.position = new BABYLON.Vector3(needlePosition.x, syringe.position.y, needlePosition.z); // Adjusting position to fire from the needle
+                projectile.position = new BABYLON.Vector3(needlePosition.x, syringe.position.y, needlePosition.z);
 
                 projectile.physicsImpostor = new BABYLON.PhysicsImpostor(projectile, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
                 projectile.physicsImpostor.applyImpulse(syringe.direction.scale(10), projectile.getAbsolutePosition());
@@ -90,9 +91,26 @@
                 });
             };
 
+            var updateSyringeDirection = function () {
+                if (keys["ArrowUp"]) {
+                    syringe.direction = new BABYLON.Vector3(0, 0, -1);
+                }
+                if (keys["ArrowDown"]) {
+                    syringe.direction = new BABYLON.Vector3(0, 0, 1);
+                }
+                if (keys["ArrowLeft"]) {
+                    syringe.direction = new BABYLON.Vector3(-1, 0, 0);
+                }
+                if (keys["ArrowRight"]) {
+                    syringe.direction = new BABYLON.Vector3(1, 0, 0);
+                }
+                syringe.rotationQuaternion = BABYLON.Quaternion.RotationYawPitchRoll(0, 0, Math.atan2(syringe.direction.z, syringe.direction.x));
+            };
+
             var keys = {};
             window.addEventListener("keydown", function (event) {
                 keys[event.key] = true;
+                updateSyringeDirection();
             });
 
             window.addEventListener("keyup", function (event) {
@@ -102,19 +120,15 @@
             scene.onBeforeRenderObservable.add(function () {
                 if (keys["ArrowUp"]) {
                     syringe.position.z -= 0.1;
-                    syringe.direction = new BABYLON.Vector3(0, 0, -1);
                 }
                 if (keys["ArrowDown"]) {
                     syringe.position.z += 0.1;
-                    syringe.direction = new BABYLON.Vector3(0, 0, 1);
                 }
                 if (keys["ArrowLeft"]) {
                     syringe.position.x -= 0.1;
-                    syringe.direction = new BABYLON.Vector3(-1, 0, 0);
                 }
                 if (keys["ArrowRight"]) {
                     syringe.position.x += 0.1;
-                    syringe.direction = new BABYLON.Vector3(1, 0, 0);
                 }
                 if (keys[" "]) {
                     shootProjectile();
