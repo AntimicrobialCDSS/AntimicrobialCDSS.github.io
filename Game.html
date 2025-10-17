@@ -17,130 +17,88 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babylonjs-gui/4.2.0/babylon.gui.min.js"></script>
 
     <script>
-        var loadJSON = function (url, callback) {
-            var xobj = new XMLHttpRequest();
-            xobj.overrideMimeType("application/json");
-            xobj.open('GET', url, true);
-            xobj.onreadystatechange = function () {
-                if (xobj.readyState == 4 && xobj.status == "200") {
-                    callback(xobj.responseText);
-                }
-            };
-            xobj.send(null);
-        };
+       var createScene = function () {
+    // This creates a basic Babylon Scene object (non-mesh)
+    var scene = new BABYLON.Scene(engine);
 
-        var canvas = document.getElementById("renderCanvas");
-        var engine = new BABYLON.Engine(canvas, true);
+    // This creates and positions a free camera (non-mesh)
+    var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
 
-        var createScene = function (jsonData) {
-            var scene = new BABYLON.Scene(engine);
+    // This targets the camera to scene origin
+    camera.setTarget(BABYLON.Vector3.Zero());
 
-            // This creates and positions a free camera (non-mesh)
-            var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
+    // This attaches the camera to the canvas
+    camera.attachControl(canvas, true);
 
-            // This targets the camera to the scene origin
-            camera.setTarget(BABYLON.Vector3.Zero());
+    // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
+    var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
-            // This attaches the camera to the canvas
-            camera.attachControl(canvas, true);
+    // Default intensity is 1. Let's dim the light a small amount
+    light.intensity = 0.7;
 
-            // This creates a light
-            var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-            light.intensity = 0.7;
+    // Our built-in 'ground' shape.
+    var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
 
-            // This creates ground
-            var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 10, height: 10 }, scene);
+    // Create the machine character
+    var machine = BABYLON.MeshBuilder.CreateBox("machine", {height: 1, width: 1, depth: 1}, scene);
+    machine.position.y = 1;
 
-            // Create the machine character
-            var machine = BABYLON.MeshBuilder.CreateBox("machine", { height: 1, width: 1, depth: 1 }, scene);
-            machine.position.y = 1;
+    // Create bacteria and viruses
+    var bacteria = [];
+    for (var i = 0; i < 5; i++) {
+        var bacterium = BABYLON.MeshBuilder.CreateSphere("bacterium" + i, {diameter: 1, segments: 16}, scene);
+        bacterium.position = new BABYLON.Vector3(Math.random() * 6 - 3, 1, Math.random() * 6 - 3);
+        bacteria.push(bacterium);
+    }
 
-            // Enable physics
-            scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), new BABYLON.CannonJSPlugin());
+    // Function to shoot projectiles
+    var shootProjectile = function (direction) {
+        var projectile = BABYLON.MeshBuilder.CreateSphere("projectile", {diameter: 0.2, segments: 8}, scene);
+        projectile.position = machine.position.clone();
+        projectile.physicsImpostor = new BABYLON.PhysicsImpostor(projectile, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
+        projectile.physicsImpostor.applyImpulse(direction.scale(10), projectile.getAbsolutePosition());
+    };
 
-            // Use JSON data for bacteria creation
-            var bacteria = [];
-            var bacteriaData = JSON.parse(jsonData);
-            for (var i = 0; i < bacteriaData.Contents.length; i++) {
-                var bacterium = BABYLON.MeshBuilder.CreateSphere("bacterium" + i, { diameter: 1, segments: 16 }, scene);
-                bacterium.position = new BABYLON.Vector3(Math.random() * 8 - 4, 1, Math.random() * 8 - 4);
-                bacterium.physicsImpostor = new BABYLON.PhysicsImpostor(bacterium, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 0 }, scene);
-                bacteria.push(bacterium);
+    // Movement and shooting controls for the machine
+    var keys = {};
+    window.addEventListener("keydown", function (event) {
+        keys[event.key] = true;
+    });
+
+    window.addEventListener("keyup", function (event) {
+        keys[event.key] = false;
+    });
+
+    scene.onBeforeRenderObservable.add(function () {
+        if (keys["ArrowUp"]) {
+            machine.position.z -= 0.1;
+            if (keys[" "]) {
+                shootProjectile(new BABYLON.Vector3(0, 0, -1));
             }
+        }
+        if (keys["ArrowDown"]) {
+            machine.position.z += 0.1;
+            if (keys[" "]) {
+                shootProjectile(new BABYLON.Vector3(0, 0, 1));
+            }
+        }
+        if (keys["ArrowLeft"]) {
+            machine.position.x -= 0.1;
+            if (keys[" "]) {
+                shootProjectile(new BABYLON.Vector3(-1, 0, 0));
+            }
+        }
+        if (keys["ArrowRight"]) {
+            machine.position.x += 0.1;
+            if (keys[" "]) {
+                shootProjectile(new BABYLON.Vector3(1, 0, 0));
+            }
+        }
+    });
 
-            // Function to shoot projectiles
-            var shootProjectile = function (direction) {
-                var projectile = BABYLON.MeshBuilder.CreateSphere("projectile", { diameter: 0.2, segments: 8 }, scene);
-                projectile.position = machine.position.clone();
-                projectile.material = new BABYLON.StandardMaterial("projectileMat", scene);
-                projectile.material.diffuseColor = BABYLON.Color3.Red();
-                projectile.physicsImpostor = new BABYLON.PhysicsImpostor(projectile, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1 }, scene);
-                projectile.physicsImpostor.applyImpulse(direction.scale(10), projectile.getAbsolutePosition());
-            };
+    return scene;
+};
 
-            // Movement and shooting controls for the machine
-            var keys = {};
-            window.addEventListener("keydown", function (event) {
-                keys[event.key] = true;
-            });
-
-            window.addEventListener("keyup", function (event) {
-                keys[event.key] = false;
-            });
-
-            scene.onBeforeRenderObservable.add(function () {
-                if (keys["ArrowUp"]) {
-                    machine.position.z -= 0.05;
-                    if (keys[" "]) {
-                        shootProjectile(new BABYLON.Vector3(0, 0, -1));
-                    }
-                }
-                if (keys["ArrowDown"]) {
-                    machine.position.z += 0.05;
-                    if (keys[" "]) {
-                        shootProjectile(new BABYLON.Vector3(0, 0, 1));
-                    }
-                }
-                if (keys["ArrowLeft"]) {
-                    machine.position.x -= 0.05;
-                    if (keys[" "]) {
-                        shootProjectile(new BABYLON.Vector3(-1, 0, 0));
-                    }
-                }
-                if (keys["ArrowRight"]) {
-                    machine.position.x += 0.05;
-                    if (keys[" "]) {
-                        shootProjectile(new BABYLON.Vector3(1, 0, 0));
-                    }
-                }
-
-                // Check for collisions between projectiles and bacteria
-                for (var i = 0; i < bacteria.length; i++) {
-                    var bacterium = bacteria[i];
-                    // Checking for intersection
-                    if (bacterium && bacterium.intersectsMesh(machine, false)) {
-                        bacterium.dispose();
-                        bacteria.splice(i, 1);
-                    }
-                }
-            });
-
-            return scene;
-        };
-
-        loadJSON('MinneapolisOMJSON.json', function(response) {
-            // Parse JSON string into object
-            var jsonData = response;
-            var scene = createScene(jsonData);
-            engine.runRenderLoop(function () {
-                scene.render();
-            });
-
-            // Resize the engine during changes in the screen size
-            window.addEventListener("resize", function () {
-                engine.resize();
-            });
-        });
     </script>
 </body>
 </html>
