@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Infectious Disease Shooter</title>
+    <style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+</head>
+<body>
+    <canvas id="renderCanvas"></canvas>
+
+    <!-- Include Babylon.js and Cannon.js -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
+
+    <script>
+        var canvas = document.getElementById("renderCanvas");
+        var engine = new BABYLON.Engine(canvas, true);
+
+        var createScene = function () {
+            var scene = new BABYLON.Scene(engine);
+            var camera = new BABYLON.ArcRotateCamera("camera1", Math.PI / 2, Math.PI / 3, 10, new BABYLON.Vector3(0, 0, 0), scene);
+            camera.attachControl(canvas, true);
+
+            var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+            light.intensity = 0.7;
+
+            // Enable physics with Cannon.js
+            var gravityVector = new BABYLON.Vector3(0, -9.81, 0);
+            var physicsPlugin = new BABYLON.CannonJSPlugin();
+            scene.enablePhysics(gravityVector, physicsPlugin);
+
+            var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 10, height: 10}, scene);
+            ground.position.y = 0;
+            // Assign physics impostor to the ground
+            ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
+
+            // Medical Syringe Model for Main Character (lying down and smaller)
+            var barrel = BABYLON.MeshBuilder.CreateCylinder("barrel", {diameter: 0.15, height: 1.5}, scene);
+            barrel.position.z = 0.75;
+            barrel.rotation.x = Math.PI / 2;
+
+            var needle = BABYLON.MeshBuilder.CreateCylinder("needle", {diameter: 0.05, height: 1.0}, scene);
+            needle.position.z = 2;
+            needle.rotation.x = Math.PI / 2;
+
+            var syringe = BABYLON.Mesh.MergeMeshes([barrel, needle], true, false, null, false, true);
+
+            // Enhancing visuals
+            var syringeMaterial = new BABYLON.StandardMaterial("syringeMaterial", scene);
+            syringeMaterial.diffuseColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+            syringeMaterial.specularColor = new BABYLON.Color3(0.7, 0.7, 0.7);
+            syringe.material = syringeMaterial;
+
+            syringe.position.y = 0.75;
+
+            // Initial direction
+            syringe.direction = new BABYLON.Vector3(0, 0, -1);
+
+            var bacteria = [];
+            for (var i = 0; i < 5; i++) {
+                var bacterium = BABYLON.MeshBuilder.CreateSphere("bacterium" + i, {diameter: 0.5, segments: 16}, scene);
+                bacterium.position = new BABYLON.Vector3(Math.random() * 8 - 4, 0.25, Math.random() * 8 - 4);
+
+                var bacteriaMaterial = new BABYLON.StandardMaterial("bacteriaMaterial", scene);
+                bacteriaMaterial.diffuseColor = new BABYLON.Color3(Math.random(), Math.random(), Math.random());
+                bacterium.material = bacteriaMaterial;
+
+                bacterium.physicsImpostor = new BABYLON.PhysicsImpostor(bacterium, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
+
+                bacteria.push(bacterium);
+            }
+
+            var shootProjectile = function () {
+                var projectile = BABYLON.MeshBuilder.CreateSphere("projectile", {diameter: 0.1, segments: 8}, scene);
+
+                // Calculate projectile initial position to fire from the end of the syringe
+                var needlePosition = syringe.position.add(syringe.direction.scale(1.25));
+                projectile.position = new BABYLON.Vector3(needlePosition.x, syringe.position.y - 0.55, needlePosition.z);
+
+                projectile.physicsImpostor = new BABYLON.PhysicsImpostor(projectile, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
+                projectile.physicsImpostor.applyImpulse(syringe.direction.scale(10), projectile.getAbsolutePosition());
+
+                // Collision detection
+                projectile.physicsImpostor.registerOnPhysicsCollide(bacteria.map(b => b.physicsImpostor), function (projectileImpostor, collidedImpostor) {
+                    var collidedMesh = collidedImpostor.object;
+                    collidedMesh.dispose(); // Remove the collided bacteria
+                    projectile.dispose(); // Remove the projectile upon collision
+                });
+            };
+
+            var updateSyringeDirection = function () {
+                if (keys["ArrowUp"]) {
+                    syringe.direction = new BABYLON.Vector3(0, 0, -1);
+                }
+                if (keys["ArrowDown"]) {
+                    syringe.direction = new BABYLON.Vector3(0, 0, 1);
+                }
+                if (keys["ArrowLeft"]) {
+                    syringe.direction = new BABYLON.Vector3(1, 0, 0);
+                }
+                if (keys["ArrowRight"]) {
+                    syringe.direction = new BABYLON.Vector3(-1, 0, 0);
+                }
+                var angle = Math.atan2(syringe.direction.x, syringe.direction.z);
+                syringe.rotationQuaternion = new BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, -angle);
+            };
+
+            var keys = {};
+            window.addEventListener("keydown", function (event) {
+                keys[event.key] = true;
+                updateSyringeDirection();
+            });
+
+            window.addEventListener("keyup", function (event) {
+                keys[event.key] = false;
+            });
+
+            scene.onBeforeRenderObservable.add(function () {
+                if (keys["ArrowUp"]) {
+                    syringe.position.z -= 0.1;
+                }
+                if (keys["ArrowDown"]) {
+                    syringe.position.z += 0.1;
+                }
+                if (keys["ArrowLeft"]) {
+                    syringe.position.x -= 0.1;
+                }
+                if (keys["ArrowRight"]) {
+                    syringe.position.x += 0.1;
+                }
+                if (keys[" "]) {
+                    shootProjectile();
+                }
+            });
+
+            return scene;
+        };
+
+        var scene = createScene();
+        engine.runRenderLoop(function () {
+            scene.render();
+        });
+
+        window.addEventListener("resize", function () {
+            engine.resize();
+        });
+    </script>
+</body>
+</html>
