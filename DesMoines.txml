@@ -3,12 +3,12 @@
     <TYPE>T</TYPE>
     <STATUS>A</STATUS>
     <BOILERPLATE_TEXT>
+      <p>{FLD:YES NO REQ}</p>
       <p>{FLD:ABX ALBC ORTHOPEDIC SURGERY}</p>
       <p>{FLD:ABX GENERIC CLICK LINK BELOW}</p>
       <p>{FLD:ABX CLICK CANCEL}</p>
       <p>{FLD:ABX ANTIMICROBIAL FORMULARY}</p>
       <p>{FLD:ABX BETA-LACTAM ALLERGIES PDF}</p>
-      <p>{FLD:ABX CAP CALCULATOR}</p>
       <p>{FLD:ABX CBOC INFO WI}</p>
       <p>{FLD:ABX CBOC INFO MN}</p>
       <p>{FLD:ABX ADULT IMMUNIZATION SCHEDULE, FULL VERSION}</p>
@@ -21,7 +21,6 @@
       <p>{FLD:ABX CI MPLS VAMC ABX SENSITIVITIES}</p>
       <p>{FLD:ABX ENDOCARDITIS COMPLETE INFO}</p>
       <p>{FLD:ABX ENDOCARDITIS PDF COMPLETE INFO}</p>
-      <p>{FLD:ABX IDP FLUOROQUINOLONE ADVERSE REACTIONS}</p>
       <p>{FLD:ABX JLV LINK}</p>
       <p>{FLD:ABX LEXICOMP INTERACTIONS}</p>
       <p>{FLD:ABX LEXICOMP CLICK HERE}</p>
@@ -49,6 +48,8 @@
       <p>{FLD:ABX VACCINE VISIT LOCATION}</p>
       <p>{FLD:ABX ANTIMICROBIAL CDSS  WEB APP LINK}</p>
       <p>{FLD:ABX UROLOGIC SURGERY PROPHYLAXIS GUIDELINES}</p>
+      <p>{FLD:ABX CAP CALCULATOR}</p>
+      <p>{FLD:ABX IDP FLUOROQUINOLONE ADVERSE REACTIONS}</p>
       <p>{FLD:ABX IXODES SCAPULARIS IDENTIFICATION}</p>
       <p>{FLD:ABX MN TICKBORNE DISEASE RISK}</p>
       <p>{FLD:ABX SPLENECTOMY VACCINES}</p>
@@ -59,6 +60,8 @@
       <p>{FLD:ABX RABIES DAY 3-14}</p>
       <p>{FLD:ABX RABIES CLINIC ORDER}</p>
       <p>{FLD:ABX RABIES DAY 3-28}</p>
+      <p>{FLD:ABX AZITHROMYCIN PULMONARY RADIO BUTTONS}</p>
+      <p>{FLD:ABX AZITHROMYCIN LONGTERM PULMONARY TEXT}</p>
       <p>{FLD:ABX DAYS SUPPLY QUANTITY CHECK}</p>
       <p>{FLD:MIN_SURG_VANCO_REASONS}</p>
       <p>{FLD:MIN_SURG_VANCO_INFO1}</p>
@@ -73,6 +76,24 @@
     </BOILERPLATE_TEXT>
   </TEMPLATE>
   <TEMPLATE_FIELDS>
+    <FIELD NAME="YES NO REQ">
+      <TYPE>R</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>YES</p>
+        <p>NO</p>
+      </ITEMS>
+    </FIELD>
     <FIELD NAME="ABX ALBC ORTHOPEDIC SURGERY">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -153,22 +174,6 @@
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
       <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Beta-lactam%20Allergies%20CDSS.pdf?csf=1&amp;web=1&amp;e=gsFtjT</URL>
-    </FIELD>
-    <FIELD NAME="ABX CAP CALCULATOR">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>CAP PORT CALCULATOR</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\PORT.html</URL>
     </FIELD>
     <FIELD NAME="ABX CBOC INFO WI">
       <TYPE>H</TYPE>
@@ -378,22 +383,6 @@
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
       <URL>https://www.ncbi.nlm.nih.gov/pubmed/17446442</URL>
-    </FIELD>
-    <FIELD NAME="ABX IDP FLUOROQUINOLONE ADVERSE REACTIONS">
-      <TYPE>H</TYPE>
-      <INACTIVE>0</INACTIVE>
-      <LENGTH>0</LENGTH>
-      <DEFAULT_TEXT>Fluoroquinolones FDA Update Serious Adverse Effects</DEFAULT_TEXT>
-      <DEFAULT_INDEX>0</DEFAULT_INDEX>
-      <REQUIRED>0</REQUIRED>
-      <SEPARATE_LINES>0</SEPARATE_LINES>
-      <MAX_LENGTH>0</MAX_LENGTH>
-      <INDENT>0</INDENT>
-      <PAD>0</PAD>
-      <MIN_VALUE>0</MIN_VALUE>
-      <MAX_VALUE>0</MAX_VALUE>
-      <INCREMENT>0</INCREMENT>
-      <URL>https://dva.sanfordguide.com/drug-information/antibacterial-agents/fluoroquinolones/fluoroquinolones-overview</URL>
     </FIELD>
     <FIELD NAME="ABX JLV LINK">
       <TYPE>H</TYPE>
@@ -836,6 +825,38 @@
       <INCREMENT>0</INCREMENT>
       <URL>https://www.auanet.org/guidelines/urologic-procedures-and-antimicrobial-prophylaxis-(2019)</URL>
     </FIELD>
+    <FIELD NAME="ABX CAP CALCULATOR">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>CAP PORT CALCULATOR</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\PORT.html</URL>
+    </FIELD>
+    <FIELD NAME="ABX IDP FLUOROQUINOLONE ADVERSE REACTIONS">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Fluoroquinolones FDA Update Serious Adverse Effects</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dva.sanfordguide.com/drug-information/antibacterial-agents/fluoroquinolones/fluoroquinolones-overview</URL>
+    </FIELD>
     <FIELD NAME="ABX IXODES SCAPULARIS IDENTIFICATION">
       <TYPE>H</TYPE>
       <INACTIVE>0</INACTIVE>
@@ -1016,6 +1037,45 @@
         <p>7 </p>
         <p>14 </p>
         <p>28</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX AZITHROMYCIN PULMONARY RADIO BUTTONS">
+      <TYPE>R</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>I am Pulmonary STAFF authorized to order</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX AZITHROMYCIN LONGTERM PULMONARY TEXT">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Azithromycin for long-term use for COPD </p>
+        <p>requires approval by Pulmonary.</p>
+        <p>Please place a Pulmonary Consult and </p>
+        <p>Pulmonary will place order for </p>
+        <p>azithromycin if appropriate. </p>
+        <p>PLEASE SELECT BELOW:</p>
       </ITEMS>
     </FIELD>
     <FIELD NAME="ABX DAYS SUPPLY QUANTITY CHECK">
