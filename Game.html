@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Infectious Disease Shooter</title>
+    <style>
+        body { margin: 0; }
+        canvas { width: 100%; height: 100% }
+    </style>
+</head>
+<body>
+    <canvas id="renderCanvas"></canvas>
+
+    <!-- Babylon.js CDN -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/cannon.js"></script>
+    <script src="https://cdn.babylonjs.com/babylon.gui.min.js"></script>
+
+    <!-- Game Script -->
+    <script>var canvas = document.getElementById("renderCanvas");
+var engine = new BABYLON.Engine(canvas, true);
+
+var createScene = function () {
+    var scene = new BABYLON.Scene(engine);
+
+    // This creates and positions a free camera (non-mesh)
+    var camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
+
+    // This targets the camera to scene origin
+    camera.setTarget(BABYLON.Vector3.Zero());
+
+    // This attaches the camera to the canvas
+    camera.attachControl(canvas, true);
+
+    // This creates a light
+    var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+    light.intensity = 0.7;
+
+    // This creates ground
+    var ground = BABYLON.MeshBuilder.CreateGround("ground", { width: 10, height: 10 }, scene);
+
+    // Create the machine character
+    var machine = BABYLON.MeshBuilder.CreateBox("machine", { height: 1, width: 1, depth: 1 }, scene);
+    machine.position.y = 1;
+
+    // Enable physics
+    scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), new BABYLON.CannonJSPlugin());
+
+    // Create bacteria and viruses
+    var bacteria = [];
+    for (var i = 0; i < 5; i++) {
+        var bacterium = BABYLON.MeshBuilder.CreateSphere("bacterium" + i, { diameter: 1, segments: 16 }, scene);
+        bacterium.position = new BABYLON.Vector3(Math.random() * 8 - 4, 1, Math.random() * 8 - 4);
+        bacterium.physicsImpostor = new BABYLON.PhysicsImpostor(bacterium, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 0 }, scene);
+        bacteria.push(bacterium);
+    }
+
+    // Function to shoot projectiles
+    var shootProjectile = function (direction) {
+        var projectile = BABYLON.MeshBuilder.CreateSphere("projectile", { diameter: 0.2, segments: 8 }, scene);
+        projectile.position = machine.position.clone();
+        projectile.material = new BABYLON.StandardMaterial("projectileMat", scene);
+        projectile.material.diffuseColor = BABYLON.Color3.Red();
+        projectile.physicsImpostor = new BABYLON.PhysicsImpostor(projectile, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1 }, scene);
+        projectile.physicsImpostor.applyImpulse(direction.scale(10), projectile.getAbsolutePosition());
+    };
+
+    // Movement and shooting controls for the machine
+    var keys = {};
+    window.addEventListener("keydown", function (event) {
+        keys[event.key] = true;
+    });
+
+    window.addEventListener("keyup", function (event) {
+        keys[event.key] = false;
+    });
+
+    scene.onBeforeRenderObservable.add(function () {
+        if (keys["ArrowUp"]) {
+            machine.position.z -= 0.05;
+            if (keys[" "]) {
+                shootProjectile(new BABYLON.Vector3(0, 0, -1));
+            }
+        }
+        if (keys["ArrowDown"]) {
+            machine.position.z += 0.05;
+            if (keys[" "]) {
+                shootProjectile(new BABYLON.Vector3(0, 0, 1));
+            }
+        }
+        if (keys["ArrowLeft"]) {
+            machine.position.x -= 0.05;
+            if (keys[" "]) {
+                shootProjectile(new BABYLON.Vector3(-1, 0, 0));
+            }
+        }
+        if (keys["ArrowRight"]) {
+            machine.position.x += 0.05;
+            if (keys[" "]) {
+                shootProjectile(new BABYLON.Vector3(1, 0, 0));
+            }
+        }
+
+        // Check for collisions between projectiles and bacteria
+        for (var i = 0; i < bacteria.length; i++) {
+            var bacterium = bacteria[i];
+            // Checking for intersection
+            if (bacterium && bacterium.intersectsMesh(machine, false)) {
+                bacterium.dispose();
+                bacteria.splice(i, 1);
+            }
+        }
+    });
+
+    return scene;
+};
+
+var scene = createScene();
+engine.runRenderLoop(function () {
+    scene.render();
+});
+
+// Resize the engine during changes in the screen size
+window.addEventListener("resize", function () {
+    engine.resize();
+});
+</script>
+</body>
+</html>
