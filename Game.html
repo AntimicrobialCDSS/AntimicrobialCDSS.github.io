@@ -27,13 +27,15 @@
             var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
             light.intensity = 0.7;
 
+            // Enable physics with Cannon.js
+            var gravityVector = new BABYLON.Vector3(0, -9.81, 0);
+            var physicsPlugin = new BABYLON.CannonJSPlugin();
+            scene.enablePhysics(gravityVector, physicsPlugin);
+
             var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 10, height: 10}, scene);
             ground.position.y = 0;
             // Assign physics impostor to the ground
             ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
-
-            // Enable physics with Cannon.js
-            scene.enablePhysics(new BABYLON.Vector3(0, -9.81, 0), new BABYLON.CannonJSPlugin());
 
             // Mortar and Pestle Model for Main Character
             var mortarBase = BABYLON.MeshBuilder.CreateCylinder("mortarBase", {diameter: 1, height: 0.5}, scene);
