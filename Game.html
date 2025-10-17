@@ -37,24 +37,25 @@
             // Assign physics impostor to the ground
             ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
 
-            // Mortar and Pestle Model for Main Character
-            var mortarBase = BABYLON.MeshBuilder.CreateCylinder("mortarBase", {diameter: 1, height: 0.5}, scene);
-            mortarBase.position.y = 0.25;
-            var mortarBowl = BABYLON.MeshBuilder.CreateTorus("mortarBowl", {thickness: 0.2, diameter: 1.5}, scene);
-            mortarBowl.position.y = 0.5;
+            // Medical Syringe Model for Main Character
+            var barrel = BABYLON.MeshBuilder.CreateCylinder("barrel", {diameter: 0.5, height: 3}, scene);
+            barrel.position.y = 1.5;
 
-            var pestle = BABYLON.MeshBuilder.CreateCylinder("pestle", {diameter: 0.2, height: 1}, scene);
-            pestle.position = new BABYLON.Vector3(0, 1, 0);
+            var needle = BABYLON.MeshBuilder.CreateCylinder("needle", {diameter: 0.1, height: 2}, scene);
+            needle.position.y = 3.5;
 
-            var mortarAndPestle = BABYLON.Mesh.MergeMeshes([mortarBase, mortarBowl, pestle], true, false, null, false, true);
+            var syringe = BABYLON.Mesh.MergeMeshes([barrel, needle], true, false, null, false, true);
 
             // Enhancing visuals
-            var mortarMaterial = new BABYLON.StandardMaterial("mortarMaterial", scene);
-            mortarMaterial.diffuseColor = new BABYLON.Color3(0.5, 0.5, 0.5);
-            mortarMaterial.specularColor = new BABYLON.Color3(0.7, 0.7, 0.7);
-            mortarAndPestle.material = mortarMaterial;
+            var syringeMaterial = new BABYLON.StandardMaterial("syringeMaterial", scene);
+            syringeMaterial.diffuseColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+            syringeMaterial.specularColor = new BABYLON.Color3(0.7, 0.7, 0.7);
+            syringe.material = syringeMaterial;
 
-            mortarAndPestle.position.y = 0.5;
+            syringe.position.y = 1.5;
+
+            // Manage direction
+            syringe.direction = new BABYLON.Vector3(0, 0, -1);
 
             var bacteria = [];
             for (var i = 0; i < 5; i++) {
@@ -70,13 +71,13 @@
                 bacteria.push(bacterium);
             }
 
-            var shootProjectile = function (direction) {
+            var shootProjectile = function () {
                 var projectile = BABYLON.MeshBuilder.CreateSphere("projectile", {diameter: 0.2, segments: 8}, scene);
-                projectile.position = mortarAndPestle.position.clone();
-                projectile.position.y += 0.75; // Set initial height to avoid ground clipping
+                var needlePosition = syringe.position.add(syringe.direction.scale(1.5));
+                projectile.position = new BABYLON.Vector3(needlePosition.x, needlePosition.y + 2, needlePosition.z); // Adjusting y position to shoot from syringe's needle
 
                 projectile.physicsImpostor = new BABYLON.PhysicsImpostor(projectile, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
-                projectile.physicsImpostor.applyImpulse(direction.scale(10), projectile.getAbsolutePosition());
+                projectile.physicsImpostor.applyImpulse(syringe.direction.scale(10), projectile.getAbsolutePosition());
 
                 // Collision detection
                 projectile.physicsImpostor.registerOnPhysicsCollide(bacteria.map(b => b.physicsImpostor), function (projectileImpostor, collidedImpostor) {
@@ -97,27 +98,23 @@
 
             scene.onBeforeRenderObservable.add(function () {
                 if (keys["ArrowUp"]) {
-                    mortarAndPestle.position.z -= 0.1;
+                    syringe.position.z -= 0.1;
+                    syringe.direction = new BABYLON.Vector3(0, 0, -1);
                 }
                 if (keys["ArrowDown"]) {
-                    mortarAndPestle.position.z += 0.1;
+                    syringe.position.z += 0.1;
+                    syringe.direction = new BABYLON.Vector3(0, 0, 1);
                 }
                 if (keys["ArrowLeft"]) {
-                    mortarAndPestle.position.x += 0.1;
+                    syringe.position.x -= 0.1;
+                    syringe.direction = new BABYLON.Vector3(-1, 0, 0);
                 }
                 if (keys["ArrowRight"]) {
-                    mortarAndPestle.position.x -= 0.1;
+                    syringe.position.x += 0.1;
+                    syringe.direction = new BABYLON.Vector3(1, 0, 0);
                 }
-                if (keys[" "]) { 
-                    var direction = new BABYLON.Vector3(
-                        keys["ArrowLeft"] ? 1 : (keys["ArrowRight"] ? -1 : 0), 
-                        0, 
-                        keys["ArrowUp"] ? -1 : (keys["ArrowDown"] ? 1 : 0)
-                    );
-                    if (direction.lengthSquared() > 0) { 
-                        direction.normalize();
-                        shootProjectile(direction);
-                    }
+                if (keys[" "]) {
+                    shootProjectile();
                 }
             });
 
