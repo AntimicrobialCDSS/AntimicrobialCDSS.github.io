@@ -37,12 +37,14 @@
             // Assign physics impostor to the ground
             ground.physicsImpostor = new BABYLON.PhysicsImpostor(ground, BABYLON.PhysicsImpostor.BoxImpostor, { mass: 0, restitution: 0.9 }, scene);
 
-            // Medical Syringe Model for Main Character
-            var barrel = BABYLON.MeshBuilder.CreateCylinder("barrel", {diameter: 0.5, height: 3}, scene);
-            barrel.position.y = 1.5;
+            // Medical Syringe Model for Main Character (lying down and smaller)
+            var barrel = BABYLON.MeshBuilder.CreateCylinder("barrel", {diameter: 0.15, height: 1.5}, scene);
+            barrel.position.z = 0.75;
+            barrel.rotation.x = Math.PI / 2;
 
-            var needle = BABYLON.MeshBuilder.CreateCylinder("needle", {diameter: 0.1, height: 2}, scene);
-            needle.position.y = 3.5;
+            var needle = BABYLON.MeshBuilder.CreateCylinder("needle", {diameter: 0.05, height: 1.0}, scene);
+            needle.position.z = 1.5;
+            needle.rotation.x = Math.PI / 2;
 
             var syringe = BABYLON.Mesh.MergeMeshes([barrel, needle], true, false, null, false, true);
 
@@ -52,7 +54,7 @@
             syringeMaterial.specularColor = new BABYLON.Color3(0.7, 0.7, 0.7);
             syringe.material = syringeMaterial;
 
-            syringe.position.y = 1.5;
+            syringe.position.y = 0.75;
 
             // Manage direction
             syringe.direction = new BABYLON.Vector3(0, 0, -1);
@@ -72,9 +74,10 @@
             }
 
             var shootProjectile = function () {
-                var projectile = BABYLON.MeshBuilder.CreateSphere("projectile", {diameter: 0.2, segments: 8}, scene);
+                var projectile = BABYLON.MeshBuilder.CreateSphere("projectile", {diameter: 0.1, segments: 8}, scene);
+
                 var needlePosition = syringe.position.add(syringe.direction.scale(1.5));
-                projectile.position = new BABYLON.Vector3(needlePosition.x, needlePosition.y + 2, needlePosition.z); // Adjusting y position to shoot from syringe's needle
+                projectile.position = new BABYLON.Vector3(needlePosition.x, syringe.position.y, needlePosition.z); // Adjusting position to fire from the needle
 
                 projectile.physicsImpostor = new BABYLON.PhysicsImpostor(projectile, BABYLON.PhysicsImpostor.SphereImpostor, { mass: 1, restitution: 0.9 }, scene);
                 projectile.physicsImpostor.applyImpulse(syringe.direction.scale(10), projectile.getAbsolutePosition());
