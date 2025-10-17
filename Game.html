@@ -100,10 +100,10 @@
                     syringe.direction = new BABYLON.Vector3(0, 0, 1);
                 }
                 if (keys["ArrowLeft"]) {
-                    syringe.direction = new BABYLON.Vector3(1, 0, 0);
+                    syringe.direction = new BABYLON.Vector3(-1, 0, 0);
                 }
                 if (keys["ArrowRight"]) {
-                    syringe.direction = new BABYLON.Vector3(-1, 0, 0);
+                    syringe.direction = new BABYLON.Vector3(1, 0, 0);
                 }
                 var angle = Math.atan2(syringe.direction.x, syringe.direction.z);
                 syringe.rotationQuaternion = new BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, -angle);
