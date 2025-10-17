@@ -58,7 +58,7 @@
             syringe.position.y = 0.75;
 
             // Initial direction
-            syringe.direction = new BABYLON.Vector3(0, 0, -1);
+            syringe.direction = new BABYLON.Vector3(0, 0, 0);
 
             var bacteria = [];
             for (var i = 0; i < 5; i++) {
@@ -100,10 +100,10 @@
                     syringe.direction = new BABYLON.Vector3(0, 0, 1);
                 }
                 if (keys["ArrowLeft"]) {
-                    syringe.direction = new BABYLON.Vector3(1, 0, 0);
+                    syringe.direction = new BABYLON.Vector3(-1, 0, 0);
                 }
                 if (keys["ArrowRight"]) {
-                    syringe.direction = new BABYLON.Vector3(-1, 0, 0);
+                    syringe.direction = new BABYLON.Vector3(1, 0, 0);
                 }
                 var angle = Math.atan2(syringe.direction.x, syringe.direction.z);
                 syringe.rotationQuaternion = new BABYLON.Quaternion.RotationAxis(BABYLON.Axis.Y, -angle);
@@ -127,10 +127,10 @@
                     syringe.position.z += 0.1;
                 }
                 if (keys["ArrowLeft"]) {
-                    syringe.position.x += 0.1;
+                    syringe.position.x -= 0.1;
                 }
                 if (keys["ArrowRight"]) {
-                    syringe.position.x -= 0.1;
+                    syringe.position.x += 0.1;
                 }
                 if (keys[" "]) {
                     shootProjectile();
