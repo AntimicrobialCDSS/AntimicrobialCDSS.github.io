@@ -1,0 +1,1291 @@
+<CPRS_TEMPLATE>
+  <TEMPLATE NAME="SiouxFalls">
+    <TYPE>T</TYPE>
+    <STATUS>A</STATUS>
+    <BOILERPLATE_TEXT>
+      <p>{FLD:ABX ALBC ORTHOPEDIC SURGERY}</p>
+      <p>{FLD:ABX GENERIC CLICK LINK BELOW}</p>
+      <p>{FLD:ABX CLICK CANCEL}</p>
+      <p>{FLD:ABX AMOXICILLIN CHALLENGE LINK}</p>
+      <p>{FLD:ABX MDH ANTIBIOGRAM}</p>
+      <p>{FLD:ABX MDH ANTIBIOGRAM CLICK LINK}</p>
+      <p>{FLD:ABX ANTIMICROBIAL CDSS  WEB APP LINK}</p>
+      <p>{FLD:ABX BETA-LACTAM ALLERGIES PDF}</p>
+      <p>{FLD:ABX CAP CALCULATOR}</p>
+      <p>{FLD:ABX CDC ADULT IMMMUNIZATION SCHEDULE LIST}</p>
+      <p>{FLD:ABX ADULT IMMUNIZATION SCHEDULE, FULL VERSION}</p>
+      <p>{FLD:ABX CDC WEBSITE}</p>
+      <p>{FLD:ABX CLICK LINK BELOW CDC WEBSITE}</p>
+      <p>{FLD:ABX CDSS STAFF EMAIL ADDITIONAL VERBAGE}</p>
+      <p>{FLD:ABX CDSS STAFF EMAIL VERBAGE}</p>
+      <p>{FLD:ABX EMAIL VISN23 ANTIMICROBIAL CDSS}</p>
+      <p>{FLD:ABX CDSS FAQ}</p>
+      <p>{FLD:EB 25/240*}</p>
+      <p>{FLD:ABX CORONAVIRUS MINNEAPOLIS SHAREPOINT}</p>
+      <p>{FLD:ABX CORONAVIRUS CDC WEBSITE}</p>
+      <p>{FLD:VHA HIGH CONSEQUENCE INFECTION PREPAREDNESS PROGRAM}</p>
+      <p>{FLD:ABX ENDOCARDITIS COMPLETE INFO}</p>
+      <p>{FLD:ABX ENDOCARDITIS PDF COMPLETE INFO}</p>
+      <p>{FLD:ABX IDP FLUOROQUINOLONE ADVERSE REACTIONS}</p>
+      <p>{FLD:ABX ISOLATION SIGNS}</p>
+      <p>{FLD:ABX JLV LINK}</p>
+      <p>{FLD:ABX LEXICOMP INTERACTIONS}</p>
+      <p>{FLD:ABX LEXICOMP CLICK HERE}</p>
+      <p>{FLD:ABX LEXICOMP ONLINE}</p>
+      <p>{FLD:ABX MANDELL ONLINE}</p>
+      <p>{FLD:ABX MEASLES OUTBREAK INFO}</p>
+      <p>{FLD:ABX SENSITIVITIES CLICK LINK BELOW}</p>
+      <p>{FLD:ABX MPLS VAMC ABX SENSITIVITIES}</p>
+      <p>{FLD:ABX CLICK LINK BELOW INFECT CTRL}</p>
+      <p>{FLD:ABX MVAMC INFECT CTRL INTRANET}</p>
+      <p>{FLD:ABX MINNEAPOLIS ON-CALL SCHEDULE}</p>
+      <p>{FLD:ABX PHARMACIST PHONE/PAGER NUMBERS}</p>
+      <p>{FLD:ABX PORT FINISHED CLICK OK BELOW}</p>
+      <p>{FLD:ABX POST EXPOSURE PROPHYLAXIS}</p>
+      <p>{FLD:ABX SURGICAL PROPHYLAXIS INDICATION HEADER}</p>
+      <p>{FLD:ABX SURGICAL PROPHYLAXIS INDICATION EDIT}</p>
+      <p>{FLD:ABX RESOURCE QTC PROLONGATION DRUGS}</p>
+      <p>{FLD:ABX CLICK LINK FOR RESOURCE DRUGS QTC}</p>
+      <p>{FLD:ABX SANFORD GUIDE WEBSITE}</p>
+      <p>{FLD:ABX SANFORD PREGNANCY WEBSITE}</p>
+      <p>{FLD:ABX SURGICAL PROPHYLAXIS GUIDELINES 2013}</p>
+      <p>{FLD:ABX IXODES SCAPULARIS IDENTIFICATION}</p>
+      <p>{FLD:ABX MN TICKBORNE DISEASE RISK}</p>
+      <p>{FLD:ABX HEAD LICE PDF FILE}</p>
+      <p>{FLD:ABX HEAD LICE PDF CLICK LINK BELOW}</p>
+      <p>{FLD:ABX UPTODATE CLICK LINK BELOW}</p>
+      <p>{FLD:ABX UP TO DATE LINKS}</p>
+      <p>{FLD:ABX ACIP BEST PRACTICES GUIDANCE}</p>
+      <p>{FLD:ABX COVID-19 INTERACTION CHECK}</p>
+      <p>{FLD:ABX IDP ACYCLOVIR SANFORD}</p>
+      <p>{FLD:ABX IDP ALBENDAZOLE SANFORD}</p>
+      <p>{FLD:ABX IDP AMANTADINE SANFORD}</p>
+      <p>{FLD:ABX IDP AMIKACIN SANFORD}</p>
+      <p>{FLD:ABX IDP AMOXICILLIN SANFORD}</p>
+      <p>{FLD:ABX IDP AMOXICILLIN-CLAVULANATE SAN}</p>
+      <p>{FLD:ABX IDP AMPHOTERICIN B SANFORD}</p>
+      <p>{FLD:ABX IDP AMPICILLIN SANFORD}</p>
+      <p>{FLD:ABX IDP AMPICILLIN-SULBACTAM SANFORD}</p>
+      <p>{FLD:ABX IDP ATOVAQUONE SANFORD}</p>
+      <p>{FLD:ABX IDP AZITHROMYCIN SANFORD}</p>
+      <p>{FLD:ABX IDP AZTREONAM SANFORD}</p>
+      <p>{FLD:ABX IDP BENZATHINE PENICILLIN SANFORD}</p>
+      <p>{FLD:ABX IDP CASPOFUNGIN}</p>
+      <p>{FLD:ABX IDP CEFADROXIL SANFORD}</p>
+      <p>{FLD:ABX IDP CEFAZOLIN SANFORD}</p>
+      <p>{FLD:ABX IDP CEFEPIME SANFORD}</p>
+      <p>{FLD:ABX IDP CEFIXIME}</p>
+      <p>{FLD:ABX IDP CEFOTETAN SANFORD}</p>
+      <p>{FLD:ABX IDP CEFOXITIN SANFORD}</p>
+      <p>{FLD:ABX IDP CEFPODOXIME SANFORD}</p>
+      <p>{FLD:ABX IDP CEFTAZIDIME SANFORD}</p>
+      <p>{FLD:ABX IDP CEFTRIAXONE SANFORD}</p>
+      <p>{FLD:ABX IDP CEFUROXIME ORAL SANFORD}</p>
+      <p>{FLD:ABX IDP CEPHALEXIN SANFORD}</p>
+      <p>{FLD:ABX IDP CHLORAMPHENICOL SANFORD}</p>
+      <p>{FLD:ABX IDP CIPROFLOXACIN SANFORD}</p>
+      <p>{FLD:ABX IDP CLARITHROMYCIN SANFORD}</p>
+      <p>{FLD:ABX IDP CLINDAMYCIN SANFORD}</p>
+      <p>{FLD:ABX IDP CLOTRIMAZOLE TOPICAL LEXI}</p>
+      <p>{FLD:ABX IDP DAPTOMYCIN SANFORD}</p>
+      <p>{FLD:ABX IDP DICLOXACILLIN SANFORD}</p>
+      <p>{FLD:ABX IDP DOLUTEGRAVIR SANFORD}</p>
+      <p>{FLD:ABX IDP DOXYCYCLINE SANFORD}</p>
+      <p>{FLD:ABX IDP EMTRICITABINE + TENOFOVIR SANFORD}</p>
+      <p>{FLD:ABX IDP ERTAPENEM SANFORD}</p>
+      <p>{FLD:ABX IDP ERYTHROMYCIN OPHTHALMIC LEXI}</p>
+      <p>{FLD:ABX IDP ERYTHROMYCIN SANFORD}</p>
+      <p>{FLD:ABX IDP ETHAMBUTOL SANFORD}</p>
+      <p>{FLD:ABX IDP FLUCONAZOLE SANFORD}</p>
+      <p>{FLD:ABX IDP FLUCYTOSINE SANFORD}</p>
+      <p>{FLD:ABX IDP FOSCARNET SANFORD}</p>
+      <p>{FLD:ABX IDP FOSFOMYCIN SANFORD}</p>
+      <p>{FLD:ABX IDP GANCICLOVIR SANFORD}</p>
+      <p>{FLD:ABX IDP GENTAMICIN SANFORD}</p>
+      <p>{FLD:ABX IDP GRISEOFULVIN SANFORD}</p>
+      <p>{FLD:ABX IDP IODOQUINOL SANFORD}</p>
+      <p>{FLD:ABX IDP ITRACONAZOLE NEW SANFORD}</p>
+      <p>{FLD:ABX IDP LEVOFLOXACIN SANFORD}</p>
+      <p>{FLD:ABX IDP LINEZOLID SANFORD}</p>
+      <p>{FLD:ABX IDP MEROPENEM SANFORD}</p>
+      <p>{FLD:ABX IDP METRONIDAZOLE SANFORD}</p>
+      <p>{FLD:ABX IDP METRONIDAZOLE TOPICAL LEXI}</p>
+      <p>{FLD:ABX IDP MICAFUNGIN SANFORD}</p>
+      <p>{FLD:ABX IDP MINOCYCLINE SANFORD}</p>
+      <p>{FLD:ABX IDP MOXIFLOXACIN OPHTHALMIC LEXI}</p>
+      <p>{FLD:ABX IDP MOXIFLOXACIN SANFORD}</p>
+      <p>{FLD:ABX IDP NAFCILLIN SANFORD}</p>
+      <p>{FLD:ABX  IDP NEOMYCIN SANFORD}</p>
+      <p>{FLD:ABX IDP NITAZOXANIDE SANFORD}</p>
+      <p>{FLD:ABX IDP NITROFURANTOIN SANFORD}</p>
+      <p>{FLD:ABX IDP OSELTAMIVIR SANFORD}</p>
+      <p>{FLD:ABX IDP PAROMOMYCIN SANFORD}</p>
+      <p>{FLD:ABX IDP PENICILLIN VK SANFORD}</p>
+      <p>{FLD:ABX IDP PENICILLIN IV SANFORD}</p>
+      <p>{FLD:ABX IDP PIPERACILLIN-TAZOBACTAM SANFORD}</p>
+      <p>{FLD:ABX IDP PYRIMETHAMINE SANFORD}</p>
+      <p>{FLD:ABX IDP QUINUPRISTIN-DALFOPRISTIN SANFORD}</p>
+      <p>{FLD:ABX IDP RALTEGRAVIR SANFORD}</p>
+      <p>{FLD:ABX IDP RIFABUTIN SANFORD}</p>
+      <p>{FLD:ABX IDP RIFAMPIN SANFORD}</p>
+      <p>{FLD:ABX IDP RIFAXIMIN SANFORD}</p>
+      <p>{FLD:ABX IDP STREPTOMYCIN SANFORD}</p>
+      <p>{FLD:ABX IDP SULFACETAMIDE OPHTHALMIC LEXI}</p>
+      <p>{FLD:ABX IDP SULFADIAZINE SANFORD}</p>
+      <p>{FLD:ABX IDP TERCONAZOLE LEXI}</p>
+      <p>{FLD:ABX IDP TETRACYCLINE SANFORD}</p>
+      <p>{FLD:ABX IDP TOBRAMYCIN SANFORD}</p>
+      <p>{FLD:ABX IDP TRIMETHOPRIM SANFORD}</p>
+      <p>{FLD:ABX IDP TRIMETHOPRIM-SULFAMETHOXAZOLE SANFORD}</p>
+      <p>{FLD:ABX IDP VALACYCLOVIR SANFORD}</p>
+      <p>{FLD:ABX IDP VALGANCICLOVIR SANFORD}</p>
+      <p>{FLD:ABX IDP VANCOMYCIN SANFORD}</p>
+      <p>{FLD:ABX IDP VORICONAZOLE SANFORD}</p>
+      <p>{FLD:ABX IDP ZANAMIVIR SANFORD}</p>
+      <p>{FLD:ABX VACCINE VISIT LOCATION}</p>
+      <p>{FLD:ABX VACCINE RTC}</p>
+      <p>{FLD:ABX VACC 3 START}</p>
+      <p>{FLD:ABX VACC 2 START}</p>
+      <p>{FLD:ABX VACC 4 START}</p>
+      <p>{FLD:ABX ATOVAQUONE CLINICAL REASON}</p>
+      <p>{FLD:ABX ATOVAQUONE PCP PROPHYLAXIS}</p>
+      <p>{FLD:ABX MAB COVID EDUCATE}</p>
+      <p>{FLD:ABX MAB COVID CONSENT}</p>
+      <p>{FLD:MIN_SURG_VANCO_REASONS}</p>
+      <p>{FLD:MIN_SURG_VANCO_INFO1}</p>
+      <p>{FLD:ABX DAPSONE G6PD TEST}</p>
+      <p>{FLD:ABX DAPSONE PCP PROPHYLAXIS}</p>
+    </BOILERPLATE_TEXT>
+  </TEMPLATE>
+  <TEMPLATE_FIELDS>
+    <FIELD NAME="ABX ALBC ORTHOPEDIC SURGERY">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\ALBC.pdf</URL>
+    </FIELD>
+    <FIELD NAME="ABX GENERIC CLICK LINK BELOW">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Click on link below:</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX CLICK CANCEL">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Click cancel when finished.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX AMOXICILLIN CHALLENGE LINK">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Amoxicillin Challenge Nursing Information</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2FAntimicrobialCDSS%2FAntimicrobialCDSS.github.io%2F6515efa3956ad48313eb7b2e013ca6259a754fb4%2FResources%2FAmoxicillin%2520Challenge%2520SF.docx&amp;wdOri</URL>
+    </FIELD>
+    <FIELD NAME="ABX MDH ANTIBIOGRAM">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Minnesota Department of Health </DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.health.state.mn.us/diseases/antibioticresistance/abx/index.html</URL>
+    </FIELD>
+    <FIELD NAME="ABX MDH ANTIBIOGRAM CLICK LINK">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>CLICK the link below to go to the </p>
+        <p>Minnesota Department of Health </p>
+        <p>Antibiogram...</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX ANTIMICROBIAL CDSS  WEB APP LINK">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Link to Antimicrobial CDSS Web App</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://antimicrobialcdss.github.io/</URL>
+    </FIELD>
+    <FIELD NAME="ABX BETA-LACTAM ALLERGIES PDF">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Beta-lactam Reaction Assessment PDF</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Beta-lactam%20Allergies%20CDSS.pdf?csf=1&amp;web=1&amp;e=gsFtjT</URL>
+    </FIELD>
+    <FIELD NAME="ABX CAP CALCULATOR">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>\\vha13fpc1\VISN\CDSS\PORT.html</URL>
+    </FIELD>
+    <FIELD NAME="ABX CDC ADULT IMMMUNIZATION SCHEDULE LIST">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Use link below to navigate to CDC Recommended Adult Immunization Schedule PDF:</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX ADULT IMMUNIZATION SCHEDULE, FULL VERSION">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>CDC Recommended Adult Immunization Schedule [Click Here]</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/CDC%20Immunization%20Schedule%20Full.pdf?csf=1&amp;web=1&amp;e=B3H7st</URL>
+    </FIELD>
+    <FIELD NAME="ABX CDC WEBSITE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>http://www.cdc.gov/ncidod</URL>
+    </FIELD>
+    <FIELD NAME="ABX CLICK LINK BELOW CDC WEBSITE">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>CLICK the link below...</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX CDSS STAFF EMAIL ADDITIONAL VERBAGE">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>**Contact the CDSS staff for any </p>
+        <p>questions on navigating the CDSS.</p>
+        <p>Contact Antimicrobial Stewardship for </p>
+        <p>issues regarding antimicrobial </p>
+        <p>stewardship. Contact ID on call for any </p>
+        <p>patient specific questions </p>
+        <p>or for drug approvals outside the CDSS.</p>
+        <p>**</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX CDSS STAFF EMAIL VERBAGE">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Please select "Allow" from the pop-up box and then </p>
+        <p>*WAIT* for Outlook Email to open in browser.</p>
+        <p>Email: VISN23AntimicrobialCDSS@va.gov</p>
+        <p></p>
+        <p>CDSS Staff (call or Skype for immediate assistance):</p>
+        <p>    Erik Stensgard, PharmD, Phone: 612-467-1781 or</p>
+        <p>    Bobbie Masoud, PharmD, Phone: 612-719-6778</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX EMAIL VISN23 ANTIMICROBIAL CDSS">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>E-mail Antimicrobial CDSS Team</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://outlook.office.com/owa/?path=/mail/action/compose&amp;to=[VISN23AntimicrobialCDSS@va.gov]?subject=Antimicrobial CDSS</URL>
+    </FIELD>
+    <FIELD NAME="ABX CDSS FAQ">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>CDSS Frequently Asked Questions Document</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Antimicrobial%20CDSS%20Frequently%20Asked%20Questions.pdf?csf=1&amp;web=1&amp;e=dJyUHD</URL>
+    </FIELD>
+    <FIELD NAME="EB 25/240*">
+      <TYPE>E</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>25</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>240</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+    </FIELD>
+    <FIELD NAME="ABX CORONAVIRUS MINNEAPOLIS SHAREPOINT">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Minneapolis COVID-19 Sharepoint Site </DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dvagov.sharepoint.com/sites/min/SiteDirectory/COVID-19/SitePages/Home.aspx</URL>
+    </FIELD>
+    <FIELD NAME="ABX CORONAVIRUS CDC WEBSITE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>More Information: CDC website Novel Coronavirus</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.cdc.gov/coronavirus/2019-ncov/index.html</URL>
+    </FIELD>
+    <FIELD NAME="ABX ENDOCARDITIS COMPLETE INFO">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Click the link below for the complete </p>
+        <p>information on Prevention of Infective </p>
+        <p>Endocarditis...</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX ENDOCARDITIS PDF COMPLETE INFO">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>AHA Prevention of Infective Endocarditis &lt;Link&gt;</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.ncbi.nlm.nih.gov/pubmed/17446442</URL>
+    </FIELD>
+    <FIELD NAME="ABX IDP FLUOROQUINOLONE ADVERSE REACTIONS">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Fluoroquinolones FDA Update Serious Adverse Effects</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dva.sanfordguide.com/drug-information/antibacterial-agents/fluoroquinolones/fluoroquinolones-overview</URL>
+    </FIELD>
+    <FIELD NAME="ABX ISOLATION SIGNS">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Isolation Precautions</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dvagov.sharepoint.com/sites/min/SiteDirectory/InfCon/SitePages/Infection-Prevention.aspx</URL>
+    </FIELD>
+    <FIELD NAME="ABX JLV LINK">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>JLV (Joint Legacy Viewer) - view all VA documented vaccinations</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://jlv.med.va.gov/JLV/</URL>
+      <DESCRIPTION>
+        <p>JLV Website Link</p>
+      </DESCRIPTION>
+    </FIELD>
+    <FIELD NAME="ABX LEXICOMP INTERACTIONS">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://online.lexi.com/lco/action/interact</URL>
+    </FIELD>
+    <FIELD NAME="ABX LEXICOMP CLICK HERE">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Please Click Here to go to Lexicomp..</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX LEXICOMP ONLINE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Lexicomp online [Click Here]</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://liblynxgateway.com/va</URL>
+    </FIELD>
+    <FIELD NAME="ABX MANDELL ONLINE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Mandell's online [Click Here]</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.clinicalkey.com/#!/browse/book/3-s2.0-C2016100010X</URL>
+    </FIELD>
+    <FIELD NAME="ABX MEASLES OUTBREAK INFO">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Measles Outbreak Information for Veterans PDF</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\Measles Outbreak Information.pdf</URL>
+    </FIELD>
+    <FIELD NAME="ABX SENSITIVITIES CLICK LINK BELOW">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>CLICK the link below to go to the Mpls </p>
+        <p>VAMC Antibiotic Sensitivities...</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX MPLS VAMC ABX SENSITIVITIES">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Sioux Falls VAMC Antibiotic Sensitivities</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://antimicrobialcdss.github.io/Resources/AntibiogramSiouxFalls.pdf</URL>
+    </FIELD>
+    <FIELD NAME="ABX CLICK LINK BELOW INFECT CTRL">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>CLICK the link below to go to the </p>
+        <p>Minneapolis VAMC Infection Control </p>
+        <p>Intranet...</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX MVAMC INFECT CTRL INTRANET">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Infection Prevention and Control SharePoint</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dvagov.sharepoint.com/sites/min/SiteDirectory/InfCon/SitePages/Infection-Prevention.aspx</URL>
+    </FIELD>
+    <FIELD NAME="ABX MINNEAPOLIS ON-CALL SCHEDULE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>On-Call Schedule</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>http://vaww.visn23.med.va.gov/concall/index.asp</URL>
+    </FIELD>
+    <FIELD NAME="ABX PHARMACIST PHONE/PAGER NUMBERS">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\Phone Numbers.pdf</URL>
+    </FIELD>
+    <FIELD NAME="ABX PORT FINISHED CLICK OK BELOW">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>When finished click OK below</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX POST EXPOSURE PROPHYLAXIS">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/PEP.pdf?csf=1&amp;web=1&amp;e=ceK8lv</URL>
+    </FIELD>
+    <FIELD NAME="ABX SURGICAL PROPHYLAXIS INDICATION HEADER">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>*Indication/Type of Surgery: </p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX SURGICAL PROPHYLAXIS INDICATION EDIT">
+      <TYPE>E</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>50</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>50</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+    </FIELD>
+    <FIELD NAME="ABX RESOURCE QTC PROLONGATION DRUGS">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Resource for QT prolongation for meds</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://crediblemeds.org/</URL>
+    </FIELD>
+    <FIELD NAME="ABX CLICK LINK FOR RESOURCE DRUGS QTC">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Click on the following link for a resource </p>
+        <p>for drugs that cause QTc prolongation.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX SANFORD GUIDE WEBSITE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dva.sanfordguide.com/</URL>
+    </FIELD>
+    <FIELD NAME="ABX SANFORD PREGNANCY WEBSITE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Sanford Guide Pregnancy Risk &amp; Lactation Safety Table [Click Here}</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://dva.sanfordguide.com/comparisons-1/pregnancy_risk_lactation_safety</URL>
+    </FIELD>
+    <FIELD NAME="ABX SURGICAL PROPHYLAXIS GUIDELINES 2013">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.ncbi.nlm.nih.gov/pubmed/23327981</URL>
+      <DESCRIPTION>
+        <p>Hyperlink to 2013 Surgical Prophylaxis Guidelines</p>
+        <p>Pubmed link</p>
+      </DESCRIPTION>
+    </FIELD>
+    <FIELD NAME="ABX IXODES SCAPULARIS IDENTIFICATION">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Ixodes scapularis identification, Minnesota Department of Health</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.health.state.mn.us/diseases/tickborne/ticks.html</URL>
+    </FIELD>
+    <FIELD NAME="ABX MN TICKBORNE DISEASE RISK">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Tickborne disease risk map, Minnesota Department of Health</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.health.state.mn.us/diseases/lyme/highrisk.html</URL>
+    </FIELD>
+    <FIELD NAME="ABX HEAD LICE PDF FILE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>http://www.cdc.gov/ncidod/dpd/parasites/lice/2004_PDF_Treating_head_lice.pdf</URL>
+    </FIELD>
+    <FIELD NAME="ABX HEAD LICE PDF CLICK LINK BELOW">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Click the link below for the treating Head </p>
+        <p>Lice PDF file...</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX UPTODATE CLICK LINK BELOW">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>CLICK the link below to go to Up To </p>
+        <p>Date...</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX UP TO DATE LINKS">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>Up-to-Date Link</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>http://www.uptodate.com/contents/search.do?unid=minmasoub&amp;srcsys=UTD187508&amp;eiv=2.1.0</URL>
+    </FIELD>
+    <FIELD NAME="ABX ACIP BEST PRACTICES GUIDANCE">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.cdc.gov/vaccines/hcp/acip-recs/general-recs/timing.html#t-05</URL>
+    </FIELD>
+    <FIELD NAME="ABX COVID-19 INTERACTION CHECK">
+      <TYPE>H</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_TEXT>COVID-19 Medication Interaction Check Website Link</DEFAULT_TEXT>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <URL>https://www.covid19-druginteractions.org/checker</URL>
+    </FIELD>
+    <FIELD NAME="ABX VACCINE VISIT LOCATION">
+      <TYPE>R</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Televisit. Nurse: refer to return to clinic order for administration date. </p>
+        <p>Clinic visit. Nurse: administer dose(s) today or place RTC order to admin at later date.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX VACCINE RTC">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>*Provider: If this is a televisit, complete return to clinic (RTC) order </p>
+        <p>included in this order set. If this is an in person clinic visit, please cancel </p>
+        <p>the RTC order. If ordering multiple different vaccine series place only one RTC </p>
+        <p>order (if RTC is required) and one nursing text order (also included in order </p>
+        <p>set). </p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX VACC 3 START">
+      <TYPE>C</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>18</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>1 of 3 dose series</p>
+        <p>2 of 3 dose series</p>
+        <p>3 of 3 dose series</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX VACC 2 START">
+      <TYPE>C</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>18</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>1 of 2 dose series</p>
+        <p>2 of 2 dose series</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX VACC 4 START">
+      <TYPE>C</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>18</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>1 of 4 dose series</p>
+        <p>2 of 4 dose series</p>
+        <p>3 of 4 dose series</p>
+        <p>4 of 4 dose series</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX ATOVAQUONE CLINICAL REASON">
+      <TYPE>R</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Atovaquone: G6PD deficiency lab confirmed (dapsone contraindicated)</p>
+        <p>Atovaquone: Patient dx systemic lupus erythematosus (SLE)</p>
+        <p>Atovaquone: Concern for hematologic toxicity (specify in comments section)</p>
+        <p>Other: Please specify reason for atovaquone in comments section.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX ATOVAQUONE PCP PROPHYLAXIS">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Atovaquone is expensive, especially for long term prophylaxis. Please select </p>
+        <p>alternative recommendation, unless clinical reason for selecting Atovaquone. </p>
+        <p>Clinical reason for selecting Atovaquone: </p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX MAB COVID EDUCATE">
+      <TYPE>X</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Patient/Caregiver has been counseled on this EUA medication treatment and provided printed information.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX MAB COVID CONSENT">
+      <TYPE>X</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>70</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Patient/Caregiver has consented to receiving this medication treatment authorized under EUA.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="MIN_SURG_VANCO_REASONS">
+      <TYPE>X</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>5</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Documentation of a beta-lactam (penicillin or cephalosporin) allergy</p>
+        <p>Documentation of known prior colonization with MRSA</p>
+        <p>Documentation of patient being high-risk due to acute inpatient hospitalization within the last year</p>
+        <p>Documentation of patient being high-risk due to LTC setting within the last year, prior to admission</p>
+        <p>Documentation of increased MRSA rate either facility-wide or procedure-specific</p>
+        <p>Documentation of chronic wound care or dialysis</p>
+        <p>Documentation of continuous inpatient stay more than 24 hours prior to the procedure of interest</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="MIN_SURG_VANCO_INFO1">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Vancomycin not recommended for routine use because it is not as effective as cefazolin in </p>
+        <p>killing methicillin-susceptible S. aureus, MSSA.  Indiscriminate vancomycin prescribing </p>
+        <p>contributes to bacterial resistance.  Vancomycin use should be avoided unless the patient </p>
+        <p>has a risk factor for MRSA infection (noted below), or is allergic to beta-lactams.</p>
+        <p></p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX DAPSONE G6PD TEST">
+      <TYPE>R</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>1</REQUIRED>
+      <SEPARATE_LINES>0</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Confirm: Patient's lab test NORMAL for G6-PD.</p>
+        <p>Patient already receiving Dapsone, continuation of therapy.</p>
+      </ITEMS>
+    </FIELD>
+    <FIELD NAME="ABX DAPSONE PCP PROPHYLAXIS">
+      <TYPE>T</TYPE>
+      <INACTIVE>0</INACTIVE>
+      <LENGTH>0</LENGTH>
+      <DEFAULT_INDEX>0</DEFAULT_INDEX>
+      <REQUIRED>0</REQUIRED>
+      <SEPARATE_LINES>1</SEPARATE_LINES>
+      <MAX_LENGTH>0</MAX_LENGTH>
+      <INDENT>0</INDENT>
+      <PAD>0</PAD>
+      <MIN_VALUE>0</MIN_VALUE>
+      <MAX_VALUE>0</MAX_VALUE>
+      <INCREMENT>0</INCREMENT>
+      <ITEMS>
+        <p>Patient to be tested for glucose-6-phosphate dehydrogenase (G6PD) deficiency BEFORE starting Dapsone.</p>
+        <p>Please confirm below: </p>
+      </ITEMS>
+    </FIELD>
+  </TEMPLATE_FIELDS>
+</CPRS_TEMPLATE>
