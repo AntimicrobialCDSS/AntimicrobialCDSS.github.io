@@ -736,7 +736,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/sites/vhav23/CDSS/CDSS%20Resources/Forms/AllItems.aspx?id=%2Fsites%2Fvhav23%2FCDSS%2FCDSS%20Resources%2F2023%20Antibiogram%2Epdf&amp;parent=%2Fsites%2Fvhav23%2FCDSS%2FCDSS%20Resources</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/AntibiogramOmaha.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX OMAHA ON-CALL SCHEDULE">
       <TYPE>H</TYPE>
