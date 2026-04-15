@@ -978,7 +978,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>http://www.cdc.gov/ncidod/dpd/parasites/lice/2004_PDF_Treating_head_lice.pdf</URL>
+      <URL>https://www.cdc.gov/lice/treatment/index.html</URL>
     </FIELD>
     <FIELD NAME="ABX UP TO DATE LINKS">
       <TYPE>H</TYPE>
