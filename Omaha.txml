@@ -126,7 +126,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\ALBC.pdf</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/ALBC.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX BETA-LACTAM ALLERGIES PDF">
       <TYPE>H</TYPE>
@@ -142,7 +142,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Beta-lactam%20Allergies%20CDSS.pdf?csf=1&amp;web=1&amp;e=gsFtjT</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Beta-lactam Allergies CDSS.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX EMAIL VISN23 ANTIMICROBIAL CDSS">
       <TYPE>H</TYPE>
@@ -232,7 +232,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov-my.sharepoint.com/:w:/r/personal/tracie_balvanz2_va_gov/Documents/Microsoft%20Teams%20Chat%20Files/COVID19%20Treatment%20SOP%20and%20Process%20Map%20NWIVAHCS.docx?d=w65a8f825e3974482ae8067b352c6462b&amp;csf=1&amp;web=1&amp;e=173Tzl</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/COVID19 Antiviral and Monoclonal Antibody Treatment SOP.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX ENDOCARDITIS COMPLETE INFO">
       <TYPE>T</TYPE>
@@ -424,7 +424,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>http://www.cdc.gov/ncidod/dpd/parasites/lice/2004_PDF_Treating_head_lice.pdf</URL>
+      <URL>https://www.cdc.gov/lice/treatment/index.html</URL>
     </FIELD>
     <FIELD NAME="ABX HEAD LICE PDF CLICK LINK BELOW">
       <TYPE>T</TYPE>
@@ -636,7 +636,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://www.pbm.va.gov/nationalformulary.asp</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Antimicrobial Formulary.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CDSS OMAHA FAQ">
       <TYPE>H</TYPE>

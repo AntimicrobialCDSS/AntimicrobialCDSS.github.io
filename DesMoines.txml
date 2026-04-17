@@ -107,7 +107,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\ALBC.pdf</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/ALBC.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX GENERIC CLICK LINK BELOW">
       <TYPE>T</TYPE>
@@ -157,7 +157,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://www.pbm.va.gov/nationalformulary.asp</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Antimicrobial Formulary.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX BETA-LACTAM ALLERGIES PDF">
       <TYPE>H</TYPE>
@@ -173,7 +173,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Beta-lactam%20Allergies%20CDSS.pdf?csf=1&amp;web=1&amp;e=gsFtjT</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Beta-lactam Allergies CDSS.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CBOC INFO WI">
       <TYPE>H</TYPE>
@@ -331,7 +331,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>https://dvagov.sharepoint.com/:b:/r/sites/vhav23/CDSS/CDSS%20Resources/Antimicrobial%20CDSS%20Frequently%20Asked%20Questions.pdf?csf=1&amp;web=1&amp;e=dJyUHD</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/Antimicrobial CDSS Frequently Asked Questions.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX CI MPLS VAMC ABX SENSITIVITIES">
       <TYPE>H</TYPE>
@@ -528,7 +528,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\nPEP.pdf</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/nPEP.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX POST EXPOSURE PROPHYLAXIS">
       <TYPE>H</TYPE>
@@ -543,7 +543,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>\\v23.med.va.gov\V23\VISN 23\Services\VHA13FPC14\VISN23\CDSS\PEP.pdf</URL>
+      <URL>https://antimicrobialcdss.github.io/Resources/PEP.pdf</URL>
     </FIELD>
     <FIELD NAME="ABX SURGICAL PROPHYLAXIS INDICATION HEADER">
       <TYPE>T</TYPE>
@@ -672,7 +672,7 @@
       <MIN_VALUE>0</MIN_VALUE>
       <MAX_VALUE>0</MAX_VALUE>
       <INCREMENT>0</INCREMENT>
-      <URL>http://www.cdc.gov/ncidod/dpd/parasites/lice/2004_PDF_Treating_head_lice.pdf</URL>
+      <URL>https://www.cdc.gov/lice/treatment/index.html</URL>
     </FIELD>
     <FIELD NAME="ABX HEAD LICE PDF CLICK LINK BELOW">
       <TYPE>T</TYPE>
