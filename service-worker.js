@@ -1,5 +1,5 @@
 const APP_PREFIX = 'CDSS_';
-const VERSION = '1.248'; // Update the version when you make changes
+const VERSION = '1.249'; // Update the version when you make changes
 const CACHE_NAME = APP_PREFIX + VERSION;
 
 const URLS = [
